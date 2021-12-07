@@ -1,0 +1,1151 @@
+<data>
+  <category name="colors">
+    <!-- pure colors -->
+    <entry name="black" color="#000000" isPure="1" />
+    <entry name="white" color="#FFFFFF" isPure="1" />
+    <entry name="red" color="#FF0000" isPure="1" />
+    <entry name="pale red" color="#CCB3B3" isPure="1" />
+    <entry name="orange" color="#FF8800" isPure="1" />
+    <entry name="light orange" color="#FFE7CC" isPure="1" />
+    <entry name="yellow" color="#FFDD00" isPure="1" />
+    <entry name="light yellow" color="#FFF8CC" isPure="1" />
+    <entry name="green" color="#00FF00" isPure="1" />
+    <entry name="teal" color="#00FF6F" isPure="1" />
+    <entry name="cyan" color="#00FFDD" isPure="1" />
+    <entry name="blue" color="#0000FF" isPure="1" />
+    <entry name="sky blue" color="#B3B3FF" isPure="1" />
+    <entry name="brown" color="#DF6020" isPure="1" />
+    <entry name="pale brown" color="#C9BCB6" isPure="1" />
+    <entry name="purple" color="#8800FF" isPure="1" />
+    <entry name="gray" color="#808080" isPure="1" />
+    <entry name="dark gray" color="#404040" isPure="1" />
+    <entry name="very dark gray" color="#202020" isPure="1" />
+    <!-- UI colors -->
+    <entry name="tile slot border" color="#545445" />
+    <entry name="tile slot back" color="#3D3D29" />
+    <entry name="tile border" color="#5C5C3D" />
+    <entry name="tile" color="#70705C" />
+    <entry name="tile selected" color="#A6A659" />
+    <entry name="tile over" color="#999966" />
+    <entry name="tile selected over" color="#C2C270" />
+    <entry name="tile text" color="#D1D1C7" />
+    <entry name="tile text selected" color="#EDEDDE" />
+    <entry name="tile text over" color="#F2F2D9" />
+    <entry name="tile text selected over" color="#FFFFFF" />
+    <entry name="tile player" color="#5C705C" />
+    <entry name="tile selected player" color="#59A659" />
+    <entry name="tile over player" color="#669966" />
+    <entry name="tile selected over player" color="#70C270" />
+    <entry name="tile text player" color="#C7D1C7" />
+    <entry name="tile text selected player" color="#DEEDDE" />
+    <entry name="tile text over player" color="#D9F2D9" />
+    <entry name="tile text selected over player" color="#FFFFFF" />
+    <entry name="tile enemy" color="#705C5C" />
+    <entry name="tile selected enemy" color="#A65959" />
+    <entry name="tile over enemy" color="#996666" />
+    <entry name="tile selected over enemy" color="#C27070" />
+    <entry name="tile text enemy" color="#D1C7C7" />
+    <entry name="tile text selected enemy" color="#EDDEDE" />
+    <entry name="tile text over enemy" color="#F2D9D9" />
+    <entry name="tile text selected over enemy" color="#FFFFFF" />
+    <entry name="tooltip" color="#463D39" />
+    <entry name="tooltip text" color="#BAAFAB" />
+    <!-- material colors -->
+    <entry name="black fabric" color="#5C5857" />
+    <entry name="purple fabric" color="#866BAE" />
+    <entry name="red fabric" color="#AE6B6B" />
+    <entry name="sharp brown fabric" color="#B98B74" />
+    <entry name="brown fabric" color="#A47E6A" />
+    <entry name="greenish brown fabric" color="#959A7E" />
+    <entry name="blue fabric" color="#6B6FAE" />
+    <entry name="cyan fabric" color="#6BA9AE" />
+    <entry name="green fabric" color="#82AE6B" />
+    <entry name="yellow fabric" color="#AEAA6B" />
+    <entry name="gray fabric" color="#8C8C8C" />
+    <entry name="white fabric" color="#E6E6E6" />
+    <entry name="rusty" color="#C7998F" />
+    <entry name="steel" color="#BAC4C4" />
+    <entry name="lead" color="#899484" />
+    <entry name="titanite" color="#9E92A0" />
+    <entry name="spellsteel" color="#D4C4CF" />
+    <entry name="truegold" color="#F0EBC2" />
+    <entry name="bronze" color="#CD7F32" />
+    <entry name="silver" color="#BDC0C1" />
+    <entry name="poison" color="#9C54E3" />
+    <entry name="iron" color="#B8AFAD" />
+    <entry name="fire" color="#FC9983" />
+    <entry name="gunsmoke" color="#DED5D3" />
+    <entry name="smoke" color="#6B6161" />
+    <entry name="vis" color="#E699CC" />
+    <entry name="lightning" color="#ECF9F8" />
+    <entry name="sear" color="#FAE1D1" />
+    <entry name="bone" color="#DDDBD5" />
+    <entry name="flesh" color="#D68F9B" />
+    <entry name="blood" color="#BD0F0F" />
+    <entry name="pale blood" color="#EC7979" />
+    <entry name="star 1" color="#FCEFCF" />
+    <entry name="star 2" color="#CFFCFC" />
+    <entry name="star 3" color="#FCCFF8" />
+    <!-- body colors -->
+    <entry name="light green skin" color="#C5EBAD" />
+    <entry name="light teal skin" color="#7CE9D1" />
+    <entry name="light aqua skin" color="#7CC1E9" />
+    <entry name="yellow fur" color="#DEDDBA" />
+    <entry name="brown fur" color="#957250" />
+    <entry name="dull brown fur" color="#C3854B" />
+    <entry name="tan fur" color="#B9A57E" />
+    <entry name="black fur" color="#372E25" />
+    <entry name="white fur" color="#CFCBAF" />
+    <entry name="very white fur" color="#F4F4F0" />
+    <entry name="orange fur" color="#E69C4C" />
+    <entry name="vaguely green fur" color="#445841" />
+    <entry name="vaguely blue fur" color="#576D75" />
+    <entry name="red plumage" color="#C66053" />
+    <entry name="green plumage" color="#62C653" />
+    <entry name="yellow plumage" color="#C6C053" />
+    <entry name="pale yellow plumage" color="#B3B080" />
+    <entry name="orange plumage" color="#C68E53" />
+    <!-- tile colors -->
+    <entry name="wood floor" color="#452D21" />
+    <entry name="wood wall" color="#B47F64" />
+    <entry name="brick wall" color="#B87A7A" />
+    <entry name="rusty wall" color="#997466" />
+    <entry name="stone floor" color="#504B49" />
+    <entry name="stone wall" color="#928A87" />
+    <entry name="sand floor" color="#737326" />
+    <entry name="sand wall" color="#C6C653" />
+    <entry name="canvas wall" color="#A7A58B" />
+    <entry name="marshwater floor" color="#485926" />
+    <entry name="grass floor" color="#2E6F2A" />
+    <entry name="grass wall" color="#5EC059" />
+    <entry name="faded grass floor" color="#3F5C3D" />
+    <entry name="faded grass wall" color="#78A375" />
+    <entry name="wheat floor" color="#6F692A" />
+    <entry name="wheat wall" color="#C0B759" />
+    <entry name="dirt floor" color="#6F3B2A" />
+    <entry name="gravel floor" color="#4C4738" />
+    <entry name="dirt wall" color="#B77762" />
+    <entry name="faded dirt floor" color="#5C453D" />
+  </category> <!-- colors -->
+  <category name="stats">
+    <entry name="physique"
+      attackPower="2" life="2"
+      fluff="Represents the robustness of your body, both in strength and toughness." />
+    <entry name="agility"
+      attackPower="2" dodge="2"
+      fluff="How fast and flexible you are. Useful both for avoiding danger, and for stabbing danger in the face." />
+    <entry name="sense"
+      specialPower="2" accuracy="2"
+      fluff="A measure of your senses, both mundane a magical. One of the fundamental things a mage trains." />
+    <entry name="cunning"
+      specialPower="2" resistance="2"
+      fluff="The acuity of your mind. Helps when using magic, or disrupting an opponent's magic." />
+    <entry name="willpower"
+      specialAttackPower="4" energy="2"
+      fluff="Useful when forcing yourself to do things that are boring or painful." />
+  </category> <!-- stats -->
+  <category name="skills">
+    <!-- enemy-only skills -->
+    <entry name="enemy"
+      attackPower="2" specialPower="2" defense="2" accuracy="2" dodge="2" resistance="2" />
+
+    <!-- general skills -->
+    <entry name="form" physiqueReq="10"
+      attackPower="12"
+      fluff="Learn how to handle weapons more effectively, maximizing how much damage you can do with a solid hit." />
+    <entry name="fury" prereq="form"
+      hitsToCrits="12" attackPower="6"
+      fluff="TODO: fluff" />
+    <entry name="combat style" prereq="form"
+      accuracy="4" dodge="4" attackPower="4"
+      fluff="TODO: fluff" />
+    <entry name="skin hardening" physiqueReq="13"
+      defense="12"
+      fluff="Learn a common warrior technique, training yourself to harden your skin on command by infusing it with energy. Useful, but very painful to learn." />
+    <entry name="organ hardening" prereq="skin hardening"
+      life="8" defense="4"
+      fluff="Further improve your skin hardening ability, and learn to apply it to your internal organs to. Makes you a lot tougher, but if you keep it on all the time it'll shorten your lifespan." />
+    <entry name="muscle hardening" prereq="skin hardening"
+      attackPower="6" defense="6"
+      fluff="Learn how to use your skin hardening technique on your muscles also, so that not only are you tougher, but you can also push yourself harder without injury." />
+    <entry name="evasion" agilityReq="10"
+      dodge="12"
+      fluff="Learn how to react quickly to attacks, and effectively move or twist out of the way of them. Dodging is perhaps not as effective as armor, but it does help against weapon and spell both." />
+    <entry name="reflexes" prereq="evasion"
+      dodge="4" resistance="8"
+      fluff="All attacks can be dodged, even spells. If you are quick enough, you can react to the spell-channel solidifying, and juke away before the spell touches you." />
+    <entry name="combat instincts" prereq="evasion"
+      dodge="6" hitsToCrits="12"
+      fluff="TODO: fluff" />
+    <entry name="celerity" agilityReq="13"
+      initiative="12"
+      fluff="TODO: fluff" />
+    <entry name="sprinting" prereq="celerity"
+      moveDistance="1" initiative="4"
+      fluff="TODO: fluff" />
+    <entry name="surprise attacks" prereq="celerity"
+      attackPower="6" initiative="6"
+      fluff="TODO: fluff" />
+    <entry name="targeting" senseReq="10"
+      accuracy="12"
+      fluff="Train your eyes to see through the movements of your foes, so you can nail them even as they try to dodge." />
+    <entry name="timing" prereq="targeting"
+      accuracy="6" initiative="6"
+      fluff="Train yourself to have a better sense of timing, so that you always know the right time to make a move." />
+    <!-- TODO: second followup for "targeting" -->
+    <entry name="intuition" senseReq="13"
+      specialPower="12"
+      fluff="Train your subtler, more instinctual senses... your ability to sense magic, or to read the patterns of a complex job." />
+    <entry name="pattern breaking" prereq="intuition"
+      dodgeVsDisengage="36"
+      fluff="Learn how to create and break fake patterns of movement to confound your opponent's attempts to predict when you will slip away from them." />
+    <!-- TODO: second followup for "intuition" -->
+    <entry name="study" cunningReq="10"
+      specialPower="12"
+      fluff="Immerse yourself in the theory behind advanced techniques such as magic, to improve your efficacy." />
+    <entry name="hidden tricks" prereq="study"
+      specialPower="4" energy="8"
+      fluff="Leverage your knowledge of magic (and other unusual techniques) to make sure you always have a little something up your sleeve." />
+    <entry name="combat theory" prereq="study"
+      dodge="6" attackPower="6"
+      fluff="Expand your study to the more scholarly side of martial arts too, to supplement your techniques with improved fighting abilities." />
+    <entry name="countermagic" cunningReq="13"
+      resistance="12"
+      fluff="Like how mages can draw spell-channels with their mind, you can disrupt oncoming spell-channels with your mind, cutting perpendicular lines across them." />
+    <entry name="energy absorption" prereq="countermagic"
+      resistance="6" energy="6"
+      fluff="Learn how to dissipate energy from a spell-channel to further disrupt it. Learning this skill also helps gather more energy from the environment." />
+    <!-- TODO: second followup for "countermagic" -->
+    <entry name="meditation" willpowerReq="10"
+      energy="12"
+      fluff="TODO: fluff" />
+    <!-- TODO: first followup for "meditation" -->
+    <!-- TODO: second followup for "meditation" -->
+    <entry name="vigilance" willpowerReq="13"
+      specialAttackPower="24"
+      fluff="If you want to react the moment your opponent leaves an opening, you'll have to learn how to be patient first." />
+    <entry name="discipline" prereq="vigilance"
+      specialAttackPower="12" defense="6"
+      fluff="TODO: fluff" />
+    <entry name="zoning" prereq="vigilance"
+      zones="1" specialAttackPower="6"
+      fluff="TODO: fluff" />
+  </category> <!-- skills -->
+  <category name="jobs">
+    <entry name="warrior" reqSpecies="karhun,firin"
+      physiqueModifier="2" accuracy="10" armorProfiencyLevel="2" proficiencies="sword,mace,spear,slam,typhoon slash,sword wave"
+      fluff="TODO: fluff" />
+    <entry name="rogue" reqSpecies="karhun,skuri"
+      agilityModifier="2" dodge="10" attackPowerWhenDisengaged="40" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,snipe,crimson fangs,venom sting,miasma bolt"
+      fluff="TODO: fluff" />
+    <entry name="mage" reqSpecies="firin,skuri"
+      senseModifier="2" specialPower="15" energy="20" initiative="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage"
+      fluff="TODO: fluff" />
+    <entry name="mechanic" reqSpecies="skuri"
+      cunningModifier="2" specialPower="10" energy="10" life="10" armorProfiencyLevel="1" proficiencies="mace,pistol,saw automata,gun automata,slam"
+      fluff="TODO: fluff" />
+    <entry name="healer" reqSpecies="karhun"
+      willpowerModifier="2" specialPower="10" energy="20" life="20" proficiencies="dagger,mace,first aid,siphon,venom sting"
+      fluff="TODO: fluff" />
+    <entry name="wanderer" reqSpecies="firin"
+      agilityModifier="2" accuracy="22" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash"
+      fluff="TODO: fluff" />
+    <entry name="lab rat" reqSpecies="skuri"
+      senseModifier="1" physiqueModifier="1" energy="10" life="20" attackPower="10" defense="10" proficiencies="dagger,spear,agony release,miasma bolt,mend"
+      fluff="TODO: fluff" />
+    <entry name="martial artist" reqSpecies="skuri"
+      willpowerModifier="1" physiqueModifier="1" dodge="20" attackPower="10" life="20" martialArts="1" proficiencies="eye gouge,inner strength,illusion fist"
+      fluff="TODO: fluff" />
+    <entry name="sage" reqSpecies="firin"
+      senseModifier="1" cunningModifier="1" resistance="30" energy="20" proficiencies="spear,sword,ashball,agony release,inner strength,siphon"
+      fluff="TODO: fluff" />
+    <entry name="survivor" reqSpecies="karhun,firin,skuri"
+      willpowerModifier="2" resistance="20" attackPower="5" specialPower="5" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,slam,arcana arrow,snipe"
+      fluff="TODO: fluff" />
+    <entry name="gunner" reqSpecies="karhun,firin,skuri"
+      agilityModifier="1" physiqueModifier="1" attackPower="15" accuracy="15" armorProfiencyLevel="1" proficiencies="pistol,snipe,inferno shot,spell barrage"
+      fluff="TODO: fluff" />
+
+    <!-- enemy-only jobs -->
+    <entry name="tough monster"
+      physiqueModifier="2" defense="35" life="15" unarmoredDefense="1" />
+    <entry name="ranged monster"
+      physiqueModifier="1" agilityModifier="1" attackPower="40" life="10" unarmoredDefense="1" />
+    <entry name="sneaky monster"
+      agilityModifier="2" dodge="15" resistance="15" attackPowerWhenDisengaged="40" unarmoredDefense="1" />
+    <entry name="magic monster"
+      senseModifier="2" specialPower="30" life="10" energy="10" unarmoredDefense="1" />
+    <entry name="tethered"
+      willpowerModifier="2" energy="25" life="25" />
+  </category> <!-- jobs -->
+  <category name="creature templates">
+    <!-- special -->
+    <entry name="sample player t0" species="karhun" jobs="warrior" weapon="mace:0" armors="helmet:0,breastplate:0,greaves:0" techniques="slam" />
+    <entry name="sample player t1" species="karhun" jobs="warrior" weapon="mace:1" armors="helmet:1,breastplate:1,greaves:1" accessory="regal cloak" techniques="slam" />
+    <entry name="sample player t2" species="karhun" jobs="warrior,survivor" weapon="mace:2" armors="helmet:2,breastplate:2,greaves:2" accessory="regal cloak" techniques="slam" />
+
+    <!-- grasslands enemies (levels 1-6) -->
+    <entry name="scavenger" species="scavenger" jobs="sneaky monster" level="4" weapon="claws:0" />
+    <entry name="black cat" species="cat" jobs="magic monster" level="2" weapon="claws:0" techniques="arcana arrow"
+      coloration="0" />
+    <!-- TODO: side-region: catacombs with crumbly old undead? -->
+
+    <!-- shore enemies (levels 7-12) -->
+    <!-- TODO: shore monsters -->
+    <entry name="pirate brawler" species="firin" jobs="martial artist" level="11" armors="shirt:0,pants:0" techniques="eye gouge"
+      hairstyle="ponytail,short" />
+    <entry name="pirate crewmate" species="firin" jobs="gunner" level="11" weapon="pistol:0" armors="cap:0,shirt:0,pants:0" techniques="inferno shot"
+      hairstyle="ponytail,short" />
+    <entry name="pirate boarder" species="firin" jobs="wanderer" level="11" weapon="sword:0" armors="jerkin:0,leggings:0" techniques="typhoon slash"
+      hairstyle="ponytail,short" />
+    <entry name="pirate mage" species="firin" jobs="mage" level="11" armors0="shirt:0,pants:0" armors1="shirt:0,skirt:0" techniques="arcana arrow"
+      hairstyle="ponytail,short" />
+
+    <!-- caverns enemies (levels 13-18) -->
+    <entry name="skull rat" species="rat" jobs="sneaky monster" level="13" weapon="claws:1"
+      coloration="0" />
+    <!-- TODO: underground beasts -->
+
+    <!-- bandit town enemies (levels 19-24) -->
+    <entry name="bandit" species="karhun" jobs="survivor" level="15" weapon0="dagger:1" weapon="sword:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1"
+      hairstyle="short,bald" />
+    <entry name="sneaky bandit" species="karhun" jobs="rogue" level="19" weapon0="dagger:1" weapon1="sword:1" armors0="shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" techniques="crimson fangs"
+      hairstyle="short,bald" />
+    <!-- TODO: karhun bandits -->
+    <!-- TODO: side-region: a spooky manor, with a bunch of undead in it -->
+
+    <!-- twisted wasteland enemies (levels 25-30) -->
+    <entry name="darklands scavenger" species="scavenger" jobs="sneaky monster,tough monster" level="25" weapon="claws:2" /> <!-- TODO: appearance modifier: darker skin color -->
+    <!-- TODO: giant monsters -->
+    <!-- TODO: side-region: hedge maze (in the branch leading up to the tether assembly)... it has plant monsters, perhaps? -->
+
+    <!-- tether assembly enemies (levels 31-36) -->
+    <entry name="tethered warrior" species="karhun" jobs="warrior,tethered" level="28" weapon="sword:2" armors="helmet:2,breastplate:2,greaves:2" techniques="slam,typhoon slash"
+      hairstyle="short,bald" />
+    <entry name="tethered rogue" species="skuri" jobs="rogue,tethered" level="28" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" techniques="crimson fangs,venom sting"
+      hairstyle="short,medium" />
+    <entry name="tethered mage" species="firin" jobs="mage,tethered" level="28" weapon="spear:2" armors0="hat:2,shirt:2,pants:2" armors1="hat:2,shirt:2,skirt:2" techniques="arcana arrow,phantom flames"
+      hairstyle="medium,ponytail" />
+    <entry name="tethered mechanic" species="skuri" jobs="mechanic,tethered" level="30" weapon="mace:2" armors="cap:2,jerkin:2,leggings:2" techniques="saw automata,gun automata"
+      hairstyle="medium,long" />
+    <entry name="tethered gunner" species="firin" jobs="gunner,tethered" level="30" weapon="pistol:2" armors="cap:2,jerkin:2,leggings:2" techniques="snipe,inferno shot"
+      hairstyle="short,ponytail" />
+    <entry name="tethered healer" species="karhun" jobs="healer,tethered" level="30" weapon="mace:2" armors="hat:2,shirt:2,pants:2" techniques="first aid"
+      hairstyle="short,ponytail" /> <!-- TODO: some offensive spell? -->
+    <!-- TODO: side-area: the animal pens, with brainwashed beasts and a few more brainwashed servants -->
+  </category> <!-- creature templates -->
+  <category name="species">
+    <!-- playable species -->
+    <entry name="karhun"
+      physiqueModifier="4" agilityModifier="-2" cunningModifier="-3" willpowerModifier="1" life="10"
+      fluff="A powerful people who typically live solitary lives in the wilds. When they do band together, though, it's terrifying." />
+    <entry name="firin"
+      agilityModifier="1" senseModifier="2" willpowerModifier="-3" energy="10"
+      fluff="The nomadic remnants of a once-great empire. They still carry an air of easygoing pride with them, even now." />
+    <entry name="skuri"
+      physiqueModifier="-4" agilityModifier="4" senseModifier="-1" cunningModifier="1" dodge="10"
+      fluff="A secretive and skittish people who prefer to hide themselves away in their grand underground burrows." />
+
+    <!-- TODO: re-pick stats: -->
+
+    <!-- monster species -->
+    <entry name="automata"
+      physiqueModifier="5" cunningModifier="-5" defense="10" />
+    <entry name="scavenger"
+      physiqueModifier="1" agilityModifier="2" willpowerModifier="-2" cunningModifier="-1" moveDistance="1" attackPower="2" />
+    <entry name="frog" />
+    <entry name="cat"
+      senseModifier="5" physiqueModifier="-2" willpowerModifier="-3" energy="10" />
+    <entry name="rat"
+      cunningModifier="4" agilityModifier="5" physiqueModifier="-9" dodge="10" />
+  </category> <!-- species -->
+  <category name="hairstyles">
+    <!-- for silly UI reasons, there actually needs to be 4+ hairstyles -->
+    <entry name="bald"
+      fluff="When you have fur, the difference between bald and buzzcut is hard to tell." />
+    <entry name="short" slotFillers="hairFront:202"
+      fluff="A short, utilitarian haircut. It's not very noteworthy." />
+    <entry name="medium" slotFillers="hairFront:205,hairBack:213"
+      fluff="Medium-length hairstyles like this are considered fashionable among the Firin." />
+    <entry name="long" slotFillers="hairFront:205,hairBack:206"
+      fluff="A common Skuri superstition is that cutting your hair is bad luck. Many Skuri wear their hair long, based on that belief." />
+    <entry name="ponytail" slotFillers="hairFront:202,hairBack:214"
+      fluff="Wearing one's hair in a ponytail is popular with sailors, as it lets you keep your hair out of your eyes even if it has been months since your last trim." />
+  </category> <!-- hairstyles -->
+  <category name="species appearances">
+    <!-- playable species -->
+    <entry name="karhun"
+      appearanceSizeMult="115" headHeightPoint="85"
+      coloration0="Forest" colorationTickets0="3" skinColor0="brown fur" hairColor0="vaguely green fur" eyeColor0="light orange" pupilColor0="black"
+      colorationFluff0="Forest Karhun prefer to live in scattered enclaves in the forests, living off the land."
+      coloration1="River" colorationTickets1="2" skinColor1="orange fur" hairColor1="vaguely blue fur" eyeColor1="light orange" pupilColor1="black"
+      colorationFluff1="River Karhun live by rivers, and are happier with city-life than the forest Karhun. As such, they are the more dominant ethnicity, nowadays.">
+      <layer color="hairColor" xAdd="1" yAdd="-49" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
+      <layer xAdd="50" yAdd="-22" fillSlotId="weaponHand" /> <!-- weapon hand -->
+      <layer spriteM="300" spriteF="301" color="skinColor" showAllStatuses="1" /> <!-- body -->
+      <layer spriteM="304" spriteF="305" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
+      <layer spriteM="308" spriteF="309" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
+      <layer spriteM="302" spriteF="303" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
+      <layer spriteM="306" spriteF="307" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
+      <layer sprite="200" color="skinColor" xAdd="1" yAdd="-49" showAllStatuses="1" /> <!-- head -->
+      <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
+      <layer sprite="204" color="pupilColor" matchLastLayer="1" /> <!-- pupil -->
+      <layer color="hairColor" matchLastLayer="1" fillSlotId="hairFront" showObjectStatuses="1" /> <!-- hair -->
+      <layer fillSlotId="hat" showObjectStatuses="1" matchLastLayer="1" /> <!-- hat -->
+      <layer sprite="210" color="skinColor" matchLastLayer="1" showAllStatuses="1" /> <!-- ears -->
+    </entry> <!-- karhun -->
+    <entry name="firin"
+      appearanceSizeMult="95" headHeightPoint="75"
+      coloration0="Tabby" colorationTickets0="3" skinColor0="orange fur" hairColor0="yellow fur" eyeColor0="orange" pupilColor0="black"
+      colorationFluff0="The tabby Firin might not have any actual noble heritage, but they still have the bearing of a noble."
+      coloration1="Ginger" colorationTickets1="2" skinColor1="red plumage" hairColor1="orange fur" eyeColor1="orange" pupilColor1="black"
+      colorationFluff1="The reddish coloration ginger Firin was once considered a trait of the royal family. Nowadays, though, it has become quite common.">
+      <layer color="hairColor" xAdd="1" yAdd="-36" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
+      <layer sprite="102" color="skinColor" showAllStatuses="1" /> <!-- tail -->
+      <layer xAdd="39" yAdd="-9" fillSlotId="weaponHand" /> <!-- weapon hand -->
+      <layer spriteM="100" spriteF="101" color="skinColor" showAllStatuses="1" /> <!-- body -->
+      <layer spriteM="105" spriteF="106" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
+      <layer spriteM="109" spriteF="110" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
+      <layer spriteM="103" spriteF="104" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
+      <layer spriteM="107" spriteF="108" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
+      <layer sprite="200" color="skinColor" xAdd="1" yAdd="-36" showAllStatuses="1" /> <!-- head -->
+      <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
+      <layer sprite="203" color="pupilColor" matchLastLayer="1" /> <!-- pupil -->
+      <layer color="hairColor" matchLastLayer="1" fillSlotId="hairFront" showObjectStatuses="1" /> <!-- hair -->
+      <layer fillSlotId="hat" showObjectStatuses="1" matchLastLayer="1" /> <!-- hat -->
+      <layer sprite="208" color="skinColor" matchLastLayer="1" showAllStatuses="1" /> <!-- ears -->
+    </entry> <!-- firin -->
+    <entry name="skuri"
+      appearanceSizeMult="85" headHeightPoint="55"
+      coloration0="Field" colorationTickets0="3" skinColor0="tan fur" hairColor0="brown fur" eyeColor0="black" tailColor0="flesh"
+      colorationFluff0="Despite the name, field Skuri rarely actually live outside in fields. Rather, they were once used by the Firin empire as slaves, working the fields."
+      coloration1="Albino" colorationTickets1="1" skinColor1="very white fur" hairColor1="white" eyeColor1="blood" tailColor1="flesh"
+      colorationFluff1="Albinism is much more common in Skuri than it is in other species.">
+      <layer color="hairColor" xAdd="4" yAdd="-9" scale="90" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
+      <layer sprite="401" color="tailColor" showAllStatuses="1" /> <!-- tail -->
+      <layer xAdd="23" yAdd="30" fillSlotId="weaponHand" /> <!-- weapon hand -->
+      <layer sprite="400" color="skinColor" showAllStatuses="1" /> <!-- body -->
+      <layer sprite="403" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
+      <layer sprite="405" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
+      <layer sprite="402" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
+      <layer sprite="404" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
+      <layer sprite="200" color="skinColor" xAdd="4" yAdd="-9" scale="90" showAllStatuses="1" /> <!-- head -->
+      <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
+      <layer color="hairColor" matchLastLayer="1" fillSlotId="hairFront" showObjectStatuses="1" /> <!-- hair -->
+      <layer fillSlotId="hat" showObjectStatuses="1" matchLastLayer="1" /> <!-- hat -->
+      <layer sprite="209" color="tailColor" matchLastLayer="1" showAllStatuses="1" /> <!-- ears -->
+    </entry> <!-- skuri -->
+
+    <!-- monster species -->
+    <entry name="automata"
+      appearanceSizeMult="95"
+      colorationTickets0="1" skinColor0="steel">
+      <!-- TODO: actual appearance, with multiple layers for parts and such... lots of pieces and valves and shit -->
+      <!-- TODO: headHeightPoint (for spell lines) -->
+      <layer sprite="701" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- automata -->
+    <entry name="rat"
+      appearanceSizeMult="65" headHeightPoint="25"
+      colorationTickets0="1" skinColor0="bone">
+      <layer sprite="703" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- rat -->
+    <entry name="cat"
+      appearanceSizeMult="75" headHeightPoint="50"
+      colorationTickets0="1" skinColor0="black fur"
+      colorationTickets1="1" skinColor1="orange fur">
+      <layer sprite="701" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- cat -->
+    <entry name="serpent"
+      appearanceSizeMult="95" headHeightPoint="85"
+      colorationTickets0="1" skinColor0="green plumage"
+      colorationTickets1="1" skinColor1="yellow plumage">
+      <layer sprite="700" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- serpent -->
+    <!-- TODO: giant turtle -->
+    <entry name="boar"
+      appearanceSizeMult="115" headHeightPoint="45"
+      colorationTickets0="1" skinColor0="brown fur"
+      colorationTickets1="1" skinColor1="brown fabric"
+      colorationTickets2="1" skinColor2="dull brown fabric">
+      <layer sprite="702" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- boar -->
+    <!-- TODO: bird -->
+    <entry name="scavenger"
+      appearanceSizeMult="100"
+      colorationTickets0="1" skinColor0="brown fur"
+      colorationTickets1="1" skinColor1="tan fur"
+      colorationTickets2="1" skinColor2="dull brown fur">
+      <!-- TODO: actual appearance (use the "gnasher" sprite) -->
+      <!-- TODO: headHeightPoint (for spell lines) -->
+      <layer sprite="700" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- scavenger -->
+    <entry name="frog"
+      appearanceSizeMult="90"
+      colorationTickets0="1" skinColor0="green plumage"
+      colorationTickets1="1" skinColor1="yellow plumage">
+      <!-- TODO: actual appearance (use the "frog" sprite) -->
+      <!-- TODO: headHeightPoint (for spell lines) -->
+      <layer sprite="700" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- frog -->
+  </category> <!-- species appearances -->
+  <category name="weapons">
+    <!-- special -->
+    <entry name="unarmed" weaponAccuracy="100" />
+    <entry name="claws" weaponAccuracy="90">
+      <variety tier="0" />
+      <variety tier="1" />
+      <variety tier="2" />
+    </entry> <!-- claws -->
+    <entry name="poison claws" weaponAccuracy="90" poisonedPercent="35">
+      <variety tier="0" />
+      <variety tier="1" />
+      <variety tier="2" />
+    </entry> <!-- poison claws -->
+    <entry name="deathly grasp" weaponAccuracy="100" magic="1">
+      <!-- TODO: the animation for this should be very obviously magical -->
+      <variety tier="0" />
+      <variety tier="1" />
+      <variety tier="2" />
+    </entry> <!-- deathly grasp -->
+    <entry name="automata saw" weaponAccuracy="85" weaponHitsToCrits="10">
+      <variety tier="0" />
+      <variety tier="1" />
+      <variety tier="2" />
+    </entry> <!-- automata saw -->
+    <entry name="automata gun" weaponAccuracy="85" ranged="1">
+      <variety tier="0" />
+      <variety tier="1" />
+      <variety tier="2" />
+    </entry> <!-- automata gun -->
+
+    <!-- weapons -->
+    <entry name="rusty metal rod">
+      <variety tier="0" weaponAccuracy="85"
+        color="rusty" slotFillers="weaponHand:606"
+        fluff="This old metal rod looks like it was once part of a machine. It could be used as a crude weapon." />
+      <!-- TODO: no proficiency required (gives a damage penalty!) -->
+    </entry> <!-- rusty metal rod -->
+    <entry name="dagger">
+      <variety name="dagger" tier="0" weaponAccuracy="105" weaponHitsToCrits="10"
+        color="iron" slotFillers="weaponHand:603"
+        fluff="A small, cheaply made dagger." />
+      <variety name="fine dagger" tier="1" weaponAccuracy="105" weaponHitsToCrits="15"
+        color="steel" slotFillers="weaponHand:603"
+        fluff="A higher-quality dagger, made to be extra-sharp." />
+      <variety name="bone dagger" tier="2" weaponAccuracy="100" weaponHitsToCrits="15"
+        color="bone" slotFillers="weaponHand:603"
+        fluff="TODO: fluff" />
+      <variety name="blood drinker" tier="2" weaponAccuracy="100" drains="1"
+        color="blood" slotFillers="weaponHand:603"
+        fluff="TODO: fluff... this is a magic weapon!" />
+    </entry> <!-- dagger -->
+    <entry name="sword">
+      <variety name="rusty sword" tier="0" weaponAccuracy="90" defense="10"
+        color="rusty" slotFillers="weaponHand:604"
+        fluff="A sword that has not been maintained well. The edge is barely sharp anymore." />
+      <variety name="sword" tier="1" weaponAccuracy="95" defense="10"
+        color="iron" slotFillers="weaponHand:604"
+        fluff="A basic but effective sword. Well-balanced, and good at parrying." />
+      <variety name="noble sword" tier="2" weaponAccuracy="95" defense="15"
+        color="steel" slotFillers="weaponHand:605"
+        fluff="A well-made sword that has been designed to be even better at parrying." />
+      <variety name="firebrand" tier="2" weaponAccuracy="90" defense="10" burningPercent="40"
+        color="fire" slotFillers="weaponHand:604"
+        fluff="TODO: fluff... this is a magic weapon!" />
+    </entry> <!-- sword -->
+    <entry name="pistol">
+      <variety name="corroded pistol" tier="0" weaponAccuracy="80" ranged="1"
+        color="rusty" slotFillers="weaponHand:602"
+        fluff="This pistol is in such rough shape, it's a wonder that it can fire at all." />
+      <variety name="pistol" tier="1" weaponAccuracy="85" ranged="1"
+        color="iron" slotFillers="weaponHand:602"
+        fluff="A basic pistol, of a type used by Skuri soldiers." />
+      <variety name="mastercraft pistol" tier="2" weaponAccuracy="90" ranged="1"
+        color="steel" slotFillers="weaponHand:602"
+        fluff="A pistol made to tight specifications, perhaps for a sharpshooter or similar." />
+      <!-- TODO: magic pistol (to put in final area) -->
+    </entry> <!-- pistol -->
+    <entry name="mace">
+      <variety name="antique mace" tier="0" weaponAccuracy="80" armorPiercing="1"
+        color="rusty" slotFillers="weaponHand:607"
+        fluff="An old mace from who knows where. The heft of this weapon is at least half rust." />
+      <variety name="mace" tier="1" weaponAccuracy="85" armorPiercing="1"
+        color="iron" slotFillers="weaponHand:607"
+        fluff="A heavy iron mace, meant to smash armored enemies. Not the most subtle of weapons." />
+      <variety name="spiked mace" tier="2" weaponAccuracy="80" weaponHitsToCrits="10" armorPiercing="1"
+        color="steel" slotFillers="weaponHand:608"
+        fluff="A cruel mace that has been modified with metal spikes. It's a little intimidating, really." />
+      <!-- TODO: magic mace (to put in final area) -->
+    </entry> <!-- mace -->
+    <entry name="spear">
+      <variety name="old spear" tier="0" weaponAccuracy="90" zones="1"
+        color="rusty" slotFillers="weaponHand:600"
+        fluff="A spear that looks like it was used in the old war, and hasn't been cleaned since. It's better than a long stick, but not by much." />
+      <variety name="spear" tier="1" weaponAccuracy="95" zones="1"
+        color="iron" slotFillers="weaponHand:600"
+        fluff="A simple spear. Good at punishing enemies for approaching." />
+      <variety name="partisan" tier="2" weaponAccuracy="85" defense="10" zones="1"
+        color="steel" slotFillers="weaponHand:601"
+        fluff="A spear with a special flared head, meant to allow it to parry blows." />
+      <variety name="trembling spear" tier="2" weaponAccuracy="85" shakenPercent="30"
+        color="steel" slotFillers="weaponHand:600"
+        fluff="This ordinary-looking spear shakes slightly in your hands, making it hard to hold. It's obvious magical, though it's not clear what it is supposed to be for." />
+    </entry> <!-- spear -->
+
+    <!-- techniques -->
+    <entry name="crimson fangs" energyCost="5" weaponAccuracy="75" weaponHitsToCrits="25" scaling="melee weapon"
+      fluff="A risky combat technique that tries to rapidly strike the foe's weak spots, often missing in the process." />
+    <entry name="venom sting" energyCost="10" weaponAccuracy="90" scaling="melee weapon" poisonedPercent="25"
+      fluff="Coat your weapon in poison and make a quick and accurate strike on your foe." />
+    <entry name="slam" energyCost="5" weaponAccuracy="80" scaling="melee weapon" shakenPercent="35"
+      fluff="TODO: fluff" />
+    <entry name="typhoon slash" energyCost="10" weaponAccuracy="85" scaling="melee weapon"
+      fluff="Execute a practiced three-hit combo, trying to overwhelm the opponent with strikes." />
+    <entry name="eye gouge" energyCost="10" weaponAccuracy="75" scaling="level" blindedPercent="45"
+      fluff="TODO: fluff" />
+    <entry name="snipe" energyCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1"
+      fluff="Carefully aim your pistol, and try to read your enemy's movements, then take your shot." />
+    <entry name="inferno shot" energyCost="10" weaponAccuracy="90" burningPercent="35" scaling="ranged weapon" ranged="1"
+      fluff="Fire a special bullet that has been coated in incendiary chemicals, meant to light the opponent on fire." />
+
+    <!-- spells/special techniques -->
+    <entry name="arcana arrow" energyCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1"
+      fluff="TODO: fluff... stress this is a basic attack spell, but flexible enough that it's useful for novices and masters alike" />
+    <entry name="siphon" energyCost="5" weaponAccuracy="110" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" drains="1"
+      fluff="Jab your opponent with a thin needle of vital energy, then drain their blood through the hole. A spell that is subtle and gross in equal measures." />
+    <entry name="phantom flames" energyCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" burningPercent="40"
+      fluff="TODO: fluff..." />
+    <entry name="ashball" energyCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" blindedPercent="55"
+      fluff="TODO: fluff..." />
+    <entry name="sword wave" energyCost="10" weaponAccuracy="85" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1" ranged="1"
+      fluff="Build up energy in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." />
+    <entry name="illusion fist" energyCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
+      fluff="TODO: fluff... this is a magical martial arts technique" />
+    <entry name="spell barrage" energyCost="20" weaponAccuracy="90" weaponHitsToCrits="15" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1"
+      fluff="Build up a large amount of vital energy and release it in a flurry of magical bolts. A powerful but unsubtle spell." />
+    <entry name="miasma bolt" energyCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" poisonedPercent="50"
+      fluff="Infuse your vital energy with a toxic quality, and fire it out as a deadly magical bolt." />
+    <entry name="agony release" energyCost="10" lifeCostPercent="15" weaponAccuracy="100" weaponHitsToCrits="25" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
+      fluff="Stab yourself with a knife, and use the pain reflex to shape a wicked spell. An unusual but surprisingly effective form of magic." />
+    <entry name="mend" energyCost="5" weaponAccuracy="100" ranged="1" magic="1" spell="1" heals="1" scaling="level" usesSpecialPower="1"
+      fluff="TODO: fluff" />
+    <entry name="first aid" energyCost="5" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1"
+      fluff="TODO: fluff" />
+    <entry name="inner strength" energyCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1"
+      fluff="TODO: fluff" /> <!-- TODO: self-target only -->
+    <entry name="saw automata" energyCost="15" summonSpecies="automata" summonJobs="tough monster,tough monster" summonWeapon="automata saw" summonFluff="melee combat automata" scaling="level" usesSpecialPower="1"
+      fluff="TODO: fluff" />
+    <entry name="gun automata" energyCost="20" summonSpecies="automata" summonJobs="ranged monster,tough monster" summonWeapon="automata gun" summonFluff="ranged combat automata" scaling="level" usesSpecialPower="1"
+      fluff="Deploy a Skuri combat automata fitted with an auto-loading gun. Not as tactically flexible as a close-combat automata, but useful when raw firepower is needed." />
+  </category> <!-- weapons -->
+  <category name="accessories">
+    <entry name="regal cloak"
+      accuracy="5" attackPower="5" specialPower="5"
+      fluff="Wearing this beautiful cloak makes you feel haughty and confident. Was this how the warrior kings of old felt?" /> <!-- TODO: sprite (cloak sprite layer) -->
+    <entry name="oilskin cloak"
+      dodgeVsDisengage="15" dodge="10"
+      fluff="A leather cloak treated with some kind of slick oil. It'll make it easier to slip away from people." /> <!-- TODO: sprite (cloak sprite layer) -->
+    <entry name="fur cloak"
+      halveStatuses="1"
+      fluff="A warm, fur-lined cloak. Wearing this will help against protect against the elements." /> <!-- TODO: sprite (cloak sprite layer) -->
+    <entry name="third eye"
+      initiative="15"
+      fluff="This piece of jewelry seems purely ornamental at first glance. When worn on the forehead, though, it stimulates the wearer's vim, improving alertness." /> <!-- TODO: this should be a lategame item --> <!-- TODO: sprite (head accessory slot filler) -->
+    <entry name="intimidating mask"
+      hitsToCrits="30"
+      fluff="A mask with a scary facial expression. If your opponents feel fear on seeing it, you will prove their fear justified." /> <!-- TODO: sprite (head accessory slot filler) -->
+    <entry name="shield"
+      defense="15"
+      fluff="A simple shield, likely once held by a Karhun soldier. Shields are ineffective against magic, so they aren't all that popular nowadays." /> <!-- TODO: sprite (slot filler for an offhand slot?) -->
+    <!-- TODO: there should be ten of these in total... the ones I kept above are the ones I feel still fit -->
+    <!-- TODO: at least one should be a pair of glasses... -->
+    <!-- TODO: I'll want a powerVsUninjured item again, but with a new flavor -->
+    <!-- TODO: I'll also want a fatigueCapacity item -->
+    <!-- TODO: perhaps a specialAttackPower item? -->
+  </category> <!-- accessories -->
+  <category name="armors">
+    <!-- torso armors -->
+    <entry name="shirt" slot="torso"
+      armorLayerId="shirt">
+      <variety name="ragged shirt" tier="0" defense="5"
+        color="gray fabric"
+        fluff="A ratty old shirt that has definitely seen better days. Still, it was made of tough fabric, once." />
+      <variety name="comfortable shirt" tier="1" defense="10"
+        color="white fabric"
+        fluff="A nice shirt made of a tough but comfortable fabric." />
+      <variety name="regal shirt" tier="2" defense="15"
+        color="red fabric"
+        fluff="A well-made shirt with fine decorations. Shockingly tough, to protect the bodies of the rich from assassins." />
+    </entry> <!-- shirt -->
+    <entry name="jerkin" slot="torso" armorProfiencyLevel="1"
+      armorLayerId="shirt">
+      <variety name="rotten jerkin" tier="0" defense="14" dodge="1"
+        color="greenish brown fabric"
+        fluff="This leather jerkin was probably nice once, but now it has begun to dry rot." />
+      <variety name="leather jerkin" tier="1" defense="18" dodge="2"
+        color="brown fabric"
+        fluff="A protective leather jerkin. It's not as good as a breastplate, sure, but it's still a big improvement over normal clothes." />
+      <variety name="fine jerkin" tier="2" defense="22" dodge="3"
+        color="sharp brown fabric"
+        fluff="The leather this jerkin was made of has been treated with chemicals to be tougher, and the make is better. It's a fine jerkin, to be sure." />
+    </entry> <!-- jerkin -->
+    <entry name="breastplate" slot="torso" armorProfiencyLevel="2"
+      armorLayerId="breastplate">
+      <variety name="rusty breastplate" tier="0" defense="30" resistance="-5"
+        color="rusty"
+        fluff="A breastplate that has rusted heavily. It's still effective armor, but it's a little more fragile than if it was intact." />
+      <variety name="iron breastplate" tier="1" defense="36" resistance="-6"
+        color="iron"
+        fluff="TODO: fluff" />
+      <variety name="steel breastplate" tier="2" defense="42" resistance="-7"
+        color="steel"
+        fluff="A rigid steel breastplate. The standard for protection." />
+    </entry> <!-- breastplate -->
+
+    <!-- head armors -->
+    <entry name="hat" slot="head">
+      <variety name="ragged hat" tier="0" defense="2"
+        color="gray fabric" slotFillers="hat:212"
+        fluff="This hat was probably fashionable once. Now, it is barely holding together." />
+      <variety name="comfortable hat" tier="1" defense="4"
+        color="white fabric" slotFillers="hat:212"
+        fluff="A common hat. It fits on your head comfortably." />
+      <variety name="regal hat" tier="2" defense="6"
+        color="red fabric" slotFillers="hat:212"
+        fluff="This hat is made of a high-quality fabric. It's in mint condition, presumably unworn." />
+    </entry> <!-- hat -->
+    <entry name="cap" slot="head" armorProfiencyLevel="1">
+      <variety name="rotten cap" tier="0" defense="6"
+        color="greenish brown fabric" slotFillers="hat:207"
+        fluff="A gross old leather cap. Wash your hair thoroughly after wearing." />
+      <variety name="leather cap" tier="1" defense="8"
+        color="brown fabric" slotFillers="hat:207"
+        fluff="A protective leather cap. It'll cushion your head a little bit." />
+      <variety name="fine cap" tier="2" defense="10"
+        color="sharp brown fabric" slotFillers="hat:207"
+        fluff="A quality leather cap with some metal reinforcement inside, for added protection." />
+    </entry> <!-- cap -->
+    <entry name="helmet" slot="head" armorProfiencyLevel="2">
+      <variety name="rusty helmet" tier="0" defense="13" resistance="-3"
+        color="rusty" slotFillers="hat:211"
+        fluff="An old helmet that has been rusted over. The flaps for letting your ears through are stuck open, annoyingly." />
+      <variety name="iron helmet" tier="1" defense="16" resistance="-4"
+        color="iron" slotFillers="hat:211"
+        fluff="TODO: fluff" />
+      <variety name="steel helmet" tier="2" defense="19" resistance="-5"
+        color="steel" slotFillers="hat:211"
+        fluff="A well-maintained helmet of shining steel. Useful for keeping your head intact." />
+    </entry> <!-- helmet -->
+
+    <!-- leg armors -->
+    <entry name="skirt" slot="leg"
+      armorLayerId="skirt">
+      <variety name="ragged skirt" tier="0" dodge="3"
+        color="gray fabric"
+        fluff="A skirt this old and torn-up would probably be scandalous in normal society. Out here, though... whatever works." />
+      <variety name="comfortable skirt" tier="1" defense="3" dodge="3"
+        color="white fabric"
+        fluff="This skirt is fairly presentable. Not much as far as armor goes, though." />
+      <variety name="regal skirt" tier="2" defense="6" dodge="3"
+        color="red fabric"
+        fluff="Even the skirts of nobility had to be knife-proof, back in the old Firin empire. This one is made of a shockingly tough fabric." />
+    </entry> <!-- skirt -->
+    <entry name="pants" slot="leg"
+      armorLayerId="pants">
+      <variety name="ragged pants" tier="0" defense="3"
+        color="gray fabric"
+        fluff="A worn-out old pair of pants. At least they don't have any suspicious stains." />
+      <variety name="comfortable pants" tier="1" defense="6"
+        color="white fabric"
+        fluff="A good, comfortable pair of pants. Nothing exciting about them." />
+      <variety name="regal pants" tier="2" defense="9"
+        color="red fabric"
+        fluff="These pants are fancy, and made of a surprisingly tough fabric." />
+    </entry> <!-- pants -->
+    <entry name="leggings" slot="leg" armorProfiencyLevel="1"
+      armorLayerId="pants">
+      <variety name="rotten leggings" tier="0" defense="8" dodge="1"
+        color="greenish brown fabric"
+        fluff="A set of leather leggings that have been weakened by dry rot." />
+      <variety name="leather leggings" tier="1" defense="10" dodge="2"
+        color="brown fabric"
+        fluff="A set of padded leather leggings. They'll provide at least a little protection for your legs." />
+      <variety name="fine leggings" tier="2" defense="12" dodge="3"
+        color="sharp brown fabric"
+        fluff="A nice set of protective leggings, made of high-quality leather treated with special chemicals." />
+    </entry> <!-- leggings -->
+    <entry name="armored skirt" slot="leg" armorProfiencyLevel="1"
+      armorLayerId="skirt">
+      <variety name="rusty armored skirt" tier="1" defense="7" dodge="5"
+        color="rusty"
+        fluff="A metal-plated skirt. It's obviously not been maintained correctly." />
+      <variety name="steel armored skirt" tier="2" defense="9" dodge="6"
+        color="iron"
+        fluff="A metal-plated skirt. Not as protective as greaves, or even as leather leggings, but it does leave your legs a lot of room." />
+    </entry> <!-- armored skirt -->
+    <entry name="greaves" slot="leg" armorProfiencyLevel="2"
+      armorLayerId="pants">
+      <variety name="rusty greaves" tier="0" defense="19" resistance="-4"
+        color="rusty"
+        fluff="A set of greaves that have obviously seen better days. The knee joints scrape and scream with every move." />
+      <variety name="iron greaves" tier="1" defense="23" resistance="-5"
+        color="iron"
+        fluff="TODO: fluff" />
+      <variety name="steel greaves" tier="2" defense="27" resistance="-6"
+        color="steel"
+        fluff="A set of well-oiled steel greaves. No better protection is available for legs." />
+    </entry> <!-- greaves -->
+  </category> <!-- armors -->
+  <category name="sub regions">
+    <!-- TODO: break up the proto-regions into multiple sub-regions each -->
+    <!-- TODO: pick tilesets for all of these -->
+    <!-- TODO: fix loot quantities (here and the code in diagnostics)... -->
+
+    <!-- regionId 0 (t0): grasslands -->
+    <entry name="proto-region 0" regionId="0"
+      tileset="dirt tunnels" enemyTemplates="scavenger,black cat"
+      loot="(W)dagger:0,(W)rusty metal rod:0,(W)rusty metal rod:0,(A)jerkin:0,(A)skirt:0,(A)pants:0,(A)hat:0,(A)leggings:0,(A)shirt:0,(A)shirt:0,(A)hat:0,(A)cap:0,(A)skirt:0,(C)fur cloak,(A)breastplate:0" />
+    <!-- TODO: neutral NPC: firin civilian (M) in the first map
+      line 1: "Did you four sleepwalk here too?"
+      line 2: "All sorts of people seem to be drawn here by something."
+      line 3: "Lots of bandit types were drawn here, too. Be careful."
+      line 4+: "I'm happy where I am, thanks."
+      TODO: I guess all these dialogue lines should be stored in the strings file?
+    -->
+
+    <!-- regionId 1 (t0): shore -->
+    <entry name="shipwreck" regionId="1" condition="key map"
+      tileset="dirt tunnels" enemyTemplates="pirate brawler,pirate crewmate,pirate mage,pirate boarder"
+      loot="(C)intimidating mask,(W)pistol:0" />
+    <entry name="rocky shore" regionId="1" condition="key map branch"
+      tileset="dirt tunnels" enemyTemplates="pirate brawler,pirate mage"
+      loot="(W)sword:0,(A)cap:0,(A)jerkin:0" />
+    <entry name="proto-region 1" regionId="1"
+      tileset="dirt tunnels" enemyTemplates="pirate brawler"
+      loot="(W)spear:0,(W)mace:0,(A)leggings:0,(A)hat:0,(A)shirt:0,(A)pants:0,(A)helmet:0,(A)greaves:0" />
+      <!-- TODO: this region should have shore beasts in it -->
+
+    <!-- regionId 2 (t1): caverns -->
+    <entry name="burrow" regionId="2" condition="key map branch"
+      tileset="dirt tunnels" enemyTemplates="skull rat"
+      loot="(W)gun automata,(W)pistol:1,(A)cap:1" /> <!-- TODO: "paranoid skuri" and automata enemies -->
+    <entry name="proto-region 2" regionId="2"
+      tileset="dirt tunnels" enemyTemplates="skull rat"
+      loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)jerkin:1,(A)shirt:1,(A)shirt:1,(A)skirt:1,(A)armored skirt:0,(A)greaves:1,(C)shield,(A)hat:1,(A)hat:1,(A)helmet:1" />
+
+    <!-- regionId 3 (t1): bandit town -->
+    <entry name="proto-region 3" regionId="3"
+      tileset="dirt tunnels" enemyTemplates="bandit,sneaky bandit"
+      loot="(A)jerkin:1,(A)breastplate:1,(A)shirt:1,(A)skirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(A)pants:1" />
+
+    <!-- regionId 4 (t2): twisted wasteland -->
+    <entry name="proto-region 4" regionId="4"
+      tileset="dirt tunnels" enemyTemplates="darklands scavenger"
+      loot="(W)sword:2,(W)spear:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(C)regal cloak,(A)shirt:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)breastplate:2,(A)skirt:2,(A)hat:2,(A)hat:2,(A)cap:2,(A)pants:2,(A)leggings:2" />
+
+    <!-- regionId 5 (t2): tether assembly -->
+    <entry name="proto-region 5" regionId="5"
+      tileset="dirt tunnels" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer"
+      loot="(C)third eye,(A)jerkin:2,(A)helmet:2,(A)armored skirt:1,(A)skirt:2,(A)hat:2,(A)cap:2,(A)pants:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)spear:3" />
+    <!-- TODO: ok I haven't thought too hard about the plot yet, but here's a fun idea:
+      neutral NPC: undead firin servant (F) named "greeter" in this first map of this area
+        line 1: "Welcome! You took longer than expected."
+        line 2: "If you had sleepwalked all the way here, everyone would have left you alone."
+        line 3: "But now that you're here, so you can serve the master!"
+        line 4: "You don't look very cooperative... oh well."
+        line 5+: "You'll serve, in time."
+      TODO: this would suggest that the tether assembly exists to gather mind-controlled slaves
+        perhaps most people are gradually brainwashed as they stay in the area, and eventually end up here?
+        something like that
+    -->
+  </category> <!-- sub regions -->
+  <category name="tilesets">
+    <!-- a special tileset solely for the second upscale. Not used as an actual tileset (e.g. no colors, sprites, etc) -->
+    <entry name="second upscale"
+      replacersNJoins="null"
+      replacersIJoins="null"
+      replacersLJoins="second upscale turn"
+      replacersTJoins="second upscale split"
+      replacersHJoins="null" />
+
+    <!-- TODO: also cull unused tilesets? -->
+
+    <!-- TODO: assign footstep sounds ("gravel" or "stone") -->
+    <entry name="village"
+      lightingIntensity="70" lightingColor="white"
+      floorSprites="0,1,2,3" floorColor="dirt floor"
+      wallSprites="4,5,6,7" wallColor="canvas wall"
+      replacersNJoins="wide dead end A,wide dead end B,wide dead end C,dead end,dead end,dead end,null"
+      replacersIJoins="wide hallway A,wide hallway B,wide hallway C,narrow hallway,wide hallway,narrow hallway winding,null"
+      replacersLJoins="wide hallway turn A,wide hallway turn B,wide hallway turn C,narrow hallway turn,narrow hallway turn concave,narrow hallway turn indirect,null"
+      replacersTJoins="natural hallway split A,natural hallway split B,natural hallway split C,narrow hallway split,null"
+      replacersHJoins="natural chamber A,natural chamber B,natural chamber C,narrow hallway fourway,null,null,column room" />
+      <!-- TODO: wood plank wall sprites -->
+    <entry name="beach"
+      lightingIntensity="90" lightingColor="white"
+      floorSprites="0,1,2,3" floorColor="sand floor"
+      wallSprites="4,5,6,7" wallColor="stone wall"
+      replacersNJoins="wide dead end A,wide dead end B,wide dead end C,null"
+      replacersIJoins="wide hallway A,wide hallway B,wide hallway C,null"
+      replacersLJoins="wide hallway turn A,wide hallway turn B,wide hallway turn C,null"
+      replacersTJoins="natural hallway split A,natural hallway split B,natural hallway split C,null"
+      replacersHJoins="natural chamber A,natural chamber B,natural chamber C,null" />
+      <!-- TODO: cave wall sprites -->
+      <!-- TODO: some water floors? -->
+    <entry name="grasslands"
+      lightingIntensity="80" lightingColor="white"
+      floorSprites="0,1,2,3" floorColor="marshwater floor"
+      wallSprites="4,5,6,7" wallColor="grass wall"
+      inheritJoinsFrom="beach" />
+      <!-- TODO: cave wall sprites -->
+      <!-- TODO: the move sound for this tileset should be splash sounds, since the floor is water -->
+    <entry name="marsh"
+      lightingIntensity="60" lightingColor="pale brown"
+      floorSprites="0,1,2,3" floorColor="grass floor"
+      wallSprites="4,5,6,7" wallColor="dirt wall"
+      inheritJoinsFrom="beach" />
+      <!-- TODO: cave wall sprites -->
+    <entry name="rocky highlands"
+      lightingIntensity="80" lightingColor="sky blue"
+      floorSprites="0,1,2,3" floorColor="grass floor"
+      wallSprites="4,5,6,7" wallColor="stone wall"
+      inheritJoinsFrom="beach" />
+      <!-- TODO: cave wall sprites -->
+    <entry name="dirt field"
+      lightingIntensity="80" lightingColor="white"
+      floorSprites="0,1,2,3" floorColor="dirt floor"
+      wallSprites="4,5,6,7" wallColor="dirt wall"
+      inheritJoinsFrom="beach" />
+      <!-- TODO: cave wall sprites -->
+    <entry name="battlefield"
+      lightingIntensity="70" lightingColor="pale red"
+      floorSprites="0,1,2,3" floorColor="dirt floor"
+      wallSprites="4,5,6,7" wallColor="dirt wall"
+      inheritJoinsFrom="beach" />
+      <!-- TODO: cave wall sprites -->
+      <!-- TODO: different decoration objects from the dirt field? like corpses or w/e -->
+    <entry name="dirt tunnels"
+      floorSprites="0,1,2,3" floorColor="dirt floor"
+      wallSprites="4,5,6,7" wallColor="dirt wall"
+      replacersNJoins="natural hallway A,natural hallway B,natural hallway C,natural chamber A,natural chamber B,natural chamber C"
+      replacersIJoins="natural hallway A,natural hallway B,natural hallway C"
+      replacersLJoins="natural hallway turn A,natural hallway turn B,natural hallway turn C"
+      replacersTJoins="natural hallway split A,natural hallway split B,natural hallway split C"
+      replacersHJoins="natural chamber A,natural chamber B,natural chamber C" />
+      <!-- TODO: cave wall sprites -->
+    <entry name="stone tunnels"
+      floorSprites="0,1,2,3" floorColor="stone floor"
+      wallSprites="4,5,6,7" wallColor="stone wall"
+      inheritJoinsFrom="dirt tunnels" />
+      <!-- TODO: cave wall sprites -->
+    <entry name="catacombs"
+      floorSprites="0,1,2,3" floorColor="stone floor"
+      wallSprites="4,5,6,7" wallColor="stone wall"
+      replacersNJoins="dead end"
+      replacersIJoins="narrow hallway,narrow hallway,narrow hallway,narrow hallway,wide hallway,wide hallway,wide hallway,column room,narrow hallway winding"
+      replacersLJoins="narrow hallway turn,narrow hallway turn,narrow hallway turn concave,narrow hallway turn indirect"
+      replacersTJoins="narrow hallway split"
+      replacersHJoins="narrow hallway fourway,column room" />
+      <!-- TODO: lamps that glow "green" -->
+    <entry name="armory"
+      lightingIntensity="5" lightingColor="gray"
+      floorSprites="0,1,2,3" floorColor="stone floor"
+      wallSprites="4,5,6,7" wallColor="stone wall"
+      replacersNJoins="null"
+      replacersIJoins="null"
+      replacersLJoins="second upscale turn"
+      replacersTJoins="second upscale split,second upscale split,column room"
+      replacersHJoins="null,column room" />
+      <!-- TODO: stone brick floor sprites -->
+      <!-- TODO: lamps that glow "pale red" -->
+    <entry name="fort"
+      lightingIntensity="10" lightingColor="gray"
+      floorSprites="0,1,2,3" floorColor="dirt floor"
+      wallSprites="4,5,6,7" wallColor="brick wall"
+      inheritJoinsFrom="armory" />
+      <!-- TODO: lamps that glow "pale red" -->
+    <entry name="ship"
+      lightingIntensity="25" lightingColor="brown"
+      floorSprites="0,1,2,3" floorColor="wood floor"
+      wallSprites="4,5,6,7" wallColor="wood wall"
+      inheritJoinsFrom="armory" />
+      <!-- TODO: wood plank floor sprites -->
+      <!-- TODO: wood plank wall sprites -->
+      <!-- TODO: lamps that glow "blue" -->
+    <entry name="secret lab"
+      lightingIntensity="25" lightingColor="rusty"
+      floorSprites="0,1,2,3" floorColor="stone floor"
+      wallSprites="4,5,6,7" wallColor="rusty wall"
+      inheritJoinsFrom="armory" />
+      <!-- TODO: stone brick floor sprites -->
+      <!-- TODO: metal wall sprites -->
+      <!-- TODO: laboratory-like decoration objects... -->
+      <!-- TODO: lamps that glow "green" -->
+  </category> <!-- tilesets -->
+  <category name="tile replacers">
+    <entry name="null" l0="OOO" l1="OOO" l2="OOO" />
+
+    <!-- N joins (one exit)
+      -O
+    -->
+    <entry name="dead end" l1="OOX" />
+    <entry name="wide dead end A" l0="OXX" l1="OOX" l2="OOX" />
+    <entry name="wide dead end B" l0="OOX" l1="OOO" l2="OOX" />
+    <entry name="wide dead end C" l1="OOX" l2="OXX" />
+
+    <!-- I joins (two exits, straight)
+      -O-
+    -->
+    <entry name="narrow hallway" l1="OOO" />
+    <entry name="wide hallway" l1="OOO" l2="OOO" />
+    <entry name="narrow hallway winding" l0="OOO" l1="OXO" l2="XXX" />
+    <entry name="natural hallway A" l0="XOO" l1="OOO" l2="OOX" />
+    <entry name="natural hallway B" l0="OXO" l1="OOO" l2="OOX" />
+    <entry name="natural hallway C" l0="OOO" l1="OXO" l2="XXO" />
+    <entry name="wide hallway A" l0="XOO" l1="OOO" l2="OOO" />
+    <entry name="wide hallway B" l0="OOO" l1="OOO" l2="OXX" />
+    <entry name="wide hallway C" l0="OOX" l1="OOO" l2="XOO" />
+
+    <!-- L joins (two exits, curved)
+      -O
+       |
+    -->
+    <entry name="narrow hallway turn" l1="OOX" l2="XOX" />
+    <entry name="narrow hallway turn concave" l1="OXX" l2="OOX" />
+    <entry name="narrow hallway turn indirect" l0="OOO" l1="OXO" l2="XOO" />
+    <entry name="natural hallway turn A" l1="OOO" l2="XOO" />
+    <entry name="natural hallway turn B" lO="OOX" l1="OOX" l2="OOX" />
+    <entry name="natural hallway turn C" l1="OOX" l2="OOO" />
+    <entry name="wide hallway turn A" l0="OXX" l1="OOO" l2="OOX" />
+    <entry name="wide hallway turn B" lO="OOX" l1="OOX" l2="OOO" />
+    <entry name="wide hallway turn C" l1="OOO" l2="OOX" />
+    <entry name="second upscale turn" l0="XXX" l1="OOX" l2="OOX" />
+
+    <!-- T joins (three exits)
+       |
+      -O
+       |
+    -->
+    <entry name="narrow hallway split" l0="XOX" l1="OOX" l2="XOX" />
+    <entry name="natural hallway split A" l0="XOX" l1="OOX" l2="OOX" />
+    <entry name="natural hallway split B" l0="OOX" l1="OOX" l2="XOX" />
+    <entry name="natural hallway split C" l0="XOX" l1="OOO" l2="XOO" />
+    <entry name="second upscale split" l0="OOX" l1="OOX" l2="OOX" />
+
+    <!-- H joins (four exits)
+       |
+      -O-
+       |
+    -->
+    <entry name="narrow hallway fourway" l0="XOX" l1="OOO" l2="XOX" />
+    <entry name="column room" l0="OOO" l1="OXO" l2="OOO" />
+    <entry name="natural chamber A" l0="OOX" l1="OOO" l2="OOO" />
+    <entry name="natural chamber B" l0="OOO" l1="OOO" l2="XOX" />
+    <entry name="natural chamber C" l0="OOX" l1="OOO" l2="XOO" />
+  </category> <!-- tile replacers -->
+  <category name="sounds">
+    <!-- TODO: old sound effects to be sorted -->
+    <entry name="menu" filename="411749__natty23__bell-ding.wav" volume="-12"
+      credit="Bell Ding by Natty23 -- https://freesound.org/s/411749/ -- License: Attribution" />
+    <entry name="dodge" filename="92736__robinhood76__01522-swoosh-1.wav"
+      credit="01522 swoosh 1.wav by Robinhood76 -- https://freesound.org/s/92736/ -- License: Attribution Noncommercial" />
+    <entry name="swing" filename="346373__denao270__throwing-whip-effect.wav"
+      credit="Throwing / Whip Effect by denao270 -- https://freesound.org/s/346373/ -- License: Creative Commons 0" />
+    <entry name="bow" filename="65733__erdie__bow01.wav"
+      credit="bow01.wav by Erdie -- https://freesound.org/s/65733/ -- License: Attribution" />
+    <entry name="gun" filename="459116__mabdurrahman__gun-shot-1.wav" volume="-10"
+      credit="gun-shot-1.wav by MAbdurrahman | License: Creative Commons 0" />
+    <entry name="explosion" filename="349131__deganoth__impact-2-full.wav" volume="-3"
+      credit="Impact_2_full.wav by Deganoth | License: Attribution" />
+    <entry name="drink" filename="433645__dersuperanton__drinking-and-swallow.wav"
+      credit="Drinking and swallow by dersuperanton | License: Attribution" />
+    <entry name="slash" filename="420674__sypherzent__deep-cut-slash-gash.wav" volume="-12"
+      credit="Deep Cut / Slash / Gash by SypherZent -- https://freesound.org/s/420674/ -- License: Creative Commons 0" />
+    <entry name="smash" filename="470587__silverillusionist__heavy-impact.wav"
+      credit="Heavy Impact by SilverIllusionist -- https://freesound.org/s/470587/ -- License: Attribution" />
+    <entry name="crit" filename="170635__swedger__fami-crash.wav"
+      credit="Fami crash.wav by Swedger | License: Creative Commons 0" />
+    <entry name="fire" filename="442872__qubodup__fire-magic.wav"
+      credit="Fire Magic by qubodup | License: Creative Commons 0" />
+    <entry name="poison" filename="101799__robinhood76__01911-air-leak.wav" volume="5"
+      credit="01911 air leak.wav by Robinhood76 | License: Attribution Noncommercial" />
+    <entry name="defend" filename="103628__benboncan__large-anvil-steel-hammer.wav"
+      credit="Large Anvil Steel Hammer .wav by Benboncan | License: Attribution" />
+    <entry name="open chest" filename="408001__judith136__20.wav"
+      credit="20.wav by JUDITH136 | License: Attribution" />
+    <entry name="beam" filename="464904__plasterbrain__8bit-beam.flac"
+      credit="8bit Beam by plasterbrain | License: Creative Commons 0" />
+    <entry name="fire pop" filename="186957__readeonly__explosion6.wav"
+      credit="explosion6.wav by ReadeOnly | License: Creative Commons 0" />
+    <entry name="lightning" filename="136542__joelaudio__electric-zap-001.wav"
+      credit="ELECTRIC_ZAP_001.wav by JoelAudio | License: Creative Commons 0" />
+    <entry name="spit" filename="366947__jacdutoit__spit.wav"
+      credit="Spit.wav by Jacdutoit | License: Attribution Noncommercial" />
+    <entry name="spray" filename="464424__michael-grinnell__spray-can-hiss.wav" volume="8"
+      credit="Spray_Can_Hiss.wav by michael_grinnell | License: Creative Commons 0" />
+    <entry name="glass smash" filename="344265__inspectorj__glass-smash-bottle-d.wav"
+      credit="Glass Smash, Bottle, D.wav by InspectorJ | License: Attribution" />
+    <entry name="open rack" filename="107589__qat__unsheath-sword.wav"
+      credit="unsheath_sword.wav by Qat | License: Creative Commons 0" />
+    <entry name="regen" filename="524609__clearwavsound__bone-crunch.wav"
+      credit="Bone Crunch by Clearwavsound | License: Attribution" />
+    <entry name="dive" filename="274254__kwahmah-02__splash.wav"
+      credit="Splash! by kwahmah_02 | License: Attribution" />
+    <entry name="heal strike" filename="419493__plasterbrain__bell-chime-alert.flac"
+      credit="Bell Chime Alert by plasterbrain | License: Creative Commons 0" />
+    <entry name="heal" filename="62978__radian__chime-0003.wav"
+      credit="Chime 0003.wav by radian | License: Attribution" />
+    <entry name="focus" filename="376749__zenithinfinitivestudios__fantasy-ui-button-5.wav"
+      credit="Fantasy_ui_Button_5.wav by ZenithInfinitiveStudios | License: Creative Commons 0" />
+    <entry name="phantom" filename="61033__timtube__scream-3.wav"
+      credit="scream 3.wav by timtube | License: Attribution Noncommercial" />
+    <entry name="stone smash" filename="503554__robinhood76__08191-heavy-stones-falling.wav"
+      credit="08191 heavy stones falling.wav by Robinhood76 | License: Attribution Noncommercial" />
+
+    <!-- footstep sounds -->
+    <entry name="footstep gravel 1" filename="384889__ali-6868__knight-right-footstep-on-gravel-3-with-chainmail.wav" volume="-12"
+      credit="Knight Right Footstep on Gravel 3 (With Chainmail) by Ali_6868 | License: Creative Commons 0" />
+    <entry name="footstep gravel 2" filename="384888__ali-6868__knight-right-footstep-on-gravel-4-with-chainmail.wav" volume="-12"
+      credit="Knight Right Footstep on Gravel 4 (With Chainmail) by Ali_6868 | License: Creative Commons 0" />
+    <entry name="footstep gravel 3" filename="384890__ali-6868__knight-right-footstep-on-gravel-5-with-chainmail.wav" volume="-12"
+      credit="Knight Right Footstep on Gravel 5 (With Chainmail) by Ali_6868 | License: Creative Commons 0" />
+    <entry name="footstep gravel 4" filename="384887__ali-6868__knight-right-footstep-on-gravel-1-with-chainmail.wav" volume="-12"
+      credit="Knight Right Footstep on Gravel 1 (With Chainmail) by Ali_6868 | License: Creative Commons 0" />
+    <entry name="footstep stone 1" filename="197778__samulis__footstep-on-stone.wav" volume="4"
+      credit="Footstep on Stone by Samulis | License: Creative Commons 0" />
+    <entry name="footstep stone 2" filename="197781__samulis__footstep-on-stone-4.wav" volume="4"
+      credit="Footstep on Stone 4 by Samulis | License: Creative Commons 0" />
+    <entry name="footstep stone 3" filename="197780__samulis__footstep-on-stone-3.wav" volume="4"
+      credit="Footstep on Stone 3 by Samulis | License: Creative Commons 0" />
+    <entry name="footstep stone 4" filename="197779__samulis__footstep-on-stone-2.wav" volume="4"
+      credit="Footstep on Stone 2 by Samulis | License: Creative Commons 0" />
+
+    <!-- voice sounds -->
+    <entry name="voice 1" filename="voice 1.wav" notAfter="voice 2" />
+    <entry name="voice 2" filename="voice 2.wav" notAfter="voice 1" />
+    <entry name="voice 3" filename="voice 3.wav" notAfter="voice 3,voice 4" />
+    <entry name="voice 4" filename="voice 4.wav" notAfter="voice 3,voice 4" /> <!-- TODO: I don't like how this one sounds very much -->
+    <entry name="oof male" filename="257780__xtrgamr__man-oof.wav" volume="-6"
+      credit="Man oof.wav by xtrgamr -- https://freesound.org/s/257780/ -- License: Attribution" />
+    <entry name="oof female" filename="47356__fotoshop__oof.wav" volume="-6"
+      credit="oof.wav by fotoshop -- https://freesound.org/s/47356/ -- License: Creative Commons 0" />
+    <entry name="growl" filename="368011__trngle__meow-8.wav" volume="-4"
+      credit="Meow 8.wav by TRNGLE -- https://freesound.org/s/368011/ -- License: Attribution" />
+
+    <!-- TODO: old music -->
+    <entry name="menu bgm" filename="arcadia-by-kevin-macleod-from-filmmusic-io.mp3" music="1"
+      credit="Arcadia by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3377-arcadia" />
+    <entry name="wild bgm" filename="the-path-of-the-goblin-king-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="The Path of the Goblin King by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4503-the-path-of-the-goblin-king" />
+    <entry name="seeker bgm" filename="hitman-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Hitman by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3880-hitman" />
+    <entry name="town bgm" filename="virtutes-instrumenti-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Virtutes Instrumenti by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4590-virtutes-instrumenti" />
+    <entry name="desert bgm" filename="desert-city-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Desert City by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3639-desert-city" />
+    <entry name="mountain bgm" filename="crossing-the-chasm-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Crossing the Chasm by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3562-crossing-the-chasm" />
+    <entry name="empty1"
+      credit="License: http://creativecommons.org/licenses/by/4.0/" />
+  </category> <!-- sounds -->
+</data>

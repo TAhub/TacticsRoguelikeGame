@@ -1,0 +1,165 @@
+<data>
+  <category name="name parts">
+    <!-- main name generators -->
+    <entry name="skuri male names">
+      <name s="$(skuri first particles)$(skuri male vowels)$(skuri second particles)$(skuri male vowels)$(last)k" />
+    </entry> <!-- skuri male names -->
+    <entry name="skuri female names">
+      <name s="$(skuri first particles)$(skuri female vowels)$(skuri second particles)$(skuri female vowels)$(last)mi" />
+      <name s="$(skuri first particles)$(skuri female vowels)mi" />
+    </entry> <!-- skuri female names -->
+    <entry name="karhun male names">
+      <name s="$(karhun particles!capitalize)$(karhun male suffixes)" />
+      <name s="$(karhun particles!capitalize)$(karhun male suffixes)" />
+      <name s="$(karhun particles!capitalize)$(karhun particles)$(karhun male suffixes)" />
+    </entry> <!-- karhun male names -->
+    <entry name="karhun female names">
+      <name s="$(karhun particles!capitalize)$(karhun female suffixes)" />
+      <name s="$(karhun particles!capitalize)$(karhun female suffixes)" />
+      <name s="$(karhun particles!capitalize)$(karhun particles)$(karhun female suffixes)" />
+    </entry> <!-- karhun female names -->
+    <entry name="firin male names">
+      <name s="$(firin particles!capitalize)$(firin particles)s" />
+      <name s="$(firin particles!capitalize)$(firin particles)s" />
+    </entry> <!-- firin male names -->
+    <entry name="firin female names">
+      <name s="$(firin particles!capitalize)$(firin particles)n" />
+      <name s="$(firin particles!capitalize)$(firin particles)n-Ro" />
+    </entry> <!-- firin female names -->
+
+    <!-- name components -->
+    <entry name="karhun particles">
+      <name s="aab" />
+      <name s="aad" />
+      <name s="aap" />
+      <name s="alb" />
+      <name s="aad" />
+      <name s="cam" />
+      <name s="birg" />
+      <name s="dan" />
+      <name s="eel" />
+      <name s="eem" />
+      <name s="eij" />
+      <name s="enn" />
+      <name s="fann" />
+      <name s="helm" />
+      <name s="helk" />
+      <name s="ilt" />
+      <name s="imp" />
+      <name s="jal" />
+      <name s="jan" />
+      <name s="jask" />
+      <name s="jon" />
+      <name s="joon" />
+      <name s="juh" />
+      <name s="jyrk" />
+      <name s="kal" />
+      <name s="kasp" />
+      <name s="keij" />
+      <name s="kirs" />
+      <name s="lahj" />
+      <name s="laun" />
+      <name s="linn" />
+      <name s="maar" />
+      <name s="mark" />
+      <name s="maun" />
+      <name s="mikk" />
+      <name s="nest" />
+      <name s="onn" />
+      <name s="ots" />
+      <name s="pan" />
+      <name s="peet" />
+      <name s="pepp" />
+      <name s="pilv" />
+      <name s="riik" />
+      <name s="riit" />
+      <name s="sakk" />
+      <name s="sep" />
+      <name s="sisk" />
+      <name s="taik" />
+      <name s="tahv" />
+      <name s="terh" />
+      <name s="tyk" />
+      <name s="urs" />
+      <name s="usk" />
+      <name s="vel" />
+      <name s="viiv" />
+      <name s="voitt" />
+    </entry> <!-- karhun particles -->
+    <entry name="karhun male suffixes">
+      <name s="ert" />
+      <name s="ami" />
+      <name s="i" />
+      <name s="o" />
+      <name s="u" />
+      <name s="on" />
+      <name s="ori" />
+      <name s="iel" />
+      <name s="annu" />
+      <name s="eva" />
+      <name s="er" />
+    </entry> <!-- karhun male suffixes -->
+    <entry name="karhun female suffixes">
+      <name s="a" />
+      <name s="i" />
+      <name s="it" />
+      <name s="eli" />
+      <name s="iina" />
+      <name s="ikki" />
+      <name s="ikka" />
+      <name s="etta" />
+      <name s="ea" />
+      <name s="ula" />
+    </entry> <!-- karhun female suffixes -->
+    <entry name="firin particles">
+      <name s="ri" />
+      <name s="ro" />
+      <name s="ru" />
+      <name s="re" />
+      <name s="na" />
+      <name s="ne" />
+      <name s="ma" />
+      <name s="mi" />
+      <name s="to" />
+      <name s="la" />
+      <name s="gu" />
+    </entry> <!-- firin particles -->
+    <entry name="skuri first particles">
+      <name s="Sq" />
+      <name s="Skr" />
+      <name s="Ilr" />
+      <name s="Asr" />
+      <name s="Q" />
+      <name s="$(skuri common particles!capitalize)" />
+      <name s="$(skuri common particles!capitalize)" />
+      <name s="$(skuri common particles!capitalize)" />
+    </entry> <!-- skuri first particles -->
+    <entry name="skuri second particles">
+      <name s="kk" />
+      <name s="xx" />
+      <name s="$(skuri common particles)" />
+      <name s="$(skuri common particles)" />
+      <name s="$(skuri common particles)" />
+      <name s="$(skuri common particles)" />
+      <name s="$(skuri common particles)" />
+      <name s="$(skuri common particles)" />
+    </entry> <!-- skuri second particles -->
+    <entry name="skuri common particles">
+      <name s="z" />
+      <name s="t" />
+      <name s="t" />
+      <name s="r" />
+      <name s="s" />
+      <name s="x" />
+      <name s="m" />
+    </entry> <!-- skuri common particles -->
+    <entry name="skuri male vowels">
+      <name s="e" />
+      <name s="i" />
+    </entry> <!-- skuri male vowels -->
+    <entry name="skuri female vowels">
+      <name s="e" />
+      <name s="a" />
+    </entry> <!-- skuri female vowels -->
+  </category> <!-- name parts -->
+</data>
