@@ -491,12 +491,12 @@
   <category name="weapons">
     <!-- special -->
     <entry name="unarmed" weaponAccuracy="100" />
-    <entry name="claws" weaponAccuracy="90">
+    <entry name="claws" weaponAccuracy="90" numHits="2">
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- claws -->
-    <entry name="poison claws" weaponAccuracy="90" poisonedPercent="35">
+    <entry name="poison claws" weaponAccuracy="90" poisonedPercent="35" numHits="2">
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
@@ -507,12 +507,12 @@
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- deathly grasp -->
-    <entry name="automata saw" weaponAccuracy="85" weaponHitsToCrits="10">
+    <entry name="automata saw" weaponAccuracy="85" weaponHitsToCrits="10" numHits="3">
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- automata saw -->
-    <entry name="automata gun" weaponAccuracy="85" ranged="1">
+    <entry name="automata gun" weaponAccuracy="85" ranged="1" numHits="3">
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
@@ -593,13 +593,13 @@
     </entry> <!-- spear -->
 
     <!-- techniques -->
-    <entry name="crimson fangs" energyCost="5" weaponAccuracy="75" weaponHitsToCrits="25" scaling="melee weapon"
+    <entry name="crimson fangs" energyCost="5" weaponAccuracy="75" weaponHitsToCrits="25" scaling="melee weapon" numHits="2"
       fluff="A risky combat technique that tries to rapidly strike the foe's weak spots, often missing in the process." />
     <entry name="venom sting" energyCost="10" weaponAccuracy="90" scaling="melee weapon" poisonedPercent="25"
       fluff="Coat your weapon in poison and make a quick and accurate strike on your foe." />
     <entry name="slam" energyCost="5" weaponAccuracy="80" scaling="melee weapon" shakenPercent="35"
       fluff="TODO: fluff" />
-    <entry name="typhoon slash" energyCost="10" weaponAccuracy="85" scaling="melee weapon"
+    <entry name="typhoon slash" energyCost="10" weaponAccuracy="85" scaling="melee weapon" numHits="3"
       fluff="Execute a practiced three-hit combo, trying to overwhelm the opponent with strikes." />
     <entry name="eye gouge" energyCost="10" weaponAccuracy="75" scaling="level" blindedPercent="45"
       fluff="TODO: fluff" />
@@ -613,7 +613,7 @@
       fluff="TODO: fluff... stress this is a basic attack spell, but flexible enough that it's useful for novices and masters alike" />
     <entry name="siphon" energyCost="5" weaponAccuracy="110" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" drains="1"
       fluff="Jab your opponent with a thin needle of vital energy, then drain their blood through the hole. A spell that is subtle and gross in equal measures." />
-    <entry name="phantom flames" energyCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" burningPercent="40"
+    <entry name="phantom flames" energyCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" burningPercent="40" numHits="2"
       fluff="TODO: fluff..." />
     <entry name="ashball" energyCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" blindedPercent="55"
       fluff="TODO: fluff..." />
@@ -621,7 +621,7 @@
       fluff="Build up energy in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." />
     <entry name="illusion fist" energyCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
       fluff="TODO: fluff... this is a magical martial arts technique" />
-    <entry name="spell barrage" energyCost="20" weaponAccuracy="90" weaponHitsToCrits="15" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1"
+    <entry name="spell barrage" energyCost="20" weaponAccuracy="90" weaponHitsToCrits="15" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="4"
       fluff="Build up a large amount of vital energy and release it in a flurry of magical bolts. A powerful but unsubtle spell." />
     <entry name="miasma bolt" energyCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" poisonedPercent="50"
       fluff="Infuse your vital energy with a toxic quality, and fire it out as a deadly magical bolt." />
@@ -629,7 +629,7 @@
       fluff="Stab yourself with a knife, and use the pain reflex to shape a wicked spell. An unusual but surprisingly effective form of magic." />
     <entry name="mend" energyCost="5" weaponAccuracy="100" ranged="1" magic="1" spell="1" heals="1" scaling="level" usesSpecialPower="1"
       fluff="TODO: fluff" />
-    <entry name="first aid" energyCost="5" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1"
+    <entry name="first aid" energyCost="5" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="2"
       fluff="TODO: fluff" />
     <entry name="inner strength" energyCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1"
       fluff="TODO: fluff" /> <!-- TODO: self-target only -->

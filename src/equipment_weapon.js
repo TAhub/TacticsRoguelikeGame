@@ -63,6 +63,11 @@ class Weapon extends Equipment {
   }
 
   /** @return {number} */
+  get numHits() {
+    return this.getNumberValue('numHits') || 1;
+  }
+
+  /** @return {number} */
   get energyCost() {
     return this.getNumberValue('energyCost') || 0;
   }
@@ -205,16 +210,18 @@ class Weapon extends Equipment {
 
     const hitEffects = [];
     if (this.damage > 0) {
-      hitEffects.push(Math.ceil(this.damage) + ' ' + this.damageTerm);
+      hitEffects.push(
+          Math.ceil(this.damage / this.numHits) + ' ' + this.damageTerm);
     }
     for (const status of Weapon.allStatuses) {
       const effect = this.getStatus(status);
       if (!effect) continue;
-      hitEffects.push(Math.ceil(effect) + ' ' + status);
+      hitEffects.push(Math.ceil(effect / this.numHits) + ' ' + status);
     }
     if (this.engagementMode) hitEffects.push('engages');
     effects.push(hitEffects.join(' and '));
 
+    if (this.numHits > 1) effects.push('hits ' + this.numHits + ' times');
     if (this.armorPiercing) effects.push('ignores part of target armor');
 
     if (this.summon) {

@@ -1160,24 +1160,26 @@ class Creature {
     // TODO: animation
     // TODO: be sure set facing in the animation!
 
-    this.effectAction(() => {
-      if (weapon.summon) {
-        if (tile && optMapController) {
-          const estimate = this.getAttackEstimate(
-              this, weapon, Creature.HitResult.Hit, Creature.AttackType.Normal);
-          const damage = Math.ceil(weapon.damage * estimate.mult / 100);
-          const summon = this.makeSummon_(weapon, damage);
-          summon.x = tile.x;
-          summon.y = tile.y;
-          optMapController.addCreature(summon);
-          // TODO: this isn't showing up in the map creatures list?
-        }
-      } else if (target) {
-        this.strike_(target, weapon, attackType);
-      }
-    });
+    for (let hit = 0; hit < weapon.numHits; hit++) {
+      // TODO: projectile
 
-    // TODO: animation cooldown?
+      this.effectAction(() => {
+        if (weapon.summon) {
+          if (tile && optMapController) {
+            const estimate = this.getAttackEstimate(this, weapon,
+                Creature.HitResult.Hit, Creature.AttackType.Normal);
+            const damage = Math.ceil(weapon.damage * estimate.mult / 100);
+            const summon = this.makeSummon_(weapon, damage);
+            summon.x = tile.x;
+            summon.y = tile.y;
+            optMapController.addCreature(summon);
+            // TODO: this isn't showing up in the map creatures list?
+          }
+        } else if (target) {
+          this.strike_(target, weapon, attackType);
+        }
+      });
+    }
 
     // Pay costs.
     this.effectAction(() => {
@@ -1222,6 +1224,8 @@ class Creature {
       });
       this.actions.push((elapsed) => doneWaiting);
     }
+
+    // TODO: animation return
   }
 
   /**
@@ -1424,7 +1428,7 @@ class Creature {
     }
 
     const mult = this.getAttackEstimate(
-        target, weapon, hitResult, attackType, true).mult;
+        target, weapon, hitResult, attackType, true).mult / weapon.numHits;
 
     // Damage.
     const damage = Math.ceil(mult * weapon.damage / 100);
