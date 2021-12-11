@@ -412,10 +412,12 @@ class IngamePlugin extends GamePlugin {
         } else if (split[0] == 'eqp') {
           if (!(item.contents instanceof Equipment)) return false;
           if ((item.contents instanceof Weapon)) {
-            const hasProficiency = active.jobs.some((job) => {
-              return job.proficiencies.includes(item.contents.type);
-            });
-            if (!hasProficiency) return false;
+            if (!item.contents.noProficiency) {
+              const hasProficiency = active.jobs.some((job) => {
+                return job.proficiencies.includes(item.contents.type);
+              });
+              if (!hasProficiency) return false;
+            }
           }
           if (split[1] == 'tech') {
             if (!(item.contents instanceof Weapon)) return false;

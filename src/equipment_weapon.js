@@ -20,6 +20,11 @@ class Weapon extends Equipment {
     return this.getNumberValue('tier');
   }
 
+  /** @return {string} */
+  get noProficiency() {
+    return this.getBooleanValue('noProficiency');
+  }
+
   /** @return {boolean} */
   get usesSpecialPower() {
     return this.getBooleanValue('usesSpecialPower');
@@ -59,6 +64,7 @@ class Weapon extends Equipment {
     if (this.energyCost > 0) {
       damage *= 1.03 + this.energyCost * (this.usesSpecialPower ? 0.05 : 0.02);
     }
+    if (this.noProficiency) damage *= 0.75;
     return damage;
   }
 
@@ -244,6 +250,7 @@ class Weapon extends Equipment {
     effects.push('uses ' + (this.usesSpecialPower ? 'special' : 'attack') +
                  ' power');
     if (this.scaling) effects.push('scales with ' + this.scaling);
+    if (this.noProficiency) effects.push('no proficiency required');
   }
 
   /** @return {string} */

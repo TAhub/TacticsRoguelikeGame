@@ -519,11 +519,10 @@
     </entry> <!-- automata gun -->
 
     <!-- weapons -->
-    <entry name="rusty metal rod">
+    <entry name="rusty metal rod" noProficiency="1">
       <variety tier="0" weaponAccuracy="85"
         color="rusty" slotFillers="weaponHand:606"
         fluff="This old metal rod looks like it was once part of a machine. It could be used as a crude weapon." />
-      <!-- TODO: no proficiency required (gives a damage penalty!) -->
     </entry> <!-- rusty metal rod -->
     <entry name="dagger">
       <variety name="dagger" tier="0" weaponAccuracy="105" weaponHitsToCrits="10"
