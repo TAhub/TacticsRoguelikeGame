@@ -307,9 +307,9 @@
     <!-- TODO: underground beasts -->
 
     <!-- bandit town enemies (levels 19-24) -->
-    <entry name="bandit" species="karhun" jobs="survivor" level="15" weapon0="dagger:1" weapon="sword:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1"
+    <entry name="bandit" species="karhun" jobs="survivor" level="15" weapon0="dagger:1" weapon="sword:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="cap:1,bandit armor:0,pants:1" armors5="bandit armor:0,leggings:1" armors6="cap:1,bandit armor:1,leggings:1"
       hairstyle="short,bald" />
-    <entry name="sneaky bandit" species="karhun" jobs="rogue" level="19" weapon0="dagger:1" weapon1="sword:1" armors0="shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" techniques="crimson fangs"
+    <entry name="sneaky bandit" species="karhun" jobs="rogue" level="19" weapon0="dagger:1" weapon1="sword:1" armors0="shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="bandit armor:0,leggings:1" armors5="bandit armor:0,pants:1" techniques="crimson fangs"
       hairstyle="short,bald" />
     <!-- TODO: karhun bandits -->
     <!-- TODO: side-region: a spooky manor, with a bunch of undead in it -->
@@ -679,16 +679,26 @@
     </entry> <!-- shirt -->
     <entry name="jerkin" slot="torso" armorProfiencyLevel="1"
       armorLayerId="shirt">
-      <variety name="rotten jerkin" tier="0" defense="14" dodge="1"
+      <variety name="rotten jerkin" tier="0" defense="15"
         color="greenish brown fabric"
         fluff="This leather jerkin was probably nice once, but now it has begun to dry rot." />
-      <variety name="leather jerkin" tier="1" defense="18" dodge="2"
+      <variety name="leather jerkin" tier="1" defense="20"
         color="brown fabric"
         fluff="A protective leather jerkin. It's not as good as a breastplate, sure, but it's still a big improvement over normal clothes." />
-      <variety name="fine jerkin" tier="2" defense="22" dodge="3"
+      <variety name="fine jerkin" tier="2" defense="25"
         color="sharp brown fabric"
         fluff="The leather this jerkin was made of has been treated with chemicals to be tougher, and the make is better. It's a fine jerkin, to be sure." />
     </entry> <!-- jerkin -->
+    <entry name="bandit armor" slot="torso" armorProfiencyLevel="1"
+      armorLayerId="shirt">
+      <!-- TODO: appearance -->
+      <variety name="bandit armor" tier="1" defense="15" dodge="5"
+        color="iron"
+        fluff="A crude piece of chest armor cobbled together from scraps. This kind of reckless armor is associated with bandits." />
+      <variety name="elite bandit armor" tier="2" defense="18" dodge="7"
+        color="steel"
+        fluff="A much fancier piece of bandit armor. It's unclear why someone would make this... perhaps they liked the aesthetic?" />
+    </entry> <!-- bandit armor -->
     <entry name="breastplate" slot="torso" armorProfiencyLevel="2"
       armorLayerId="breastplate">
       <variety name="rusty breastplate" tier="0" defense="30" resistance="-5"
