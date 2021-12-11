@@ -638,29 +638,34 @@
       fluff="Deploy a Skuri combat automata fitted with an auto-loading gun. Not as tactically flexible as a close-combat automata, but useful when raw firepower is needed." />
   </category> <!-- weapons -->
   <category name="accessories">
-    <entry name="regal cloak"
-      accuracy="5" attackPower="5" specialPower="5"
+    <entry name="regal cloak" accuracy="5" attackPower="5" specialPower="5"
+      color="red fabric"
       fluff="Wearing this beautiful cloak makes you feel haughty and confident. Was this how the warrior kings of old felt?" /> <!-- TODO: sprite (cloak sprite layer) -->
-    <entry name="oilskin cloak"
-      dodgeVsDisengage="15" dodge="10"
+    <entry name="oilskin cloak" dodgeVsDisengage="15" dodge="10"
+      color="black fabric"
       fluff="A leather cloak treated with some kind of slick oil. It'll make it easier to slip away from people." /> <!-- TODO: sprite (cloak sprite layer) -->
-    <entry name="fur cloak"
-      halveStatuses="1"
+    <entry name="fur cloak" halveStatuses="1"
+      color="brown fabric"
       fluff="A warm, fur-lined cloak. Wearing this will help against protect against the elements." /> <!-- TODO: sprite (cloak sprite layer) -->
-    <entry name="third eye"
-      initiative="15"
-      fluff="This piece of jewelry seems purely ornamental at first glance. When worn on the forehead, though, it stimulates the wearer's vim, improving alertness." /> <!-- TODO: this should be a lategame item --> <!-- TODO: sprite (head accessory slot filler) -->
-    <entry name="intimidating mask"
-      hitsToCrits="30"
-      fluff="A mask with a scary facial expression. If your opponents feel fear on seeing it, you will prove their fear justified." /> <!-- TODO: sprite (head accessory slot filler) -->
-    <entry name="shield"
-      defense="15"
+    <entry name="third eye" initiative="15"
+      color="truegold"
+      fluff="This piece of jewelry seems purely ornamental at first glance. When worn on the forehead, though, magic within stimulates the wearer's mind, improving alertness." /> <!-- TODO: this should be a lategame item --> <!-- TODO: sprite (head accessory slot filler) -->
+    <entry name="intimidating mask" hitsToCrits="30"
+      color="bone"
+      fluff="A mask with a scary facial expression. If your opponents feel fear upon seeing it, you will soon prove their fear justified." /> <!-- TODO: sprite (head accessory slot filler) -->
+    <entry name="shield" defense="15"
+      color="steel"
       fluff="A simple shield, likely once held by a Karhun soldier. Shields are ineffective against magic, so they aren't all that popular nowadays." /> <!-- TODO: sprite (slot filler for an offhand slot?) -->
-    <!-- TODO: there should be ten of these in total... the ones I kept above are the ones I feel still fit -->
-    <!-- TODO: at least one should be a pair of glasses... -->
-    <!-- TODO: I'll want a powerVsUninjured item again, but with a new flavor -->
-    <!-- TODO: I'll also want a fatigueCapacity item -->
-    <!-- TODO: perhaps a specialAttackPower item? -->
+    <entry name="lantern" resistance="15"
+      color="rusty"
+      fluff="A rusty old lantern, that once was used to burn some odd oil. It is too foul to light up anymore, but the residue inside seems to dampen magic in some way." /> <!-- TODO: sprite (slot filler for an offhand slot?) -->
+    <entry name="silver spectacles" specialAttackPower="30"
+      color="silver"
+      fluff="A seemingly-magical pair of glasses, presumably left behind by someone long dead. Through these lenses, the openings that foes leave stand out in incredibly sharp focus." /> <!-- TODO: sprite (head accessory slot filler) -->
+    <entry name="bloody thorn" powerVsUninjured="40" dodge="-20"
+      fluff="A magical thorn, found safely locked away in a box. Impale the palm of your hand with this and you'll unlock a vengeful power... at the cost of distracting pain." />
+    <entry name="wind bangles" moveDistance="1" dodge="7"
+      fluff="A set of tarnished golden bangles, with some sort of magic in them that speeds up the legs of the wearer." />
   </category> <!-- accessories -->
   <category name="armors">
     <!-- torso armors -->
@@ -812,11 +817,11 @@
     <!-- regionId 0 (t0): grasslands -->
     <entry name="catacombs" regionId="0" condition="key map branch"
       tileset="dirt tunnels" enemyTemplates="scavenger"
-      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)fur cloak" />
+      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)fur cloak,(C)silver spectacles,(A)breastplate:0" />
       <!-- TODO: undead enemies -->
     <entry name="proto-region 0" regionId="0"
       tileset="dirt tunnels" enemyTemplates="scavenger,black cat"
-      loot="(W)dagger:0,(W)rusty metal rod:0,(W)rusty metal rod:0,(A)jerkin:0,(A)pants:0,(A)shirt:0,(A)cap:0,(A)breastplate:0,(W)saw automata,(W)arcana arrow,(W)first aid,(W)wild spark" />
+      loot="(W)dagger:0,(W)rusty metal rod:0,(W)rusty metal rod:0,(A)jerkin:0,(A)pants:0,(A)shirt:0,(A)cap:0,(W)saw automata,(W)arcana arrow,(W)first aid,(W)wild spark" />
     <!-- TODO: neutral NPC: firin civilian (M) in the first map
       line 1: "Did you four sleepwalk here too?"
       line 2: "All sorts of people seem to be drawn here by something."
@@ -848,7 +853,7 @@
     <!-- regionId 3 (t1): bandit town -->
     <entry name="spooky manor" regionId="3" condition="boss map branch"
       tileset="dirt tunnels" enemyTemplates="bandit"
-      loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)siphon" />
+      loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)siphon,(C)lantern" />
       <!-- TODO: undead enemies -->
     <entry name="proto-region 3" regionId="3"
       tileset="dirt tunnels" enemyTemplates="bandit,sneaky bandit"
@@ -857,12 +862,12 @@
     <!-- regionId 4 (t2): twisted wasteland -->
     <entry name="proto-region 4" regionId="4"
       tileset="dirt tunnels" enemyTemplates="darklands scavenger"
-      loot="(W)sword:2,(W)spear:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(C)regal cloak,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)breastplate:2,(A)hat:2,(A)cap:2,(A)pants:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(W)illusion fist" />
+      loot="(W)sword:2,(W)spear:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(C)regal cloak,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)breastplate:2,(A)hat:2,(A)cap:2,(A)pants:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(W)illusion fist,(C)wind bangles" />
 
     <!-- regionId 5 (t2): tether assembly -->
     <entry name="proto-region 5" regionId="5"
       tileset="dirt tunnels" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer"
-      loot="(C)third eye,(A)bandit armor:1,(A)helmet:2,(A)armored skirt:1,(A)skirt:2,(A)hat:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)spear:3,(A)breastplate:2" />
+      loot="(C)third eye,(C)bloody thorn,(A)bandit armor:1,(A)helmet:2,(A)armored skirt:1,(A)skirt:2,(A)hat:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)spear:3,(A)breastplate:2" />
     <!-- TODO: ok I haven't thought too hard about the plot yet, but here's a fun idea:
       neutral NPC: undead firin servant (F) named "greeter" in this first map of this area
         line 1: "Welcome! You took longer than expected."
