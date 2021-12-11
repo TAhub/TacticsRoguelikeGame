@@ -188,7 +188,7 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
       if (gear.energyCost > 0) {
         return 1;
       } else {
-        return 2;
+        return gear.noProficiency ? 3 : 1;
       }
     });
     addCategory('armors', (type) => new Armor(type), (gear) => {

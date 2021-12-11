@@ -286,9 +286,8 @@
 
     <!-- grasslands enemies (levels 1-6) -->
     <entry name="scavenger" species="scavenger" jobs="sneaky monster" level="4" weapon="claws:0" />
-    <entry name="black cat" species="cat" jobs="magic monster" level="2" weapon="claws:0" techniques="arcana arrow"
+    <entry name="black cat" species="cat" jobs="magic monster" level="2" weapon="claws:0" techniques="wild spark"
       coloration="0" />
-    <!-- TODO: side-region: catacombs with crumbly old undead? -->
 
     <!-- shore enemies (levels 7-12) -->
     <!-- TODO: shore monsters -->
@@ -312,7 +311,6 @@
     <entry name="sneaky bandit" species="karhun" jobs="rogue" level="19" weapon0="dagger:1" weapon1="sword:1" armors0="shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="bandit armor:0,leggings:1" armors5="bandit armor:0,pants:1" techniques="crimson fangs"
       hairstyle="short,bald" />
     <!-- TODO: karhun bandits -->
-    <!-- TODO: side-region: a spooky manor, with a bunch of undead in it -->
 
     <!-- twisted wasteland enemies (levels 25-30) -->
     <entry name="darklands scavenger" species="scavenger" jobs="sneaky monster,tough monster" level="25" weapon="claws:2" /> <!-- TODO: appearance modifier: darker skin color -->
@@ -608,6 +606,8 @@
       fluff="Fire a special bullet that has been coated in incendiary chemicals, meant to light the opponent on fire." />
 
     <!-- spells/special techniques -->
+    <entry name="wild spark" energyCost="5" weaponAccuracy="90" weaponHitsToCrits="50" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" noProficiency="1"
+      fluff="Build up your vital energy and simply release it, without attempting to shape a formal spell. Not very strong, but quite simple to use." />
     <entry name="arcana arrow" energyCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1"
       fluff="TODO: fluff... stress this is a basic attack spell, but flexible enough that it's useful for novices and masters alike" />
     <entry name="siphon" energyCost="5" weaponAccuracy="110" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" drains="1"
@@ -808,12 +808,15 @@
   <category name="sub regions">
     <!-- TODO: break up the proto-regions into multiple sub-regions each -->
     <!-- TODO: pick tilesets for all of these -->
-    <!-- TODO: fix loot quantities (here and the code in diagnostics)... -->
 
     <!-- regionId 0 (t0): grasslands -->
+    <entry name="catacombs" regionId="0" condition="key map branch"
+      tileset="dirt tunnels" enemyTemplates="scavenger"
+      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)fur cloak" />
+      <!-- TODO: undead enemies -->
     <entry name="proto-region 0" regionId="0"
       tileset="dirt tunnels" enemyTemplates="scavenger,black cat"
-      loot="(W)dagger:0,(W)rusty metal rod:0,(W)rusty metal rod:0,(A)jerkin:0,(A)skirt:0,(A)pants:0,(A)hat:0,(A)leggings:0,(A)shirt:0,(A)shirt:0,(A)hat:0,(A)cap:0,(A)skirt:0,(C)fur cloak,(A)breastplate:0" />
+      loot="(W)dagger:0,(W)rusty metal rod:0,(W)rusty metal rod:0,(A)jerkin:0,(A)pants:0,(A)shirt:0,(A)cap:0,(A)breastplate:0,(W)saw automata,(W)arcana arrow,(W)first aid,(W)wild spark" />
     <!-- TODO: neutral NPC: firin civilian (M) in the first map
       line 1: "Did you four sleepwalk here too?"
       line 2: "All sorts of people seem to be drawn here by something."
@@ -825,37 +828,41 @@
     <!-- regionId 1 (t0): shore -->
     <entry name="shipwreck" regionId="1" condition="key map"
       tileset="dirt tunnels" enemyTemplates="pirate brawler,pirate crewmate,pirate mage,pirate boarder"
-      loot="(C)intimidating mask,(W)pistol:0" />
+      loot="(C)intimidating mask,(W)pistol:0,(W)snipe" />
     <entry name="rocky shore" regionId="1" condition="key map branch"
       tileset="dirt tunnels" enemyTemplates="pirate brawler,pirate mage"
-      loot="(W)sword:0,(A)cap:0,(A)jerkin:0" />
+      loot="(W)sword:0,(A)cap:0,(A)jerkin:0,(A)greaves:0,(A)hat:0,(W)ashball,(W)eye gouge" />
     <entry name="proto-region 1" regionId="1"
       tileset="dirt tunnels" enemyTemplates="pirate brawler"
-      loot="(W)spear:0,(W)mace:0,(A)leggings:0,(A)hat:0,(A)shirt:0,(A)pants:0,(A)helmet:0,(A)greaves:0" />
+      loot="(W)spear:0,(W)mace:0,(A)leggings:0,(A)hat:0,(A)skirt:0,(A)helmet:0,(A)greaves:0,(A)breastplate:0,(W)slam" />
       <!-- TODO: this region should have shore beasts in it -->
 
     <!-- regionId 2 (t1): caverns -->
     <entry name="burrow" regionId="2" condition="key map branch"
       tileset="dirt tunnels" enemyTemplates="skull rat"
-      loot="(W)gun automata,(W)pistol:1,(A)cap:1" /> <!-- TODO: "paranoid skuri" and automata enemies -->
+      loot="(W)gun automata,(W)pistol:1,(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot" /> <!-- TODO: "paranoid skuri" and automata enemies -->
     <entry name="proto-region 2" regionId="2"
       tileset="dirt tunnels" enemyTemplates="skull rat"
-      loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)jerkin:1,(A)shirt:1,(A)shirt:1,(A)skirt:1,(A)armored skirt:0,(A)greaves:1,(C)shield,(A)hat:1,(A)hat:1,(A)helmet:1" />
+      loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)jerkin:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(C)shield,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave" />
 
     <!-- regionId 3 (t1): bandit town -->
+    <entry name="spooky manor" regionId="3" condition="boss map branch"
+      tileset="dirt tunnels" enemyTemplates="bandit"
+      loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)siphon" />
+      <!-- TODO: undead enemies -->
     <entry name="proto-region 3" regionId="3"
       tileset="dirt tunnels" enemyTemplates="bandit,sneaky bandit"
-      loot="(A)jerkin:1,(A)breastplate:1,(A)shirt:1,(A)skirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(A)pants:1" />
+      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(W)spell barrage,(W)typhoon slash" />
 
     <!-- regionId 4 (t2): twisted wasteland -->
     <entry name="proto-region 4" regionId="4"
       tileset="dirt tunnels" enemyTemplates="darklands scavenger"
-      loot="(W)sword:2,(W)spear:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(C)regal cloak,(A)shirt:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)breastplate:2,(A)skirt:2,(A)hat:2,(A)hat:2,(A)cap:2,(A)pants:2,(A)leggings:2" />
+      loot="(W)sword:2,(W)spear:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(C)regal cloak,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)breastplate:2,(A)hat:2,(A)cap:2,(A)pants:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(W)illusion fist" />
 
     <!-- regionId 5 (t2): tether assembly -->
     <entry name="proto-region 5" regionId="5"
       tileset="dirt tunnels" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer"
-      loot="(C)third eye,(A)jerkin:2,(A)helmet:2,(A)armored skirt:1,(A)skirt:2,(A)hat:2,(A)cap:2,(A)pants:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)spear:3" />
+      loot="(C)third eye,(A)bandit armor:1,(A)helmet:2,(A)armored skirt:1,(A)skirt:2,(A)hat:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)spear:3,(A)breastplate:2" />
     <!-- TODO: ok I haven't thought too hard about the plot yet, but here's a fun idea:
       neutral NPC: undead firin servant (F) named "greeter" in this first map of this area
         line 1: "Welcome! You took longer than expected."
