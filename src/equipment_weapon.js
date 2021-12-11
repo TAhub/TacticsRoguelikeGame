@@ -64,7 +64,7 @@ class Weapon extends Equipment {
     if (this.energyCost > 0) {
       damage *= 1.03 + this.energyCost * (this.usesSpecialPower ? 0.05 : 0.02);
     }
-    if (this.noProficiency) damage *= 0.75;
+    if (this.noProficiency) damage *= 0.85;
     return damage;
   }
 
