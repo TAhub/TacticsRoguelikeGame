@@ -128,8 +128,8 @@ class BonusSource {
   }
 
   /** @return {number} */
-  get energy() {
-    return this.getNumberValue('energy');
+  get astra() {
+    return this.getNumberValue('astra');
   }
 
   /** @return {number} */
@@ -180,7 +180,7 @@ class BonusSource {
     value += this.moveDistance * 8;
     value += this.hitsToCrits * mechHitsToCritsValue;
     value += this.halveStatuses ? 15 : 0;
-    value += this.energy;
+    value += this.astra;
     value += this.zones ? 9 : 0;
     return value;
   }
@@ -240,7 +240,7 @@ class BonusSource {
     addFn(this.dodgeVsDisengage, '% bonus dodge vs disengage attacks');
     addFn(this.hitsToCrits, '% hits to crits');
     addFn(this.life, '% life');
-    addFn(this.energy, '% energy');
+    addFn(this.astra, '% astra');
     addFn(this.initiative, ' initiative');
     addFn(this.moveDistance, ' move distance');
 

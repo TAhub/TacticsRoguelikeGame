@@ -113,7 +113,7 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
      */
     const isOverall = (gear) => {
       if (gear instanceof Weapon) {
-        return gear.energyCost > 0;
+        return gear.astraCost > 0;
       } else if (gear instanceof Accessory) {
         return true;
       } else {
@@ -185,7 +185,7 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
     };
     addCategory('weapons', (type) => new Weapon(type), (gear) => {
       if (!(gear instanceof Weapon)) return 0;
-      if (gear.energyCost > 0) {
+      if (gear.astraCost > 0) {
         return 1;
       } else {
         return gear.noProficiency ? 3 : 1;
@@ -461,7 +461,7 @@ allDiagnostics.set('Job Diagnostic', () => {
         if (weapon.numSubtypes > 0) weapon.subtype = 0;
         checkBonusSourceValidity(weapon);
         if (weapon.usesSpecialPower) hasSpecial = true;
-        if (weapon.energyCost > 0) numTechs += 1;
+        if (weapon.astraCost > 0) numTechs += 1;
       }
       if (numTechs < 3) {
         console.log('  --WARNING: too few techs! (' + numTechs + ' < 3)');

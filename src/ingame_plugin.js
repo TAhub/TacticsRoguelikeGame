@@ -421,7 +421,7 @@ class IngamePlugin extends GamePlugin {
           }
           if (split[1] == 'tech') {
             if (!(item.contents instanceof Weapon)) return false;
-            if (item.contents.energyCost == 0) return false;
+            if (item.contents.astraCost == 0) return false;
             const i = parseInt(split[2], 10);
             const old = creature.techTypes[i];
             creature.techTypes[i] = item.contents.type;
@@ -435,7 +435,7 @@ class IngamePlugin extends GamePlugin {
             return true;
           } else if (split[1] == 'weapon') {
             if (!(item.contents instanceof Weapon)) return false;
-            if (item.contents.energyCost > 0) return false;
+            if (item.contents.astraCost > 0) return false;
             if (creature.weapon) {
               setFn(new Item(creature.weapon));
             } else {

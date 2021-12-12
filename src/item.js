@@ -32,7 +32,7 @@ class Item {
     let h = undefined;
     if (this.contents instanceof Equipment) {
       if (this.contents instanceof Weapon) {
-        if (this.contents.energyCost > 0) {
+        if (this.contents.astraCost > 0) {
           sprite = 507;
           color = data.getColorByNameSafe('iron');
         } else {

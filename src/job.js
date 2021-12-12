@@ -38,7 +38,7 @@ class Job extends BonusSource {
     for (const type of this.proficiencies) {
       const weapon = new Weapon(type);
       if (weapon.numSubtypes > 0) weapon.subtype = 0;
-      (weapon.energyCost > 0 ? tProficiencies : wProficiencies).push(type);
+      (weapon.astraCost > 0 ? tProficiencies : wProficiencies).push(type);
     }
     if (wProficiencies.length > 0) {
       effects.push('proficient with ' + wProficiencies.join(' and '));

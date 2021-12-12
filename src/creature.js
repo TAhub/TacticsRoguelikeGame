@@ -96,7 +96,7 @@ class Creature {
 
     // Variables.
     this.life = 0;
-    this.energy = 0;
+    this.astra = 0;
     this.x = 0;
     this.y = 0;
     this.statPoints = 0;
@@ -215,11 +215,11 @@ class Creature {
   }
 
   /** @return {number} */
-  get maxEnergy() {
-    const mult = 100 + this.tallyBonusSources_((bS) => bS.energy);
-    let energy = 50 * mult / 100;
-    if (this.player) energy *= mechPlayerEnergyMult;
-    return Math.floor(energy);
+  get maxAstra() {
+    const mult = 100 + this.tallyBonusSources_((bS) => bS.astra);
+    let astra = 50 * mult / 100;
+    if (this.player) astra *= mechPlayerAstraMult;
+    return Math.floor(astra);
   }
 
   /** @return {number} */
@@ -399,19 +399,19 @@ class Creature {
     let freeAttackValue = 0;
     for (const weapon of this.usableWeapons) {
       const value = weaponValue(weapon);
-      if (weapon.energyCost != 0) continue;
+      if (weapon.astraCost != 0) continue;
       freeAttackValue = Math.max(freeAttackValue, value);
     }
     let techAttackValue = 0;
     let techs = 0;
     for (const weapon of this.usableWeapons) {
-      if (weapon.energyCost == 0) continue;
+      if (weapon.astraCost == 0) continue;
       techs += 1;
       const value = weaponValue(weapon) - freeAttackValue;
       if (value <= 0) continue;
-      const adjMaxEnergy =
-          this.maxEnergy / (this.player ? mechPlayerEnergyMult : 1);
-      const uses = adjMaxEnergy / weapon.energyCost;
+      const adjMaxAstra =
+          this.maxAstra / (this.player ? mechPlayerAstraMult : 1);
+      const uses = adjMaxAstra / weapon.astraCost;
       techAttackValue += value * uses / 10;
     }
     if (techs > 0) techAttackValue /= techs;
@@ -554,15 +554,15 @@ class Creature {
     const h = this.barHeight;
     const b = 2;
     const lH = h * 0.75;
-    const eH = h * 0.9;
+    const aH = h * 0.9;
     const colorSuffix = this.player ? ' player' : ' enemy';
-    const setEnergyFont = () => gfx.setFont(ctx, eH);
+    const setAstraFont = () => gfx.setFont(ctx, aH);
     const setLifeFont = () => gfx.setFont(ctx, lH);
 
-    // Get energy number size.
-    const energyText = ' ' + this.energy + '/' + this.maxEnergy;
-    setEnergyFont();
-    const lW = w - gfx.measureText(ctx, energyText);
+    // Get astra number size.
+    const astraText = ' ' + this.astra + '/' + this.maxAstra;
+    setAstraFont();
+    const lW = w - gfx.measureText(ctx, astraText);
 
     // Life bar border.
     ctx.fillStyle = data.getColorByNameSafe('tile slot border');
@@ -582,14 +582,14 @@ class Creature {
     gfx.drawText(ctx, 0, 0, ' ' + this.life,
         Graphics.TextAlign.Left, Graphics.TextBaseline.Top);
 
-    // Energy back.
+    // Astra back.
     ctx.fillStyle = data.getColorByNameSafe('tile slot border');
     ctx.fillRect(lW, 0, w - lW, h);
 
-    // Energy number.
+    // Astra number.
     ctx.fillStyle = data.getColorByNameSafe('tile text' + colorSuffix);
-    setEnergyFont();
-    gfx.drawText(ctx, w, h - eH / 2, energyText,
+    setAstraFont();
+    gfx.drawText(ctx, w, h - aH / 2, astraText,
         Graphics.TextAlign.Right, Graphics.TextBaseline.Middle);
   }
 
@@ -823,7 +823,7 @@ class Creature {
 
   refill() {
     this.life = this.maxLife;
-    this.energy = this.maxEnergy;
+    this.astra = this.maxAstra;
     this.makeBar();
   }
 
@@ -999,7 +999,7 @@ class Creature {
           }
         }
       }
-      if (weapon.energyCost > this.energy) continue;
+      if (weapon.astraCost > this.astra) continue;
       let tier = undefined;
       if (weapon.scaling) {
         switch (weapon.scaling) {
@@ -1186,8 +1186,8 @@ class Creature {
       if (weapon.lifeCost > 0) {
         this.takeDamage_(weapon.lifeCost, Creature.HitResult.Graze);
       }
-      if (weapon.energyCost > 0) {
-        this.energy -= weapon.energyCost;
+      if (weapon.astraCost > 0) {
+        this.astra -= weapon.astraCost;
         this.makeBar();
       }
       if (weapon.summon) {
@@ -1765,7 +1765,7 @@ class Creature {
       creature.skillPoints -= 1;
     }
 
-    // Fill up life, energy, etc.
+    // Fill up life, astra, etc.
     creature.refill();
 
     // Set name.
@@ -1859,9 +1859,9 @@ class Creature {
     if (player) {
       creature.statPoints = saveManager.intFromSaveObj(save, 'stP');
       creature.skillPoints = saveManager.intFromSaveObj(save, 'skP');
-      creature.energy = saveManager.intFromSaveObj(save, 'e');
+      creature.astra = saveManager.intFromSaveObj(save, 'a');
     } else {
-      creature.refill(); // Enemies refill energy if you flee.
+      creature.refill(); // Enemies refill astra if you flee.
       creature.encounterId = saveManager.intFromSaveObj(save, 'eId');
     }
     creature.life = saveManager.intFromSaveObj(save, 'l');
@@ -1919,7 +1919,7 @@ class Creature {
     if (this.player) {
       saveManager.intToSaveObj(save, 'stP', this.statPoints);
       saveManager.intToSaveObj(save, 'skP', this.skillPoints);
-      saveManager.intToSaveObj(save, 'e', this.energy);
+      saveManager.intToSaveObj(save, 'a', this.astra);
     } else {
       saveManager.intToSaveObj(save, 'eId', this.encounterId);
     }

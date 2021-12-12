@@ -61,8 +61,8 @@ class Weapon extends Equipment {
     let damage = mechBaseDamage;
     damage *= 100 / (100 + effectiveBonusSourceValue);
     damage *= multForTier(this.tier);
-    if (this.energyCost > 0) {
-      damage *= 1.03 + this.energyCost * (this.usesSpecialPower ? 0.05 : 0.02);
+    if (this.astraCost > 0) {
+      damage *= 1.03 + this.astraCost * (this.usesSpecialPower ? 0.05 : 0.02);
     }
     if (this.noProficiency) damage *= 0.85;
     return damage;
@@ -74,8 +74,8 @@ class Weapon extends Equipment {
   }
 
   /** @return {number} */
-  get energyCost() {
-    return this.getNumberValue('energyCost') || 0;
+  get astraCost() {
+    return this.getNumberValue('astraCost') || 0;
   }
 
   /** @return {number} */
@@ -244,7 +244,7 @@ class Weapon extends Equipment {
       }
     }
     const costs = [];
-    if (this.energyCost > 0) costs.push(this.energyCost + ' energy');
+    if (this.astraCost > 0) costs.push(this.astraCost + ' astra');
     if (this.lifeCost > 0) costs.push(this.lifeCost + ' life');
     if (costs.length > 0) effects.push('costs ' + costs.join(' and '));
     effects.push('uses ' + (this.usesSpecialPower ? 'special' : 'attack') +

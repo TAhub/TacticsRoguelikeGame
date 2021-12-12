@@ -110,7 +110,7 @@
       specialPower="2" resistance="2"
       fluff="The acuity of your mind. Helps when using magic, or disrupting an opponent's magic." />
     <entry name="willpower"
-      specialAttackPower="4" energy="2"
+      specialAttackPower="4" astra="2"
       fluff="Useful when forcing yourself to do things that are boring or painful." />
   </category> <!-- stats -->
   <category name="skills">
@@ -130,7 +130,7 @@
       fluff="Learn a formal, polished weapon fighting style. Something bigger than just hitting correctly; something with techniques for things like parrying." />
     <entry name="skin hardening" physiqueReq="13"
       defense="12"
-      fluff="Learn a common warrior technique, training yourself to harden your skin on command by infusing it with energy. Useful, but very painful to learn." />
+      fluff="Learn a common warrior technique, training yourself to harden your skin on command by infusing it with astra. Useful, but very painful to learn." />
     <entry name="organ hardening" prereq="skin hardening"
       life="8" defense="4"
       fluff="Further improve your skin hardening ability, and learn to apply it to your internal organs to. Makes you a lot tougher, but if you keep it on all the time it'll shorten your lifespan." />
@@ -148,7 +148,7 @@
       fluff="Sharpen your fighting instincts, so that you can not just dodge attacks, but also better react to tiny openings you can exploit for massive damage." />
     <entry name="celerity" agilityReq="13"
       initiative="12"
-      fluff="Learn a common rogue technique that infuses energy into your mind, letting you act just a little bit faster than others." />
+      fluff="Learn a common rogue technique that infuses astra into your brain, letting you act just a little bit faster than others." />
     <entry name="flowing movement" prereq="celerity"
       moveDistance="1" initiative="4"
       fluff="Train moving while using the celerity technique. It's an acquired skill, but when your mind is moving that little bit faster you can effectively move in ways that would normally be reckless." />
@@ -173,7 +173,7 @@
       specialPower="12"
       fluff="Immerse yourself in the theory behind advanced techniques such as magic, to improve your efficacy." />
     <entry name="hidden tricks" prereq="study"
-      specialPower="4" energy="8"
+      specialPower="4" astra="8"
       fluff="Leverage your knowledge of magic (and other unusual techniques) to make sure you always have a little something up your sleeve." />
     <entry name="combat theory" prereq="study"
       dodge="6" attackPower="6"
@@ -181,13 +181,13 @@
     <entry name="countermagic" cunningReq="13"
       resistance="12"
       fluff="Like how mages can draw spell-channels with their mind, you can disrupt oncoming spell-channels with your mind, cutting perpendicular lines across them." />
-    <entry name="energy absorption" prereq="countermagic"
-      resistance="6" energy="6"
-      fluff="Learn how to dissipate energy from a spell-channel to further disrupt it. Learning this skill also helps gather more energy from the environment." />
+    <entry name="astra absorption" prereq="countermagic"
+      resistance="6" astra="6"
+      fluff="Learn how to dissipate astra from a spell-channel to further disrupt it. Learning this skill also helps gather more astra from the environment." />
     <!-- TODO: second followup for "countermagic" -->
     <entry name="meditation" willpowerReq="10"
-      energy="12"
-      fluff="Learn how to meditate, to help you more effectively absorb energy during your downtime. An essential skill for mages." />
+      astra="12"
+      fluff="Learn how to meditate, to help you more effectively absorb the astra of the stars during your downtime. An essential skill for mages." />
     <!-- TODO: first followup for "meditation" -->
     <!-- TODO: second followup for "meditation" -->
     <entry name="vigilance" willpowerReq="13"
@@ -208,25 +208,25 @@
       agilityModifier="2" dodge="10" attackPowerWhenDisengaged="40" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,snipe,crimson fangs,venom sting,miasma bolt"
       fluff="TODO: fluff" />
     <entry name="mage" reqSpecies="firin,skuri"
-      senseModifier="2" specialPower="15" energy="20" initiative="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage"
+      senseModifier="2" specialPower="15" astra="20" initiative="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage"
       fluff="TODO: fluff" />
     <entry name="mechanic" reqSpecies="skuri"
-      cunningModifier="2" specialPower="10" energy="10" life="10" armorProfiencyLevel="1" proficiencies="mace,pistol,saw automata,gun automata,slam"
+      cunningModifier="2" specialPower="10" astra="10" life="10" armorProfiencyLevel="1" proficiencies="mace,pistol,saw automata,gun automata,slam"
       fluff="TODO: fluff" />
     <entry name="healer" reqSpecies="karhun"
-      willpowerModifier="2" specialPower="10" energy="20" life="20" proficiencies="dagger,mace,first aid,siphon,venom sting"
+      willpowerModifier="2" specialPower="10" astra="20" life="20" proficiencies="dagger,mace,first aid,siphon,venom sting"
       fluff="TODO: fluff" />
     <entry name="wanderer" reqSpecies="firin"
       agilityModifier="2" accuracy="22" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash"
       fluff="TODO: fluff" />
     <entry name="lab rat" reqSpecies="skuri"
-      senseModifier="1" physiqueModifier="1" energy="10" life="20" attackPower="10" defense="10" proficiencies="dagger,spear,agony release,miasma bolt,mend"
+      senseModifier="1" physiqueModifier="1" astra="10" life="20" attackPower="10" defense="10" proficiencies="dagger,spear,agony release,miasma bolt,mend"
       fluff="TODO: fluff" />
     <entry name="martial artist" reqSpecies="skuri"
       willpowerModifier="1" physiqueModifier="1" dodge="20" attackPower="10" life="20" martialArts="1" proficiencies="eye gouge,inner strength,illusion fist"
       fluff="TODO: fluff" />
     <entry name="sage" reqSpecies="firin"
-      senseModifier="1" cunningModifier="1" resistance="30" energy="20" proficiencies="spear,sword,ashball,agony release,inner strength,siphon"
+      senseModifier="1" cunningModifier="1" resistance="30" astra="20" proficiencies="spear,sword,ashball,agony release,inner strength,siphon"
       fluff="TODO: fluff" />
     <entry name="survivor" reqSpecies="karhun,firin,skuri"
       willpowerModifier="2" resistance="20" attackPower="5" specialPower="5" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,slam,arcana arrow,snipe"
@@ -243,9 +243,9 @@
     <entry name="sneaky monster"
       agilityModifier="2" dodge="15" resistance="15" attackPowerWhenDisengaged="40" unarmoredDefense="1" />
     <entry name="magic monster"
-      senseModifier="2" specialPower="30" life="10" energy="10" unarmoredDefense="1" />
+      senseModifier="2" specialPower="30" life="10" astra="10" unarmoredDefense="1" />
     <entry name="tethered"
-      willpowerModifier="2" energy="25" life="25" />
+      willpowerModifier="2" astra="25" life="25" />
   </category> <!-- jobs -->
   <category name="creature templates">
     <!-- special -->
@@ -305,7 +305,7 @@
       physiqueModifier="4" agilityModifier="-2" cunningModifier="-3" willpowerModifier="1" life="10"
       fluff="A powerful people who typically live solitary lives in the wilds. When they do band together, though, it's terrifying." />
     <entry name="firin"
-      agilityModifier="1" senseModifier="2" willpowerModifier="-3" energy="10"
+      agilityModifier="1" senseModifier="2" willpowerModifier="-3" astra="10"
       fluff="The nomadic remnants of a once-great empire. They still carry an air of easygoing pride with them, even now." />
     <entry name="skuri"
       physiqueModifier="-4" agilityModifier="4" senseModifier="-1" cunningModifier="1" dodge="10"
@@ -320,7 +320,7 @@
       physiqueModifier="1" agilityModifier="2" willpowerModifier="-2" cunningModifier="-1" moveDistance="1" attackPower="2" />
     <entry name="frog" />
     <entry name="cat"
-      senseModifier="5" physiqueModifier="-2" willpowerModifier="-3" energy="10" />
+      senseModifier="5" physiqueModifier="-2" willpowerModifier="-3" astra="10" />
     <entry name="rat"
       cunningModifier="4" agilityModifier="5" physiqueModifier="-9" dodge="10" />
   </category> <!-- species -->
@@ -557,51 +557,51 @@
     </entry> <!-- spear -->
 
     <!-- techniques -->
-    <entry name="crimson fangs" energyCost="5" weaponAccuracy="75" weaponHitsToCrits="25" scaling="melee weapon" numHits="2"
+    <entry name="crimson fangs" astraCost="5" weaponAccuracy="75" weaponHitsToCrits="25" scaling="melee weapon" numHits="2"
       fluff="A risky combat technique that tries to rapidly strike the foe's weak spots, often missing in the process." />
-    <entry name="venom sting" energyCost="10" weaponAccuracy="90" scaling="melee weapon" poisonedPercent="25"
+    <entry name="venom sting" astraCost="10" weaponAccuracy="90" scaling="melee weapon" poisonedPercent="25"
       fluff="Coat your weapon in poison and make a quick and accurate strike on your foe." />
-    <entry name="slam" energyCost="5" weaponAccuracy="80" scaling="melee weapon" shakenPercent="35"
+    <entry name="slam" astraCost="5" weaponAccuracy="80" scaling="melee weapon" shakenPercent="35"
       fluff="TODO: fluff" />
-    <entry name="typhoon slash" energyCost="10" weaponAccuracy="85" scaling="melee weapon" numHits="3"
+    <entry name="typhoon slash" astraCost="10" weaponAccuracy="85" scaling="melee weapon" numHits="3"
       fluff="Execute a practiced three-hit combo, trying to overwhelm the opponent with strikes." />
-    <entry name="eye gouge" energyCost="10" weaponAccuracy="75" scaling="level" blindedPercent="45"
+    <entry name="eye gouge" astraCost="10" weaponAccuracy="75" scaling="level" blindedPercent="45"
       fluff="TODO: fluff" />
-    <entry name="snipe" energyCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1"
+    <entry name="snipe" astraCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1"
       fluff="Carefully aim your pistol, and try to read your enemy's movements, then take your shot." />
-    <entry name="inferno shot" energyCost="10" weaponAccuracy="90" burningPercent="35" scaling="ranged weapon" ranged="1"
+    <entry name="inferno shot" astraCost="10" weaponAccuracy="90" burningPercent="35" scaling="ranged weapon" ranged="1"
       fluff="Fire a special bullet that has been coated in incendiary chemicals, meant to light the opponent on fire." />
 
     <!-- spells/special techniques -->
-    <entry name="wild spark" energyCost="5" weaponAccuracy="90" weaponHitsToCrits="50" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" noProficiency="1"
-      fluff="Build up your vital energy and simply release it, without attempting to shape a formal spell. Not very strong, but quite simple to use." />
-    <entry name="arcana arrow" energyCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1"
+    <entry name="wild spark" astraCost="5" weaponAccuracy="90" weaponHitsToCrits="50" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" noProficiency="1"
+      fluff="Build up your astra and simply release it, without attempting to shape a formal spell. Not very strong, but quite simple to use." />
+    <entry name="arcana arrow" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1"
       fluff="TODO: fluff... stress this is a basic attack spell, but flexible enough that it's useful for novices and masters alike" />
-    <entry name="siphon" energyCost="5" weaponAccuracy="110" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" drains="1"
-      fluff="Jab your opponent with a thin needle of vital energy, then drain their blood through the hole. A spell that is subtle and gross in equal measures." />
-    <entry name="phantom flames" energyCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" burningPercent="40" numHits="2"
+    <entry name="siphon" astraCost="5" weaponAccuracy="110" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" drains="1"
+      fluff="Jab your opponent with a thin needle of astra, then drain their blood through the hole. A spell that is subtle and gross in equal measures." />
+    <entry name="phantom flames" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" burningPercent="40" numHits="2"
       fluff="TODO: fluff..." />
-    <entry name="ashball" energyCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" blindedPercent="55"
+    <entry name="ashball" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" blindedPercent="55"
       fluff="TODO: fluff..." />
-    <entry name="sword wave" energyCost="10" weaponAccuracy="85" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1" ranged="1"
-      fluff="Build up energy in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." />
-    <entry name="illusion fist" energyCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
+    <entry name="sword wave" astraCost="10" weaponAccuracy="85" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1" ranged="1"
+      fluff="Build up astra in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." />
+    <entry name="illusion fist" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
       fluff="TODO: fluff... this is a magical martial arts technique" />
-    <entry name="spell barrage" energyCost="20" weaponAccuracy="90" weaponHitsToCrits="15" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="4"
-      fluff="Build up a large amount of vital energy and release it in a flurry of magical bolts. A powerful but unsubtle spell." />
-    <entry name="miasma bolt" energyCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" poisonedPercent="50"
-      fluff="Infuse your vital energy with a toxic quality, and fire it out as a deadly magical bolt." />
-    <entry name="agony release" energyCost="10" lifeCostPercent="15" weaponAccuracy="100" weaponHitsToCrits="25" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
+    <entry name="spell barrage" astraCost="20" weaponAccuracy="90" weaponHitsToCrits="15" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="4"
+      fluff="Build up a large amount of astra and release it in a flurry of magical bolts. A powerful but unsubtle spell." />
+    <entry name="miasma bolt" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" poisonedPercent="50"
+      fluff="Infuse your astra with a toxic quality, and fire it out as a deadly magical bolt." />
+    <entry name="agony release" astraCost="10" lifeCostPercent="15" weaponAccuracy="100" weaponHitsToCrits="25" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
       fluff="Stab yourself with a knife, and use the pain reflex to shape a wicked spell. An unusual but surprisingly effective form of magic." />
-    <entry name="mend" energyCost="5" weaponAccuracy="100" ranged="1" magic="1" spell="1" heals="1" scaling="level" usesSpecialPower="1"
+    <entry name="mend" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" spell="1" heals="1" scaling="level" usesSpecialPower="1"
       fluff="TODO: fluff" />
-    <entry name="first aid" energyCost="5" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="2"
+    <entry name="first aid" astraCost="5" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="2"
       fluff="TODO: fluff" />
-    <entry name="inner strength" energyCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1"
+    <entry name="inner strength" astraCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1"
       fluff="TODO: fluff" /> <!-- TODO: self-target only -->
-    <entry name="saw automata" energyCost="15" summonSpecies="automata" summonJobs="tough monster,tough monster" summonWeapon="automata saw" summonFluff="melee combat automata" scaling="level" usesSpecialPower="1"
+    <entry name="saw automata" astraCost="15" summonSpecies="automata" summonJobs="tough monster,tough monster" summonWeapon="automata saw" summonFluff="melee combat automata" scaling="level" usesSpecialPower="1"
       fluff="TODO: fluff" />
-    <entry name="gun automata" energyCost="20" summonSpecies="automata" summonJobs="ranged monster,tough monster" summonWeapon="automata gun" summonFluff="ranged combat automata" scaling="level" usesSpecialPower="1"
+    <entry name="gun automata" astraCost="20" summonSpecies="automata" summonJobs="ranged monster,tough monster" summonWeapon="automata gun" summonFluff="ranged combat automata" scaling="level" usesSpecialPower="1"
       fluff="Deploy a Skuri combat automata fitted with an auto-loading gun. Not as tactically flexible as a close-combat automata, but useful when raw firepower is needed." />
   </category> <!-- weapons -->
   <category name="accessories">
