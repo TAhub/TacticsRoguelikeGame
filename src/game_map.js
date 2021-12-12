@@ -1089,6 +1089,7 @@ class GameMap {
    * @return {?Array.<!Creature>} encounterTally
    */
   generateEncounters(overworldMapTile, rng, encounterTally) {
+    if (overworldMapTile.enemyTemplates.length == 0) return [];
     const numEncounters = 4; // TODO: get?
     const encounters = [];
 

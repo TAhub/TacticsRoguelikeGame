@@ -10,12 +10,14 @@
     <entry name="yellow" color="#FFDD00" isPure="1" />
     <entry name="light yellow" color="#FFF8CC" isPure="1" />
     <entry name="green" color="#00FF00" isPure="1" />
+    <entry name="light green" color="#80FF80" isPure="1" />
     <entry name="teal" color="#00FF6F" isPure="1" />
     <entry name="cyan" color="#00FFDD" isPure="1" />
     <entry name="blue" color="#0000FF" isPure="1" />
     <entry name="sky blue" color="#B3B3FF" isPure="1" />
     <entry name="brown" color="#DF6020" isPure="1" />
     <entry name="pale brown" color="#C9BCB6" isPure="1" />
+    <entry name="pale purple" color="#DBB3FF" isPure="1" />
     <entry name="purple" color="#8800FF" isPure="1" />
     <entry name="gray" color="#808080" isPure="1" />
     <entry name="dark gray" color="#404040" isPure="1" />
@@ -115,17 +117,10 @@
     <entry name="sand floor" color="#737326" />
     <entry name="sand wall" color="#C6C653" />
     <entry name="canvas wall" color="#A7A58B" />
-    <entry name="marshwater floor" color="#485926" />
     <entry name="grass floor" color="#2E6F2A" />
     <entry name="grass wall" color="#5EC059" />
-    <entry name="faded grass floor" color="#3F5C3D" />
-    <entry name="faded grass wall" color="#78A375" />
-    <entry name="wheat floor" color="#6F692A" />
-    <entry name="wheat wall" color="#C0B759" />
     <entry name="dirt floor" color="#6F3B2A" />
-    <entry name="gravel floor" color="#4C4738" />
     <entry name="dirt wall" color="#B77762" />
-    <entry name="faded dirt floor" color="#5C453D" />
   </category> <!-- colors -->
   <category name="stats">
     <entry name="physique"
@@ -315,7 +310,6 @@
     <!-- twisted wasteland enemies (levels 25-30) -->
     <entry name="darklands scavenger" species="scavenger" jobs="sneaky monster,tough monster" level="25" weapon="claws:2" /> <!-- TODO: appearance modifier: darker skin color -->
     <!-- TODO: giant monsters -->
-    <!-- TODO: side-region: hedge maze (in the branch leading up to the tether assembly)... it has plant monsters, perhaps? -->
 
     <!-- tether assembly enemies (levels 31-36) -->
     <entry name="tethered warrior" species="karhun" jobs="warrior,tethered" level="28" weapon="sword:2" armors="helmet:2,breastplate:2,greaves:2" techniques="slam,typhoon slash"
@@ -330,7 +324,6 @@
       hairstyle="short,ponytail" />
     <entry name="tethered healer" species="karhun" jobs="healer,tethered" level="30" weapon="mace:2" armors="hat:2,shirt:2,pants:2" techniques="first aid"
       hairstyle="short,ponytail" /> <!-- TODO: some offensive spell? -->
-    <!-- TODO: side-area: the animal pens, with brainwashed beasts and a few more brainwashed servants -->
   </category> <!-- creature templates -->
   <category name="species">
     <!-- playable species -->
@@ -811,74 +804,82 @@
     </entry> <!-- greaves -->
   </category> <!-- armors -->
   <category name="sub regions">
-    <!-- TODO: break up the proto-regions into multiple sub-regions each -->
-    <!-- TODO: pick tilesets for all of these -->
-
     <!-- regionId 0 (t0): grasslands -->
+    <entry name="clearing" regionId="0" condition="first map"
+      tileset="grasslands"
+      loot="(W)rusty metal rod:0,(W)wild spark,(A)pants:0" />
+      <!-- TODO: neutral NPC: firin civilian (M)
+        line 1: "Did you four sleepwalk here too?"
+        line 2: "All sorts of people seem to be drawn here by something."
+        line 3: "Lots of bandit types were drawn here, too. Be careful."
+        line 4+: "I'm happy where I am, thanks."
+        TODO: I guess all these dialogue lines should be stored in the strings file?
+      -->
     <entry name="catacombs" regionId="0" condition="key map branch"
-      tileset="dirt tunnels" enemyTemplates="scavenger"
+      tileset="catacombs" enemyTemplates="scavenger"
       loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)fur cloak,(C)silver spectacles,(A)breastplate:0" />
       <!-- TODO: undead enemies -->
-    <entry name="proto-region 0" regionId="0"
-      tileset="dirt tunnels" enemyTemplates="scavenger,black cat"
-      loot="(W)dagger:0,(W)rusty metal rod:0,(W)rusty metal rod:0,(A)jerkin:0,(A)pants:0,(A)shirt:0,(A)cap:0,(W)saw automata,(W)arcana arrow,(W)first aid,(W)wild spark" />
-    <!-- TODO: neutral NPC: firin civilian (M) in the first map
-      line 1: "Did you four sleepwalk here too?"
-      line 2: "All sorts of people seem to be drawn here by something."
-      line 3: "Lots of bandit types were drawn here, too. Be careful."
-      line 4+: "I'm happy where I am, thanks."
-      TODO: I guess all these dialogue lines should be stored in the strings file?
-    -->
+    <entry name="grasslands" regionId="0"
+      tileset="grasslands" enemyTemplates="scavenger,black cat"
+      loot="(W)dagger:0,(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw automata,(W)arcana arrow,(W)first aid" />
 
     <!-- regionId 1 (t0): shore -->
     <entry name="shipwreck" regionId="1" condition="key map"
-      tileset="dirt tunnels" enemyTemplates="pirate brawler,pirate crewmate,pirate mage,pirate boarder"
+      tileset="ship" enemyTemplates="pirate brawler,pirate crewmate,pirate mage,pirate boarder"
       loot="(C)intimidating mask,(W)pistol:0,(W)snipe" />
     <entry name="rocky shore" regionId="1" condition="key map branch"
-      tileset="dirt tunnels" enemyTemplates="pirate brawler,pirate mage"
+      tileset="rocky beach" enemyTemplates="pirate brawler,pirate mage"
       loot="(W)sword:0,(A)cap:0,(A)jerkin:0,(A)greaves:0,(A)hat:0,(W)ashball,(W)eye gouge" />
-    <entry name="proto-region 1" regionId="1"
-      tileset="dirt tunnels" enemyTemplates="pirate brawler"
+    <entry name="shore" regionId="1"
+      tileset="beach" enemyTemplates="pirate brawler"
       loot="(W)spear:0,(W)mace:0,(A)leggings:0,(A)hat:0,(A)skirt:0,(A)helmet:0,(A)greaves:0,(A)breastplate:0,(W)slam" />
       <!-- TODO: this region should have shore beasts in it -->
 
     <!-- regionId 2 (t1): caverns -->
     <entry name="burrow" regionId="2" condition="key map branch"
-      tileset="dirt tunnels" enemyTemplates="skull rat"
+      tileset="burrow" enemyTemplates="skull rat"
       loot="(W)gun automata,(W)pistol:1,(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot" /> <!-- TODO: "paranoid skuri" and automata enemies -->
-    <entry name="proto-region 2" regionId="2"
-      tileset="dirt tunnels" enemyTemplates="skull rat"
+    <entry name="caverns" regionId="2"
+      tileset="stone tunnels" enemyTemplates="skull rat"
       loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)jerkin:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(C)shield,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave" />
 
     <!-- regionId 3 (t1): bandit town -->
     <entry name="spooky manor" regionId="3" condition="boss map branch"
-      tileset="dirt tunnels" enemyTemplates="bandit"
+      tileset="spooky manor" enemyTemplates="bandit"
       loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)siphon,(C)lantern" />
       <!-- TODO: undead enemies -->
-    <entry name="proto-region 3" regionId="3"
-      tileset="dirt tunnels" enemyTemplates="bandit,sneaky bandit"
+    <entry name="bandit town" regionId="3"
+      tileset="village" enemyTemplates="bandit,sneaky bandit"
       loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(W)spell barrage,(W)typhoon slash" />
 
     <!-- regionId 4 (t2): twisted wasteland -->
-    <entry name="proto-region 4" regionId="4"
-      tileset="dirt tunnels" enemyTemplates="darklands scavenger"
-      loot="(W)sword:2,(W)spear:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(C)regal cloak,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)breastplate:2,(A)hat:2,(A)cap:2,(A)pants:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(W)illusion fist,(C)wind bangles" />
+    <entry name="hedge maze" regionId="4" condition="boss map branch"
+      tileset="hedge maze" enemyTemplates="darklands scavenger"
+      loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2" />
+      <!-- TODO: plant monsters -->
+    <entry name="twisted wasteland" regionId="4"
+      tileset="twisted wasteland" enemyTemplates="darklands scavenger"
+      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles" />
 
     <!-- regionId 5 (t2): tether assembly -->
-    <entry name="proto-region 5" regionId="5"
-      tileset="dirt tunnels" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer"
-      loot="(C)third eye,(C)bloody thorn,(A)bandit armor:1,(A)helmet:2,(A)armored skirt:1,(A)skirt:2,(A)hat:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)spear:3,(A)breastplate:2" />
-    <!-- TODO: ok I haven't thought too hard about the plot yet, but here's a fun idea:
-      neutral NPC: undead firin servant (F) named "greeter" in this first map of this area
-        line 1: "Welcome! You took longer than expected."
-        line 2: "If you had sleepwalked all the way here, everyone would have left you alone."
-        line 3: "But now that you're here, so you can serve the master!"
-        line 4: "You don't look very cooperative... oh well."
-        line 5+: "You'll serve, in time."
-      TODO: this would suggest that the tether assembly exists to gather mind-controlled slaves
-        perhaps most people are gradually brainwashed as they stay in the area, and eventually end up here?
-        something like that
-    -->
+    <entry name="gateway" regionId="5" condition="first map"
+      tileset="gateway"
+      loot="(C)bloody thorn,(A)helmet:2" />
+      <!-- TODO: ok I haven't thought too hard about the plot yet, but here's a fun idea:
+        neutral NPC: undead firin servant (F) named "greeter"
+          line 1: "Welcome! You took longer than expected."
+          line 2: "If you had sleepwalked all the way here, everyone would have left you alone."
+          line 3: "But now that you're here, so you can serve the master!"
+          line 4: "You don't look very cooperative... oh well."
+          line 5+: "You'll serve, in time."
+        TODO: this would suggest that the tether assembly exists to gather mind-controlled slaves
+          perhaps most people are gradually brainwashed as they stay in the area, and eventually end up here?
+          something like that
+      -->
+    <entry name="tether assembly" regionId="5"
+      tileset="tether assembly" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer"
+      loot="(C)third eye,(A)bandit armor:1,(A)armored skirt:1,(A)skirt:2,(A)hat:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)spear:3,(A)breastplate:2" />
+    <!-- TODO: at least one sub-region -->
   </category> <!-- sub regions -->
   <category name="tilesets">
     <!-- a special tileset solely for the second upscale. Not used as an actual tileset (e.g. no colors, sprites, etc) -->
@@ -888,8 +889,6 @@
       replacersLJoins="second upscale turn"
       replacersTJoins="second upscale split"
       replacersHJoins="null" />
-
-    <!-- TODO: also cull unused tilesets? -->
 
     <!-- TODO: assign footstep sounds ("gravel" or "stone") -->
     <entry name="village"
@@ -902,10 +901,17 @@
       replacersTJoins="natural hallway split A,natural hallway split B,natural hallway split C,narrow hallway split,null"
       replacersHJoins="natural chamber A,natural chamber B,natural chamber C,narrow hallway fourway,null,null,column room" />
       <!-- TODO: wood plank wall sprites -->
+      <!-- TODO: village-type furniture? -->
+    <entry name="hedge maze"
+      lightingIntensity="75" lightingColor="pale purple"
+      floorSprites="0,1,2,3" floorColor="dirt floor"
+      wallSprites="4,5,6,7" wallColor="grass wall"
+      inheritJoinsFrom="village" />
+      <!-- TODO: wood plank wall sprites -->
     <entry name="beach"
       lightingIntensity="90" lightingColor="white"
       floorSprites="0,1,2,3" floorColor="sand floor"
-      wallSprites="4,5,6,7" wallColor="stone wall"
+      wallSprites="4,5,6,7" wallColor="sand wall"
       replacersNJoins="wide dead end A,wide dead end B,wide dead end C,null"
       replacersIJoins="wide hallway A,wide hallway B,wide hallway C,null"
       replacersLJoins="wide hallway turn A,wide hallway turn B,wide hallway turn C,null"
@@ -913,38 +919,25 @@
       replacersHJoins="natural chamber A,natural chamber B,natural chamber C,null" />
       <!-- TODO: cave wall sprites -->
       <!-- TODO: some water floors? -->
+    <entry name="rocky beach"
+      lightingIntensity="80" lightingColor="white"
+      floorSprites="0,1,2,3" floorColor="sand floor"
+      wallSprites="4,5,6,7" wallColor="stone wall"
+      inheritJoinsFrom="rocky beach" />
+      <!-- TODO: cave wall sprites -->
+      <!-- TODO: some water floors? -->
     <entry name="grasslands"
       lightingIntensity="80" lightingColor="white"
-      floorSprites="0,1,2,3" floorColor="marshwater floor"
+      floorSprites="0,1,2,3" floorColor="grass floor"
       wallSprites="4,5,6,7" wallColor="grass wall"
       inheritJoinsFrom="beach" />
       <!-- TODO: cave wall sprites -->
-      <!-- TODO: the move sound for this tileset should be splash sounds, since the floor is water -->
-    <entry name="marsh"
-      lightingIntensity="60" lightingColor="pale brown"
-      floorSprites="0,1,2,3" floorColor="grass floor"
-      wallSprites="4,5,6,7" wallColor="dirt wall"
-      inheritJoinsFrom="beach" />
-      <!-- TODO: cave wall sprites -->
-    <entry name="rocky highlands"
-      lightingIntensity="80" lightingColor="sky blue"
-      floorSprites="0,1,2,3" floorColor="grass floor"
-      wallSprites="4,5,6,7" wallColor="stone wall"
-      inheritJoinsFrom="beach" />
-      <!-- TODO: cave wall sprites -->
-    <entry name="dirt field"
-      lightingIntensity="80" lightingColor="white"
+    <entry name="twisted wasteland"
+      lightingIntensity="85" lightingColor="pale purple"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="4,5,6,7" wallColor="dirt wall"
       inheritJoinsFrom="beach" />
       <!-- TODO: cave wall sprites -->
-    <entry name="battlefield"
-      lightingIntensity="70" lightingColor="pale red"
-      floorSprites="0,1,2,3" floorColor="dirt floor"
-      wallSprites="4,5,6,7" wallColor="dirt wall"
-      inheritJoinsFrom="beach" />
-      <!-- TODO: cave wall sprites -->
-      <!-- TODO: different decoration objects from the dirt field? like corpses or w/e -->
     <entry name="dirt tunnels"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="4,5,6,7" wallColor="dirt wall"
@@ -959,7 +952,16 @@
       wallSprites="4,5,6,7" wallColor="stone wall"
       inheritJoinsFrom="dirt tunnels" />
       <!-- TODO: cave wall sprites -->
+    <entry name="burrow"
+      lightingIntensity="25" lightingColor="gray"
+      floorSprites="0,1,2,3" floorColor="stone floor"
+      wallSprites="4,5,6,7" wallColor="stone wall"
+      inheritJoinsFrom="dirt tunnels" />
+      <!-- TODO: cave wall sprites -->
+      <!-- TODO: lamps that glow "pale red" -->
+      <!-- TODO: village type furniture? -->
     <entry name="catacombs"
+      lightingIntensity="10" lightingColor="green"
       floorSprites="0,1,2,3" floorColor="stone floor"
       wallSprites="4,5,6,7" wallColor="stone wall"
       replacersNJoins="dead end"
@@ -967,41 +969,41 @@
       replacersLJoins="narrow hallway turn,narrow hallway turn,narrow hallway turn concave,narrow hallway turn indirect"
       replacersTJoins="narrow hallway split"
       replacersHJoins="narrow hallway fourway,column room" />
-      <!-- TODO: lamps that glow "green" -->
-    <entry name="armory"
-      lightingIntensity="5" lightingColor="gray"
-      floorSprites="0,1,2,3" floorColor="stone floor"
-      wallSprites="4,5,6,7" wallColor="stone wall"
+      <!-- TODO: lamps that glow "light green" -->
+    <entry name="ship"
+      lightingIntensity="25" lightingColor="gray"
+      floorSprites="0,1,2,3" floorColor="wood floor"
+      wallSprites="4,5,6,7" wallColor="wood wall"
       replacersNJoins="null"
       replacersIJoins="null"
       replacersLJoins="second upscale turn"
       replacersTJoins="second upscale split,second upscale split,column room"
       replacersHJoins="null,column room" />
-      <!-- TODO: stone brick floor sprites -->
-      <!-- TODO: lamps that glow "pale red" -->
-    <entry name="fort"
-      lightingIntensity="10" lightingColor="gray"
-      floorSprites="0,1,2,3" floorColor="dirt floor"
-      wallSprites="4,5,6,7" wallColor="brick wall"
-      inheritJoinsFrom="armory" />
-      <!-- TODO: lamps that glow "pale red" -->
-    <entry name="ship"
-      lightingIntensity="25" lightingColor="brown"
-      floorSprites="0,1,2,3" floorColor="wood floor"
-      wallSprites="4,5,6,7" wallColor="wood wall"
-      inheritJoinsFrom="armory" />
       <!-- TODO: wood plank floor sprites -->
       <!-- TODO: wood plank wall sprites -->
-      <!-- TODO: lamps that glow "blue" -->
-    <entry name="secret lab"
-      lightingIntensity="25" lightingColor="rusty"
+      <!-- TODO: lamps that glow "orange" -->
+    <entry name="spooky manor"
+      lightingIntensity="20" lightingColor="green"
+      floorSprites="0,1,2,3" floorColor="wood floor"
+      wallSprites="4,5,6,7" wallColor="wood wall"
+      inheritJoinsFrom="ship" />
+      <!-- TODO: wood plank floor sprites -->
+      <!-- TODO: wood plank wall sprites -->
+      <!-- TODO: lamps that glow "light green" -->
+      <!-- TODO: village-type furniture? -->
+    <entry name="gateway"
+      lightingIntensity="65" lightingColor="pale purple"
+      floorSprites="0,1,2,3" floorColor="dirt floor"
+      wallSprites="4,5,6,7" wallColor="stone wall"
+      inheritJoinsFrom="ship" />
+    <entry name="tether assembly"
+      lightingIntensity="60" lightingColor="sky blue"
       floorSprites="0,1,2,3" floorColor="stone floor"
-      wallSprites="4,5,6,7" wallColor="rusty wall"
-      inheritJoinsFrom="armory" />
-      <!-- TODO: stone brick floor sprites -->
-      <!-- TODO: metal wall sprites -->
-      <!-- TODO: laboratory-like decoration objects... -->
-      <!-- TODO: lamps that glow "green" -->
+      wallSprites="4,5,6,7" wallColor="stone wall"
+      inheritJoinsFrom="ship" />
+      <!-- TODO: lamps that glow "blue" -->
+      <!-- TODO: fancier walls? I dunno -->
+      <!-- TODO: magical furniture -->
   </category> <!-- tilesets -->
   <category name="tile replacers">
     <entry name="null" l0="OOO" l1="OOO" l2="OOO" />
