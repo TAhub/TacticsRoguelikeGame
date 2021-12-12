@@ -124,10 +124,10 @@
       fluff="Learn how to handle weapons more effectively, maximizing how much damage you can do with a solid hit." />
     <entry name="fury" prereq="form"
       hitsToCrits="12" attackPower="6"
-      fluff="TODO: fluff" />
+      fluff="Harness your inner fury, your primal desire to smash stuff. Sometimes, a good opportunity to smash just presents itself." />
     <entry name="combat style" prereq="form"
       accuracy="4" dodge="4" attackPower="4"
-      fluff="TODO: fluff" />
+      fluff="Learn a formal, polished weapon fighting style. Something bigger than just hitting correctly; something with techniques for things like parrying." />
     <entry name="skin hardening" physiqueReq="13"
       defense="12"
       fluff="Learn a common warrior technique, training yourself to harden your skin on command by infusing it with energy. Useful, but very painful to learn." />
@@ -145,16 +145,16 @@
       fluff="All attacks can be dodged, even spells. If you are quick enough, you can react to the spell-channel solidifying, and juke away before the spell touches you." />
     <entry name="combat instincts" prereq="evasion"
       dodge="6" hitsToCrits="12"
-      fluff="TODO: fluff" />
+      fluff="Sharpen your fighting instincts, so that you can not just dodge attacks, but also better react to tiny openings you can exploit for massive damage." />
     <entry name="celerity" agilityReq="13"
       initiative="12"
-      fluff="TODO: fluff" />
-    <entry name="sprinting" prereq="celerity"
+      fluff="Learn a common rogue technique that infuses energy into your mind, letting you act just a little bit faster than others." />
+    <entry name="flowing movement" prereq="celerity"
       moveDistance="1" initiative="4"
-      fluff="TODO: fluff" />
-    <entry name="surprise attacks" prereq="celerity"
+      fluff="Train moving while using the celerity technique. It's an acquired skill, but when your mind is moving that little bit faster you can effectively move in ways that would normally be reckless." />
+    <entry name="rapid attacks" prereq="celerity"
       attackPower="6" initiative="6"
-      fluff="TODO: fluff" />
+      fluff="Train using your weapon with the celerity technique active, so that you can best take advantage of the faster thought to land more well-executed attacks." />
     <entry name="targeting" senseReq="10"
       accuracy="12"
       fluff="Train your eyes to see through the movements of your foes, so you can nail them even as they try to dodge." />
@@ -187,18 +187,18 @@
     <!-- TODO: second followup for "countermagic" -->
     <entry name="meditation" willpowerReq="10"
       energy="12"
-      fluff="TODO: fluff" />
+      fluff="Learn how to meditate, to help you more effectively absorb energy during your downtime. An essential skill for mages." />
     <!-- TODO: first followup for "meditation" -->
     <!-- TODO: second followup for "meditation" -->
     <entry name="vigilance" willpowerReq="13"
       specialAttackPower="24"
-      fluff="If you want to react the moment your opponent leaves an opening, you'll have to learn how to be patient first." />
+      fluff="Learn how to be patient and focused, so you can effectively react the moment your opponent leaves an opening." />
     <entry name="discipline" prereq="vigilance"
       specialAttackPower="12" defense="6"
-      fluff="TODO: fluff" />
+      fluff="Train yourself to fight with unwavering discipline, so that you can avoid leaving openings just as well as you exploit those of your opponent." />
     <entry name="zoning" prereq="vigilance"
       zones="1" specialAttackPower="6"
-      fluff="TODO: fluff" />
+      fluff="Learn how to use your weapon to effectively keep an enemy at bay, even if you aren't using a long weapon like a spear." />
   </category> <!-- skills -->
   <category name="jobs">
     <entry name="warrior" reqSpecies="karhun,firin"
