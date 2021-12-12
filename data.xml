@@ -161,13 +161,15 @@
     <entry name="timing" prereq="targeting"
       accuracy="6" initiative="6"
       fluff="Train yourself to have a better sense of timing, so that you always know the right time to make a move." />
-    <!-- TODO: second followup for "targeting" -->
+    <entry name="visualization" prereq="targeting"
+      accuracy="4" specialPower="8"
+      fluff="Train the eyes of your mind to be as sharp as the eyes on your outside, so you can better translate the shape of a spell-channel from your mind to reality." />
     <entry name="intuition" senseReq="13"
       specialPower="12"
       fluff="Train your subtler, more instinctual senses... your ability to sense magic, or to read the patterns of a complex job." />
-    <entry name="pattern breaking" prereq="intuition"
+    <entry name="prey instincts" prereq="intuition"
       dodgeVsDisengage="36"
-      fluff="Learn how to create and break fake patterns of movement to confound your opponent's attempts to predict when you will slip away from them." />
+      fluff="Learn how to trust in your intuition about the actions of enemies, so that you know the right moment to bolt from the scary thing trying to corner you." />
     <!-- TODO: second followup for "intuition" -->
     <entry name="study" cunningReq="10"
       specialPower="12"
@@ -175,9 +177,9 @@
     <entry name="hidden tricks" prereq="study"
       specialPower="4" astra="8"
       fluff="Leverage your knowledge of magic (and other unusual techniques) to make sure you always have a little something up your sleeve." />
-    <entry name="combat theory" prereq="study"
-      dodge="6" attackPower="6"
-      fluff="Expand your study to the more scholarly side of martial arts too, to supplement your techniques with improved fighting abilities." />
+    <entry name="tactics" prereq="study"
+      dodge="6" specialAttackPower="12"
+      fluff="Expand your study to the study of combat tactics, and learn how to control the battlefield in a more martial way." />
     <entry name="countermagic" cunningReq="13"
       resistance="12"
       fluff="Like how mages can draw spell-channels with their mind, you can disrupt oncoming spell-channels with your mind, cutting perpendicular lines across them." />
@@ -187,14 +189,16 @@
     <!-- TODO: second followup for "countermagic" -->
     <entry name="meditation" willpowerReq="10"
       astra="12"
-      fluff="Learn how to meditate, to help you more effectively absorb the astra of the stars during your downtime. An essential skill for mages." />
-    <!-- TODO: first followup for "meditation" -->
-    <!-- TODO: second followup for "meditation" -->
+      fluff="Learn how to meditate, to help you more effectively absorb the astra of the stars during your downtime. A useful skill, especially for mages." />
+    <entry name="wholeness" prereq="meditation"
+      astra="6" life="6"
+      fluff="Learn a set of advanced meditation techniques that circulate astra through your body as you absorb it. This process helps to improve overall health." />
+    <!-- TODO: second followup for "meditation"... something more offense-focused? -->
     <entry name="vigilance" willpowerReq="13"
       specialAttackPower="24"
       fluff="Learn how to be patient and focused, so you can effectively react the moment your opponent leaves an opening." />
     <entry name="discipline" prereq="vigilance"
-      specialAttackPower="12" defense="6"
+      specialAttackPower="8" defense="8"
       fluff="Train yourself to fight with unwavering discipline, so that you can avoid leaving openings just as well as you exploit those of your opponent." />
     <entry name="zoning" prereq="vigilance"
       zones="1" specialAttackPower="6"
@@ -310,8 +314,6 @@
     <entry name="skuri"
       physiqueModifier="-4" agilityModifier="4" senseModifier="-1" cunningModifier="1" dodge="10"
       fluff="A secretive and skittish people who prefer to hide themselves away in their grand underground burrows." />
-
-    <!-- TODO: re-pick stats: -->
 
     <!-- monster species -->
     <entry name="automata"
@@ -629,7 +631,7 @@
     <entry name="silver spectacles" specialAttackPower="30"
       color="silver"
       fluff="A seemingly-magical pair of glasses, presumably left behind by someone long dead. Through these lenses, the openings that foes leave stand out in incredibly sharp focus." /> <!-- TODO: sprite (head accessory slot filler) -->
-    <entry name="bloody thorn" powerVsUninjured="40" dodge="-20"
+    <entry name="bloody thorn" powerVsUninjured="40" dodge="-15"
       fluff="A magical thorn, found safely locked away in a box. Impale the palm of your hand with this and you'll unlock a vengeful power... at the cost of distracting pain." />
     <entry name="wind bangles" moveDistance="1" dodge="7"
       fluff="A set of tarnished golden bangles, with some sort of magic in them that speeds up the legs of the wearer." />

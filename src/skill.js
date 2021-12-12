@@ -17,7 +17,7 @@ class Skill extends BonusSource {
     if (this.prereq) {
       const prereq = new Skill(this.prereq);
       const prereqReq = prereq.getStatRequirementFor(stat);
-      return prereqReq ? (prereqReq + 10) : 0;
+      return prereqReq ? (prereqReq + 7) : 0;
     }
     return this.getNumberValue(stat + 'Req');
   }
