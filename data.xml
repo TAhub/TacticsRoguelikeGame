@@ -16,12 +16,9 @@
     <entry name="blue" color="#0000FF" isPure="1" />
     <entry name="sky blue" color="#B3B3FF" isPure="1" />
     <entry name="brown" color="#DF6020" isPure="1" />
-    <entry name="pale brown" color="#C9BCB6" isPure="1" />
     <entry name="pale purple" color="#DBB3FF" isPure="1" />
     <entry name="purple" color="#8800FF" isPure="1" />
     <entry name="gray" color="#808080" isPure="1" />
-    <entry name="dark gray" color="#404040" isPure="1" />
-    <entry name="very dark gray" color="#202020" isPure="1" />
     <!-- UI colors -->
     <entry name="tile slot border" color="#545445" />
     <entry name="tile slot back" color="#3D3D29" />
@@ -54,22 +51,14 @@
     <entry name="tooltip text" color="#BAAFAB" />
     <!-- material colors -->
     <entry name="black fabric" color="#5C5857" />
-    <entry name="purple fabric" color="#866BAE" />
     <entry name="red fabric" color="#AE6B6B" />
     <entry name="sharp brown fabric" color="#B98B74" />
     <entry name="brown fabric" color="#A47E6A" />
     <entry name="greenish brown fabric" color="#959A7E" />
-    <entry name="blue fabric" color="#6B6FAE" />
-    <entry name="cyan fabric" color="#6BA9AE" />
-    <entry name="green fabric" color="#82AE6B" />
-    <entry name="yellow fabric" color="#AEAA6B" />
     <entry name="gray fabric" color="#8C8C8C" />
     <entry name="white fabric" color="#E6E6E6" />
     <entry name="rusty" color="#C7998F" />
     <entry name="steel" color="#BAC4C4" />
-    <entry name="lead" color="#899484" />
-    <entry name="titanite" color="#9E92A0" />
-    <entry name="spellsteel" color="#D4C4CF" />
     <entry name="truegold" color="#F0EBC2" />
     <entry name="bronze" color="#CD7F32" />
     <entry name="silver" color="#BDC0C1" />
@@ -78,40 +67,25 @@
     <entry name="fire" color="#FC9983" />
     <entry name="gunsmoke" color="#DED5D3" />
     <entry name="smoke" color="#6B6161" />
-    <entry name="vis" color="#E699CC" />
-    <entry name="lightning" color="#ECF9F8" />
-    <entry name="sear" color="#FAE1D1" />
     <entry name="bone" color="#DDDBD5" />
     <entry name="flesh" color="#D68F9B" />
     <entry name="blood" color="#BD0F0F" />
-    <entry name="pale blood" color="#EC7979" />
-    <entry name="star 1" color="#FCEFCF" />
-    <entry name="star 2" color="#CFFCFC" />
-    <entry name="star 3" color="#FCCFF8" />
     <!-- body colors -->
-    <entry name="light green skin" color="#C5EBAD" />
-    <entry name="light teal skin" color="#7CE9D1" />
-    <entry name="light aqua skin" color="#7CC1E9" />
     <entry name="yellow fur" color="#DEDDBA" />
     <entry name="brown fur" color="#957250" />
     <entry name="dull brown fur" color="#C3854B" />
     <entry name="tan fur" color="#B9A57E" />
     <entry name="black fur" color="#372E25" />
-    <entry name="white fur" color="#CFCBAF" />
-    <entry name="very white fur" color="#F4F4F0" />
+    <entry name="white fur" color="#F4F4F0" />
     <entry name="orange fur" color="#E69C4C" />
     <entry name="vaguely green fur" color="#445841" />
     <entry name="vaguely blue fur" color="#576D75" />
     <entry name="red plumage" color="#C66053" />
     <entry name="green plumage" color="#62C653" />
     <entry name="yellow plumage" color="#C6C053" />
-    <entry name="pale yellow plumage" color="#B3B080" />
-    <entry name="orange plumage" color="#C68E53" />
     <!-- tile colors -->
     <entry name="wood floor" color="#452D21" />
     <entry name="wood wall" color="#B47F64" />
-    <entry name="brick wall" color="#B87A7A" />
-    <entry name="rusty wall" color="#997466" />
     <entry name="stone floor" color="#504B49" />
     <entry name="stone wall" color="#928A87" />
     <entry name="sand floor" color="#737326" />
@@ -410,7 +384,7 @@
       appearanceSizeMult="85" headHeightPoint="55"
       coloration0="Field" colorationTickets0="3" skinColor0="tan fur" hairColor0="brown fur" eyeColor0="black" tailColor0="flesh"
       colorationFluff0="Despite the name, field Skuri rarely actually live outside in fields. Rather, they were once used by the Firin empire as slaves, working the fields."
-      coloration1="Albino" colorationTickets1="1" skinColor1="very white fur" hairColor1="white" eyeColor1="blood" tailColor1="flesh"
+      coloration1="Albino" colorationTickets1="1" skinColor1="white fur" hairColor1="white" eyeColor1="blood" tailColor1="flesh"
       colorationFluff1="Albinism is much more common in Skuri than it is in other species.">
       <layer color="hairColor" xAdd="4" yAdd="-9" scale="90" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
       <layer sprite="401" color="tailColor" showAllStatuses="1" /> <!-- tail -->
