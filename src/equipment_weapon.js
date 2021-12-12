@@ -20,7 +20,7 @@ class Weapon extends Equipment {
     return this.getNumberValue('tier');
   }
 
-  /** @return {string} */
+  /** @return {boolean} */
   get noProficiency() {
     return this.getBooleanValue('noProficiency');
   }
