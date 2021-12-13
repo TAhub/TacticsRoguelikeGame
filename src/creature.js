@@ -429,6 +429,11 @@ class Creature {
   }
 
   /** @return {number} */
+  get rangeBonus() {
+    return this.tallyBonusSources_((bS) => bS.rangeBonus);
+  }
+
+  /** @return {number} */
   get moveDistance() {
     let moveDistance = 3;
     moveDistance += this.tallyBonusSources_((bS) => bS.moveDistance);
@@ -1041,7 +1046,7 @@ class Creature {
     const inRangeTiles = new Set();
     const tooCloseTiles = new Set();
     const minRange = weapon.minRange;
-    const maxRange = weapon.maxRange;
+    const maxRange = weapon.maxRange + (weapon.ranged ? this.rangeBonus : 0);
     this.tileCallback(mapController, this.x, this.y, (center) => {
       if (!center) return;
       for (let y = center.y - maxRange; y <= center.y + maxRange; y++) {
@@ -1519,6 +1524,7 @@ class Creature {
    */
   getMoves(mapController, optInterceptionFn) {
     if (!this.hasMove && mapController.inCombat) return new Map();
+    if (this.moveDistance <= 0) return new Map();
     const maxDistance = mapController.inCombat ? this.moveDistance : 10;
     /** @type {!Map.<number, !Array.<number>>} */
     const paths = new Map();

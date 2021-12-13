@@ -142,6 +142,11 @@ class BonusSource {
     return this.getNumberValue('moveDistance');
   }
 
+  /** @return {number} */
+  get rangeBonus() {
+    return this.getNumberValue('rangeBonus');
+  }
+
   /** @return {boolean} */
   get zones() {
     return this.getBooleanValue('zones');
@@ -178,6 +183,7 @@ class BonusSource {
     value += this.life;
     value += this.initiative;
     value += this.moveDistance * 8;
+    value += this.rangeBonus * 12;
     value += this.hitsToCrits * mechHitsToCritsValue;
     value += this.halveStatuses ? 15 : 0;
     value += this.astra;
@@ -243,6 +249,7 @@ class BonusSource {
     addFn(this.astra, '% astra');
     addFn(this.initiative, ' initiative');
     addFn(this.moveDistance, ' move distance');
+    addFn(this.rangeBonus, ' bonus range');
 
     const lines = [];
     if (this.fluff && !optNoFluff) {

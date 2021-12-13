@@ -70,6 +70,9 @@ function checkCreatureValidity(creature) {
                   ' is missing proficiency for ' + weapon.type);
     }
   }
+  if (creature.moveDistance < 0) {
+    console.log('--WARNING: ' + creature.name + ' has negative move distance');
+  }
 }
 
 /** @suppress {checkVars} */

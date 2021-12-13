@@ -215,7 +215,7 @@
       senseModifier="2" specialPower="15" astra="20" initiative="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage"
       fluff="TODO: fluff" />
     <entry name="mechanic" reqSpecies="skuri"
-      cunningModifier="2" specialPower="10" astra="10" life="10" armorProfiencyLevel="1" proficiencies="mace,pistol,saw automata,gun automata,slam"
+      cunningModifier="2" specialPower="10" astra="10" life="10" armorProfiencyLevel="1" proficiencies="mace,pistol,saw crawler,gun turret,slam"
       fluff="TODO: fluff" />
     <entry name="healer" reqSpecies="karhun"
       willpowerModifier="2" specialPower="10" astra="20" life="20" proficiencies="dagger,mace,first aid,siphon,venom sting"
@@ -277,6 +277,14 @@
     <entry name="skull rat" species="rat" jobs="sneaky monster" level="13" weapon="claws:1"
       coloration="0" />
     <!-- TODO: underground beasts -->
+    <entry name="gun turret" species="turret" jobs="ranged monster" level="17" weapon="automata gun:1" />
+    <entry name="saw crawler" species="crawler" jobs="tough monster" level="16" weapon="automata saw:1" />
+    <entry name="paranoid tunneler" species="skuri" jobs="survivor" level="14" weapon="dagger:1" weapon1="sword:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1"
+      hairstyle="short,medium,long" />
+    <entry name="paranoid rogue" species="skuri" jobs="rogue" level="15" weapon0="dagger:1" weapon1="pistol:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1" techniques="crimson fangs,snipe"
+      hairstyle="short,medium" />
+    <entry name="paranoid mage" species="skuri" jobs="mage" level="15" weapon0="spear:1" weapon1="mace:1" armors0="shirt:1,pants:1" armors1="hat:1,shirt:1,pants:1" techniques="arcana arrow,phantom flames"
+      hairstyle="medium,long" />
 
     <!-- bandit town enemies (levels 19-24) -->
     <entry name="bandit" species="karhun" jobs="survivor" level="15" weapon0="dagger:1" weapon="sword:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="cap:1,bandit armor:0,pants:1" armors5="bandit armor:0,leggings:1" armors6="cap:1,bandit armor:1,leggings:1"
@@ -296,12 +304,13 @@
       hairstyle="short,medium" />
     <entry name="tethered mage" species="firin" jobs="mage,tethered" level="28" weapon="spear:2" armors0="hat:2,shirt:2,pants:2" armors1="hat:2,shirt:2,skirt:2" techniques="arcana arrow,phantom flames"
       hairstyle="medium,ponytail" />
-    <entry name="tethered mechanic" species="skuri" jobs="mechanic,tethered" level="30" weapon="mace:2" armors="cap:2,jerkin:2,leggings:2" techniques="saw automata,gun automata"
+    <entry name="tethered mechanic" species="skuri" jobs="mechanic,tethered" level="30" weapon="mace:2" armors="cap:2,jerkin:2,leggings:2" techniques="saw crawler,slam"
       hairstyle="medium,long" />
     <entry name="tethered gunner" species="firin" jobs="gunner,tethered" level="30" weapon="pistol:2" armors="cap:2,jerkin:2,leggings:2" techniques="snipe,inferno shot"
       hairstyle="short,ponytail" />
-    <entry name="tethered healer" species="karhun" jobs="healer,tethered" level="30" weapon="mace:2" armors="hat:2,shirt:2,pants:2" techniques="first aid"
-      hairstyle="short,ponytail" /> <!-- TODO: some offensive spell? -->
+    <entry name="tethered healer" species="karhun" jobs="healer,tethered" level="30" weapon="mace:2" armors="hat:2,shirt:2,pants:2" techniques="first aid,siphon"
+      hairstyle="short,ponytail" />
+    <entry name="improved gun turret" species="turret" jobs="ranged monster,tough monster" level="31" weapon="automata gun:2" />
   </category> <!-- creature templates -->
   <category name="species">
     <!-- playable species -->
@@ -316,8 +325,10 @@
       fluff="A secretive and skittish people who prefer to hide themselves away in their grand underground burrows." />
 
     <!-- monster species -->
-    <entry name="automata"
+    <entry name="crawler"
       physiqueModifier="5" cunningModifier="-5" defense="10" />
+    <entry name="turret"
+      physiqueModifier="5" cunningModifier="-5" accuracy="10" moveDistance="-3" rangeBonus="2" />
     <entry name="scavenger"
       physiqueModifier="1" agilityModifier="2" willpowerModifier="-2" cunningModifier="-1" moveDistance="1" attackPower="2" />
     <entry name="frog" />
@@ -404,13 +415,20 @@
     </entry> <!-- skuri -->
 
     <!-- monster species -->
-    <entry name="automata"
+    <entry name="crawler"
       appearanceSizeMult="95"
       colorationTickets0="1" skinColor0="steel">
       <!-- TODO: actual appearance, with multiple layers for parts and such... lots of pieces and valves and shit -->
       <!-- TODO: headHeightPoint (for spell lines) -->
       <layer sprite="701" color="skinColor" showAllStatuses="1" />
-    </entry> <!-- automata -->
+    </entry> <!-- crawler -->
+    <entry name="turret"
+      appearanceSizeMult="95"
+      colorationTickets0="1" skinColor0="steel">
+      <!-- TODO: actual appearance, with multiple layers for parts and such... lots of pieces and valves and shit -->
+      <!-- TODO: headHeightPoint (for spell lines) -->
+      <layer sprite="701" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- turret -->
     <entry name="rat"
       appearanceSizeMult="65" headHeightPoint="25"
       colorationTickets0="1" skinColor0="bone">
@@ -601,10 +619,10 @@
       fluff="TODO: fluff" />
     <entry name="inner strength" astraCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1"
       fluff="TODO: fluff" /> <!-- TODO: self-target only -->
-    <entry name="saw automata" astraCost="15" summonSpecies="automata" summonJobs="tough monster,tough monster" summonWeapon="automata saw" summonFluff="melee combat automata" scaling="level" usesSpecialPower="1"
-      fluff="TODO: fluff" />
-    <entry name="gun automata" astraCost="20" summonSpecies="automata" summonJobs="ranged monster,tough monster" summonWeapon="automata gun" summonFluff="ranged combat automata" scaling="level" usesSpecialPower="1"
-      fluff="Deploy a Skuri combat automata fitted with an auto-loading gun. Not as tactically flexible as a close-combat automata, but useful when raw firepower is needed." />
+    <entry name="saw crawler" astraCost="15" summonSpecies="crawler" summonJobs="tough monster,tough monster" summonWeapon="automata saw" summonFluff="melee combat automata" scaling="level" usesSpecialPower="1"
+      fluff="Deploy a tough Skuri combat automata armed with a deadly buzzsaw. Not very skillful, but it's an effective distraction." />
+    <entry name="gun turret" astraCost="20" summonSpecies="turret" summonJobs="ranged monster,tough monster" summonWeapon="automata gun" summonFluff="ranged combat automata" scaling="level" usesSpecialPower="1"
+      fluff="Deploy an immobile Skuri combat automata fitted with an auto-loading gun. Not as tactically flexible as a close-combat automata, but useful when raw firepower is needed." />
   </category> <!-- weapons -->
   <category name="accessories">
     <entry name="regal cloak" accuracy="5" attackPower="5" specialPower="5"
@@ -797,7 +815,7 @@
       <!-- TODO: undead enemies -->
     <entry name="grasslands" regionId="0"
       tileset="grasslands" enemyTemplates="scavenger,black cat"
-      loot="(W)dagger:0,(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw automata,(W)arcana arrow,(W)first aid" />
+      loot="(W)dagger:0,(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid" />
 
     <!-- regionId 1 (t0): shore -->
     <entry name="shipwreck" regionId="1" condition="key map"
@@ -813,8 +831,8 @@
 
     <!-- regionId 2 (t1): caverns -->
     <entry name="burrow" regionId="2" condition="key map branch"
-      tileset="burrow" enemyTemplates="skull rat"
-      loot="(W)gun automata,(W)pistol:1,(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot" /> <!-- TODO: "paranoid skuri" and automata enemies -->
+      tileset="burrow" enemyTemplates="gun turret,saw crawler,paranoid tunneler,paranoid rogue,paranoid mage"
+      loot="(W)gun turret,(W)pistol:1,(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot" />
     <entry name="caverns" regionId="2"
       tileset="stone tunnels" enemyTemplates="skull rat"
       loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)jerkin:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(C)shield,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave" />
@@ -853,7 +871,7 @@
           something like that
       -->
     <entry name="tether assembly" regionId="5"
-      tileset="tether assembly" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer"
+      tileset="tether assembly" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer,improved gun turret"
       loot="(C)third eye,(A)bandit armor:1,(A)armored skirt:1,(A)skirt:2,(A)hat:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)spear:3,(A)breastplate:2" />
     <!-- TODO: at least one sub-region -->
   </category> <!-- sub regions -->
