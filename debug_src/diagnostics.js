@@ -95,6 +95,25 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
       checkCreatureValidity(creature);
     }
     this.lootTest_();
+    this.templateBreakdown_();
+  }
+
+  /** @private */
+  templateBreakdown_() {
+    const allCreatureTemplates =
+        data.getCategoryEntriesArray('creature templates') || [];
+    const byType = new Map();
+    for (const type of allCreatureTemplates) {
+      byType.set(type, 0);
+    }
+    for (const creature of this.mapController.creatures) {
+      if (!creature.template) continue;
+      byType.set(creature.template, byType.get(creature.template) + 1);
+    }
+    console.log('CREATURE TEMPLATE BREAKDOWN:');
+    for (const type of allCreatureTemplates) {
+      console.log('  ' + type + ': ' + byType.get(type));
+    }
   }
 
   /** @private */

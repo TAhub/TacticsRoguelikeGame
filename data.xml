@@ -80,9 +80,9 @@
     <entry name="orange fur" color="#E69C4C" />
     <entry name="vaguely green fur" color="#445841" />
     <entry name="vaguely blue fur" color="#576D75" />
-    <entry name="red plumage" color="#C66053" />
-    <entry name="green plumage" color="#62C653" />
-    <entry name="yellow plumage" color="#C6C053" />
+    <entry name="red scales" color="#C66053" />
+    <entry name="green scales" color="#62C653" />
+    <entry name="yellow scales" color="#C6C053" />
     <!-- tile colors -->
     <entry name="wood floor" color="#452D21" />
     <entry name="wood wall" color="#B47F64" />
@@ -263,7 +263,12 @@
       coloration="0" />
 
     <!-- shore enemies (levels 7-12) -->
-    <!-- TODO: shore monsters -->
+    <entry name="shore hopper" species="frog" jobs="sneaky monster" level="7" weapon="tackle:0" techniques="venom sting"
+      coloration="1" />
+    <entry name="sea bird" species="bird" jobs="magic monster" level="7" weapon="claws:0" techniques="wild spark"
+      coloration="0" />
+    <entry name="giant turtle" species="giant turtle" jobs="tough monster" level="7" weapon="tackle:0"
+      coloration="1" />
     <entry name="pirate brawler" species="firin" jobs="martial artist" level="11" armors="shirt:0,pants:0" techniques="eye gouge"
       hairstyle="ponytail,short" />
     <entry name="pirate crewmate" species="firin" jobs="gunner" level="11" weapon="pistol:0" armors="cap:0,shirt:0,pants:0" techniques="inferno shot"
@@ -276,10 +281,11 @@
     <!-- caverns enemies (levels 13-18) -->
     <entry name="skull rat" species="rat" jobs="sneaky monster" level="13" weapon="claws:1"
       coloration="0" />
-    <!-- TODO: underground beasts -->
+    <entry name="tunnel snake" species="rat" jobs="tough monster" level="14" weapon="tackle:1" techniques="venom sting"
+      coloration="0" />
     <entry name="gun turret" species="turret" jobs="ranged monster" level="17" weapon="automata gun:1" />
     <entry name="saw crawler" species="crawler" jobs="tough monster" level="16" weapon="automata saw:1" />
-    <entry name="paranoid tunneler" species="skuri" jobs="survivor" level="14" weapon="dagger:1" weapon1="sword:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1"
+    <entry name="paranoid tunneler" species="skuri" jobs="survivor" level="14" weapon0="dagger:1" weapon1="sword:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1"
       hairstyle="short,medium,long" />
     <entry name="paranoid rogue" species="skuri" jobs="rogue" level="15" weapon0="dagger:1" weapon1="pistol:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1" techniques="crimson fangs,snipe"
       hairstyle="short,medium" />
@@ -287,15 +293,30 @@
       hairstyle="medium,long" />
 
     <!-- bandit town enemies (levels 19-24) -->
-    <entry name="bandit" species="karhun" jobs="survivor" level="15" weapon0="dagger:1" weapon="sword:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="cap:1,bandit armor:0,pants:1" armors5="bandit armor:0,leggings:1" armors6="cap:1,bandit armor:1,leggings:1"
+    <entry name="bandit" species="karhun" jobs="survivor" level="16" weapon0="dagger:1" weapon1="sword:1" weapon2="pistol:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="cap:1,bandit armor:0,pants:1" armors5="bandit armor:0,leggings:1" armors6="cap:1,bandit armor:1,leggings:1"
       hairstyle="short,bald" />
-    <entry name="sneaky bandit" species="karhun" jobs="rogue" level="19" weapon0="dagger:1" weapon1="sword:1" armors0="shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="bandit armor:0,leggings:1" armors5="bandit armor:0,pants:1" techniques="crimson fangs"
+    <entry name="bandit sneak" species="karhun" jobs="rogue" level="19" weapon0="dagger:1" weapon1="sword:1" armors0="shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="bandit armor:0,leggings:1" armors5="bandit armor:0,pants:1" techniques="crimson fangs"
       hairstyle="short,bald" />
-    <!-- TODO: karhun bandits -->
+    <entry name="bandit enforcer" species="karhun" jobs="warrior" level="21" weapon0="mace:1" weapon="sword:1" armors0="helmet:1,breastplate:1,greaves:1" armors1="cap:1,breastplate:1,leggings:1" armors2="helmet:1,jerkin:1,greaves:1" armors3="helmet:1,breastplate:1,leggings:1" techniques="slam"
+      hairstyle="short,bald" />
+    <entry name="bandit jack" species="karhun" jobs="survivor" level="18" weapon0="dagger:1" weapon="sword:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="cap:1,bandit armor:0,pants:1" armors5="cap:1,bandit armor:1,leggings:1" techniques="arcana arrow"
+      hairstyle="short,bald" />
 
     <!-- twisted wasteland enemies (levels 25-30) -->
-    <entry name="darklands scavenger" species="scavenger" jobs="sneaky monster,tough monster" level="25" weapon="claws:2" /> <!-- TODO: appearance modifier: darker skin color -->
-    <!-- TODO: giant monsters -->
+    <entry name="deadly scavenger" species="scavenger" jobs="sneaky monster,tough monster" level="25" weapon="claws:2"
+      coloration="3" />
+    <entry name="corpse picker" species="bird" jobs="magic monster" level="24" weapon="claws:2" techniques="arcana arrow,agony release"
+      coloration="2" />
+    <entry name="wasteland serpent" species="serpent" jobs="tough monster,ranged monster" level="26" weapon="claws:2" techniques="phantom flames"
+      coloration="1" />
+    <entry name="monster boar" species="giant boar" jobs="tough monster,tough monster" level="27" weapon="tackle:2" techniques="slam" />
+    <entry name="poison turtle" species="giant turtle" jobs="tough monster,magic monster" level="25" weapon="tackle:2" techniques="miasma bolt,venom sting"
+      coloration="0" />
+    <entry name="mossy cat" species="cat" jobs="magic monster,sneaky monster" level="25" weapon="claws:2" techniques="arcana arrow,siphon"
+      coloration="1" />
+    <entry name="seed spitter" species="seed spitter" jobs="ranged monster" level="23" weapon="seed spit:2" techniques="poison bullet" />
+    <entry name="walking topiary" species="walking topiary" jobs="tough monster,tough monster" level="26" weapon="tackle:2" />
+    <entry name="walking bonsai" species="walking bonsai" jobs="tough monster" level="24" weapon="tackle:2" techniques="eye gouge" />
 
     <!-- tether assembly enemies (levels 31-36) -->
     <entry name="tethered warrior" species="karhun" jobs="warrior,tethered" level="28" weapon="sword:2" armors="helmet:2,breastplate:2,greaves:2" techniques="slam,typhoon slash"
@@ -310,7 +331,7 @@
       hairstyle="short,ponytail" />
     <entry name="tethered healer" species="karhun" jobs="healer,tethered" level="30" weapon="mace:2" armors="hat:2,shirt:2,pants:2" techniques="first aid,siphon"
       hairstyle="short,ponytail" />
-    <entry name="improved gun turret" species="turret" jobs="ranged monster,tough monster" level="31" weapon="automata gun:2" />
+    <entry name="reinforced gun turret" species="turret" jobs="ranged monster,tough monster" level="31" weapon="automata gun:2" />
   </category> <!-- creature templates -->
   <category name="species">
     <!-- playable species -->
@@ -329,11 +350,28 @@
       physiqueModifier="5" cunningModifier="-5" defense="10" />
     <entry name="turret"
       physiqueModifier="5" cunningModifier="-5" accuracy="10" moveDistance="-3" rangeBonus="2" />
+    <entry name="seed spitter"
+      agilityModifier="5" cunningModifier="-5" initiativeModifier="10" moveDistance="-3" rangeBonus="2" />
+    <entry name="walking topiary"
+      physiqueModifier="6" agilityModifier="-3" senseModifier="-3" accuracy="-10" life="20" monstrous="1" />
+    <entry name="walking bonsai"
+      physiqueModifier="4" agilityModifier="-2" senseModifier="-2" accuracy="-10" life="20" />
     <entry name="scavenger"
       physiqueModifier="1" agilityModifier="2" willpowerModifier="-2" cunningModifier="-1" moveDistance="1" attackPower="2" />
-    <entry name="frog" />
+    <entry name="frog"
+      physiqueModifier="4" willpowerModifier="-2" agilityModifier="-2" life="10" />
+    <entry name="bird"
+      senseModifier="4" agilityModifier="2" physiqueModifier="-6" dodge="10" />
     <entry name="cat"
       senseModifier="5" physiqueModifier="-2" willpowerModifier="-3" astra="10" />
+    <entry name="giant turtle"
+      physiqueModifier="6" agilityModifier="-4" cunningModifier="-2" defense="10" monstrous="1" />
+    <entry name="giant boar"
+      physiqueModifier="6" senseModifier="-2" cunningModifier="-4" moveDistance="1" attackPower="2" monstrous="1" />
+    <entry name="serpent"
+      physiqueModifier="2" agilityModifier="2" senseModifier="-1" willpowerModifier="-3" resistance="10" monstrous="1" />
+    <entry name="snake"
+      physiqueModifier="1" agilityModifier="4" senseModifier="-1" willpowerModifier="-4" resistance="10" />
     <entry name="rat"
       cunningModifier="4" agilityModifier="5" physiqueModifier="-9" dodge="10" />
   </category> <!-- species -->
@@ -376,7 +414,7 @@
       appearanceSizeMult="95" headHeightPoint="75"
       coloration0="Tabby" colorationTickets0="3" skinColor0="orange fur" hairColor0="yellow fur" eyeColor0="orange" pupilColor0="black"
       colorationFluff0="The tabby Firin might not have any actual noble heritage, but they still have the bearing of a noble."
-      coloration1="Ginger" colorationTickets1="2" skinColor1="red plumage" hairColor1="orange fur" eyeColor1="orange" pupilColor1="black"
+      coloration1="Ginger" colorationTickets1="2" skinColor1="red scales" hairColor1="orange fur" eyeColor1="orange" pupilColor1="black"
       colorationFluff1="The reddish coloration ginger Firin was once considered a trait of the royal family. Nowadays, though, it has become quite common.">
       <layer color="hairColor" xAdd="1" yAdd="-36" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
       <layer sprite="102" color="skinColor" showAllStatuses="1" /> <!-- tail -->
@@ -434,58 +472,100 @@
       colorationTickets0="1" skinColor0="bone">
       <layer sprite="703" color="skinColor" showAllStatuses="1" />
     </entry> <!-- rat -->
+    <entry name="seed spitter"
+      appearanceSizeMult="85"
+      colorationTickets0="1" skinColor0="green plumage">
+      <!-- TODO: actual appearance (make a new sprite, looks like a killer plant) -->
+      <!-- TODO: headHeightPoint (for spell lines) -->
+      <layer sprite="701" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- seed spitter -->
+    <entry name="walking topiary"
+      appearanceSizeMult="85"
+      colorationTickets0="1" skinColor0="grass wall">
+      <!-- TODO: actual appearance (make a new sprite, looks like a golem-type monster but bushy) -->
+      <!-- TODO: headHeightPoint (for spell lines) -->
+      <layer sprite="701" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- walking topiary -->
+    <entry name="walking bonsai"
+      appearanceSizeMult="90"
+      colorationTickets0="1" skinColor0="grass wall">
+      <!-- TODO: actual appearance (same sprite as walking topiary) -->
+      <!-- TODO: headHeightPoint (for spell lines) -->
+      <layer sprite="701" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- walking bonsai -->
     <entry name="cat"
       appearanceSizeMult="75" headHeightPoint="50"
       colorationTickets0="1" skinColor0="black fur"
-      colorationTickets1="1" skinColor1="orange fur">
+      colorationTickets1="1" skinColor1="green plumage">
       <layer sprite="701" color="skinColor" showAllStatuses="1" />
     </entry> <!-- cat -->
     <entry name="serpent"
       appearanceSizeMult="95" headHeightPoint="85"
-      colorationTickets0="1" skinColor0="green plumage"
-      colorationTickets1="1" skinColor1="yellow plumage">
+      colorationTickets0="1" skinColor0="green scales"
+      colorationTickets1="1" skinColor1="yellow scales">
       <layer sprite="700" color="skinColor" showAllStatuses="1" />
     </entry> <!-- serpent -->
-    <!-- TODO: giant turtle -->
-    <entry name="boar"
+    <entry name="snake"
+      appearanceSizeMult="105" headHeightPoint="85"
+      colorationTickets0="1" skinColor0="brown fur">
+      <layer sprite="700" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- snake -->
+    <entry name="giant turtle"
+      appearanceSizeMult="95" headHeightPoint="85"
+      colorationTickets0="1" skinColor0="green scales"
+      colorationTickets1="1" skinColor1="yellow scales">
+      <!-- TODO: actual appearance (use the "turtle" sprite) -->
+      <!-- TODO: headHeightPoint (for spell lines) -->
+      <layer sprite="700" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- giant turtle -->
+    <entry name="giant boar"
       appearanceSizeMult="115" headHeightPoint="45"
       colorationTickets0="1" skinColor0="brown fur"
       colorationTickets1="1" skinColor1="brown fabric"
       colorationTickets2="1" skinColor2="dull brown fabric">
       <layer sprite="702" color="skinColor" showAllStatuses="1" />
-    </entry> <!-- boar -->
-    <!-- TODO: bird -->
+    </entry> <!-- giant boar -->
     <entry name="scavenger"
       appearanceSizeMult="100"
       colorationTickets0="1" skinColor0="brown fur"
       colorationTickets1="1" skinColor1="tan fur"
-      colorationTickets2="1" skinColor2="dull brown fur">
+      colorationTickets2="1" skinColor2="dull brown fur"
+      colorationTickets3="0" skinColor3="black fur">
       <!-- TODO: actual appearance (use the "gnasher" sprite) -->
       <!-- TODO: headHeightPoint (for spell lines) -->
       <layer sprite="700" color="skinColor" showAllStatuses="1" />
     </entry> <!-- scavenger -->
     <entry name="frog"
       appearanceSizeMult="90"
-      colorationTickets0="1" skinColor0="green plumage"
-      colorationTickets1="1" skinColor1="yellow plumage">
+      colorationTickets0="1" skinColor0="green scales"
+      colorationTickets1="1" skinColor1="yellow scales">
       <!-- TODO: actual appearance (use the "frog" sprite) -->
       <!-- TODO: headHeightPoint (for spell lines) -->
       <layer sprite="700" color="skinColor" showAllStatuses="1" />
     </entry> <!-- frog -->
+    <entry name="bird"
+      appearanceSizeMult="90"
+      colorationTickets0="1" skinColor0="white fur"
+      colorationTickets1="1" skinColor1="vaguely blue fur"
+      colorationTickets2="1" skinColor2="black fur">
+      <!-- TODO: actual appearance (use the "bird" sprite) -->
+      <!-- TODO: headHeightPoint (for spell lines) -->
+      <layer sprite="700" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- bird -->
   </category> <!-- species appearances -->
   <category name="weapons">
     <!-- special -->
     <entry name="unarmed" weaponAccuracy="100" />
+    <entry name="tackle" weaponAccuracy="80">
+      <variety tier="0" />
+      <variety tier="1" />
+      <variety tier="2" />
+    </entry> <!-- tackle -->
     <entry name="claws" weaponAccuracy="90" numHits="2">
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- claws -->
-    <entry name="poison claws" weaponAccuracy="90" poisonedPercent="35" numHits="2">
-      <variety tier="0" />
-      <variety tier="1" />
-      <variety tier="2" />
-    </entry> <!-- poison claws -->
     <entry name="deathly grasp" weaponAccuracy="100" magic="1">
       <!-- TODO: the animation for this should be very obviously magical -->
       <variety tier="0" />
@@ -502,6 +582,12 @@
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- automata gun -->
+    <entry name="seed spit" weaponAccuracy="95" ranged="1" numHits="2">
+      <variety tier="0" />
+      <variety tier="1" />
+      <variety tier="2" />
+    </entry> <!-- seed spit -->
+    <entry name="poison bullet" astraCost="10" weaponAccuracy="90" poisonedPercent="40" scaling="ranged weapon" ranged="1" />
 
     <!-- weapons -->
     <entry name="rusty metal rod" noProficiency="1">
@@ -816,6 +902,7 @@
     <entry name="grasslands" regionId="0"
       tileset="grasslands" enemyTemplates="scavenger,black cat"
       loot="(W)dagger:0,(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid" />
+      <!-- TODO: one more enemy type? -->
 
     <!-- regionId 1 (t0): shore -->
     <entry name="shipwreck" regionId="1" condition="key map"
@@ -825,17 +912,17 @@
       tileset="rocky beach" enemyTemplates="pirate brawler,pirate mage"
       loot="(W)sword:0,(A)cap:0,(A)jerkin:0,(A)greaves:0,(A)hat:0,(W)ashball,(W)eye gouge" />
     <entry name="shore" regionId="1"
-      tileset="beach" enemyTemplates="pirate brawler"
+      tileset="beach" enemyTemplates="shore hopper,sea bird,giant turtle"
       loot="(W)spear:0,(W)mace:0,(A)leggings:0,(A)hat:0,(A)skirt:0,(A)helmet:0,(A)greaves:0,(A)breastplate:0,(W)slam" />
-      <!-- TODO: this region should have shore beasts in it -->
 
     <!-- regionId 2 (t1): caverns -->
     <entry name="burrow" regionId="2" condition="key map branch"
       tileset="burrow" enemyTemplates="gun turret,saw crawler,paranoid tunneler,paranoid rogue,paranoid mage"
       loot="(W)gun turret,(W)pistol:1,(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot" />
     <entry name="caverns" regionId="2"
-      tileset="stone tunnels" enemyTemplates="skull rat"
+      tileset="stone tunnels" enemyTemplates="skull rat,tunnel snake"
       loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)jerkin:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(C)shield,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave" />
+      <!-- TODO: a few more underground beasts... -->
 
     <!-- regionId 3 (t1): bandit town -->
     <entry name="spooky manor" regionId="3" condition="boss map branch"
@@ -843,16 +930,15 @@
       loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)siphon,(C)lantern" />
       <!-- TODO: undead enemies -->
     <entry name="bandit town" regionId="3"
-      tileset="village" enemyTemplates="bandit,sneaky bandit"
+      tileset="village" enemyTemplates="bandit,bandit sneak,bandit enforcer,bandit jack,black cat"
       loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(W)spell barrage,(W)typhoon slash" />
 
     <!-- regionId 4 (t2): twisted wasteland -->
     <entry name="hedge maze" regionId="4" condition="boss map branch"
-      tileset="hedge maze" enemyTemplates="darklands scavenger"
+      tileset="hedge maze" enemyTemplates="mossy cat,seed spitter,walking topiary,walking bonsai,corpse picker"
       loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2" />
-      <!-- TODO: plant monsters -->
     <entry name="twisted wasteland" regionId="4"
-      tileset="twisted wasteland" enemyTemplates="darklands scavenger"
+      tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar"
       loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles" />
 
     <!-- regionId 5 (t2): tether assembly -->
@@ -870,10 +956,12 @@
           perhaps most people are gradually brainwashed as they stay in the area, and eventually end up here?
           something like that
       -->
+    <entry name="animal pen" regionId="5" condition="random connecting maps"
+      tileset="gateway" enemyTemplates="wasteland serpent,walking topiary,poison turtle,monster boar,tethered healer,tethered rogue,tethered gunner"
+      loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2" />
     <entry name="tether assembly" regionId="5"
-      tileset="tether assembly" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer,improved gun turret"
-      loot="(C)third eye,(A)bandit armor:1,(A)armored skirt:1,(A)skirt:2,(A)hat:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)spear:3,(A)breastplate:2" />
-    <!-- TODO: at least one sub-region -->
+      tileset="tether assembly" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer,reinforced gun turret"
+      loot="(C)third eye,(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3" />
   </category> <!-- sub regions -->
   <category name="tilesets">
     <!-- a special tileset solely for the second upscale. Not used as an actual tileset (e.g. no colors, sprites, etc) -->
@@ -990,6 +1078,7 @@
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="4,5,6,7" wallColor="stone wall"
       inheritJoinsFrom="ship" />
+      <!-- TODO: fancier walls? I dunno -->
     <entry name="tether assembly"
       lightingIntensity="60" lightingColor="sky blue"
       floorSprites="0,1,2,3" floorColor="stone floor"

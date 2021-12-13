@@ -424,7 +424,7 @@ class Creature {
     generationPoints *= (100 + this.initiative) / 100;
     generationPoints *= 0.3 + freeAttackValue + techAttackValue;
     generationPoints *= (5 + this.moveDistance) / 8;
-    if (this.monstrous) generationPoints *= 0.85; // Monsters are unwieldly.
+    if (this.monstrous) generationPoints *= 0.75; // Big monsters are unwieldly.
     return Math.floor(200 * generationPoints);
   }
 
