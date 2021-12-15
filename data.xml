@@ -232,7 +232,7 @@
       senseModifier="2" specialPower="15" astra="20" initiative="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage"
       fluff="TODO: fluff" />
     <entry name="mechanic" reqSpecies="skuri"
-      cunningModifier="2" specialPower="10" astra="10" life="10" armorProfiencyLevel="1" proficiencies="mace,pistol,saw crawler,gun turret,slam"
+      cunningModifier="2" specialPower="15" initiative="15" armorProfiencyLevel="1" proficiencies="mace,pistol,saw crawler,gun turret,slam"
       fluff="TODO: fluff" />
     <entry name="healer" reqSpecies="karhun"
       willpowerModifier="2" specialPower="10" astra="20" life="20" proficiencies="dagger,mace,first aid,siphon,venom sting"

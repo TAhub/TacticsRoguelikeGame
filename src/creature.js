@@ -338,6 +338,7 @@ class Creature {
   get baseMaxLife() {
     let life = mechBaseLife;
     if (this.monstrous) life *= 4;
+    if (this.summonOwner) life *= 0.75; // Summons are a little more fragile.
     life *= this.levelObj.lifeMultiplier;
     return life;
   }
