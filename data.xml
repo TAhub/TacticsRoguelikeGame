@@ -118,6 +118,17 @@
     <entry name="enemy"
       attackPower="2" specialPower="2" defense="2" accuracy="2" dodge="2" resistance="2" />
 
+    <!-- species-specific skills -->
+    <entry name="warrior spirit" reqSpecies="karhun"
+      defense="8" initiative="4"
+      fluff="The Karhun have a long cultural tradition of being warriors. Honorable warriors, perhaps not? But they value the bravery required to get into the thick of things, and the tenacity to stay there." />
+    <entry name="superstition" reqSpecies="skuri"
+      resistance="8" life="4"
+      fluff="The Skuri are fearful and imaginative, which often leads to them seeing imaginary dangers. Superstitious habits are a common result... and shockingly, some of them actually do ward off bad luck!" />
+    <entry name="pride" reqSpecies="firin"
+      astra="8" accuracy="4"
+      fluff="The Firin tend to have a high opinion of themselves, standards to uphold. Even those not of noble blood. They don't let themselves give up, or make embarrassing mistakes." />
+
     <!-- general skills -->
     <entry name="form" physiqueReq="10"
       attackPower="12"
@@ -166,17 +177,19 @@
       fluff="Train the eyes of your mind to be as sharp as the eyes on your outside, so you can better translate the shape of a spell-channel from your mind to reality." />
     <entry name="intuition" senseReq="13"
       specialPower="12"
-      fluff="Train your subtler, more instinctual senses... your ability to sense magic, or to read the patterns of a complex job." />
+      fluff="Train your subtler, more instinctual senses... your ability to detect the flow of astra, to guess your way through complicated tasks." />
+    <entry name="natural rhythm" prereq="intuition"
+      specialPower="4" life="8"
+      fluff="Get more in touch with the ebbs and flows of your body. This helps with your control of astra, and also aids in the living of a healthy lifestyle." />
     <entry name="prey instincts" prereq="intuition"
       dodgeVsDisengage="36"
       fluff="Learn how to trust in your intuition about the actions of enemies, so that you know the right moment to bolt from the scary thing trying to corner you." />
-    <!-- TODO: second followup for "intuition" -->
     <entry name="study" cunningReq="10"
       specialPower="12"
       fluff="Immerse yourself in the theory behind advanced techniques such as magic, to improve your efficacy." />
     <entry name="hidden tricks" prereq="study"
       specialPower="4" astra="8"
-      fluff="Leverage your knowledge of magic (and other unusual techniques) to make sure you always have a little something up your sleeve." />
+      fluff="Leverage your knowledge of magic (and other unusual techniques), to make sure you always have a little something up your sleeve." />
     <entry name="tactics" prereq="study"
       dodge="6" specialAttackPower="12"
       fluff="Expand your study to the study of combat tactics, and learn how to control the battlefield in a more martial way." />
@@ -186,14 +199,18 @@
     <entry name="astra absorption" prereq="countermagic"
       resistance="6" astra="6"
       fluff="Learn how to dissipate astra from a spell-channel to further disrupt it. Learning this skill also helps gather more astra from the environment." />
-    <!-- TODO: second followup for "countermagic" -->
+    <entry name="mage hunting" prereq="countermagic"
+      attackPower="6" resistance="6"
+      fluff="Learn an advanced fighting style specifically meant for defeating mages in combat, which combines counter-spelling and dangerous weapon attacks." />
     <entry name="meditation" willpowerReq="10"
       astra="12"
       fluff="Learn how to meditate, to help you more effectively absorb the astra of the stars during your downtime. A useful skill, especially for mages." />
     <entry name="wholeness" prereq="meditation"
       astra="6" life="6"
       fluff="Learn a set of advanced meditation techniques that circulate astra through your body as you absorb it. This process helps to improve overall health." />
-    <!-- TODO: second followup for "meditation"... something more offense-focused? -->
+    <entry name="combat meditation" prereq="meditation"
+      accuracy="6" dodge="6"
+      fluff="Learn how to tap into that meditative calmness in a fight, to help you stay cool-headed and flexible." />
     <entry name="vigilance" willpowerReq="13"
       specialAttackPower="24"
       fluff="Learn how to be patient and focused, so you can effectively react the moment your opponent leaves an opening." />
@@ -342,7 +359,7 @@
       agilityModifier="1" senseModifier="2" willpowerModifier="-3" astra="10"
       fluff="The nomadic remnants of a once-great empire. They still carry an air of easygoing pride with them, even now." />
     <entry name="skuri"
-      physiqueModifier="-4" agilityModifier="4" senseModifier="-1" cunningModifier="1" dodge="10"
+      physiqueModifier="-4" agilityModifier="4" senseModifier="-2" cunningModifier="2" dodge="10"
       fluff="A secretive and skittish people who prefer to hide themselves away in their grand underground burrows." />
 
     <!-- monster species -->
