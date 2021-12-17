@@ -1020,8 +1020,7 @@ class Creature {
               if (!weaponUsed.ranged) break;
             }
             tier = weaponUsed.tier;
-            weapon.baseArmorPiercing = weaponUsed.armorPiercing;
-            weapon.baseWeaponHitsToCrits = weaponUsed.weaponHitsToCrits;
+            weapon.baseWeapon = weaponUsed;
             break;
           case Weapon.Scaling.Level:
             tier = this.levelObj.tier;

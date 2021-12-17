@@ -2,10 +2,10 @@ class Weapon extends Equipment {
   /** @param {string} type */
   constructor(type) {
     super(type);
+    /** @type {?Weapon} */
+    this.baseWeapon;
     /** @type {?number} */
     this.forceTier;
-    this.baseArmorPiercing = false;
-    this.baseWeaponHitsToCrits = 0;
     this.engagementMode = false;
   }
 
@@ -32,12 +32,13 @@ class Weapon extends Equipment {
 
   /** @return {number} */
   get weaponAccuracy() {
-    return this.getNumberValue('weaponAccuracy');
+    return (this.baseWeapon ? (this.baseWeapon.weaponAccuracy - 90) : 0) +
+           this.getNumberValue('weaponAccuracy');
   }
 
   /** @return {number} */
   get weaponHitsToCrits() {
-    return this.baseWeaponHitsToCrits +
+    return (this.baseWeapon ? this.baseWeapon.weaponHitsToCrits : 0) +
            this.getNumberValue('weaponHitsToCrits');
   }
 
@@ -94,6 +95,7 @@ class Weapon extends Equipment {
     if (this.armorPiercing) damage *= 0.87; // Vs heavy armor
     if (this.spell) damage *= 1.1; // To make up for it being inconvenient.
     if (this.magic && !this.spell) damage *= 0.9; // Possible, but non-ideal.
+    if (this.selfTargeting) damage *= 1.15;
     return damage;
   }
 
@@ -102,7 +104,9 @@ class Weapon extends Equipment {
    * @return {number}
    */
   getStatusPercent(status) {
-    return this.getNumberValue(status + 'Percent');
+    let percent = this.getNumberValue(status + 'Percent');
+    if (this.baseWeapon) percent += this.baseWeapon.getStatusPercent(status);
+    return percent;
   }
 
   /**
@@ -128,18 +132,24 @@ class Weapon extends Equipment {
 
   /** @return {number} */
   get minRange() {
-    if (this.heals) return 0;
+    if (this.heals || this.selfTargeting) return 0;
     return (this.ranged && !this.spell) ? 2 : 1;
   }
 
   /** @return {number} */
   get maxRange() {
+    if (this.selfTargeting) return 0;
     return this.ranged ? 3 : 1;
   }
 
   /** @return {boolean} */
   get ranged() {
     return this.getBooleanValue('ranged');
+  }
+
+  /** @return {boolean} */
+  get selfTargeting() {
+    return this.getBooleanValue('selfTargeting');
   }
 
   /** @return {?Weapon.Scaling} */
@@ -185,6 +195,7 @@ class Weapon extends Equipment {
 
   /** @return {boolean} */
   get drains() {
+    if (this.baseWeapon && this.baseWeapon.drains) return true;
     return this.getBooleanValue('drains');
   }
 
@@ -195,7 +206,8 @@ class Weapon extends Equipment {
 
   /** @return {boolean} */
   get armorPiercing() {
-    return this.baseArmorPiercing || this.getBooleanValue('armorPiercing');
+    if (this.baseWeapon && this.baseWeapon.armorPiercing) return true;
+    return this.getBooleanValue('armorPiercing');
   }
 
   /** @return {string} */
