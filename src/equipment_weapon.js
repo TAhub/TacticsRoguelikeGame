@@ -57,6 +57,11 @@ class Weapon extends Equipment {
     // weapon's actual base damage. So low-BSV weapons can get the gimmick of
     // actually being good at basic attacks.
     effectiveBonusSourceValue += this.getBonusSourceValue() * 1.2;
+    // A minor BSV refund for being a WEAPON that gives zoning attacks, since
+    // otherwise the ideal way to get zoning attacks would be to just pick up
+    // the skill, and non-spear weapons being the perfect weapons for zoning
+    // attacks feels off.
+    if (this.zones) effectiveBonusSourceValue -= 3;
 
     // Compute the damage.
     let damage = mechBaseDamage;

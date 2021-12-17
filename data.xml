@@ -647,10 +647,12 @@
       <variety name="pistol" tier="1" weaponAccuracy="85" ranged="1"
         color="iron" slotFillers="weaponHand:602"
         fluff="A basic pistol, of a type used by Skuri soldiers." />
-      <variety name="mastercraft pistol" tier="2" weaponAccuracy="90" ranged="1"
+      <variety name="mastercraft pistol" tier="2" weaponAccuracy="90" weaponHitsToCrits="10" ranged="1"
         color="steel" slotFillers="weaponHand:602"
         fluff="A pistol made to tight specifications, perhaps for a sharpshooter or similar." />
-      <!-- TODO: magic pistol (to put in final area) -->
+      <variety name="golden gun" tier="2" weaponAccuracy="125" ranged="1"
+        color="truegold" slotFillers="weaponHand:602"
+        fluff="A beautiful pistol with a casing made of a gold alloy, enchanted to fire bullets that twist in midair to seek foes. Left behind by a Skuri noble who got tethered." />
     </entry> <!-- pistol -->
     <entry name="mace">
       <variety name="antique mace" tier="0" weaponAccuracy="80" armorPiercing="1"
@@ -662,7 +664,9 @@
       <variety name="spiked mace" tier="2" weaponAccuracy="80" weaponHitsToCrits="10" armorPiercing="1"
         color="steel" slotFillers="weaponHand:608"
         fluff="A cruel mace that has been modified with metal spikes. It's a little intimidating, really." />
-      <!-- TODO: magic mace (to put in final area) -->
+      <variety name="bronze orbital" tier="2" weaponAccuracy="90" armorPiercing="1" zones="1" resistance="-10"
+        color="bronze" slotFillers="weaponHand:607"
+        fluff="A bronze mace with a strange enchantment on it, which seems to pull it towards enemies. The same enchantment pulls magic towards you, unfortunately." />
     </entry> <!-- mace -->
     <entry name="spear">
       <variety name="old spear" tier="0" weaponAccuracy="90" zones="1"
@@ -674,7 +678,7 @@
       <variety name="partisan" tier="2" weaponAccuracy="85" defense="10" zones="1"
         color="steel" slotFillers="weaponHand:601"
         fluff="A spear with a special flared head, meant to allow it to parry blows." />
-      <variety name="trembling spear" tier="2" weaponAccuracy="85" shakenPercent="30"
+      <variety name="trembling spear" tier="2" weaponAccuracy="85" shakenPercent="30" zones="1"
         color="steel" slotFillers="weaponHand:600"
         fluff="This ordinary-looking spear shakes slightly in your hands, making it hard to hold. It's obvious magical, though it's not clear what it is supposed to be for." />
     </entry> <!-- spear -->
@@ -975,10 +979,10 @@
       -->
     <entry name="animal pen" regionId="5" condition="random connecting maps"
       tileset="gateway" enemyTemplates="wasteland serpent,walking topiary,poison turtle,monster boar,tethered healer,tethered rogue,tethered gunner"
-      loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2" />
+      loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3" />
     <entry name="tether assembly" regionId="5"
       tileset="tether assembly" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer,reinforced gun turret"
-      loot="(C)third eye,(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3" />
+      loot="(C)third eye,(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3" />
   </category> <!-- sub regions -->
   <category name="tilesets">
     <!-- a special tileset solely for the second upscale. Not used as an actual tileset (e.g. no colors, sprites, etc) -->
