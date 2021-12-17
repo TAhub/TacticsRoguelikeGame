@@ -224,37 +224,37 @@
   <category name="jobs">
     <entry name="warrior" reqSpecies="karhun,firin"
       physiqueModifier="2" accuracy="10" armorProfiencyLevel="2" proficiencies="sword,mace,spear,slam,typhoon slash,sword wave"
-      fluff="TODO: fluff" />
+      fluff="Warriors are those who focus on conventional close-range combat. They learn how to use various weapons and techniques, and how to fight in heavy armor." />
     <entry name="rogue" reqSpecies="karhun,skuri"
       agilityModifier="2" dodge="10" attackPowerWhenDisengaged="40" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,snipe,crimson fangs,venom sting,miasma bolt"
-      fluff="TODO: fluff" />
+      fluff="Rogues train in how to fight with a mobile, offensive style. They are strongest when they aren't tied down; for example, when stabbing a foe who is busy fighting someone else." />
     <entry name="mage" reqSpecies="firin,skuri"
       senseModifier="2" specialPower="15" astra="20" initiative="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage"
-      fluff="TODO: fluff" />
+      fluff="Mages practice a standardized set of combat magic spells, focusing on sheer magical firepower. They excel at taking down armored foes, who usually lack resistance to magic." />
     <entry name="mechanic" reqSpecies="skuri"
       cunningModifier="2" specialPower="15" initiative="15" armorProfiencyLevel="1" proficiencies="mace,pistol,saw crawler,gun turret,slam"
-      fluff="TODO: fluff" />
+      fluff="Mechanics learn how to maintain and operate Skuri automata. They are most common in civilian life, but some do end up using their skills to deploy deadly combat automata." />
     <entry name="healer" reqSpecies="karhun"
       willpowerModifier="2" specialPower="10" astra="20" life="20" proficiencies="dagger,mace,first aid,siphon,venom sting"
-      fluff="TODO: fluff" />
+      fluff="Healers learn battlefield-tested Karhun first aid techniques, as well as a scattering of magic. They are perfect supports for a group of warriors." />
     <entry name="wanderer" reqSpecies="firin"
       agilityModifier="2" accuracy="22" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash"
-      fluff="TODO: fluff" />
+      fluff="Wanderers learn a traditional Firin fighting style that combines steel and spell. Once taught to noble scions, this style is now practiced by secretive nomads." />
     <entry name="lab rat" reqSpecies="skuri"
       senseModifier="1" physiqueModifier="1" astra="10" life="20" attackPower="10" defense="10" proficiencies="dagger,spear,agony release,miasma bolt,mend"
-      fluff="TODO: fluff" />
-    <entry name="martial artist" reqSpecies="skuri"
+      fluff="Lab rats are those who act as test subjects for life-affecting spells, harmful and helpful both. Those who survive often learn the very magic that once tormented them so." />
+    <entry name="martial artist" reqSpecies="karhun"
       willpowerModifier="1" physiqueModifier="1" dodge="20" attackPower="10" life="20" martialArts="1" proficiencies="eye gouge,inner strength,illusion fist"
-      fluff="TODO: fluff" />
+      fluff="Martial artists train in various unarmed combat styles. They are almost always Karhun, who often find the hands-on approach more satisfying." />
     <entry name="sage" reqSpecies="firin"
       senseModifier="1" cunningModifier="1" resistance="30" astra="20" proficiencies="spear,sword,ashball,agony release,inner strength,siphon"
-      fluff="TODO: fluff" />
+      fluff="Sages are the remnants of the old Firin masters of magic theory. They study a variety of specialist spells, and excel at the art of counter-magic." />
     <entry name="survivor" reqSpecies="karhun,firin,skuri"
       willpowerModifier="2" resistance="20" attackPower="5" specialPower="5" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,slam,arcana arrow,snipe"
-      fluff="TODO: fluff" />
+      fluff="Survivors are made, not trained; they pick up a little bit of everything, in their attempts to learn how to live through dangerous situations." />
     <entry name="gunner" reqSpecies="karhun,firin,skuri"
       agilityModifier="1" physiqueModifier="1" attackPower="15" accuracy="15" armorProfiencyLevel="1" proficiencies="pistol,snipe,inferno shot,spell barrage"
-      fluff="TODO: fluff" />
+      fluff="Gunners learn how to use the pistol, a powerful weapon for the new age. They aren't great at tying enemies down, but their offensive capability is no joke." />
 
     <!-- enemy-only jobs -->
     <entry name="tough monster"
@@ -621,10 +621,10 @@
         fluff="A higher-quality dagger, made to be extra-sharp." />
       <variety name="bone dagger" tier="2" weaponAccuracy="100" weaponHitsToCrits="15"
         color="bone" slotFillers="weaponHand:603"
-        fluff="TODO: fluff" />
+        fluff="A dagger carved out of chemically-treated monster bone. Sharp, but a bit hard to hold." />
       <variety name="blood drinker" tier="2" weaponAccuracy="100" drains="1"
         color="blood" slotFillers="weaponHand:603"
-        fluff="TODO: fluff... this is a magic weapon!" />
+        fluff="A magical dagger imbued with a continuous spell, a weak form of the siphon spell, so it sucks up the blood of its victims." />
     </entry> <!-- dagger -->
     <entry name="sword">
       <variety name="rusty sword" tier="0" weaponAccuracy="90" defense="10"
@@ -638,7 +638,7 @@
         fluff="A well-made sword that has been designed to be even better at parrying." />
       <variety name="firebrand" tier="2" weaponAccuracy="90" defense="10" burningPercent="40"
         color="fire" slotFillers="weaponHand:604"
-        fluff="TODO: fluff... this is a magic weapon!" />
+        fluff="A surprisingly dull sword with a powerful enchantment on it. The edge heats up whenever it is swung, to a painful degree." />
     </entry> <!-- sword -->
     <entry name="pistol">
       <variety name="corroded pistol" tier="0" weaponAccuracy="80" ranged="1"
@@ -684,12 +684,12 @@
       fluff="A risky combat technique that tries to rapidly strike the foe's weak spots, often missing in the process." />
     <entry name="venom sting" astraCost="10" weaponAccuracy="90" scaling="melee weapon" poisonedPercent="25"
       fluff="Coat your weapon in poison and make a quick and accurate strike on your foe." />
-    <entry name="slam" astraCost="5" weaponAccuracy="80" scaling="melee weapon" shakenPercent="35"
-      fluff="TODO: fluff" />
+    <entry name="slam" astraCost="5" weaponAccuracy="75" scaling="melee weapon" shakenPercent="30"
+      fluff="Swing your weapon with more force but less finesse, hitting enemies hard enough to leave them shaken." />
     <entry name="typhoon slash" astraCost="10" weaponAccuracy="85" scaling="melee weapon" numHits="3"
       fluff="Execute a practiced three-hit combo, trying to overwhelm the opponent with strikes." />
     <entry name="eye gouge" astraCost="10" weaponAccuracy="75" scaling="level" blindedPercent="45"
-      fluff="TODO: fluff" />
+      fluff="Lunge for the opponent's eyes, and cruelly stab into them with your fingers." />
     <entry name="snipe" astraCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1"
       fluff="Carefully aim your pistol, and try to read your enemy's movements, then take your shot." />
     <entry name="inferno shot" astraCost="10" weaponAccuracy="90" burningPercent="35" scaling="ranged weapon" ranged="1"
@@ -699,17 +699,17 @@
     <entry name="wild spark" astraCost="5" weaponAccuracy="90" weaponHitsToCrits="50" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" noProficiency="1"
       fluff="Build up your astra and simply release it, without attempting to shape a formal spell. Not very strong, but quite simple to use." />
     <entry name="arcana arrow" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1"
-      fluff="TODO: fluff... stress this is a basic attack spell, but flexible enough that it's useful for novices and masters alike" />
+      fluff="Build up astra and shape it into the rough shape of an arrow, which you can then launch as a projectile. A basic but effective attack spell." />
     <entry name="siphon" astraCost="5" weaponAccuracy="110" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" drains="1"
       fluff="Jab your opponent with a thin needle of astra, then drain their blood through the hole. A spell that is subtle and gross in equal measures." />
     <entry name="phantom flames" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" burningPercent="40" numHits="2"
-      fluff="TODO: fluff..." />
+      fluff="Build up astra, and pattern it with the will to burn others, forming throwable balls of fire-like magic around your hands." />
     <entry name="ashball" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" blindedPercent="55"
-      fluff="TODO: fluff..." />
+      fluff="Scoop up some ash or soot, and flood it with a charge of astra. If you get the technique down, it'll stay together for just long enough for it to be fired at an enemy." />
     <entry name="sword wave" astraCost="10" weaponAccuracy="85" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1" ranged="1"
       fluff="Build up astra in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." />
     <entry name="illusion fist" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
-      fluff="TODO: fluff... this is a magical martial arts technique" />
+      fluff="Build up some astra in your arm, and then pull it into your hand at the same time as you throw a punch, launching it as a fast-moving projectile. A magical martial arts move." /> <!-- TODO: projectile should be fast-moving, as per the fluff -->
     <entry name="spell barrage" astraCost="20" weaponAccuracy="90" weaponHitsToCrits="15" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="4"
       fluff="Build up a large amount of astra and release it in a flurry of magical bolts. A powerful but unsubtle spell." />
     <entry name="miasma bolt" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" poisonedPercent="50"
@@ -717,11 +717,11 @@
     <entry name="agony release" astraCost="10" lifeCostPercent="15" weaponAccuracy="100" weaponHitsToCrits="25" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
       fluff="Stab yourself with a knife, and use the pain reflex to shape a wicked spell. An unusual but surprisingly effective form of magic." />
     <entry name="mend" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" spell="1" heals="1" scaling="level" usesSpecialPower="1"
-      fluff="TODO: fluff" />
+      fluff="Build up astra and pattern it with the will and instructions to heal others. An effective use of magic, but watch out for enemies attempting to intercept your spells!" />
     <entry name="first aid" astraCost="5" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="2"
-      fluff="TODO: fluff" />
-    <entry name="inner strength" astraCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1"
-      fluff="TODO: fluff" /> <!-- TODO: self-target only -->
+      fluff="Apply some basic first aid to an ally, patching up their wounds as best as you can." />
+    <entry name="inner strength" astraCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="3"
+      fluff="Build up a large concentration of astra within yourself, and then direct it to circulate through your body, causing rapid regeneration." /> <!-- TODO: self-target only -->
     <entry name="saw crawler" astraCost="15" summonSpecies="crawler" summonJobs="tough monster,tough monster" summonWeapon="automata saw" summonFluff="melee combat automata" scaling="level" usesSpecialPower="1"
       fluff="Deploy a tough Skuri combat automata armed with a deadly buzzsaw. Not very skillful, but it's an effective distraction." />
     <entry name="gun turret" astraCost="20" summonSpecies="turret" summonJobs="ranged monster,tough monster" summonWeapon="automata gun" summonFluff="ranged combat automata" scaling="level" usesSpecialPower="1"
@@ -800,10 +800,10 @@
         fluff="A breastplate that has rusted heavily. It's still effective armor, but it's a little more fragile than if it was intact." />
       <variety name="iron breastplate" tier="1" defense="36" resistance="-6"
         color="iron"
-        fluff="TODO: fluff" />
+        fluff="An old iron breastplate. A powerful piece of defensive gear, if a bit softer than a steel piece." />
       <variety name="steel breastplate" tier="2" defense="42" resistance="-7"
         color="steel"
-        fluff="A rigid steel breastplate. The standard for protection." />
+        fluff="A rigid and hard steel breastplate. The standard for protection." />
     </entry> <!-- breastplate -->
 
     <!-- head armors -->
@@ -835,7 +835,7 @@
         fluff="An old helmet that has been rusted over. The flaps for letting your ears through are stuck open, annoyingly." />
       <variety name="iron helmet" tier="1" defense="16" resistance="-4"
         color="iron" slotFillers="hat:211"
-        fluff="TODO: fluff" />
+        fluff="A cheap helmet made out of iron. Better than nothing." />
       <variety name="steel helmet" tier="2" defense="19" resistance="-5"
         color="steel" slotFillers="hat:211"
         fluff="A well-maintained helmet of shining steel. Useful for keeping your head intact." />
@@ -894,7 +894,7 @@
         fluff="A set of greaves that have obviously seen better days. The knee joints scrape and scream with every move." />
       <variety name="iron greaves" tier="1" defense="23" resistance="-5"
         color="iron"
-        fluff="TODO: fluff" />
+        fluff="A set of cheaply-made iron greaves. Takes some strength to move your legs, in these." />
       <variety name="steel greaves" tier="2" defense="27" resistance="-6"
         color="steel"
         fluff="A set of well-oiled steel greaves. No better protection is available for legs." />
