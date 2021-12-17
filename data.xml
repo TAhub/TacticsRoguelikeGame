@@ -218,7 +218,7 @@
       specialAttackPower="8" defense="8"
       fluff="Train yourself to fight with unwavering discipline, so that you can avoid leaving openings just as well as you exploit those of your opponent." />
     <entry name="zoning" prereq="vigilance"
-      zones="1" specialAttackPower="6"
+      zones="1" specialAttackPower="4"
       fluff="Learn how to use your weapon to effectively keep an enemy at bay, even if you aren't using a long weapon like a spear." />
   </category> <!-- skills -->
   <category name="jobs">
@@ -664,9 +664,9 @@
       <variety name="spiked mace" tier="2" weaponAccuracy="80" weaponHitsToCrits="10" armorPiercing="1"
         color="steel" slotFillers="weaponHand:608"
         fluff="A cruel mace that has been modified with metal spikes. It's a little intimidating, really." />
-      <variety name="bronze orbital" tier="2" weaponAccuracy="90" armorPiercing="1" zones="1" resistance="-10"
+      <variety name="bronze orbital" tier="2" weaponAccuracy="70" armorPiercing="1" zones="1"
         color="bronze" slotFillers="weaponHand:607"
-        fluff="A bronze mace with a strange enchantment on it, which seems to pull it towards enemies. The same enchantment pulls magic towards you, unfortunately." />
+        fluff="A bronze mace with a strange enchantment on it, which seems to pull it roughly towards foes. It almost jerks itself out of your hands whenever an enemy approaches." />
     </entry> <!-- mace -->
     <entry name="spear">
       <variety name="old spear" tier="0" weaponAccuracy="90" zones="1"

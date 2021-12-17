@@ -187,7 +187,7 @@ class BonusSource {
     value += this.hitsToCrits * mechHitsToCritsValue;
     value += this.halveStatuses ? 15 : 0;
     value += this.astra;
-    value += this.zones ? 9 : 0;
+    value += this.zones ? 10 : 0;
     return value;
   }
 
@@ -220,7 +220,10 @@ class BonusSource {
           'makes unarmed attacks stronger and lets you use them like a weapon');
     }
     if (this.halveStatuses) effects.push('halve effect of status effects');
-    if (this.zones) effects.push('allows you to make weak zoning attacks');
+    if (this.zones) {
+      effects.push('allows you to make weak zoning attacks (or +' +
+          mechRedundantZoningPower + '% power to zoning attacks if redundant)');
+    }
 
     // Numerical values.
     /**

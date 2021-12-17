@@ -61,7 +61,7 @@ class Weapon extends Equipment {
     // otherwise the ideal way to get zoning attacks would be to just pick up
     // the skill, and non-spear weapons being the perfect weapons for zoning
     // attacks feels off.
-    if (this.zones) effectiveBonusSourceValue -= 3;
+    if (this.zones) effectiveBonusSourceValue -= 2;
 
     // Compute the damage.
     let damage = mechBaseDamage;

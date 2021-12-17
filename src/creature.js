@@ -441,9 +441,9 @@ class Creature {
     return moveDistance;
   }
 
-  /** @return {boolean} */
-  get zones() {
-    return this.tallyBonusSources_((bS) => bS.zones ? 1 : 0) > 0;
+  /** @return {number} */
+  get zonesStacks() {
+    return this.tallyBonusSources_((bS) => bS.zones ? 1 : 0);
   }
 
   /** @return {boolean} */
@@ -1337,8 +1337,14 @@ class Creature {
         mult += rand * mechCritBonus / 4;
         break;
     }
+    if (attackType == Creature.AttackType.Zoning) {
+      // Having the zoning ability from multiple sources makes your zoning
+      // attacks stronger.
+      mult += mechRedundantZoningPower * (this.zonesStacks - 1);
+      // Zoning attacks just straight up do half damage, though.
+      mult /= 2;
+    }
     mult = Math.max(0, mult);
-    if (attackType == Creature.AttackType.Zoning) mult /= 2;
     return new AttackEstimate(mult, hitChance, hitsToCrits);
   }
 
@@ -1572,7 +1578,7 @@ class Creature {
         const creature = tile.creatures[0];
         if (!creature) return;
         if (creature.player == this.player) return;
-        if (!creature.zones) return;
+        if (creature.zonesStacks == 0) return;
         zoningAttacks.add(creature);
       };
       this.tileCallback(mapController, x, y, (tile) => {

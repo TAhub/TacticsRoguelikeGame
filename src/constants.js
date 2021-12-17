@@ -42,6 +42,7 @@ const mechHitsToCritsValue = mechCritBonus / 100;
 const mechInventoryWidth = 3;
 const mechInventoryHeight = 5;
 const mechNumTechSlots = 3;
+const mechRedundantZoningPower = 50;
 
 /**
  * @param {number} tier
