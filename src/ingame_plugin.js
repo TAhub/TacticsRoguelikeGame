@@ -62,6 +62,10 @@ class IngamePlugin extends GamePlugin {
         }
       }
 
+      // No need to start combat again! If the code below is called, the new
+      // enemy might interrupt the current person's turn.
+      if (mapC.inCombat) break;
+
       // If you ran into a stray awake enemy, separate from an
       // encounter, also enter combat. This can happen if the player
       // triggers an encounter, gets an enemy trapped somehow, then leaves
