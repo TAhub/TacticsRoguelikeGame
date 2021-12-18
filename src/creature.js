@@ -1531,6 +1531,7 @@ class Creature {
    */
   hasLOS(toX, toY, mapController) {
     const distance = calcDistance(toX - this.cX, toY - this.cY);
+    if (distance < 0.75) return true;
     const steps = Math.ceil(distance * 2);
     /** @type {?GameMapTile} */
     let lastTile;
