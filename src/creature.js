@@ -1469,23 +1469,26 @@ class Creature {
       this.makeFloorShape_();
     }
 
-    const hitResult = this.getHitResult_(target, weapon, attackType);
-    switch (hitResult) {
-      case Creature.HitResult.Miss:
-        // TODO: dodge visual/audio effects on target?
-        target.addTextParticle_('DODGE', -1);
-        return;
-      case Creature.HitResult.Graze:
-        // TODO: graze visual/audio effects on target?
-        target.addTextParticle_('GRAZE', -1);
-        break;
-      case Creature.HitResult.Hit:
-        target.addTextParticle_('HIT', 0);
-        break;
-      case Creature.HitResult.Crit:
-        // TODO: crit visual/audio effects on target?
-        target.addTextParticle_('CRIT', 1);
-        break;
+    let hitResult = Creature.HitResult.Hit;
+    if (!weapon.helpful && !weapon.summon) {
+      hitResult = this.getHitResult_(target, weapon, attackType);
+      switch (hitResult) {
+        case Creature.HitResult.Miss:
+          // TODO: dodge visual/audio effects on target?
+          target.addTextParticle_('DODGE', -1);
+          return;
+        case Creature.HitResult.Graze:
+          // TODO: graze visual/audio effects on target?
+          target.addTextParticle_('GRAZE', -1);
+          break;
+        case Creature.HitResult.Hit:
+          target.addTextParticle_('HIT', 0);
+          break;
+        case Creature.HitResult.Crit:
+          // TODO: crit visual/audio effects on target?
+          target.addTextParticle_('CRIT', 1);
+          break;
+      }
     }
 
     const mult = this.getAttackEstimate(
