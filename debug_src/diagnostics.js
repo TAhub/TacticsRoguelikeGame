@@ -485,13 +485,13 @@ allDiagnostics.set('Job Diagnostic', () => {
         if (weapon.usesSpecialPower) hasSpecial = true;
         if (weapon.astraCost > 0) numTechs += 1;
       }
-      if (numTechs < 3) {
-        console.log('  --WARNING: too few techs! (' + numTechs + ' < 3)');
+      if (numTechs < 4) {
+        console.log('  --WARNING: too few techs! (' + numTechs + ' < 4)');
       } else if (!hasSpecial) {
         console.log('  --WARNING: has no specialPower tech!');
       }
-      if (numTechs > 4) {
-        console.log('  --WARNING: too many techs! (' + numTechs + ' > 4)');
+      if (numTechs > 5) {
+        console.log('  --WARNING: too many techs! (' + numTechs + ' > 5)');
       }
     }
   }

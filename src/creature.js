@@ -193,9 +193,7 @@ class Creature {
     let total = 0;
     total += fn(this.levelObj);
     total += fn(this.species);
-    for (const job of this.jobs) {
-      total += fn(job);
-    }
+    this.jobs.forEach((job) => total += fn(job));
     this.stats.forEach((stat) => total += fn(stat));
     this.skills.forEach((skill) => total += fn(skill));
     this.armors.forEach((armor) => total += fn(armor));
@@ -231,6 +229,13 @@ class Creature {
   get attackPower() {
     let attackPower = 100 + this.summonModifier + this.monsterAttackBonus;
     attackPower += this.tallyBonusSources_((bS) => bS.attackPower);
+    if (this.summonOwner) {
+      // If you're a summon, and your weapon DOESN'T use special power, turn
+      // specialPower modifiers from your stats into attackPower modifiers.
+      if (!this.weapon || this.weapon.usesSpecialPower) {
+        for (const stat of this.stats) attackPower += stat.specialPower;
+      }
+    }
     return attackPower;
   }
 
