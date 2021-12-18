@@ -183,6 +183,12 @@ class Weapon extends Equipment {
     return this.getArrayValue('summonJobs');
   }
 
+  /** @return {?number} */
+  get summonColoration() {
+    const raw = this.getValue('summonColoration');
+    return raw ? parseInt(raw, 10) : null;
+  }
+
   /** @return {?string} */
   get summonWeapon() {
     return this.getValue('summonWeapon');

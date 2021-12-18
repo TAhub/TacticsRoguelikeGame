@@ -1266,6 +1266,9 @@ class Creature {
     } else {
       summonModifier += 15; // Make up for being unarmed.
     }
+    if (weapon.summonColoration != null) {
+      summon.species.coloration = weapon.summonColoration;
+    }
     this.currentSummon = summon;
     summon.summonOwner = this;
     summon.summonModifier = summonModifier;

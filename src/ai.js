@@ -90,6 +90,9 @@ class AI {
     if (weapon.heals) {
       // Cap the value of healing at the amount it will actually heal.
       value = Math.min(value, defender.maxLife - defender.life);
+    } else if (weapon.drains) {
+      // Draining weapons are most useful when you are injured.
+      value += Math.min(value, attacker.maxLife - attacker.life);
     }
 
     // Don't heal enemies, or attack friends!
