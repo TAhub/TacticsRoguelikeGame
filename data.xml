@@ -223,28 +223,28 @@
   </category> <!-- skills -->
   <category name="jobs">
     <entry name="warrior" reqSpecies="karhun,firin"
-      physiqueModifier="2" accuracy="10" armorProfiencyLevel="2" proficiencies="sword,mace,spear,slam,typhoon slash,sword wave"
+      physiqueModifier="2" accuracy="10" armorProfiencyLevel="2" proficiencies="sword,mace,spear,slam,typhoon slash,sword wave,blitz strike"
       fluff="Warriors are those who focus on conventional close-range combat. They learn how to use various weapons and techniques, and how to fight in heavy armor." />
     <entry name="rogue" reqSpecies="karhun,skuri"
-      agilityModifier="2" dodge="10" attackPowerWhenDisengaged="40" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,brain rattler,crimson fangs,venom sting,miasma bolt"
+      agilityModifier="2" dodge="10" attackPowerWhenDisengaged="40" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,brain rattler,crimson fangs,venom sting,miasma bolt,poison powder"
       fluff="Rogues train in how to fight with a mobile, offensive style. They are strongest when they aren't tied down; for example, when stabbing a foe who is busy fighting someone else." />
     <entry name="mage" reqSpecies="firin,skuri"
-      senseModifier="2" specialPower="15" astra="20" initiative="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage"
+      senseModifier="2" specialPower="15" astra="20" initiative="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage,enchanted blade"
       fluff="Mages practice a standardized set of combat magic spells, focusing on sheer magical firepower. They excel at taking down armored foes, who usually lack resistance to magic." />
     <entry name="mechanic" reqSpecies="skuri"
-      cunningModifier="2" specialPower="15" initiative="15" armorProfiencyLevel="1" proficiencies="mace,pistol,saw crawler,gun turret,slam"
+      cunningModifier="2" specialPower="15" initiative="15" armorProfiencyLevel="1" proficiencies="mace,pistol,saw crawler,gun turret,slam,coordinated attack"
       fluff="Mechanics learn how to maintain and operate Skuri automata. They are most common in civilian life, but some do end up using their skills to deploy deadly combat automata." />
     <entry name="healer" reqSpecies="karhun"
-      willpowerModifier="2" specialPower="10" astra="20" life="20" proficiencies="dagger,mace,first aid,siphon,venom sting"
+      willpowerModifier="2" specialPower="10" astra="20" life="20" proficiencies="dagger,mace,first aid,siphon,venom sting,poison powder"
       fluff="Healers learn battlefield-tested Karhun first aid techniques, as well as a scattering of magic. They are perfect supports for a group of warriors." />
     <entry name="wanderer" reqSpecies="firin"
-      agilityModifier="2" accuracy="22" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash"
+      agilityModifier="2" accuracy="22" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash,blitz strike"
       fluff="Wanderers learn a traditional Firin fighting style that combines steel and spell. Once taught to noble scions, this style is now practiced by secretive nomads." />
     <entry name="lab rat" reqSpecies="skuri"
-      senseModifier="1" physiqueModifier="1" astra="10" life="20" attackPower="10" defense="10" proficiencies="dagger,spear,agony release,miasma bolt,mend"
+      senseModifier="1" physiqueModifier="1" astra="10" life="20" attackPower="10" defense="10" proficiencies="dagger,spear,agony release,miasma bolt,mend,crimson fangs"
       fluff="Lab rats are those who act as test subjects for life-affecting spells, harmful and helpful both. Those who survive often learn the very magic that once tormented them so." />
     <entry name="martial artist" reqSpecies="karhun"
-      willpowerModifier="1" physiqueModifier="1" dodge="20" attackPower="10" life="20" martialArts="1" proficiencies="eye gouge,inner strength,illusion fist"
+      willpowerModifier="1" physiqueModifier="1" dodge="20" attackPower="10" life="20" martialArts="1" proficiencies="eye gouge,inner strength,illusion fist,solar combo"
       fluff="Martial artists train in various unarmed combat styles. They are almost always Karhun, who often find the hands-on approach more satisfying." />
     <entry name="sage" reqSpecies="firin"
       senseModifier="1" cunningModifier="1" resistance="30" astra="20" proficiencies="spear,sword,ashball,agony release,inner strength,siphon,unearth"
@@ -308,7 +308,7 @@
     <entry name="saw crawler" species="crawler" jobs="tough monster" level="16" weapon="automata saw:1" />
     <entry name="paranoid tunneler" species="skuri" jobs="survivor" level="14" weapon0="dagger:1" weapon1="sword:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1"
       hairstyle="short,medium,long" />
-    <entry name="paranoid rogue" species="skuri" jobs="rogue" level="15" weapon0="dagger:1" weapon1="pistol:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1" techniques="crimson fangs,snipe"
+    <entry name="paranoid rogue" species="skuri" jobs="rogue" level="15" weapon0="dagger:1" weapon1="pistol:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1" techniques="crimson fangs,brain rattler"
       hairstyle="short,medium" />
     <entry name="paranoid mage" species="skuri" jobs="mage" level="15" weapon0="spear:1" weapon1="mace:1" armors0="shirt:1,pants:1" armors1="hat:1,shirt:1,pants:1" techniques="arcana arrow,phantom flames"
       hairstyle="medium,long" />
@@ -340,7 +340,7 @@
     <entry name="walking bonsai" species="walking bonsai" jobs="tough monster" level="24" weapon="tackle:2" techniques="eye gouge" />
 
     <!-- tether assembly enemies (levels 31-36) -->
-    <entry name="tethered warrior" species="karhun" jobs="warrior,tethered" level="28" weapon="sword:2" armors="helmet:2,breastplate:2,greaves:2" techniques="slam,typhoon slash"
+    <entry name="tethered warrior" species="karhun" jobs="warrior,tethered" level="28" weapon="sword:2" armors="helmet:2,breastplate:2,greaves:2" techniques="blitz strike,typhoon slash"
       hairstyle="short,bald" />
     <entry name="tethered rogue" species="skuri" jobs="rogue,tethered" level="28" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" techniques="crimson fangs,venom sting"
       hairstyle="short,medium" />
@@ -348,11 +348,11 @@
       hairstyle="medium,ponytail" />
     <entry name="tethered mechanic" species="skuri" jobs="mechanic,tethered" level="30" weapon="mace:2" armors="cap:2,jerkin:2,leggings:2" techniques="saw crawler,slam"
       hairstyle="medium,long" />
-    <entry name="tethered gunner" species="firin" jobs="gunner,tethered" level="30" weapon="pistol:2" armors="cap:2,jerkin:2,leggings:2" techniques="snipe,inferno shot"
+    <entry name="tethered gunner" species="firin" jobs="gunner,tethered" level="30" weapon="pistol:2" armors="cap:2,jerkin:2,leggings:2" techniques="snipe,brain rattler"
       hairstyle="short,ponytail" />
     <entry name="tethered healer" species="karhun" jobs="healer,tethered" level="30" weapon="mace:2" armors="hat:2,shirt:2,pants:2" techniques="first aid,siphon"
       hairstyle="short,ponytail" />
-    <entry name="reinforced gun turret" species="turret" jobs="ranged monster,tough monster" level="31" weapon="automata gun:2" />
+    <entry name="reinforced gun turret" species="turret" jobs="ranged monster,tough monster" level="31" weapon="automata gun:2" techniques="inferno shot" />
     <entry name="gold slime" species="slime" jobs="magic monster,tough monster" level="33" weapon="tackle:2" techniques="arcana arrow,spell barrage,gold splitting"
       coloration="1" />
   </category> <!-- creature templates -->
@@ -718,10 +718,16 @@
       fluff="Coat your weapon in poison and make a quick and accurate strike on your foe." />
     <entry name="slam" astraCost="5" weaponAccuracy="75" scaling="melee weapon" shakenPercent="30"
       fluff="Swing your weapon with more force but less finesse, hitting enemies hard enough to leave them shaken." />
+    <entry name="coordinated attack" astraCost="5" weaponAccuracy="80" scaling="melee weapon" commandsSummon="1"
+      fluff="Make a quick attack while simultaneously giving an order to your summon, aiming to overwhelm your enemy." />
     <entry name="typhoon slash" astraCost="10" weaponAccuracy="85" scaling="melee weapon" numHits="3"
       fluff="Execute a practiced three-hit combo, trying to overwhelm the opponent with strikes." />
+    <entry name="blitz strike" astraCost="10" weaponAccuracy="90" weaponHitsToCrits="10" scaling="melee weapon" ranged="1" teleports="1"
+      fluff="Quickly leap to the target, and execute a single attack with blinding speed." />
     <entry name="eye gouge" astraCost="10" weaponAccuracy="75" scaling="level" blindedPercent="45"
       fluff="Lunge for the opponent's eyes, and cruelly stab into them with your fingers." />
+    <entry name="solar combo" astraCost="15" weaponAccuracy="70" scaling="level" burningPercent="40" numHits="4" lifeCostPercent="10"
+      fluff="Launch into a super-fast combination of hits, your fists flying so fast that they ignite in midair." />
     <entry name="snipe" astraCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1"
       fluff="Carefully aim your pistol, and try to read your enemy's movements, then take your shot." />
     <entry name="brain rattler" astraCost="10" weaponAccuracy="80" scaling="ranged weapon" ranged="1" shakenPercent="35"
@@ -742,13 +748,17 @@
       fluff="Scoop up some ash or soot, and flood it with a charge of astra. If you get the technique down, it'll stay together for just long enough for it to be fired at an enemy." />
     <entry name="sword wave" astraCost="10" weaponAccuracy="85" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1" ranged="1"
       fluff="Build up astra in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." />
+    <entry name="enchanted blade" astraCost="10" weaponAccuracy="105" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1"
+      fluff="Build up astra in your weapon, draw a spell-channel to your enemy, and let the channel guide your weapon with great force and accuracy. A spell designed for mages, to help them when they are caught up in melee combat." />
     <entry name="illusion fist" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
-      fluff="Build up some astra in your arm, and then pull it into your hand at the same time as you throw a punch, launching it as a fast-moving projectile. A magical martial arts move." /> <!-- TODO: projectile should be fast-moving, as per the fluff -->
+      fluff="Build up some astra in your arm, and then pull it into your hand at the same time as you throw a punch, launching it as a fast-moving projectile. A magical martial arts move, meant to injure and stun." /> <!-- TODO: projectile should be fast-moving, as per the fluff -->
     <entry name="spell barrage" astraCost="20" weaponAccuracy="90" weaponHitsToCrits="15" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="4"
       fluff="Build up a large amount of astra and release it in a flurry of magical bolts. A powerful but unsubtle spell." />
     <entry name="miasma bolt" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" poisonedPercent="50"
       fluff="Infuse your astra with a toxic quality, and fire it out as a deadly magical bolt." />
-    <entry name="agony release" astraCost="10" lifeCostPercent="15" weaponAccuracy="100" weaponHitsToCrits="25" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
+    <entry name="poison powder" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" poisonedPercent="70" blindedPercent="30"
+      fluff="Blow a handful of home-made poisonous powder into an opponent's face, poisoning and blinding them." />
+    <entry name="agony release" astraCost="10" lifeCostPercent="20" weaponAccuracy="100" weaponHitsToCrits="25" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
       fluff="Stab yourself with a knife, and use the pain reflex to shape a wicked spell. An unusual but surprisingly effective form of magic." />
     <entry name="mend" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" spell="1" heals="1" scaling="level" usesSpecialPower="1"
       fluff="Build up astra and pattern it with the will and instructions to heal others. An effective use of magic, but watch out for enemies attempting to intercept your spells!" />
@@ -971,7 +981,7 @@
     <!-- regionId 2 (t1): caverns -->
     <entry name="burrow" regionId="2" condition="key map branch"
       tileset="burrow" enemyTemplates="gun turret,saw crawler,paranoid tunneler,paranoid rogue,paranoid mage"
-      loot="(W)gun turret,(W)pistol:1,(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot" />
+      loot="(W)gun turret,(W)pistol:1,(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot,(W)coordinated attack" />
     <entry name="caverns entrance" regionId="2" condition="first map"
       tileset="stone tunnels" enemyTemplates="skull rat,giant turtle"
       loot="(A)jerkin:1,(C)shield,(W)brain rattler" />
@@ -993,20 +1003,20 @@
       <!-- TODO: undead enemies -->
     <entry name="bandit town" regionId="3"
       tileset="village" enemyTemplates="bandit,bandit sneak,bandit enforcer,bandit jack,black cat"
-      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(W)spell barrage,(W)typhoon slash" />
+      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder" />
 
     <!-- regionId 4 (t2): twisted wasteland -->
     <entry name="hedge maze" regionId="4" condition="boss map branch"
       tileset="hedge maze" enemyTemplates="mossy cat,seed spitter,walking topiary,walking bonsai,corpse picker"
-      loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2" />
+      loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade" />
     <entry name="twisted wasteland" regionId="4"
       tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar"
-      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles" />
+      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike" />
 
     <!-- regionId 5 (t2): tether assembly -->
     <entry name="gateway" regionId="5" condition="first map"
       tileset="gateway"
-      loot="(C)bloody thorn,(A)helmet:2" />
+      loot="(C)bloody thorn,(A)helmet:2,(W)solar combo" />
       <!-- TODO: ok I haven't thought too hard about the plot yet, but here's a fun idea:
         neutral NPC: undead firin servant (F) named "greeter"
           line 1: "Welcome! You took longer than expected."

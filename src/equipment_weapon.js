@@ -101,6 +101,8 @@ class Weapon extends Equipment {
     if (this.spell) damage *= 1.1; // To make up for it being inconvenient.
     if (this.magic && !this.spell) damage *= 0.9; // Possible, but non-ideal.
     if (this.selfTargeting) damage *= 1.15;
+    if (this.teleports) damage *= 0.8;
+    if (this.commandsSummon) damage *= this.usesSpecialPower ? 0.45 : 0.65;
     return damage;
   }
 
@@ -145,6 +147,16 @@ class Weapon extends Equipment {
   get maxRange() {
     if (this.selfTargeting) return 0;
     return this.ranged ? 3 : 1;
+  }
+
+  /** @return {boolean} */
+  get teleports() {
+    return this.getBooleanValue('teleports');
+  }
+
+  /** @return {boolean} */
+  get commandsSummon() {
+    return this.getBooleanValue('commandsSummon');
   }
 
   /** @return {boolean} */
@@ -252,6 +264,10 @@ class Weapon extends Equipment {
 
     if (this.numHits > 1) effects.push('hits ' + this.numHits + ' times');
     if (this.armorPiercing) effects.push('ignores part of target armor');
+    if (this.teleports) effects.push('teleports next to target if possible');
+    if (this.commandsSummon) {
+      effects.push('lets your summon move and act this round');
+    }
 
     if (this.summon) {
       const summonFluff = this.getValue('summonFluff') || 'summon';

@@ -1016,13 +1016,13 @@ class Creature {
         switch (weapon.scaling) {
           case Weapon.Scaling.MeleeWeapon:
           case Weapon.Scaling.RangedWeapon:
-            if (!this.weapon) break;
             let weaponUsed = this.weapon;
             if (weapon.scaling == Weapon.Scaling.MeleeWeapon) {
               if (this.martialArts) weaponUsed = this.unarmed;
-              if (weaponUsed.ranged) break;
+              if (!weaponUsed || weaponUsed.ranged) break;
             } else {
-              if (!weaponUsed.ranged) break;
+              if (!this.weapon) break;
+              if (!weaponUsed || !weaponUsed.ranged) break;
             }
             tier = weaponUsed.tier;
             weapon.baseWeapon = weaponUsed;
@@ -1167,6 +1167,40 @@ class Creature {
       target = targetOrTile;
     }
 
+    if (weapon.teleports && optMapController &&
+        !this.monstrous && !this.engaged) {
+      let closestTile;
+      let closestTileDistance = 0;
+      let alreadyAdjacent = false;
+      target.tileCallback(optMapController, target.x, target.y, (tile) => {
+        if (!tile) return;
+        for (const i of tile.doorIds.keys()) {
+          if (tile.doorIds.get(i) != 0) continue;
+          const oTile = optMapController.tileAt(toX(i), toY(i));
+          if (!oTile) continue;
+          if (oTile.creatures.length > 0) {
+            if (oTile.creatures[0] == this) {
+              // No need to teleport.
+              alreadyAdjacent = true;
+              return;
+            }
+            continue;
+          }
+          const distance =
+              calcDistance(oTile.x + 0.5 - this.cX, oTile.y + 0.5 - this.cY);
+          if (closestTile && closestTileDistance <= distance) continue;
+          closestTile = oTile;
+          closestTileDistance = distance;
+        }
+      });
+      if (!alreadyAdjacent && closestTile) {
+        this.removeFromTiles(optMapController);
+        this.x = closestTile.x;
+        this.y = closestTile.y;
+        this.addToTiles(optMapController);
+      }
+    }
+
     // TODO: animation
     // TODO: be sure set facing in the animation!
 
@@ -1233,6 +1267,12 @@ class Creature {
         }
       });
       this.actions.push((elapsed) => doneWaiting);
+    }
+    if (weapon.commandsSummon) {
+      this.effectAction(() => {
+        if (!this.currentSummon) return;
+        this.currentSummon.summonAwake = true;
+      });
     }
 
     // TODO: animation return

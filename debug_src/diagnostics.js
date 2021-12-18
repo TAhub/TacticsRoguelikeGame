@@ -69,6 +69,10 @@ function checkCreatureValidity(creature) {
       console.log('--WARNING: ' + creature.name +
                   ' is missing proficiency for ' + weapon.type);
     }
+    if (weapon.teleports && creature.monstrous) {
+      console.log('--WARNING: ' + creature.name +
+                  ' is monstrous but has a teleporting move');
+    }
   }
   if (creature.moveDistance < 0) {
     console.log('--WARNING: ' + creature.name + ' has negative move distance');

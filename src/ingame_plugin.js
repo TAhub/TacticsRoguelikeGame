@@ -290,10 +290,8 @@ class IngamePlugin extends GamePlugin {
                     active.hasMove = false;
                     this.menuController.clear();
                   };
-                  tooltip.push(
-                      'Give your summon a command, ' +
-                    'letting it move and attack this round.',
-                  );
+                  tooltip.push('Give your summon a command, ' +
+                               'letting it move and attack this round.');
                   name = 'Command Summon';
                   break;
                 case 1:
@@ -301,10 +299,8 @@ class IngamePlugin extends GamePlugin {
                     summon.life = 0;
                     this.menuController.clear();
                   };
-                  tooltip.push(
-                      'Deactivate your current summon, ' +
-                    'if you want to summon something new.',
-                  );
+                  tooltip.push('Deactivate your current summon, ' +
+                               'if you want to summon something new.');
                   name = 'Dismiss Summon';
                   break;
               }
