@@ -68,9 +68,10 @@ class SpriteObject {
    * @param {!THREE.PerspectiveCamera} camera
    * @param {number} x
    * @param {number} y
+   * @param {number} th
    * @param {SpriteObjectOptions=} optOptions
    */
-  addToGroup(group, camera, x, y, optOptions) {
+  addToGroup(group, camera, x, y, th, optOptions) {
     if (!this.mesh) {
       this.geometry = new THREE.PlaneGeometry(this.wScale, this.hScale);
       let map = this.texture;
@@ -92,6 +93,7 @@ class SpriteObject {
     if (optOptions && optOptions.h != undefined) {
       h = optOptions.h;
     }
+    h += th * gfxThScale;
     this.mesh.position.set(x, h, y);
     this.mesh.lookAt(camera.position.x, h, camera.position.z);
 

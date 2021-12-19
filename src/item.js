@@ -86,8 +86,9 @@ class Item {
    * @param {!THREE.PerspectiveCamera} camera
    * @param {number} x
    * @param {number} y
+   * @param {number} th
    */
-  addToGroup(group, camera, x, y) {
+  addToGroup(group, camera, x, y, th) {
     if (!this.spriteObject) {
       const {sprite, color, scale, h} = this.getSpriteDetails_();
       this.h = h;
@@ -95,7 +96,7 @@ class Item {
       this.spriteObject.setAppearance(sprite, color, scale);
     }
     this.spriteObject.addToGroup(
-        group, camera, x, y, {h: this.h, drawBack: 0.05});
+        group, camera, x, y, th, {h: this.h, drawBack: 0.05});
   }
 
   /** @return {boolean} */

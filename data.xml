@@ -384,7 +384,7 @@
     <entry name="frog"
       physiqueModifier="4" willpowerModifier="-2" agilityModifier="-2" life="10" />
     <entry name="bird"
-      senseModifier="4" agilityModifier="2" physiqueModifier="-6" dodge="10" />
+      senseModifier="4" agilityModifier="2" physiqueModifier="-6" flying="1" life="-10" />
     <entry name="cat"
       senseModifier="5" physiqueModifier="-2" willpowerModifier="-3" astra="10" />
     <entry name="giant turtle"
@@ -1047,6 +1047,7 @@
     <!-- TODO: assign footstep sounds ("gravel" or "stone") -->
     <entry name="village"
       lightingIntensity="70" lightingColor="white"
+      ledgeColor="dirt wall" baseTh="0" cellularTh="1"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="4,5,6,7" wallColor="canvas wall"
       replacersNJoins="wide dead end A,wide dead end B,wide dead end C,dead end,dead end,dead end,null"
@@ -1058,12 +1059,14 @@
       <!-- TODO: village-type furniture? -->
     <entry name="hedge maze"
       lightingIntensity="75" lightingColor="pale purple"
+      ledgeColor="dirt wall" baseTh="1" cellularTh="0" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="4,5,6,7" wallColor="grass wall"
       inheritJoinsFrom="village" />
       <!-- TODO: wood plank wall sprites -->
     <entry name="beach"
       lightingIntensity="90" lightingColor="white"
+      ledgeColor="sand wall" baseTh="0" cellularTh="1" noiseTh="1"
       floorSprites="0,1,2,3" floorColor="sand floor"
       wallSprites="4,5,6,7" wallColor="sand wall"
       replacersNJoins="wide dead end A,wide dead end B,wide dead end C,null"
@@ -1075,6 +1078,7 @@
       <!-- TODO: some water floors? -->
     <entry name="rocky beach"
       lightingIntensity="80" lightingColor="white"
+      ledgeColor="sand wall" baseTh="0" cellularTh="1" noiseTh="2"
       floorSprites="0,1,2,3" floorColor="sand floor"
       wallSprites="4,5,6,7" wallColor="stone wall"
       inheritJoinsFrom="rocky beach" />
@@ -1082,17 +1086,20 @@
       <!-- TODO: some water floors? -->
     <entry name="grasslands"
       lightingIntensity="80" lightingColor="white"
+      ledgeColor="dirt wall" baseTh="0" cellularTh="1" noiseTh="1"
       floorSprites="0,1,2,3" floorColor="grass floor"
-      wallSprites="4,5,6,7" wallColor="grass wall"
+      wallSprites="4,5,6,7" wallColor="dirt wall"
       inheritJoinsFrom="beach" />
       <!-- TODO: cave wall sprites -->
     <entry name="twisted wasteland"
       lightingIntensity="85" lightingColor="pale purple"
+      ledgeColor="dirt wall" baseTh="1" cellularTh="2" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="4,5,6,7" wallColor="dirt wall"
       inheritJoinsFrom="beach" />
       <!-- TODO: cave wall sprites -->
     <entry name="dirt tunnels"
+      ledgeColor="dirt wall" baseTh="0" cellularTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="4,5,6,7" wallColor="dirt wall"
       replacersNJoins="natural hallway A,natural hallway B,natural hallway C,natural chamber A,natural chamber B,natural chamber C"
@@ -1102,13 +1109,15 @@
       replacersHJoins="natural chamber A,natural chamber B,natural chamber C" />
       <!-- TODO: cave wall sprites -->
     <entry name="stone tunnels"
+      ledgeColor="stone wall" baseTh="0" cellularTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="stone floor"
       wallSprites="4,5,6,7" wallColor="stone wall"
       inheritJoinsFrom="dirt tunnels" />
       <!-- TODO: cave wall sprites -->
     <entry name="burrow"
       lightingIntensity="25" lightingColor="gray"
-      floorSprites="0,1,2,3" floorColor="stone floor"
+      ledgeColor="stone wall" baseTh="0" cellularTh="1" noiseTh="1"
+      floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="4,5,6,7" wallColor="stone wall"
       inheritJoinsFrom="dirt tunnels" />
       <!-- TODO: cave wall sprites -->
@@ -1116,6 +1125,7 @@
       <!-- TODO: village type furniture? -->
     <entry name="catacombs"
       lightingIntensity="10" lightingColor="green"
+      ledgeColor="stone wall" baseTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="stone floor"
       wallSprites="4,5,6,7" wallColor="stone wall"
       replacersNJoins="dead end"
@@ -1126,6 +1136,7 @@
       <!-- TODO: lamps that glow "light green" -->
     <entry name="ship"
       lightingIntensity="25" lightingColor="gray"
+      ledgeColor="wood wall" baseTh="2" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="wood floor"
       wallSprites="4,5,6,7" wallColor="wood wall"
       replacersNJoins="null"
@@ -1138,6 +1149,7 @@
       <!-- TODO: lamps that glow "orange" -->
     <entry name="spooky manor"
       lightingIntensity="20" lightingColor="green"
+      ledgeColor="wood wall" baseTh="2" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="wood floor"
       wallSprites="4,5,6,7" wallColor="wood wall"
       inheritJoinsFrom="ship" />
@@ -1147,12 +1159,14 @@
       <!-- TODO: village-type furniture? -->
     <entry name="gateway"
       lightingIntensity="65" lightingColor="pale purple"
+      ledgeColor="dirt wall" baseTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="4,5,6,7" wallColor="stone wall"
       inheritJoinsFrom="ship" />
       <!-- TODO: fancier walls? I dunno -->
     <entry name="tether assembly"
       lightingIntensity="60" lightingColor="sky blue"
+      ledgeColor="stone wall" baseTh="1"
       floorSprites="0,1,2,3" floorColor="stone floor"
       wallSprites="4,5,6,7" wallColor="stone wall"
       inheritJoinsFrom="ship" />

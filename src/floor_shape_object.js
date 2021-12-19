@@ -40,8 +40,9 @@ class FloorShapeObject {
    * @param {!THREE.Group} group
    * @param {number} x
    * @param {number} y
+   * @param {number} th
    */
-  addToGroup(group, x, y) {
+  addToGroup(group, x, y, th) {
     if (!this.texture) return;
     if (!this.mesh) {
       this.geometry = new THREE.PlaneGeometry(this.wScale, this.hScale);
@@ -59,7 +60,7 @@ class FloorShapeObject {
     }
 
     this.mesh.rotation.x = -Math.PI / 2;
-    this.mesh.position.set(x, 0.01, y);
+    this.mesh.position.set(x, 0.01 + th * gfxThScale, y);
     group.add(this.mesh);
   }
 }

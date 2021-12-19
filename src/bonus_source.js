@@ -153,6 +153,11 @@ class BonusSource {
   }
 
   /** @return {boolean} */
+  get flying() {
+    return this.getBooleanValue('flying');
+  }
+
+  /** @return {boolean} */
   get halveStatuses() {
     return this.getBooleanValue('halveStatuses');
   }
@@ -188,6 +193,7 @@ class BonusSource {
     value += this.halveStatuses ? 15 : 0;
     value += this.astra;
     value += this.zones ? 10 : 0;
+    value += this.flying ? 20 : 0;
     return value;
   }
 
@@ -224,6 +230,7 @@ class BonusSource {
       effects.push('allows you to make weak zoning attacks (or +' +
           mechRedundantZoningPower + '% power to zoning attacks if redundant)');
     }
+    if (this.flying) effects.push('flying');
 
     // Numerical values.
     /**

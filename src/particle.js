@@ -107,12 +107,17 @@ class Particle {
     return this.lifetime <= 0;
   }
 
-  /** @param {number} elapsed */
-  update(elapsed) {
+  /**
+   * @param {number} elapsed
+   * @param {!MapController} mapController
+   */
+  update(elapsed, mapController) {
     this.lifetime -= elapsed;
     this.x += this.xSpeed * elapsed;
     this.y += this.ySpeed * elapsed;
-    this.h = Math.max(this.h + this.hSpeed * elapsed, 0);
+    const tile = mapController.tileAt(Math.floor(this.x), Math.floor(this.y));
+    const baseH = tile ? tile.th * gfxThScale : 0;
+    this.h = Math.max(this.h + this.hSpeed * elapsed, baseH);
     this.hSpeed += this.hAccel * elapsed;
   }
 
@@ -177,7 +182,7 @@ class Particle {
         }
       }
       const options = {h: this.h, renderOrder: 1};
-      this.spriteObject.addToGroup(group, camera, this.x, this.y, options);
+      this.spriteObject.addToGroup(group, camera, this.x, this.y, 0, options);
     }
   }
 }

@@ -105,6 +105,8 @@ class Creature {
     this.exp = 0;
 
     // Temporary.
+    this.th = 0;
+    this.floorTh = 0;
     this.facing = 0;
     this.hasMove = false;
     this.hasAction = false;
@@ -426,7 +428,9 @@ class Creature {
 
     let generationPoints = this.maxLife / mechBaseLife;
     generationPoints *= (mechBaseDamage + totalDefense) / 100;
-    generationPoints *= (100 + this.dodge + this.dodgeVsDisengage / 3) / 100;
+    const dodge =
+        this.dodge + (this.dodgeVsDisengage / 3) + (this.flying ? 15 : 0);
+    generationPoints *= (100 + dodge) / 100;
     generationPoints *= (100 + this.initiative) / 100;
     generationPoints *= 0.3 + freeAttackValue + techAttackValue;
     generationPoints *= (5 + this.moveDistance) / 8;
@@ -449,6 +453,11 @@ class Creature {
   /** @return {number} */
   get zonesStacks() {
     return this.tallyBonusSources_((bS) => bS.zones ? 1 : 0);
+  }
+
+  /** @return {boolean} */
+  get flying() {
+    return this.tallyBonusSources_((bS) => bS.flying ? 1 : 0) > 0;
   }
 
   /** @return {boolean} */
@@ -667,10 +676,21 @@ class Creature {
 
   /** @param {!MapController} mapController */
   addToTiles(mapController) {
+    let thTotal = 0;
+    let thDivisor = 0;
+    this.floorTh = 0;
     this.tileCallback(mapController, this.x, this.y, (tile) => {
       if (!tile) return;
       tile.creatures.push(this);
+
+      this.floorTh = Math.max(this.floorTh, tile.th);
+      // Terrain height is calculated based on a weighted average, weighted to
+      // bias the higher somewhat.
+      const weight = tile.th + 2;
+      thTotal += tile.th * weight;
+      thDivisor += weight;
     });
+    this.th = this.flying ? 4 : (thTotal / thDivisor);
   }
 
   /** @param {!MapController} mapController */
@@ -740,7 +760,7 @@ class Creature {
           xD, yD, hD, color, alpha, radius);
       particle.x = x;
       particle.y = y;
-      particle.h = h;
+      particle.h = h + (this.th * gfxThScale);
       this.cachedParticles.push(particle);
     }
     if (Math.random() < 0.25 - (this.life / this.maxLife)) {
@@ -790,13 +810,14 @@ class Creature {
 
     // Draw.
     if (!this.spriteObject) this.makeAppearance();
-    this.spriteObject.addToGroup(group, camera, x, y, {facing: this.facing});
+    this.spriteObject.addToGroup(
+        group, camera, x, y, this.th, {facing: this.facing});
     if (!this.barSpriteObject) this.makeBar();
     this.barSpriteObject.addToGroup(
-        group, camera, this.cX, this.cY, {drawBack: -0.05});
+        group, camera, this.cX, this.cY, this.th, {drawBack: -0.05});
     if (inCombat) {
       if (!this.floorShapeObject) this.makeFloorShape_();
-      this.floorShapeObject.addToGroup(group, this.cX, this.cY);
+      this.floorShapeObject.addToGroup(group, this.cX, this.cY, this.floorTh);
     }
   }
 
@@ -1217,7 +1238,6 @@ class Creature {
             summon.x = tile.x;
             summon.y = tile.y;
             optMapController.addCreature(summon);
-            // TODO: this isn't showing up in the map creatures list?
           }
         } else if (target) {
           this.strike_(target, weapon, attackType);
@@ -1391,6 +1411,17 @@ class Creature {
       mult += mechRedundantZoningPower * (this.zonesStacks - 1);
       // Zoning attacks just straight up do half damage, though.
       mult /= 2;
+    } else if (attackType != Creature.AttackType.Disengage &&
+               !weapon.summon && !weapon.helpful) {
+      // Apply terrain height modifiers to hit chance only for non-disengage,
+      // non-zoning attacks.
+      if (weapon.ranged) {
+        // Get a small hit chance bonus for being over the enemy.
+        hitChance += 3 * Math.max(0, this.th - target.th);
+      } else {
+        // Get a hit chance penalty for being on a different terrain height.
+        hitChance -= 5 * Math.abs(this.th - target.th);
+      }
     }
     mult = Math.max(0, mult);
     return new AttackEstimate(mult, hitChance, hitsToCrits);
@@ -1403,7 +1434,7 @@ class Creature {
   addGenericParticle_(particle) {
     particle.x = this.cX;
     particle.y = this.cY;
-    particle.h = Math.random() *
+    particle.h = (this.th * gfxThScale) + Math.random() *
         (this.s * this.headHeightPoint * this.appearanceSizeMult);
     this.cachedParticles.push(particle);
   }
@@ -1426,7 +1457,7 @@ class Creature {
     const particle = Particle.makeTextParticle(text, boldness);
     particle.x = this.cX;
     particle.y = this.cY;
-    particle.h = this.s;
+    particle.h = this.s + (this.th * gfxThScale);
     this.delayedCachedParticles.push(particle);
   }
 
@@ -1647,19 +1678,42 @@ class Creature {
           let progress = 0;
           let oldX = 0;
           let oldY = 0;
+          let oldTh = 0;
+          let newTh = 0;
+          let oldFloorTh = 0;
+          let newFloorTh = 0;
           this.actions.push((elapsed) => {
             if (progress == 0) {
               oldX = this.x;
               oldY = this.y;
+              oldTh = this.th;
+              oldFloorTh = this.floorTh;
               this.removeFromTiles(mapController);
               this.x = x;
               this.y = y;
               this.addToTiles(mapController);
+              newTh = this.th;
+              newFloorTh = this.floorTh;
               this.facing = calcAngle(x - oldX, y - oldY);
             }
             progress = Math.min(1, progress + elapsed * 12);
             this.x = oldX + (x - oldX) * progress;
             this.y = oldY + (y - oldY) * progress;
+            this.th = oldTh + (newTh - oldTh) * progress;
+
+            // floorTh interpolates in a jerky way, moving slowly then zipping
+            // in the middle, to make it clearer that it has to do with the
+            // terrain and not you, as much.
+            let iProgress = 0;
+            if (progress < 0.3) {
+              iProgress = lerp(0, 0.1, progress / 0.3);
+            } else if (progress > 0.7) {
+              iProgress = lerp(0.9, 1, (progress - 0.7) / 0.3);
+            } else {
+              iProgress = lerp(0.1, 0.9, (progress - 0.3) / 0.4);
+            }
+            this.floorTh = oldFloorTh + (newFloorTh - oldFloorTh) * iProgress;
+
             // TODO: rock back and forth visually (rotate) while walking...
             return progress == 1;
           });

@@ -19,6 +19,8 @@ class MapController {
     this.active;
     /** @type {!Set.<!Creature>} */
     this.turnTaken = new Set();
+    /** @type {?Map.<number, boolean>} */
+    this.cellularThMap;
     /** @type {!Array.<?Item>} */
     this.inventory = [];
     for (let i = 0; i < mechInventoryWidth * mechInventoryHeight; i++) {
@@ -70,6 +72,11 @@ class MapController {
         const tile = this.overworldMap.tiles.get(i);
         return new GameMap(tile, optGenLimit, logFn);
       }, 'game map #' + i));
+    }
+
+    // Determine terrain height.
+    for (const gameMap of this.gameMaps.values()) {
+      this.setTerrainHeightsForMap_(gameMap);
     }
 
     // Move the player to the start position.
@@ -136,6 +143,71 @@ class MapController {
       }
       for (const cr of enemies) {
         cr.exp = Math.ceil(exp * cr.generationPoints / totalGenerationPoints);
+      }
+    }
+  }
+
+  /**
+   * @param {!GameMap} gameMap
+   * @private
+   */
+  setTerrainHeightsForMap_(gameMap) {
+    if (!this.cellularThMap) {
+      this.cellularThMap = new Map();
+      let width = 0;
+      let height = 0;
+      for (const overworldMapTile of this.overworldMap.tiles.values()) {
+        width = Math.max(width, (overworldMapTile.x + 1) * mapGameMapSize *
+                                mapTileUpscale * mapSecondTileUpscale);
+        height = Math.max(height, (overworldMapTile.y + 1) * mapGameMapSize *
+                                  mapTileUpscale * mapSecondTileUpscale);
+      }
+
+      // Initial state.
+      const rng = seededRNG(this.overworldMap.seed);
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          this.cellularThMap.set(toI(x, y), rng() < 0.45);
+        }
+      }
+
+      // Cellular steps.
+      for (let step = 0; step < 5; step++) {
+        const newCellularThMap = new Map();
+        for (let y = 0; y < height; y++) {
+          for (let x = 0; x < width; x++) {
+            let surrounding = 0;
+            for (let y2 = y - 1; y2 <= y + 1; y2++) {
+              for (let x2 = x - 1; x2 <= x + 1; x2++) {
+                surrounding += this.cellularThMap.get(toI(x2, y2)) ? 1 : 0;
+              }
+            }
+            newCellularThMap.set(toI(x, y), surrounding >= 5);
+          }
+        }
+        this.cellularThMap = newCellularThMap;
+      }
+    }
+
+    const overworldMapTile =
+        this.overworldMap.tileAt(gameMap.overworldX, gameMap.overworldY);
+    if (!overworldMapTile) return;
+
+    const tileset = overworldMapTile.tileset;
+    const baseTh = data.getNumberValue('tilesets', tileset, 'baseTh') || 0;
+    const noiseTh = data.getNumberValue('tilesets', tileset, 'noiseTh');
+    const cellularTh = data.getNumberValue('tilesets', tileset, 'cellularTh');
+
+    const rng = seededRNG(overworldMapTile.seed);
+    for (const tile of gameMap.tiles.values()) {
+      const noise = rng() < 0.15;
+      const cellular = this.cellularThMap.get(toI(tile.x, tile.y));
+      if (noise && noiseTh != null) {
+        tile.th = noiseTh;
+      } else if (cellular && cellularTh != null) {
+        tile.th = cellularTh;
+      } else {
+        tile.th = baseTh;
       }
     }
   }
@@ -241,6 +313,7 @@ class MapController {
     if (save) tile.seed = saveManager.intFromSaveObj(save, 'seed');
     const gameMap = new GameMap(tile);
     this.gameMaps.set(i, gameMap);
+    this.setTerrainHeightsForMap_(gameMap);
     /**
      * @param {string} name
      * @param {!Set.<number>} addTo
@@ -417,7 +490,7 @@ class MapController {
 
     let particleDead = false;
     for (const particle of this.particles) {
-      particle.update(elapsed);
+      particle.update(elapsed, this);
       if (particle.dead) {
         particleDead = true;
         particle.clear3DData();

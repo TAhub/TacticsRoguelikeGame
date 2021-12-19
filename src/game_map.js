@@ -22,6 +22,7 @@ class GameMapTile {
   constructor(x, y, tileset) {
     this.x = x;
     this.y = y;
+    this.th = 0;
     this.tileset = tileset;
     /** @type {!Array.<!Creature>} */
     this.creatures = [];
@@ -108,8 +109,6 @@ class GameMapTile {
    * @private
    */
   calculateOneScreenSpaceCorner_(camera, xA, yA) {
-    // TODO: this algorithm does not seem to project correctly at all
-    // camera angles...
     const point = new THREE.Vector3(this.x + xA, 0, this.y + yA);
     const vector = point.project(camera);
     vector.x = gfxScreenWidth * (vector.x + 1) / 2;
@@ -196,8 +195,35 @@ class GameMapTile {
     }
     const geometry = new THREE.PlaneGeometry(1, 1);
     const plane = new THREE.Mesh(geometry, material);
-    plane.position.set(this.x + 0.5, 0, this.y + 0.5);
+    plane.position.set(this.x + 0.5, this.th * gfxThScale, this.y + 0.5);
     plane.rotation.x = -Math.PI / 2;
+    group.add(plane);
+
+    // Store for later.
+    this.geometryCache.push(geometry);
+    this.materialCache.push(material);
+    this.meshCache.push(plane);
+  }
+
+  /**
+   * @param {!THREE.Group} group
+   * @param {!GameMapTile} oTile
+   * @param {number} x1
+   * @param {number} y1
+   * @param {number} x2
+   * @param {number} y2
+   * @private
+   */
+  addArbitraryLedgeToGroup_(group, oTile, x1, y1, x2, y2) {
+    const width = calcDistance(x2 - x1, y2 - y1);
+    const height = (this.th - oTile.th) * gfxThScale;
+    const geometry = new THREE.PlaneGeometry(width, height);
+    const color = getHexColor(this.getColor_('ledge'));
+    const material = new THREE.MeshStandardMaterial({color});
+    const plane = new THREE.Mesh(geometry, material);
+    plane.position.set(
+        (x2 + x1) / 2, (oTile.th * gfxThScale) + height / 2, (y2 + y1) / 2);
+    plane.rotation.y = normalizeAngle(calcAngle(x2 - x1, y2 - y1) + Math.PI);
     group.add(plane);
 
     // Store for later.
@@ -213,7 +239,6 @@ class GameMapTile {
    * @param {number} y1
    * @param {number} x2
    * @param {number} y2
-   * @return {THREE.Mesh}
    * @private
    */
   addArbitraryWallToGroup_(group, rng, x1, y1, x2, y2) {
@@ -224,7 +249,8 @@ class GameMapTile {
     const map = gfx.getSpriteAsTexture(sprite, color);
     const material = new THREE.MeshStandardMaterial({map});
     const plane = new THREE.Mesh(geometry, material);
-    plane.position.set((x2 + x1) / 2, 0.5, (y2 + y1) / 2);
+    plane.position.set(
+        (x2 + x1) / 2, 0.5 + this.th * gfxThScale, (y2 + y1) / 2);
     plane.rotation.y = calcAngle(x2 - x1, y2 - y1);
     group.add(plane);
 
@@ -239,8 +265,6 @@ class GameMapTile {
     this.geometryCache.push(geometry);
     this.materialCache.push(material);
     this.meshCache.push(plane);
-
-    return plane;
   }
 
   /**
@@ -285,11 +309,28 @@ class GameMapTile {
   /**
    * @param {!THREE.Group} group
    * @param {!MapController} mapController
+   * @param {number} xW
+   * @param {number} yW
+   * @private
+   */
+  addLedgeToGroup_(group, mapController, xW, yW) {
+    const i = toI(this.x + xW, this.y + yW);
+    if (!this.doorIds.has(i) || this.doorIds.get(i) != 0) return;
+    const oTile = mapController.tileAt(this.x + xW, this.y + yW);
+    if (!oTile || oTile.th >= this.th) return;
+    const [x1, y1] = this.getWallEndPoint_(xW, yW, false);
+    const [x2, y2] = this.getWallEndPoint_(xW, yW, true);
+    this.addArbitraryLedgeToGroup_(group, oTile, x1, y1, x2, y2);
+  }
+
+  /**
+   * @param {!THREE.Group} group
+   * @param {!MapController} mapController
    * @param {!THREE.PerspectiveCamera} camera
    */
   addToGroup(group, mapController, camera) {
     if (this.item) {
-      this.item.addToGroup(group, camera, this.x + 0.5, this.y + 0.5);
+      this.item.addToGroup(group, camera, this.x + 0.5, this.y + 0.5, this.th);
     }
     if (this.meshCache.length > 0) {
       // No need to make this stuff again!
@@ -303,6 +344,10 @@ class GameMapTile {
     this.addWallToGroup_(group, rng, 1, 0);
     this.addWallToGroup_(group, rng, 0, -1);
     this.addWallToGroup_(group, rng, 0, 1);
+    this.addLedgeToGroup_(group, mapController, -1, 0);
+    this.addLedgeToGroup_(group, mapController, 1, 0);
+    this.addLedgeToGroup_(group, mapController, 0, -1);
+    this.addLedgeToGroup_(group, mapController, 0, 1);
     this.addFloorToGroup_(group, rng);
   }
 
