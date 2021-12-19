@@ -456,9 +456,11 @@ class CharacterCreatorPlugin extends GamePlugin {
         }
       }
       if (this.levelUpMode) {
-        for (const stat of creature.stats) {
-          stat.number += creature.jobs[latestI].getStatModifierFor(stat.type);
-        }
+        creature.stats = creature.stats.map((stat) => {
+          const bonus = creature.jobs[latestI].getStatModifierFor(stat.type);
+          return new Stat(
+              stat.type, stat.number + bonus, creature.species, creature.jobs);
+        });
       } else {
         this.updateStatArray_(creature);
       }
@@ -599,7 +601,8 @@ class CharacterCreatorPlugin extends GamePlugin {
     if (forStats) {
       creature.statPoints = resetValue.statPoints;
       creature.stats = resetValue.stats.map((stat) => {
-        return new Stat(stat.type, stat.number, creature.species);
+        return new Stat(
+            stat.type, stat.number, creature.species, creature.jobs);
       });
     }
     if (forSkills) {
@@ -617,7 +620,7 @@ class CharacterCreatorPlugin extends GamePlugin {
     const statPoints = creature.statPoints;
     const skillPoints = creature.skillPoints;
     const stats = creature.stats.map((stat) => {
-      return new Stat(stat.type, stat.number, creature.species);
+      return new Stat(stat.type, stat.number, creature.species, creature.jobs);
     });
     const skills = creature.skills.slice();
     return {statPoints, skillPoints, stats, skills};

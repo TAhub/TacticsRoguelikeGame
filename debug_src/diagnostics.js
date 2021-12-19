@@ -551,7 +551,7 @@ allDiagnostics.set('Bonus Source Diagnostic', () => {
       }
     }
   };
-  check('stats', (type) => new Stat(type, 11, new Species('')), (bS) => 4);
+  check('stats', (type) => new Stat(type, 11, new Species(''), []), (bS) => 4);
   check('species', (type) => new Species(type), (bS) => 10, 0);
   check('jobs', (type) => new Job(type), (bS) => 50, 2);
   check('skills', (type) => new Skill(type), (bS) => 12);

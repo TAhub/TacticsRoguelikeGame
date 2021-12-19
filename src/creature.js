@@ -75,7 +75,7 @@ class Creature {
     this.stats = [];
     const allStats = data.getCategoryEntriesArray('stats') || [];
     for (const type of allStats) {
-      this.stats.push(new Stat(type, 10, this.species));
+      this.stats.push(new Stat(type, 10, this.species, this.jobs));
     }
     /** @type {!Array.<!Skill>} */
     this.skills = [];

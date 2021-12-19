@@ -3,11 +3,17 @@ class Stat extends BonusSource {
    * @param {string} type
    * @param {number} number
    * @param {!Species} species
+   * @param {!Array.<!Job>} jobs
    */
-  constructor(type, number, species) {
+  constructor(type, number, species, jobs) {
     super(type);
     this.number = number;
-    this.species = species;
+
+    // Calculate the extra max number.
+    this.extraMaxNumber = species.getStatModifierFor(this.type);
+    for (const job of jobs) {
+      this.extraMaxNumber += job.getStatModifierFor(this.type);
+    }
   }
 
   /** @return {string} */
@@ -17,7 +23,7 @@ class Stat extends BonusSource {
 
   /** @return {number} */
   get maxNumber() {
-    return 25 + this.species.getStatModifierFor(this.type);
+    return 20 + this.extraMaxNumber;
   }
 
   /**

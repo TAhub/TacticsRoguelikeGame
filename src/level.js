@@ -49,8 +49,9 @@ class Level extends BonusSource {
     const numSkillPoints = 1 + Math.floor(this.number / mechLevelsPerSkill);
     const numStatPoints = (this.number - numSkillPoints - 1 ) / 4;
     let defense = this.scalingBonus;
-    defense +=
-        (new Stat('physique', 10 + numStatPoints, new Species(''))).attackPower;
+    const scaledStat =
+        new Stat('physique', 10 + numStatPoints, new Species(''), []);
+    defense += scaledStat.attackPower;
     const skill = new Skill('enemy');
     defense += skill.defense * numSkillPoints;
     return Math.floor(defense);
