@@ -153,7 +153,10 @@ class CharacterCreatorPlugin extends GamePlugin {
         });
 
         if (creature.jobs.length < creature.desiredNumJobs) {
-          // TODO: job picker, in "level-up mode"
+          const header = creature.jobs.length == 0 ? 'First Job' : 'Second Job';
+          headerWrapper(header, () => {
+            startX = this.addJobPicker_(creature, startX, pSize + headerHeight);
+          });
         }
 
         let statHeaderName = 'Stats';
@@ -172,7 +175,9 @@ class CharacterCreatorPlugin extends GamePlugin {
               creature, startX, pSize + headerHeight);
         });
 
-        // TODO: job picker, in "initial mode"
+        headerWrapper('Job', () => {
+          startX = this.addJobPicker_(creature, startX, pSize + headerHeight);
+        });
 
         headerWrapper('Stats', () => {
           startX = this.addStatArrayPicker_(
@@ -428,6 +433,49 @@ class CharacterCreatorPlugin extends GamePlugin {
    * @return {number} startX
    * @private
    */
+  addJobPicker_(creature, startX, startY) {
+    const sampleFn = (type) => {
+      const job = new Job(type);
+      if (job.reqSpecies) {
+        if (!job.reqSpecies.includes(creature.species.type)) return null;
+      }
+      if (this.levelUpMode) {
+        if (creature.jobs.some((job) => job.type == type)) return null;
+      }
+      return job;
+    };
+    const clickFn = (type) => {
+      if (creature.jobs.some((job) => job.type == type)) return;
+      const latestI = creature.jobs.length - 1;
+      if (creature.jobs.length < creature.desiredNumJobs) {
+        creature.jobs.push(new Job(type));
+      } else {
+        creature.jobs[latestI].type = type;
+        if (!this.levelUpMode) {
+          this.pickCosmeticShowGearFor_(creature);
+        }
+      }
+      if (this.levelUpMode) {
+        for (const stat of creature.stats) {
+          stat.number += creature.jobs[latestI].getStatModifierFor(stat.type);
+        }
+      } else {
+        this.updateStatArray_(creature);
+      }
+      this.remakeUI_();
+    };
+    const selected = creature.jobs.map((t) => t.type);
+    return this.addGenericPicker_(creature, startX, startY, 'jobs',
+        {sampleFn, clickFn, selected});
+  }
+
+  /**
+   * @param {!Creature} creature
+   * @param {number} startX
+   * @param {number} startY
+   * @return {number} startX
+   * @private
+   */
   addSkillPicker_(creature, startX, startY) {
     const sampleFn = (type) => {
       const skill = new Skill(type);
@@ -515,11 +563,27 @@ class CharacterCreatorPlugin extends GamePlugin {
    * @private
    */
   pickCosmeticShowGearFor_(creature) {
-    creature.weapon = new Weapon('dagger:0');
+    for (const type of creature.jobs[0].proficiencies) {
+      creature.weapon = new Weapon(type + ':0');
+      if (creature.weapon.astraCost == 0) break;
+    }
+    if (creature.weapon.astraCost > 0) creature.weapon = null;
     creature.armors = [];
-    creature.armors.push(new Armor('shirt:0'));
-    const pantsType = creature.species.gender ? 'skirt:0' : 'pants:0';
-    creature.armors.push(new Armor(pantsType));
+    switch (creature.jobs[0].armorProfiencyLevel) {
+      case 0:
+        creature.armors.push(new Armor('shirt:0'));
+        const pantsType = creature.species.gender ? 'skirt:0' : 'pants:0';
+        creature.armors.push(new Armor(pantsType));
+        break;
+      case 1:
+        creature.armors.push(new Armor('jerkin:0'));
+        creature.armors.push(new Armor('leggings:0'));
+        break;
+      case 2:
+        creature.armors.push(new Armor('breastplate:0'));
+        creature.armors.push(new Armor('greaves:0'));
+        break;
+    }
   }
 
   /**

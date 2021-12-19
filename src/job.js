@@ -9,9 +9,9 @@ class Job extends BonusSource {
     return this.getNumberValue('armorProfiencyLevel');
   }
 
-  /** @return {!Array.<string>} */
+  /** @return {?Array.<string>} */
   get reqSpecies() {
-    return this.getArrayValue('reqSpecies') || [];
+    return this.getArrayValue('reqSpecies');
   }
 
   /** @return {number} */
