@@ -82,6 +82,9 @@ THREE.Object3D = class {
 
   /** @param {number} z */
   translateZ(z) {};
+
+  /** @param {number} angle */
+  rotateZ(angle) {};
 }
 
 THREE.Scene = class extends THREE.Object3D {

@@ -4,6 +4,7 @@
  *   h: (number|undefined),
  *   drawBack: (number|undefined),
  *   renderOrder: (number|undefined),
+ *   rockAngle: (number|undefined),
  * }}
  */
 let SpriteObjectOptions;
@@ -96,6 +97,10 @@ class SpriteObject {
     h += th * gfxThScale;
     this.mesh.position.set(x, h, y);
     this.mesh.lookAt(camera.position.x, h, camera.position.z);
+
+    if (optOptions && optOptions.rockAngle) {
+      this.mesh.rotateZ(optOptions.rockAngle);
+    }
 
     if (optOptions && optOptions.renderOrder != undefined) {
       this.mesh.renderOrder = optOptions.renderOrder;

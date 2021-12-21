@@ -108,6 +108,7 @@ class Creature {
     this.th = 0;
     this.floorTh = 0;
     this.facing = 0;
+    this.rockAngle = 0;
     this.hasMove = false;
     this.hasAction = false;
     /** @type {!Map.<!Weapon.Status, number>} */
@@ -810,8 +811,8 @@ class Creature {
 
     // Draw.
     if (!this.spriteObject) this.makeAppearance();
-    this.spriteObject.addToGroup(
-        group, camera, x, y, this.th, {facing: this.facing});
+    this.spriteObject.addToGroup(group, camera, x, y, this.th,
+        {facing: this.facing, rockAngle: this.rockAngle});
     if (!this.barSpriteObject) this.makeBar();
     this.barSpriteObject.addToGroup(
         group, camera, this.cX, this.cY, this.th, {drawBack: -0.05});
@@ -1672,6 +1673,7 @@ class Creature {
       });
       const fn = () => {
         this.breakEngagement_();
+        let rockDir = Math.random() < 0.5 ? 1 : -1;
         for (const i of path) {
           const x = toX(i);
           const y = toY(i);
@@ -1695,6 +1697,7 @@ class Creature {
               newTh = this.th;
               newFloorTh = this.floorTh;
               this.facing = calcAngle(x - oldX, y - oldY);
+              rockDir *= -1; // Alternate rock angle each move.
             }
             progress = Math.min(1, progress + elapsed * 12);
             this.x = oldX + (x - oldX) * progress;
@@ -1714,7 +1717,8 @@ class Creature {
             }
             this.floorTh = oldFloorTh + (newFloorTh - oldFloorTh) * iProgress;
 
-            // TODO: rock back and forth visually (rotate) while walking...
+            // Also rock back and forth.
+            this.rockAngle = (0.5 - Math.abs(progress - 0.5)) * 0.075 * rockDir;
             return progress == 1;
           });
           if (optInterceptionFn) {
