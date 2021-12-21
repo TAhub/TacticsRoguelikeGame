@@ -281,8 +281,11 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
     checkLoot(overallLoot, desiredOverall, ' overall');
   }
 
-  /** @private */
-  tileAccessibilityTest_() {
+  /**
+   * @param {Set.<number>=} optKeys
+   * @private
+   */
+  tileAccessibilityTest_(optKeys) {
     const accessibleTiles = new Set();
     const toExplore = new Set();
     const cursorI = toI(this.cursorX, this.cursorY);
@@ -294,6 +297,13 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
       const tile = this.mapController.tileAt(toX(i), toY(i));
       for (const i of tile.doorIds.keys()) {
         if (accessibleTiles.has(i)) continue;
+
+        const keyId = tile.doorIds.get(i);
+        if (keyId != 0) {
+          if (!optKeys) continue;
+          if (!optKeys.has(keyId)) continue;
+        }
+
         const otherTile = this.mapController.tileAt(toX(i), toY(i));
         if (!otherTile) {
           console.log('--WARNING: Link to null tile: ' + i);
@@ -305,6 +315,15 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
         }
         accessibleTiles.add(i);
         toExplore.add(i);
+
+        if (tile.item && tile.item.contents == Item.Code.Key) {
+          if (!optKeys) optKeys = new Set();
+          if (!optKeys.has(tile.item.keyCode)) {
+            optKeys.add(tile.item.keyCode);
+            this.tileAccessibilityTest_(optKeys);
+          }
+          return;
+        }
       }
     }
     const inaccessibleTiles = new Set();
