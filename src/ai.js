@@ -58,6 +58,10 @@ class AI {
         value += AI.zoningAttacksValueModifier_(
             mapController, info.zoningAttacks);
 
+        // Finally, the value of the attack gets a small random factor,
+        // to make the AI a bit less predictable.
+        value *= 0.85 + 0.3 * Math.random();
+
         if (value <= best.value) continue;
         best = {info, value};
       }
@@ -132,9 +136,12 @@ class AI {
     if (!active) return 0;
     const engaged = active.engaged;
     if (!engaged) return 0;
-    // AI should be extra-reluctant to break engagement, so give them a bigger
-    // penalty than the damage would suggest.
-    return -1.5 * AI.oneAttackValue_(
+    // The AI should dislike breaking engagement, but not completely
+    // avoid it, or else disengage damage will be irrelevant.
+    // The more life the AI has left, the more careless they are with
+    // breaking engagement.
+    const lifeFactor = active.life / active.maxLife;
+    return -(1 - lifeFactor * 0.3) * AI.oneAttackValue_(
         engaged, active, engaged.disengageWeapon,
         Creature.AttackType.Disengage);
   }
