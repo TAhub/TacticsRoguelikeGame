@@ -45,6 +45,11 @@ class Level extends BonusSource {
   }
 
   /** @return {number} */
+  get initiative() {
+    return this.scalingBonus;
+  }
+
+  /** @return {number} */
   get scalingDefenseValue() {
     const numSkillPoints = 1 + Math.floor(this.number / mechLevelsPerSkill);
     const numStatPoints = (this.number - numSkillPoints - 1 ) / 4;

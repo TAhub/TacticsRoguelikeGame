@@ -141,6 +141,8 @@ class Creature {
     this.summonModifier = 0;
     this.summonAwake = true;
     this.exhaustedTechTypes = [];
+    /** @type {?number} */
+    this.initiativeRoll;
 
     // Now that everything has been set, do an initial refill.
     this.refill();
@@ -359,9 +361,11 @@ class Creature {
   }
 
   /** @return {number} */
-  get initiative() {
-    let initiative = 100 + this.summonModifier;
-    initiative += this.tallyBonusSources_((bS) => bS.initiative);
+  getModifiedInitiative() {
+    if (this.initiativeRoll == null) {
+      this.initiativeRoll = 50 * Math.random();
+    }
+    let initiative = this.initiative + this.initiativeRoll;
     if (!this.summonAwake) {
       // If you are a summon and you are asleep, set your initiative super low,
       // so that you will still get a "turn" to take DoT damage, but you won't
@@ -369,6 +373,13 @@ class Creature {
       // actions.
       initiative -= 1000;
     }
+    return initiative;
+  }
+
+  /** @return {number} */
+  get initiative() {
+    let initiative = 100 + this.summonModifier;
+    initiative += this.tallyBonusSources_((bS) => bS.initiative);
     return initiative;
   }
 

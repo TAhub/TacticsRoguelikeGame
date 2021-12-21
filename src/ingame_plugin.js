@@ -126,7 +126,9 @@ class IngamePlugin extends GamePlugin {
       while (topBarCreatures.length < 6) {
         mapC.pickNewActive();
         if (mapC.active) {
-          topBarCreatures.push(mapC.active);
+          if (mapC.active.summonAwake) {
+            topBarCreatures.push(mapC.active);
+          }
         } else {
           mapC.turnTaken = new Set();
         }

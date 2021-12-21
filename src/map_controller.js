@@ -281,7 +281,8 @@ class MapController {
       if (creature.encounterId) continue;
       if (this.turnTaken.has(creature)) continue;
       if (this.active) {
-        if (this.active.initiative >= creature.initiative) continue;
+        if (this.active.getModifiedInitiative() >=
+            creature.getModifiedInitiative()) continue;
       }
       this.active = creature;
     }
