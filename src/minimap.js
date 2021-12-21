@@ -16,7 +16,7 @@ class Minimap {
     if (DEBUG) debugTrackTime('Minimap.draw');
 
     const active = mapController.active;
-    const scale = 6;
+    const scale = 4;
     const angle = mapController.cameraAngle;
 
     const bufferId = [active.x, active.y, angle, w, h].join(':');
