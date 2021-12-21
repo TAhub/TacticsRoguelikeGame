@@ -292,7 +292,7 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
     toExplore.add(cursorI);
     accessibleTiles.add(cursorI);
     while (toExplore.size > 0) {
-      const i = Array.from(toExplore.values())[0];
+      const i = toExplore.values().next().value;
       toExplore.delete(i);
       const tile = this.mapController.tileAt(toX(i), toY(i));
       for (const i of tile.doorIds.keys()) {

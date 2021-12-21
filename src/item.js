@@ -37,7 +37,7 @@ class Item {
           color = data.getColorByNameSafe('iron');
         } else {
           const slotFillers = this.contents.slotFillers;
-          sprite = Array.from(slotFillers.values())[0];
+          sprite = slotFillers.values().next().value;
           color = this.contents.color;
           h = 0.25;
         }

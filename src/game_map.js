@@ -454,6 +454,60 @@ class GameMap {
     if (overworldMapTile.hasCampfire) {
       this.placeObject_(rng, Item.Code.Campfire);
     }
+
+    this.setTerrainHeights_();
+  }
+
+  /** @private */
+  setTerrainHeights_() {
+    let cellularThMap = new Map();
+    const size = mapGameMapSize * mapTileUpscale * mapSecondTileUpscale;
+    const rng = seededRNG(1 + toI(this.overworldX, this.overworldY));
+
+    // Initial state.
+    for (let y = 0; y < size; y++) {
+      for (let x = 0; x < size; x++) {
+        cellularThMap.set(toI(x, y), rng() < 0.47);
+      }
+    }
+
+    // Cellular steps.
+    for (let step = 0; step < 5; step++) {
+      const newCellularThMap = new Map();
+      for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+          let surrounding = 0;
+          // The edges are always false.
+          if (x > 0 && y > 0 && x < size - 1 && y < size - 1) {
+            for (let y2 = y - 1; y2 <= y + 1; y2++) {
+              for (let x2 = x - 1; x2 <= x + 1; x2++) {
+                surrounding += cellularThMap.get(toI(x2, y2)) ? 1 : 0;
+              }
+            }
+          }
+          newCellularThMap.set(toI(x, y), surrounding >= 5);
+        }
+      }
+      cellularThMap = newCellularThMap;
+    }
+
+    // Choose th values for tiles.
+    const tileset = this.tiles.values().next().value.tileset;
+    const baseTh = data.getNumberValue('tilesets', tileset, 'baseTh') || 0;
+    const noiseTh = data.getNumberValue('tilesets', tileset, 'noiseTh');
+    const cellularTh = data.getNumberValue('tilesets', tileset, 'cellularTh');
+    for (const tile of this.tiles.values()) {
+      const noise = rng() < 0.15;
+      const cellular =
+          cellularThMap.get(toI(tile.x - this.xOff, tile.y - this.yOff));
+      if (noise && noiseTh != null) {
+        tile.th = noiseTh;
+      } else if (cellular && cellularTh != null) {
+        tile.th = cellularTh;
+      } else {
+        tile.th = baseTh;
+      }
+    }
   }
 
   /** @param {!THREE.Group} group */
