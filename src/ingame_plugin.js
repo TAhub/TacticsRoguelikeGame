@@ -413,7 +413,7 @@ class IngamePlugin extends GamePlugin {
           if (!(item.contents instanceof Equipment)) return false;
           if ((item.contents instanceof Weapon)) {
             if (!item.contents.noProficiency) {
-              const hasProficiency = active.jobs.some((job) => {
+              const hasProficiency = creature.jobs.some((job) => {
                 return job.proficiencies.includes(item.contents.type);
               });
               if (!hasProficiency) return false;
