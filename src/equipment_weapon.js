@@ -229,6 +229,7 @@ class Weapon extends Equipment {
 
   /** @return {boolean} */
   get armorPiercing() {
+    if (this.magic || this.summon) return false;
     if (this.baseWeapon && this.baseWeapon.armorPiercing) return true;
     return this.getBooleanValue('armorPiercing');
   }
