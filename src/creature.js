@@ -764,9 +764,9 @@ class Creature {
       };
 
       const [xD, yD, hD] = getPosition(this.chargingTarget);
-      const color = data.getColorByNameSafe('white'); // TODO: color of spell
+      const color = this.chargingWeapon.animProjColor;
       const alpha = 0.5;
-      const radius = 0.075; // TODO: based on cost of spell
+      const radius = 0.025 + this.chargingWeapon.astraCost * 0.005;
       const particle = Particle.makeLineParticle(
           xD, yD, hD, color, alpha, radius);
       [particle.x, particle.y, particle.h] = getPosition(this);
