@@ -726,9 +726,18 @@ class Creature {
       if (this.actions[0](elapsed)) {
         this.actions.shift();
       }
-    } else if (this.engaged) {
-      this.facing =
-          calcAngle(this.engaged.cX - this.cX, this.engaged.cY - this.cY);
+    } else {
+      // Actions meant to happen when the creature is not doing something.
+
+      if (this.engaged) {
+        this.facing =
+            calcAngle(this.engaged.cX - this.cX, this.engaged.cY - this.cY);
+      }
+
+      if (this.chargingTarget && this.chargingTarget.dead) {
+        this.chargingTarget = null;
+        this.chargingWeapon = null;
+      }
     }
     this.particleDelayTimer -= elapsed;
     if (this.particleDelayTimer <= 0) {
