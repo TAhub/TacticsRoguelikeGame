@@ -292,6 +292,12 @@ class Weapon extends Equipment {
     return this.getBooleanValue('animProjSkinColor');
   }
 
+  /** @return {boolean} */
+  get animProjGlows() {
+    if (this.baseWeapon && this.baseWeapon.animProjGlows) return true;
+    return this.getBooleanValue('animProjGlows');
+  }
+
   /** @return {string} */
   get animProjColor() {
     const color = this.getColorValue('animProjColor');

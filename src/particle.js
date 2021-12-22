@@ -21,6 +21,9 @@ class Particle {
     this.alpha = 1;
     this.color = '#FFFFFF';
     this.delay = 0;
+    /** @type {?string} */
+    this.lightColor;
+    this.lightIntensity = 0;
     /** @type {?number} */
     this.facing;
     /** @type {?SpriteObject} */
@@ -154,11 +157,20 @@ class Particle {
   }
 
   /**
-   * @param {!THREE.Group} group
+   * @param {!THREE.Group} dynamicMeshGroup
+   * @param {!THREE.Group} lightGroup
    * @param {!THREE.PerspectiveCamera} camera
    */
-  addToGroup(group, camera) {
+  addToGroup(dynamicMeshGroup, lightGroup, camera) {
     if (this.delay > 0) return;
+
+    if (this.lightColor && this.lightIntensity) {
+      const i = this.lightIntensity;
+      const d = 3 + i;
+      lightGroup.add(gfx.makeLight(
+          this.x, this.y, this.h, i, d, this.lightColor));
+    }
+
     if (this.xD != 0 || this.yD != 0 || this.hD != 0) {
       if (!this.mesh) {
         const color = getHexColor(this.color);
@@ -177,7 +189,7 @@ class Particle {
             curve, numSegments, thickness, roundness, /* closed= */ false);
         this.mesh = new THREE.Mesh(this.geometry, this.material);
       }
-      group.add(this.mesh);
+      dynamicMeshGroup.add(this.mesh);
     } else {
       if (!this.spriteObject) {
         this.spriteObject = new SpriteObject();
@@ -205,7 +217,8 @@ class Particle {
       }
       const options = {h: this.h, renderOrder: 1};
       if (this.facing != null) options.facing = this.facing;
-      this.spriteObject.addToGroup(group, camera, this.x, this.y, 0, options);
+      this.spriteObject.addToGroup(
+          dynamicMeshGroup, camera, this.x, this.y, 0, options);
     }
   }
 }

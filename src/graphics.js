@@ -65,10 +65,11 @@ class Graphics {
    * @param {number} h
    * @param {number} i
    * @param {number} d
+   * @param {string=} optC
    * @return {!THREE.Light}
    */
-  makeLight(x, y, h, i, d) {
-    const color = 0xFFFFFF;
+  makeLight(x, y, h, i, d, optC) {
+    const color = optC ? getHexColor(optC) : 0xFFFFFF;
     const light = new THREE.PointLight(color, i, d);
     light.position.set(x, h, y);
     return light;

@@ -784,21 +784,12 @@ class Creature {
           Particle.makeDropParticle(sprites, scale, color, scatter));
     }
     if (this.statuses.has(Weapon.Status.Burning)) {
-      if (Math.random() < 0.25) {
-        const color = data.getColorByNameSafe('fire');
-        const scatter = 0.1;
-        const sprites = [500, 501];
-        const scale = 0.1;
-        this.addGenericParticle_(
-            Particle.makePuffParticle(sprites, scale, color, scatter));
-      } else {
-        const color = data.getColorByNameSafe('smoke');
-        const scatter = 0.05;
-        const sprites = [502, 503, 504];
-        const scale = 0.4;
-        this.addGenericParticle_(
-            Particle.makePuffParticle(sprites, scale, color, scatter));
-      }
+      const color = data.getColorByNameSafe('smoke');
+      const scatter = 0.05;
+      const sprites = [502, 503, 504];
+      const scale = 0.4;
+      this.addGenericParticle_(
+          Particle.makePuffParticle(sprites, scale, color, scatter));
     }
   }
 
@@ -1306,6 +1297,10 @@ class Creature {
           projectile.hSpeed = (hD - projectile.h) / projectile.lifetime;
           projectile.facing = calcAngle(xD - projectile.x, yD - projectile.y);
           projectile.delay = weapon.animProjDelay * hit;
+          if (weapon.animProjGlows) {
+            projectile.lightColor = color;
+            projectile.lightIntensity = 0.25 + weapon.astraCost * 0.02;
+          }
           projectiles.push(projectile);
           this.cachedParticles.push(projectile);
         }

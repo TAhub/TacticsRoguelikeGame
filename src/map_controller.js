@@ -569,7 +569,7 @@ class MapController {
 
     // Add particles to the mesh group.
     for (const particle of this.particles) {
-      particle.addToGroup(this.dynamicMeshGroup, camera);
+      particle.addToGroup(this.dynamicMeshGroup, this.lightGroup, camera);
     }
 
     // Discover all visible tiles.
