@@ -1237,7 +1237,7 @@ class Creature {
 
     // Only move around if you can move. Turrets shouldn't move!
     if (this.moveDistance > 0) {
-      const stepDistance = weapon.projectileStep;
+      const stepDistance = weapon.animStep;
       const x = oldX + Math.cos(angle) * stepDistance;
       const y = oldY + Math.sin(angle) * stepDistance;
       this.moveAction_(x, y, 12, Math.random() < 0.5 ? 1 : -1, angle);
@@ -1274,22 +1274,22 @@ class Creature {
       this.effectAction(() => {
         if (!target) return;
         for (let hit = 0; hit < weapon.numHits; hit++) {
-          const sprite = weapon.projectileSprite;
-          let color = weapon.projectileColor;
-          if (weapon.projectileSkinColor) {
+          const sprite = weapon.animProjSprite;
+          let color = weapon.animProjColor;
+          if (weapon.animProjSkinColor) {
             color = this.species.getColor('skinColor');
           }
           const projectile = Particle.makeProjectileParticle(color, sprite);
           [projectile.x, projectile.y, projectile.h] = getPosition(this);
           const [xD, yD, hD] = getPosition(target);
-          const speed = weapon.projectileSpeed;
+          const speed = weapon.animProjSpeed;
           const distance = calcDistance(xD - projectile.x, yD - projectile.y);
           projectile.lifetime = distance / speed;
           projectile.xSpeed = (xD - projectile.x) / projectile.lifetime;
           projectile.ySpeed = (yD - projectile.y) / projectile.lifetime;
           projectile.hSpeed = (hD - projectile.h) / projectile.lifetime;
           projectile.facing = calcAngle(xD - projectile.x, yD - projectile.y);
-          projectile.delay = weapon.projectileDelay * hit;
+          projectile.delay = weapon.animProjDelay * hit;
           projectiles.push(projectile);
           this.cachedParticles.push(projectile);
         }

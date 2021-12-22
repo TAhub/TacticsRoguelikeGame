@@ -243,44 +243,44 @@ class Weapon extends Equipment {
   }
 
   /** @return {number} */
-  get projectileSprite() {
-    const sprite = this.getNumberValue('projectileSprite');
-    if (!sprite && this.baseWeapon) return this.baseWeapon.projectileSprite;
+  get animProjSprite() {
+    const sprite = this.getNumberValue('animProjSprite');
+    if (!sprite && this.baseWeapon) return this.baseWeapon.animProjSprite;
     return sprite || 0;
   }
 
   /** @return {number} */
-  get projectileDelay() {
-    const delay = this.getNumberValue('projectileDelay') || 0;
-    if (!delay && this.baseWeapon) return this.baseWeapon.projectileDelay;
+  get animProjDelay() {
+    const delay = this.getNumberValue('animProjDelay') || 0;
+    if (!delay && this.baseWeapon) return this.baseWeapon.animProjDelay;
     return delay / 100;
   }
 
   /** @return {number} */
-  get projectileStep() {
-    if (this.baseWeapon && this.baseWeapon.projectileStep) {
-      return this.baseWeapon.projectileStep;
+  get animStep() {
+    if (this.baseWeapon && this.baseWeapon.animStep) {
+      return this.baseWeapon.animStep;
     }
-    return (this.getNumberValue('projectileStep') || 0) / 100;
+    return (this.getNumberValue('animStep') || 0) / 100;
   }
 
   /** @return {number} */
-  get projectileSpeed() {
-    let speed = this.getNumberValue('projectileSpeed') || 0;
-    if (this.baseWeapon) speed += this.baseWeapon.projectileSpeed;
+  get animProjSpeed() {
+    let speed = this.getNumberValue('animProjSpeed') || 0;
+    if (this.baseWeapon) speed += this.baseWeapon.animProjSpeed;
     return speed || 1;
   }
 
   /** @return {boolean} */
-  get projectileSkinColor() {
-    if (this.baseWeapon && this.baseWeapon.projectileSkinColor) return true;
-    return this.getBooleanValue('projectileSkinColor');
+  get animProjSkinColor() {
+    if (this.baseWeapon && this.baseWeapon.animProjSkinColor) return true;
+    return this.getBooleanValue('animProjSkinColor');
   }
 
   /** @return {string} */
-  get projectileColor() {
-    const color = this.getColorValue('projectileColor');
-    if (!color && this.baseWeapon) return this.baseWeapon.projectileColor;
+  get animProjColor() {
+    const color = this.getColorValue('animProjColor');
+    if (!color && this.baseWeapon) return this.baseWeapon.animProjColor;
     return color || this.color;
   }
 
