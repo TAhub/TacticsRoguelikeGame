@@ -265,6 +265,20 @@ class Weapon extends Equipment {
   }
 
   /** @return {number} */
+  get animPreStepPause() {
+    let pause = this.getNumberValue('animPreStepPause') || 0;
+    if (this.baseWeapon) pause += this.baseWeapon.animPreStepPause;
+    return Math.max(0, pause) / 100;
+  }
+
+  /** @return {number} */
+  get animPostStepPause() {
+    let pause = this.getNumberValue('animPostStepPause') || 0;
+    if (this.baseWeapon) pause += this.baseWeapon.animPostStepPause;
+    return Math.max(0, pause) / 100;
+  }
+
+  /** @return {number} */
   get animProjSpeed() {
     let speed = this.getNumberValue('animProjSpeed') || 0;
     if (this.baseWeapon) speed += this.baseWeapon.animProjSpeed;

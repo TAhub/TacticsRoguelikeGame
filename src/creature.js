@@ -1235,6 +1235,14 @@ class Creature {
       }
     }
 
+    let preStepPause = weapon.animPreStepPause;
+    if (preStepPause > 0) {
+      this.actions.push((elapsed) => {
+        preStepPause -= elapsed;
+        return preStepPause <= 0;
+      });
+    }
+
     // Only move around if you can move. Turrets shouldn't move!
     if (this.moveDistance > 0) {
       const stepDistance = weapon.animStep;
@@ -1243,6 +1251,14 @@ class Creature {
       this.moveAction_(x, y, 12, Math.random() < 0.5 ? 1 : -1, angle);
     }
     this.effectAction(() => this.facing = angle);
+
+    let postStepPause = weapon.animPostStepPause;
+    if (postStepPause > 0) {
+      this.actions.push((elapsed) => {
+        postStepPause -= elapsed;
+        return postStepPause <= 0;
+      });
+    }
 
     if (weapon.summon) {
       this.effectAction(() => {
