@@ -251,9 +251,17 @@ class Weapon extends Equipment {
 
   /** @return {number} */
   get projectileDelay() {
-    let delay = this.getNumberValue('projectileDelay') || 0;
+    const delay = this.getNumberValue('projectileDelay') || 0;
     if (!delay && this.baseWeapon) return this.baseWeapon.projectileDelay;
     return delay / 100;
+  }
+
+  /** @return {number} */
+  get projectileStep() {
+    if (this.baseWeapon && this.baseWeapon.projectileStep) {
+      return this.baseWeapon.projectileStep;
+    }
+    return (this.getNumberValue('projectileStep') || 0) / 100;
   }
 
   /** @return {number} */

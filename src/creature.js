@@ -1187,14 +1187,19 @@ class Creature {
    * @private
    */
   attack_(targetOrTile, weapon, attackType, optMapController) {
+    let [oldX, oldY] = [this.x, this.y];
+    let angle = 0;
+
     let target;
     let tile;
     if (weapon.summon) {
       if (targetOrTile instanceof Creature) return;
       tile = targetOrTile;
+      angle = calcAngle(tile.x + 0.5 - this.cX, tile.y + 0.5 - this.cY);
     } else {
       if (targetOrTile instanceof GameMapTile) return;
       target = targetOrTile;
+      angle = calcAngle(target.cX - this.cX, target.cY - this.cY);
     }
 
     if (weapon.teleports && optMapController &&
@@ -1224,15 +1229,20 @@ class Creature {
         }
       });
       if (!alreadyAdjacent && closestTile) {
-        this.removeFromTiles(optMapController);
-        this.x = closestTile.x;
-        this.y = closestTile.y;
-        this.addToTiles(optMapController);
+        [oldX, oldY] = [closestTile.x, closestTile.y];
+        this.moveAction_(closestTile.x, closestTile.y, 20,
+            Math.random() < 0.5 ? 1 : -1, null, optMapController);
       }
     }
 
-    // TODO: animation
-    // TODO: be sure set facing in the animation!
+    // Only move around if you can move. Turrets shouldn't move!
+    if (this.moveDistance > 0) {
+      const stepDistance = weapon.projectileStep;
+      const x = oldX + Math.cos(angle) * stepDistance;
+      const y = oldY + Math.sin(angle) * stepDistance;
+      this.moveAction_(x, y, 12, Math.random() < 0.5 ? 1 : -1, angle);
+    }
+    this.effectAction(() => this.facing = angle);
 
     if (weapon.summon) {
       this.effectAction(() => {
@@ -1350,7 +1360,8 @@ class Creature {
       });
     }
 
-    // TODO: animation return
+    // Move back to where you were, if necessary.
+    this.moveAction_(oldX, oldY, 8, Math.random() < 0.5 ? 1 : -1, angle);
   }
 
   /**
@@ -1664,6 +1675,70 @@ class Creature {
   }
 
   /**
+   * @param {number} x
+   * @param {number} y
+   * @param {number} speed
+   * @param {number} rockDir
+   * @param {number|null} forceFacing
+   * @param {MapController=} optMapController
+   * @private
+   */
+  moveAction_(x, y, speed, rockDir, forceFacing, optMapController) {
+    let progress = 0;
+    let oldX = 0;
+    let oldY = 0;
+    let oldTh = 0;
+    let newTh = 0;
+    let oldFloorTh = 0;
+    let newFloorTh = 0;
+    this.actions.push((elapsed) => {
+      if (progress == 0) {
+        oldX = this.x;
+        oldY = this.y;
+        oldTh = this.th;
+        oldFloorTh = this.floorTh;
+        if (optMapController) {
+          this.removeFromTiles(optMapController);
+          this.x = x;
+          this.y = y;
+          this.addToTiles(optMapController);
+          newTh = this.th;
+          newFloorTh = this.floorTh;
+        } else {
+          // If no map controller is provided, only pretend to move.
+          this.x = x;
+          this.y = y;
+          newTh = oldTh;
+          newFloorTh = oldFloorTh;
+        }
+        if (forceFacing != null) this.facing = forceFacing;
+        else this.facing = calcAngle(x - oldX, y - oldY);
+      }
+      progress = Math.min(1, progress + elapsed * speed);
+      this.x = oldX + (x - oldX) * progress;
+      this.y = oldY + (y - oldY) * progress;
+      this.th = oldTh + (newTh - oldTh) * progress;
+
+      // floorTh interpolates in a jerky way, moving slowly then zipping
+      // in the middle, to make it clearer that it has to do with the
+      // terrain and not you, as much.
+      let iProgress = 0;
+      if (progress < 0.3) {
+        iProgress = lerp(0, 0.1, progress / 0.3);
+      } else if (progress > 0.7) {
+        iProgress = lerp(0.9, 1, (progress - 0.7) / 0.3);
+      } else {
+        iProgress = lerp(0.1, 0.9, (progress - 0.3) / 0.4);
+      }
+      this.floorTh = oldFloorTh + (newFloorTh - oldFloorTh) * iProgress;
+
+      // Also rock back and forth.
+      this.rockAngle = (0.5 - Math.abs(progress - 0.5)) * 0.075 * rockDir;
+      return progress == 1;
+    });
+  }
+
+  /**
    * @param {!MapController} mapController
    * @param {(function())=} optInterceptionFn
    * @return {!Map.<number, !AttackOrMoveInfo>} moves
@@ -1729,52 +1804,8 @@ class Creature {
         this.breakEngagement_();
         let rockDir = Math.random() < 0.5 ? 1 : -1;
         for (const i of path) {
-          const x = toX(i);
-          const y = toY(i);
-          let progress = 0;
-          let oldX = 0;
-          let oldY = 0;
-          let oldTh = 0;
-          let newTh = 0;
-          let oldFloorTh = 0;
-          let newFloorTh = 0;
-          this.actions.push((elapsed) => {
-            if (progress == 0) {
-              oldX = this.x;
-              oldY = this.y;
-              oldTh = this.th;
-              oldFloorTh = this.floorTh;
-              this.removeFromTiles(mapController);
-              this.x = x;
-              this.y = y;
-              this.addToTiles(mapController);
-              newTh = this.th;
-              newFloorTh = this.floorTh;
-              this.facing = calcAngle(x - oldX, y - oldY);
-              rockDir *= -1; // Alternate rock angle each move.
-            }
-            progress = Math.min(1, progress + elapsed * 12);
-            this.x = oldX + (x - oldX) * progress;
-            this.y = oldY + (y - oldY) * progress;
-            this.th = oldTh + (newTh - oldTh) * progress;
-
-            // floorTh interpolates in a jerky way, moving slowly then zipping
-            // in the middle, to make it clearer that it has to do with the
-            // terrain and not you, as much.
-            let iProgress = 0;
-            if (progress < 0.3) {
-              iProgress = lerp(0, 0.1, progress / 0.3);
-            } else if (progress > 0.7) {
-              iProgress = lerp(0.9, 1, (progress - 0.7) / 0.3);
-            } else {
-              iProgress = lerp(0.1, 0.9, (progress - 0.3) / 0.4);
-            }
-            this.floorTh = oldFloorTh + (newFloorTh - oldFloorTh) * iProgress;
-
-            // Also rock back and forth.
-            this.rockAngle = (0.5 - Math.abs(progress - 0.5)) * 0.075 * rockDir;
-            return progress == 1;
-          });
+          this.moveAction_(toX(i), toY(i), 12, rockDir, null, mapController);
+          rockDir *= -1;
           if (optInterceptionFn) {
             this.effectAction(optInterceptionFn);
           }
