@@ -70,6 +70,10 @@
     <entry name="bone" color="#DDDBD5" />
     <entry name="flesh" color="#D68F9B" />
     <entry name="blood" color="#BD0F0F" />
+    <entry name="arcana" color="#9942F0" />
+    <entry name="bullet" color="#FFCFB3" />
+    <entry name="magical water" color="#75D1F0" />
+    <entry name="lightning" color="#F7E9BA" />
     <!-- body colors -->
     <entry name="yellow fur" color="#DEDDBA" />
     <entry name="brown fur" color="#957250" />
@@ -598,49 +602,59 @@
   </category> <!-- species appearances -->
   <category name="weapons">
     <!-- special -->
-    <entry name="unarmed" weaponAccuracy="100" />
-    <entry name="tackle" weaponAccuracy="80">
+    <entry name="unarmed" weaponAccuracy="100" numHits="2"
+      projectileSprite="1" projectileSpeed="5" projectileSkinColor="1" projectileDelay="30" /> <!-- TODO: projectile sprite and scale -->
+    <entry name="tackle" weaponAccuracy="80"
+      projectileSprite="1" projectileSpeed="4" projectileSkinColor="1"> <!-- TODO: projectile sprite and scale -->
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- tackle -->
-    <entry name="claws" weaponAccuracy="90" numHits="2">
+    <entry name="claws" weaponAccuracy="90" numHits="2"
+      projectileSprite="1" projectileSpeed="6" projectileColor="bone" projectileDelay="22"> <!-- TODO: projectile sprite and scale -->
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- claws -->
-    <entry name="deathly grasp" weaponAccuracy="100" magic="1">
+    <entry name="deathly grasp" weaponAccuracy="100" magic="1"
+      projectileSprite="1" projectileSpeed="5" projectileColor="arcana"> <!-- TODO: projectile sprite and scale -->
       <!-- TODO: the animation for this should be very obviously magical -->
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- deathly grasp -->
-    <entry name="automata saw" weaponAccuracy="85" weaponHitsToCrits="10" numHits="3">
+    <entry name="automata saw" weaponAccuracy="85" weaponHitsToCrits="10" numHits="3"
+      projectileSprite="1" projectileSpeed="6" projectileSkinColor="1" projectileDelay="15"> <!-- TODO: projectile sprite and scale -->
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- automata saw -->
-    <entry name="automata gun" weaponAccuracy="85" ranged="1" numHits="3">
+    <entry name="automata gun" weaponAccuracy="85" ranged="1" numHits="3"
+      projectileSprite="1" projectileSpeed="8" projectileColor="bullet" projectileDelay="15"> <!-- TODO: projectile sprite and scale -->
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- automata gun -->
-    <entry name="seed spit" weaponAccuracy="95" ranged="1" numHits="2">
+    <entry name="seed spit" weaponAccuracy="95" ranged="1" numHits="2"
+      projectileSprite="1" projectileSpeed="7" projectileColor="grass wall" projectileDelay="25"> <!-- TODO: projectile sprite and scale -->
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- seed spit -->
-    <entry name="poison bullet" astraCost="10" weaponAccuracy="90" poisonedPercent="40" scaling="ranged weapon" ranged="1" />
+    <entry name="poison bullet" astraCost="10" weaponAccuracy="90" poisonedPercent="40" scaling="ranged weapon" ranged="1"
+      projectileColor="poison" />
     <entry name="blood splitting" astraCost="15" summonSpecies="baby slime" summonJobs="ranged monster,tough monster" summonWeapon="tackle" summonFluff="slime" summonColoration="0" scaling="level" usesSpecialPower="1" />
     <entry name="gold splitting" astraCost="20" summonSpecies="baby slime" summonJobs="sneaky monster,tough monster" summonWeapon="tackle" summonFluff="slime" summonColoration="1" scaling="level" usesSpecialPower="1" />
 
     <!-- weapons -->
-    <entry name="rusty metal rod" noProficiency="1">
+    <entry name="rusty metal rod" noProficiency="1"
+      projectileSprite="1" projectileSpeed="4"> <!-- TODO: projectile sprite and scale -->
       <variety tier="0" weaponAccuracy="85"
         color="rusty" slotFillers="weaponHand:606"
         fluff="This old metal rod looks like it was once part of a machine. It could be used as a crude weapon." />
     </entry> <!-- rusty metal rod -->
-    <entry name="dagger">
+    <entry name="dagger"
+      projectileSprite="1" projectileSpeed="6"> <!-- TODO: projectile sprite and scale -->
       <variety name="dagger" tier="0" weaponAccuracy="105" weaponHitsToCrits="10"
         color="iron" slotFillers="weaponHand:603"
         fluff="A small, cheaply made dagger." />
@@ -654,7 +668,8 @@
         color="blood" slotFillers="weaponHand:603"
         fluff="A magical dagger imbued with a continuous spell, a weak form of the siphon spell, so it sucks up the blood of its victims." />
     </entry> <!-- dagger -->
-    <entry name="sword">
+    <entry name="sword"
+      projectileSprite="1" projectileSpeed="5"> <!-- TODO: projectile sprite and scale -->
       <variety name="rusty sword" tier="0" weaponAccuracy="90" defense="10"
         color="rusty" slotFillers="weaponHand:604"
         fluff="A sword that has not been maintained well. The edge is barely sharp anymore." />
@@ -668,7 +683,8 @@
         color="fire" slotFillers="weaponHand:604"
         fluff="A surprisingly dull sword with a powerful enchantment on it. The edge heats up whenever it is swung, to a painful degree." />
     </entry> <!-- sword -->
-    <entry name="pistol">
+    <entry name="pistol"
+      projectileSprite="1" projectileSpeed="8" projectileColor="bullet"> <!-- TODO: projectile sprite and scale -->
       <variety name="corroded pistol" tier="0" weaponAccuracy="80" ranged="1"
         color="rusty" slotFillers="weaponHand:602"
         fluff="This pistol is in such rough shape, it's a wonder that it can fire at all." />
@@ -682,7 +698,8 @@
         color="truegold" slotFillers="weaponHand:602"
         fluff="A beautiful pistol with a casing made of a gold alloy, enchanted to fire bullets that twist in midair to seek foes. Left behind by a Skuri noble who got tethered." />
     </entry> <!-- pistol -->
-    <entry name="mace">
+    <entry name="mace"
+      projectileSprite="1" projectileSpeed="4"> <!-- TODO: projectile sprite and scale -->
       <variety name="antique mace" tier="0" weaponAccuracy="80" armorPiercing="1"
         color="rusty" slotFillers="weaponHand:607"
         fluff="An old mace from who knows where. The heft of this weapon is at least half rust." />
@@ -696,7 +713,8 @@
         color="bronze" slotFillers="weaponHand:607"
         fluff="A bronze mace with a strange enchantment on it, which seems to pull it roughly towards foes. It almost jerks itself out of your hands whenever an enemy approaches." />
     </entry> <!-- mace -->
-    <entry name="spear">
+    <entry name="spear"
+      projectileSprite="1" projectileSpeed="5"> <!-- TODO: projectile sprite and scale -->
       <variety name="old spear" tier="0" weaponAccuracy="90" zones="1"
         color="rusty" slotFillers="weaponHand:600"
         fluff="A spear that looks like it was used in the old war, and hasn't been cleaned since. It's better than a long stick, but not by much." />
@@ -713,59 +731,85 @@
 
     <!-- techniques -->
     <entry name="crimson fangs" astraCost="5" weaponAccuracy="75" weaponHitsToCrits="25" scaling="melee weapon" numHits="2"
+      projectileColor="blood" projectileDelay="18" projectileSpeed="2"
       fluff="A risky combat technique that tries to rapidly strike the foe's weak spots, often missing in the process." />
     <entry name="venom sting" astraCost="10" weaponAccuracy="90" scaling="melee weapon" poisonedPercent="25"
+      projectileColor="poison"
       fluff="Coat your weapon in poison and make a quick and accurate strike on your foe." />
     <entry name="slam" astraCost="5" weaponAccuracy="75" scaling="melee weapon" shakenPercent="30"
+      projectileSpeed="1" projectileColor="lightning"
       fluff="Swing your weapon with more force but less finesse, hitting enemies hard enough to leave them shaken." />
     <entry name="coordinated attack" astraCost="5" weaponAccuracy="80" scaling="melee weapon" commandsSummon="1"
+      projectileSpeed="-1" projectileColor="steel"
       fluff="Make a quick attack while simultaneously giving an order to your summon, aiming to overwhelm your enemy." />
     <entry name="typhoon slash" astraCost="10" weaponAccuracy="85" scaling="melee weapon" numHits="3"
+      projectileSpeed="1" projectileColor="magical water" projectileDelay="22"
       fluff="Execute a practiced three-hit combo, trying to overwhelm the opponent with strikes." />
     <entry name="blitz strike" astraCost="10" weaponAccuracy="90" weaponHitsToCrits="10" scaling="melee weapon" ranged="1" teleports="1"
+      projectileSpeed="2" projectileColor="lightning"
       fluff="Quickly leap to the target, and execute a single attack with blinding speed." />
     <entry name="eye gouge" astraCost="10" weaponAccuracy="75" scaling="level" blindedPercent="45"
-      fluff="Lunge for the opponent's eyes, and cruelly stab into them with your fingers." />
+      projectileSprite="1" projectileSpeed="5" projectileSkinColor="1"
+      fluff="Lunge for the opponent's eyes, and cruelly stab into them with your fingers." /> <!-- TODO: projectile sprite and scale -->
     <entry name="solar combo" astraCost="15" weaponAccuracy="70" scaling="level" burningPercent="40" numHits="4" lifeCostPercent="10"
-      fluff="Launch into a super-fast combination of hits, your fists flying so fast that they ignite in midair." />
+      projectileSprite="1" projectileSpeed="6" projectileSkinColor="1" projectileDelay="22"
+      fluff="Launch into a super-fast combination of hits, your fists flying so fast that they ignite in midair." /> <!-- TODO: projectile sprite and scale -->
     <entry name="snipe" astraCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1"
+      projectileSpeed="2"
       fluff="Carefully aim your pistol, and try to read your enemy's movements, then take your shot." />
     <entry name="brain rattler" astraCost="10" weaponAccuracy="80" scaling="ranged weapon" ranged="1" shakenPercent="35"
+      projectileSpeed="2"
       fluff="Snap a quick pistol-shot at your opponent's head, attempting to leave them dazed and confused." />
     <entry name="inferno shot" astraCost="10" weaponAccuracy="90" burningPercent="35" scaling="ranged weapon" ranged="1"
+      projectileColor="fire"
       fluff="Fire a special bullet that has been coated in incendiary chemicals, meant to light the opponent on fire." />
 
     <!-- spells/special techniques -->
     <entry name="wild spark" astraCost="5" weaponAccuracy="90" weaponHitsToCrits="50" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" noProficiency="1"
-      fluff="Build up your astra and simply release it, without attempting to shape a formal spell. Not very strong, but quite simple to use." />
+      projectileSprite="1" projectileSpeed="7" projectileColor="arcana"
+      fluff="Build up your astra and simply release it, without attempting to shape a formal spell. Not very strong, but quite simple to use." /> <!-- TODO: projectile sprite and scale -->
     <entry name="arcana arrow" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1"
-      fluff="Build up astra and shape it into the rough shape of an arrow, which you can then launch as a projectile. A basic but effective attack spell." />
+      projectileSprite="1" projectileSpeed="8" projectileColor="arcana"
+      fluff="Build up astra and shape it into the rough shape of an arrow, which you can then launch as a projectile. A basic but effective attack spell." /> <!-- TODO: projectile sprite and scale -->
     <entry name="siphon" astraCost="5" weaponAccuracy="110" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" drains="1"
-      fluff="Jab your opponent with a thin needle of astra, then drain their blood through the hole. A spell that is subtle and gross in equal measures." />
+      projectileSprite="1" projectileSpeed="8" projectileColor="blood"
+      fluff="Jab your opponent with a thin needle of astra, then drain their blood through the hole. A spell that is subtle and gross in equal measures." /> <!-- TODO: projectile sprite and scale -->
     <entry name="phantom flames" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" burningPercent="40" numHits="2"
-      fluff="Build up astra, and pattern it with the will to burn others, forming throwable balls of fire-like magic around your hands." />
+      projectileSprite="1" projectileSpeed="7" projectileColor="fire" projectileDelay="45"
+      fluff="Build up astra, and pattern it with the will to burn others, forming throwable balls of fire-like magic around your hands." /> <!-- TODO: projectile sprite and scale -->
     <entry name="ashball" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" blindedPercent="55"
-      fluff="Scoop up some ash or soot, and flood it with a charge of astra. If you get the technique down, it'll stay together for just long enough for it to be fired at an enemy." />
+      projectileSprite="1" projectileSpeed="7" projectileColor="smoke"
+      fluff="Scoop up some ash or soot, and flood it with a charge of astra. If you get the technique down, it'll stay together for just long enough for it to be fired at an enemy." /> <!-- TODO: projectile sprite and scale -->
     <entry name="sword wave" astraCost="10" weaponAccuracy="85" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1" ranged="1"
-      fluff="Build up astra in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." />
+      projectileSprite="1" projectileSpeed="3" projectileColor="arcana"
+      fluff="Build up astra in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." /> <!-- TODO: projectile sprite and scale -->
     <entry name="enchanted blade" astraCost="10" weaponAccuracy="105" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1"
-      fluff="Build up astra in your weapon, draw a spell-channel to your enemy, and let the channel guide your weapon with great force and accuracy. A spell designed for mages, to help them when they are caught up in melee combat." />
+      projectileSprite="1" projectileSpeed="-1" projectileColor="arcana"
+      fluff="Build up astra in your weapon, draw a spell-channel to your enemy, and let the channel guide your weapon with great force and accuracy. A spell designed for mages, to help them when they are caught up in melee combat." /> <!-- TODO: projectile sprite and scale -->
     <entry name="illusion fist" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
-      fluff="Build up some astra in your arm, and then pull it into your hand at the same time as you throw a punch, launching it as a fast-moving projectile. A magical martial arts move, meant to injure and stun." /> <!-- TODO: projectile should be fast-moving, as per the fluff -->
+      projectileSprite="1" projectileSpeed="11" projectileColor="arcana"
+      fluff="Build up some astra in your arm, and then pull it into your hand at the same time as you throw a punch, launching it as a fast-moving projectile. A magical martial arts move, meant to injure and stun." /> <!-- TODO: projectile sprite and scale -->
     <entry name="spell barrage" astraCost="20" weaponAccuracy="90" weaponHitsToCrits="15" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="4"
-      fluff="Build up a large amount of astra and release it in a flurry of magical bolts. A powerful but unsubtle spell." />
+      projectileSprite="1" projectileSpeed="9" projectileColor="arcana" projectileDelay="18"
+      fluff="Build up a large amount of astra and release it in a flurry of magical bolts. A powerful but unsubtle spell." /> <!-- TODO: projectile sprite and scale -->
     <entry name="miasma bolt" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" poisonedPercent="50"
-      fluff="Infuse your astra with a toxic quality, and fire it out as a deadly magical bolt." />
+      projectileSprite="1" projectileSpeed="7" projectileColor="poison"
+      fluff="Infuse your astra with a toxic quality, and fire it out as a deadly magical bolt." /> <!-- TODO: projectile sprite and scale -->
     <entry name="poison powder" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" poisonedPercent="70" blindedPercent="30"
-      fluff="Blow a handful of home-made poisonous powder into an opponent's face, poisoning and blinding them." />
+      projectileSprite="1" projectileSpeed="4" projectileColor="poison"
+      fluff="Blow a handful of home-made poisonous powder into an opponent's face, poisoning and blinding them." /> <!-- TODO: projectile sprite and scale -->
     <entry name="agony release" astraCost="10" lifeCostPercent="20" weaponAccuracy="100" weaponHitsToCrits="25" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
-      fluff="Stab yourself with a knife, and use the pain reflex to shape a wicked spell. An unusual but surprisingly effective form of magic." />
+      projectileSprite="1" projectileSpeed="8" projectileColor="blood"
+      fluff="Stab yourself with a knife, and use the pain reflex to shape a wicked spell. An unusual but surprisingly effective form of magic." /> <!-- TODO: projectile sprite and scale -->
     <entry name="mend" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" spell="1" heals="1" scaling="level" usesSpecialPower="1"
-      fluff="Build up astra and pattern it with the will and instructions to heal others. An effective use of magic, but watch out for enemies attempting to intercept your spells!" />
+      projectileSprite="1" projectileSpeed="6" projectileColor="blood"
+      fluff="Build up astra and pattern it with the will and instructions to heal others. An effective use of magic, but watch out for enemies attempting to intercept your spells!" /> <!-- TODO: projectile sprite and scale -->
     <entry name="first aid" astraCost="5" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="2"
-      fluff="Apply some basic first aid to an ally, patching up their wounds as best as you can." />
+      projectileSprite="1" projectileSpeed="4" projectileColor="blood" projectileDelay="50"
+      fluff="Apply some basic first aid to an ally, patching up their wounds as best as you can." /> <!-- TODO: projectile sprite and scale -->
     <entry name="inner strength" astraCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="3" selfTargeting="1"
-      fluff="Build up a large concentration of astra within yourself, and then direct it to circulate through your body, causing rapid regeneration." />
+      projectileSprite="1" projectileSpeed="1" projectileColor="blood" projectileDelay="30"
+      fluff="Build up a large concentration of astra within yourself, and then direct it to circulate through your body, causing rapid regeneration." /> <!-- TODO: projectile sprite and scale -->
     <entry name="saw crawler" astraCost="15" summonSpecies="crawler" summonJobs="tough monster,tough monster" summonWeapon="automata saw" summonFluff="melee combat automata" scaling="level" usesSpecialPower="1"
       fluff="Deploy a tough Skuri combat automata armed with a deadly buzzsaw. Not very skillful, but it's an effective distraction." />
     <entry name="gun turret" astraCost="20" summonSpecies="turret" summonJobs="ranged monster,tough monster" summonWeapon="automata gun" summonFluff="ranged combat automata" scaling="level" usesSpecialPower="1"

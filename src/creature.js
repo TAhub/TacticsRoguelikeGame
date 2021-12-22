@@ -756,23 +756,20 @@ class Creature {
         const a = Math.random() * 2 * Math.PI;
         const r = Math.random() * 0.015;
         const h = (from.s * from.headHeightPoint * from.appearanceSizeMult) +
-            ((2 * Math.random() - 1) * 0.01);
+            ((2 * Math.random() - 1) * 0.01) +
+            (from.th * gfxThScale);
         const x = from.cX + Math.cos(a) * r;
         const y = from.cY + Math.sin(a) * r;
         return [x, y, h];
       };
 
-      const [x, y, h] = getPosition(this);
       const [xD, yD, hD] = getPosition(this.chargingTarget);
-
       const color = data.getColorByNameSafe('white'); // TODO: color of spell
       const alpha = 0.5;
       const radius = 0.075; // TODO: based on cost of spell
       const particle = Particle.makeLineParticle(
           xD, yD, hD, color, alpha, radius);
-      particle.x = x;
-      particle.y = y;
-      particle.h = h + (this.th * gfxThScale);
+      [particle.x, particle.y, particle.h] = getPosition(this);
       this.cachedParticles.push(particle);
     }
     if (Math.random() < 0.25 - (this.life / this.maxLife)) {
@@ -1237,23 +1234,69 @@ class Creature {
     // TODO: animation
     // TODO: be sure set facing in the animation!
 
-    for (let hit = 0; hit < weapon.numHits; hit++) {
-      // TODO: projectile
-
+    if (weapon.summon) {
       this.effectAction(() => {
-        if (weapon.summon) {
-          if (tile && optMapController) {
-            const estimate = this.getAttackEstimate(this, weapon,
-                Creature.HitResult.Hit, Creature.AttackType.Normal);
-            const damage = Math.ceil(weapon.damage * estimate.mult / 100);
-            const summon = this.makeSummon_(weapon, damage);
-            summon.x = tile.x;
-            summon.y = tile.y;
-            optMapController.addCreature(summon);
-          }
-        } else if (target) {
-          this.strike_(target, weapon, attackType);
+        if (tile && optMapController) {
+          const estimate = this.getAttackEstimate(this, weapon,
+              Creature.HitResult.Hit, Creature.AttackType.Normal);
+          const damage = Math.ceil(weapon.damage * estimate.mult / 100);
+          const summon = this.makeSummon_(weapon, damage);
+          summon.x = tile.x;
+          summon.y = tile.y;
+          optMapController.addCreature(summon);
         }
+      });
+    } else {
+      /** @type {!Array.<!Particle>} */
+      let projectiles = [];
+
+      /**
+       * @param {!Creature} from
+       * @return {!Array.<number>}
+       */
+      const getPosition = (from) => {
+        const h = from.headHeightPoint * from.appearanceSizeMult * 0.75 +
+                  from.th * gfxThScale;
+        return [from.cX, from.cY, h];
+      };
+
+      // Make all of the projectiles at once.
+      this.effectAction(() => {
+        if (!target) return;
+        for (let hit = 0; hit < weapon.numHits; hit++) {
+          const sprite = weapon.projectileSprite;
+          let color = weapon.projectileColor;
+          if (weapon.projectileSkinColor) {
+            color = this.species.getColor('skinColor');
+          }
+          const projectile = Particle.makeProjectileParticle(color, sprite);
+          [projectile.x, projectile.y, projectile.h] = getPosition(this);
+          const [xD, yD, hD] = getPosition(target);
+          const speed = weapon.projectileSpeed;
+          const distance = calcDistance(xD - projectile.x, yD - projectile.y);
+          projectile.lifetime = distance / speed;
+          projectile.xSpeed = (xD - projectile.x) / projectile.lifetime;
+          projectile.ySpeed = (yD - projectile.y) / projectile.lifetime;
+          projectile.hSpeed = (hD - projectile.h) / projectile.lifetime;
+          projectile.facing = calcAngle(xD - projectile.x, yD - projectile.y);
+          projectile.delay = weapon.projectileDelay * hit;
+          projectiles.push(projectile);
+          this.cachedParticles.push(projectile);
+        }
+      });
+
+      // Wait until each projectile has landed to go on.
+      // Call their strike when they land.
+      // Doing it this way allows multiple projectiles to be
+      // onscreen at once.
+      this.actions.push((elapsed) => {
+        projectiles = projectiles.filter((projectile) => {
+          if (!projectile.dead) return true;
+          if (!target || target.dead) return false;
+          this.strike_(target, weapon, attackType);
+          return false;
+        });
+        return projectiles.length == 0;
       });
     }
 

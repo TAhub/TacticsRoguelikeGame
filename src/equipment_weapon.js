@@ -242,6 +242,40 @@ class Weapon extends Equipment {
     return prefix + 'damage';
   }
 
+  /** @return {number} */
+  get projectileSprite() {
+    const sprite = this.getNumberValue('projectileSprite');
+    if (!sprite && this.baseWeapon) return this.baseWeapon.projectileSprite;
+    return sprite || 0;
+  }
+
+  /** @return {number} */
+  get projectileDelay() {
+    let delay = this.getNumberValue('projectileDelay') || 0;
+    if (!delay && this.baseWeapon) return this.baseWeapon.projectileDelay;
+    return delay / 100;
+  }
+
+  /** @return {number} */
+  get projectileSpeed() {
+    let speed = this.getNumberValue('projectileSpeed') || 0;
+    if (this.baseWeapon) speed += this.baseWeapon.projectileSpeed;
+    return speed || 1;
+  }
+
+  /** @return {boolean} */
+  get projectileSkinColor() {
+    if (this.baseWeapon && this.baseWeapon.projectileSkinColor) return true;
+    return this.getBooleanValue('projectileSkinColor');
+  }
+
+  /** @return {string} */
+  get projectileColor() {
+    const color = this.getColorValue('projectileColor');
+    if (!color && this.baseWeapon) return this.baseWeapon.projectileColor;
+    return color || this.color;
+  }
+
   /**
    * @param {!Array.<string>} effects
    * @param {!Creature} creature

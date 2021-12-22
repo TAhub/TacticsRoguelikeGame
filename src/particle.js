@@ -20,6 +20,9 @@ class Particle {
     this.blocking = false;
     this.alpha = 1;
     this.color = '#FFFFFF';
+    this.delay = 0;
+    /** @type {?number} */
+    this.facing;
     /** @type {?SpriteObject} */
     this.spriteObject;
     /** @type {?THREE.BufferGeometry} */
@@ -28,6 +31,18 @@ class Particle {
     this.material;
     /** @type {?THREE.Mesh} */
     this.mesh;
+  }
+
+  /**
+   * @param {string} color
+   * @param {number} sprite
+   * @return {!Particle}
+   */
+  static makeProjectileParticle(color, sprite) {
+    const scale = 1; // TODO: ask for scale?
+    const particle = Particle.makePuffParticle([sprite], scale, color, 0);
+    particle.blocking = true;
+    return particle;
   }
 
   /**
@@ -77,10 +92,12 @@ class Particle {
    */
   static makePuffParticle(sprites, scale, color, scatter) {
     const particle = new Particle();
-    const speed = (Math.random() * 0.5 + 0.75) * scatter;
-    const angle = Math.random() * 2 * Math.PI;
-    particle.xSpeed = Math.cos(angle) * speed;
-    particle.ySpeed = Math.sin(angle) * speed;
+    if (scatter > 0) {
+      const speed = (Math.random() * 0.5 + 0.75) * scatter;
+      const angle = Math.random() * 2 * Math.PI;
+      particle.xSpeed = Math.cos(angle) * speed;
+      particle.ySpeed = Math.sin(angle) * speed;
+    }
     particle.hSpeed = 0.93;
     particle.lifetime = 0.7;
     particle.color = color;
@@ -112,13 +129,17 @@ class Particle {
    * @param {!MapController} mapController
    */
   update(elapsed, mapController) {
-    this.lifetime -= elapsed;
-    this.x += this.xSpeed * elapsed;
-    this.y += this.ySpeed * elapsed;
-    const tile = mapController.tileAt(Math.floor(this.x), Math.floor(this.y));
-    const baseH = tile ? tile.th * gfxThScale : 0;
-    this.h = Math.max(this.h + this.hSpeed * elapsed, baseH);
-    this.hSpeed += this.hAccel * elapsed;
+    if (this.delay > 0) {
+      this.delay -= elapsed;
+    } else {
+      this.lifetime -= elapsed;
+      this.x += this.xSpeed * elapsed;
+      this.y += this.ySpeed * elapsed;
+      const tile = mapController.tileAt(Math.floor(this.x), Math.floor(this.y));
+      const baseH = tile ? tile.th * gfxThScale : 0;
+      this.h = Math.max(this.h + this.hSpeed * elapsed, baseH);
+      this.hSpeed += this.hAccel * elapsed;
+    }
   }
 
   clear3DData() {
@@ -137,6 +158,7 @@ class Particle {
    * @param {!THREE.PerspectiveCamera} camera
    */
   addToGroup(group, camera) {
+    if (this.delay > 0) return;
     if (this.xD != 0 || this.yD != 0 || this.hD != 0) {
       if (!this.mesh) {
         const color = getHexColor(this.color);
@@ -182,6 +204,7 @@ class Particle {
         }
       }
       const options = {h: this.h, renderOrder: 1};
+      if (this.facing != null) options.facing = this.facing;
       this.spriteObject.addToGroup(group, camera, this.x, this.y, 0, options);
     }
   }

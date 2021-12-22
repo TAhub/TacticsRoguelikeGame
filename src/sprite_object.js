@@ -85,7 +85,8 @@ class SpriteObject {
       // to light sources in the way a flat plane should!
       // TODO: Once I can figure out how to let light pass through a plane while
       // still illuminating it, I should go back to using a MeshLambertMaterial.
-      this.material = new THREE.MeshBasicMaterial({map, transparent: true});
+      this.material = new THREE.MeshBasicMaterial(
+          {map, transparent: true, alphaTest: 0.5});
       this.mesh = new THREE.Mesh(this.geometry, this.material);
     }
 
