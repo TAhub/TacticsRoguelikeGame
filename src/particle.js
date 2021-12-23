@@ -22,6 +22,9 @@ class Particle {
     this.color = '#FFFFFF';
     this.delay = 0;
     /** @type {?string} */
+    this.creationSound;
+    this.soundPitch = 0;
+    /** @type {?string} */
     this.lightColor;
     this.lightIntensity = 0;
     /** @type {?number} */
@@ -39,12 +42,16 @@ class Particle {
   /**
    * @param {string} color
    * @param {number} sprite
+   * @param {?string} sound
+   * @param {number} pitch
    * @return {!Particle}
    */
-  static makeProjectileParticle(color, sprite) {
+  static makeProjectileParticle(color, sprite, sound, pitch) {
     const scale = 1; // TODO: ask for scale?
     const particle = Particle.makePuffParticle([sprite], scale, color, 0);
     particle.blocking = true;
+    particle.creationSound = sound;
+    particle.soundPitch = pitch;
     return particle;
   }
 
@@ -135,6 +142,10 @@ class Particle {
     if (this.delay > 0) {
       this.delay -= elapsed;
     } else {
+      if (this.creationSound) {
+        audio.play(this.creationSound, this.soundPitch, 1);
+        this.creationSound = null;
+      }
       this.lifetime -= elapsed;
       this.x += this.xSpeed * elapsed;
       this.y += this.ySpeed * elapsed;

@@ -305,6 +305,22 @@ class Weapon extends Equipment {
     return color || this.color;
   }
 
+  /** @return {?string} */
+  get animSound() {
+    const sound = this.getValue('animSound');
+    if (!sound && this.baseWeapon) return this.baseWeapon.animSound;
+    return sound;
+  }
+
+  /** @return {number} */
+  get animPitch() {
+    let pitch = 0;
+    pitch += (this.animProjSpeed - (this.ranged ? 8 : 5)) * 200;
+    pitch += (this.numHits - 1) * 75;
+    // TODO: modify by projectile size (higher size = lower pitch)
+    return pitch;
+  }
+
   /**
    * @param {!Array.<string>} effects
    * @param {!Creature} creature
