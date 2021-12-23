@@ -123,7 +123,23 @@ class Weapon extends Equipment {
   getStatus(status) {
     const percent = this.getStatusPercent(status);
     if (percent <= 0) return 0;
-    return percent * this.baseDamage / 100;
+    let effect = percent * this.baseDamage / 100;
+
+    // Some modifiers are applied in here, so they are visible in the weapon
+    // description.
+    switch (status) {
+      case Weapon.Status.Bleeding:
+        // Bleeding is an upgrade over direct damage, a bit.
+        effect *= 1.15;
+        break;
+      case Weapon.Status.Burning:
+      case Weapon.Status.Poisoned:
+        // DoT is pretty fast, but not as fast as normal damage.
+        effect *= 0.7;
+        break;
+    }
+
+    return effect;
   }
 
   /** @return {number} */
@@ -388,6 +404,7 @@ Weapon.Scaling = {
 Weapon.Status = {
   Burning: 'burning',
   Poisoned: 'poisoned',
+  Bleeding: 'bleeding',
   Shaken: 'shaken',
   Blinded: 'blinded',
 };
@@ -395,6 +412,7 @@ Weapon.Status = {
 Weapon.allStatuses = [
   Weapon.Status.Burning,
   Weapon.Status.Poisoned,
+  Weapon.Status.Bleeding,
   Weapon.Status.Shaken,
   Weapon.Status.Blinded,
 ];

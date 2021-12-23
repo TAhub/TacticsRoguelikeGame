@@ -604,9 +604,14 @@ class Creature {
     ctx.fillStyle = data.getColorByNameSafe('tile slot back');
     ctx.fillRect(b, b, lW - 2 * b, lH - 2 * b);
 
+    // DoT bar.
+    ctx.fillStyle = data.getColorByNameSafe('blood');
+    ctx.fillRect(b, b, (lW - 2 * b) * this.life / this.maxLife, lH - 2 * b);
+
     // Life bar.
     ctx.fillStyle = data.getColorByNameSafe('tile' + colorSuffix);
-    ctx.fillRect(b, b, (lW - 2 * b) * this.life / this.maxLife, lH - 2 * b);
+    const modLife = this.life - this.dotDamage;
+    ctx.fillRect(b, b, (lW - 2 * b) * modLife / this.maxLife, lH - 2 * b);
 
     // Life number.
     ctx.fillStyle = data.getColorByNameSafe('tile text' + colorSuffix);
@@ -781,7 +786,8 @@ class Creature {
       [particle.x, particle.y, particle.h] = getPosition(this);
       this.cachedParticles.push(particle);
     }
-    if (Math.random() < 0.25 - (this.life / this.maxLife)) {
+    if (this.statuses.has(Weapon.Status.Bleeding) ||
+        Math.random() < 0.25 - (this.life / this.maxLife)) {
       this.addBloodParticle_();
     }
     if (this.statuses.has(Weapon.Status.Poisoned)) {
@@ -873,7 +879,26 @@ class Creature {
    * @private
    */
   receiveHealing_(healing) {
-    this.life = Math.min(this.maxLife, this.life + healing);
+    let healingLeft = healing;
+
+    const usedOnLife = Math.min(healingLeft, this.maxLife - this.life);
+    this.life += usedOnLife;
+    healingLeft -= usedOnLife;
+
+    // Leftover healing can cure status effects.
+    const cureStatus = (statusType) => {
+      const used = Math.min(this.statuses.get(statusType) || 0, healingLeft);
+      if (used == 0) return;
+      this.statuses.set(statusType, this.statuses.get(statusType) - used);
+      healingLeft -= used;
+      if (this.statuses.get(statusType) == 0) {
+        this.statuses.delete(statusType);
+        this.makeAppearance();
+      }
+    };
+    cureStatus(Weapon.Status.Poisoned);
+    cureStatus(Weapon.Status.Bleeding);
+
     this.addTextParticle_('+' + healing, 0);
     this.makeBar();
   }
@@ -971,17 +996,31 @@ class Creature {
     }
   }
 
-  turnEnd() {
+  skipTurn() {
+    this.hasMove = false;
+    this.hasAction = false;
+    // Skipping your turn puts out burning.
+    if (this.statuses.has(Weapon.Status.Burning)) {
+      this.statuses.delete(Weapon.Status.Burning);
+      this.makeAppearance();
+    }
+  }
+
+  /** @return {number} */
+  get dotDamage() {
     let dot = 0;
     dot += this.statuses.get(Weapon.Status.Burning) || 0;
     dot += this.statuses.get(Weapon.Status.Poisoned) || 0;
-    if (dot > 0) {
-      dot *= 0.8 + 0.4 * Math.random();
-      dot = randomRound(dot);
-      if (dot) {
-        this.takeDamage_(dot, Creature.HitResult.Graze);
-      }
+    dot += this.statuses.get(Weapon.Status.Bleeding) || 0;
+    return dot;
+  }
+
+  turnEnd() {
+    if (this.dotDamage > 0) {
+      this.takeDamage_(this.dotDamage, Creature.HitResult.Graze);
     }
+    // Bleeding goes away after doing damage.
+    this.statuses.delete(Weapon.Status.Bleeding);
     if (this.summonOwner) this.summonAwake = false;
   }
 
@@ -1614,6 +1653,37 @@ class Creature {
     const mult = this.getAttackEstimate(
         target, weapon, hitResult, attackType, true).mult / weapon.numHits;
 
+    // Status effects.
+    if (mult > 0) {
+      for (const status of Weapon.allStatuses) {
+        let effect = weapon.getStatus(status) * mult / 100;
+        if (effect <= 0) continue;
+        switch (status) {
+          case Weapon.Status.Bleeding:
+          case Weapon.Status.Burning:
+          case Weapon.Status.Poisoned:
+            // These modifiers are applied inside getStatus()
+            break;
+          default:
+            // Debilitating statuses are scaled based on max life.
+            effect /= target.baseMaxLife;
+            // Doing enough damage to kill the base life for their level
+            // (e.g. ignoring their life multipliers) inflicts this penalty:
+            effect *= 250;
+            break;
+        }
+        effect = Math.ceil(effect / (target.halveStatuses ? 2 : 1));
+        const old = target.statuses.get(status) || 0;
+        target.statuses.set(status, old + effect);
+        target.addTextParticle_(status.toUpperCase(), 0);
+        if (old == 0) target.makeAppearance();
+      }
+      if (weapon.damage == 0) {
+        // The damage script won't remake their bar, so do it manually here.
+        target.makeBar();
+      }
+    }
+
     // Damage.
     const damage = Math.ceil(mult * weapon.damage / 100);
     if (weapon.heals) {
@@ -1622,28 +1692,6 @@ class Creature {
       target.takeDamage_(damage, hitResult);
     }
     if (weapon.drains && damage) this.receiveHealing_(damage);
-
-    // Don't show status effects if the attack did NOTHING.
-    if (mult == 0) return;
-
-    for (const status of Weapon.allStatuses) {
-      let effect = weapon.getStatus(status) * mult / 100;
-      if (effect <= 0) continue;
-      if (status == Weapon.Status.Burning || status == Weapon.Status.Poisoned) {
-        // Pretty fast, but not as fast as normal damage.
-        effect *= 0.7;
-      } else {
-        effect /= target.baseMaxLife;
-        // Doing enough damage to kill the base life for their level
-        // (e.g. ignoring their life multipliers) inflicts this penalty:
-        effect *= 250;
-      }
-      effect = Math.ceil(effect / (target.halveStatuses ? 2 : 1));
-      const old = target.statuses.get(status) || 0;
-      target.statuses.set(status, old + effect);
-      target.addTextParticle_(status.toUpperCase(), 0);
-      if (old == 0) target.makeAppearance();
-    }
   }
 
   /**

@@ -237,10 +237,11 @@ class IngamePlugin extends GamePlugin {
             const clickFn = () => {
               if (mapC.animating) return;
               this.inventoryPlayer = null;
-              active.hasAction = false;
-              active.hasMove = false;
+              active.skipTurn();
             };
-            slot.attachTile(new MenuTile('Skip Turn', {clickFn}));
+            const name = active.statuses.has(Weapon.Status.Burning) ?
+                'Put Out Fire' : 'Skip Turn';
+            slot.attachTile(new MenuTile(name, {clickFn}));
           } else if (item && item.contents == Item.Code.Campfire) {
             // It's a rest button instead, out of combat, if over a campfire.
             const clickFn = () => {

@@ -223,7 +223,7 @@ class AI {
       active.hasMove = false;
     } else {
       // Skip turn!
-      active.hasAction = false;
+      active.skipTurn();
     }
   }
 }
