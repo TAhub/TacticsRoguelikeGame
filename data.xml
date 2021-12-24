@@ -428,16 +428,19 @@
       colorationFluff0="Forest Karhun prefer to live in scattered enclaves in the forests, living off the land."
       coloration1="River" colorationTickets1="2" skinColor1="orange fur" hairColor1="vaguely blue fur" eyeColor1="light orange" pupilColor1="black"
       colorationFluff1="River Karhun live by rivers, and are happier with city-life than the forest Karhun. As such, they are the more dominant ethnicity, nowadays.">
+      <layer spriteM="312" spriteF="313" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (back) armor layer -->
       <layer color="hairColor" xAdd="1" yAdd="-49" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
       <layer xAdd="50" yAdd="-22" fillSlotId="weaponHand" /> <!-- weapon hand -->
       <layer spriteM="300" spriteF="301" color="skinColor" showAllStatuses="1" /> <!-- body -->
       <layer spriteM="304" spriteF="305" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
       <layer spriteM="308" spriteF="309" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
+      <layer spriteM="310" spriteF="311" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (front) armor layer -->
       <layer spriteM="302" spriteF="303" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
       <layer spriteM="306" spriteF="307" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
       <layer sprite="200" color="skinColor" xAdd="1" yAdd="-49" showAllStatuses="1" /> <!-- head -->
       <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
       <layer sprite="204" color="pupilColor" matchLastLayer="1" /> <!-- pupil -->
+      <layer fillSlotId="face" showObjectStatuses="1" matchLastLayer="1" /> <!-- face -->
       <layer color="hairColor" matchLastLayer="1" fillSlotId="hairFront" showObjectStatuses="1" /> <!-- hair -->
       <layer fillSlotId="hat" showObjectStatuses="1" matchLastLayer="1" /> <!-- hat -->
       <layer sprite="210" color="skinColor" matchLastLayer="1" showAllStatuses="1" /> <!-- ears -->
@@ -448,17 +451,20 @@
       colorationFluff0="The tabby Firin might not have any actual noble heritage, but they still have the bearing of a noble."
       coloration1="Ginger" colorationTickets1="2" skinColor1="red scales" hairColor1="orange fur" eyeColor1="orange" pupilColor1="black"
       colorationFluff1="The reddish coloration ginger Firin was once considered a trait of the royal family. Nowadays, though, it has become quite common.">
+      <layer spriteM="113" spriteF="114" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (back) armor layer -->
       <layer color="hairColor" xAdd="1" yAdd="-36" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
       <layer sprite="102" color="skinColor" showAllStatuses="1" /> <!-- tail -->
       <layer xAdd="39" yAdd="-9" fillSlotId="weaponHand" /> <!-- weapon hand -->
       <layer spriteM="100" spriteF="101" color="skinColor" showAllStatuses="1" /> <!-- body -->
       <layer spriteM="105" spriteF="106" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
       <layer spriteM="109" spriteF="110" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
+      <layer spriteM="111" spriteF="112" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (front) armor layer -->
       <layer spriteM="103" spriteF="104" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
       <layer spriteM="107" spriteF="108" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
       <layer sprite="200" color="skinColor" xAdd="1" yAdd="-36" showAllStatuses="1" /> <!-- head -->
       <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
       <layer sprite="203" color="pupilColor" matchLastLayer="1" /> <!-- pupil -->
+      <layer fillSlotId="face" showObjectStatuses="1" matchLastLayer="1" /> <!-- face -->
       <layer color="hairColor" matchLastLayer="1" fillSlotId="hairFront" showObjectStatuses="1" /> <!-- hair -->
       <layer fillSlotId="hat" showObjectStatuses="1" matchLastLayer="1" /> <!-- hat -->
       <layer sprite="208" color="skinColor" matchLastLayer="1" showAllStatuses="1" /> <!-- ears -->
@@ -469,16 +475,19 @@
       colorationFluff0="Despite the name, field Skuri rarely actually live outside in fields. Rather, they were once used by the Firin empire as slaves, working the fields."
       coloration1="Albino" colorationTickets1="1" skinColor1="white fur" hairColor1="white" eyeColor1="blood" tailColor1="flesh"
       colorationFluff1="Albinism is much more common in Skuri than it is in other species.">
+      <layer sprite="407" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (back) armor layer -->
       <layer color="hairColor" xAdd="4" yAdd="-9" scale="90" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
       <layer sprite="401" color="tailColor" showAllStatuses="1" /> <!-- tail -->
       <layer xAdd="23" yAdd="30" fillSlotId="weaponHand" /> <!-- weapon hand -->
       <layer sprite="400" color="skinColor" showAllStatuses="1" /> <!-- body -->
       <layer sprite="403" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
       <layer sprite="405" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
+      <layer sprite="406" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (front) armor layer -->
       <layer sprite="402" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
       <layer sprite="404" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
       <layer sprite="200" color="skinColor" xAdd="4" yAdd="-9" scale="90" showAllStatuses="1" /> <!-- head -->
       <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
+      <layer fillSlotId="face" showObjectStatuses="1" matchLastLayer="1" /> <!-- face -->
       <layer color="hairColor" matchLastLayer="1" fillSlotId="hairFront" showObjectStatuses="1" /> <!-- hair -->
       <layer fillSlotId="hat" showObjectStatuses="1" matchLastLayer="1" /> <!-- hat -->
       <layer sprite="209" color="tailColor" matchLastLayer="1" showAllStatuses="1" /> <!-- ears -->
@@ -857,20 +866,20 @@
   </category> <!-- rings -->
   <category name="accessories">
     <entry name="regal cloak" accuracy="5" attackPower="5" specialPower="5"
-      color="red fabric"
-      fluff="Wearing this beautiful cloak makes you feel haughty and confident. Was this how the warrior kings of old felt?" /> <!-- TODO: sprite (cloak sprite layer) -->
+      color="red fabric" armorLayerId="cape"
+      fluff="Wearing this beautiful cloak makes you feel haughty and confident. Was this how the warrior kings of old felt?" />
     <entry name="oilskin cloak" dodgeVsDisengage="15" dodge="10"
-      color="black fabric"
-      fluff="A leather cloak treated with some kind of slick oil. It'll make it easier to slip away from people." /> <!-- TODO: sprite (cloak sprite layer) -->
+      color="black fabric" armorLayerId="cape"
+      fluff="A leather cloak treated with some kind of slick oil. It'll make it easier to slip away from people." />
     <entry name="fur cloak" halveStatuses="1"
-      color="brown fabric"
-      fluff="A warm, fur-lined cloak. Wearing this will help against protect against the elements." /> <!-- TODO: sprite (cloak sprite layer) -->
+      color="brown fabric" armorLayerId="cape"
+      fluff="A warm, fur-lined cloak. Wearing this will help against protect against the elements." />
     <entry name="third eye" initiative="15"
-      color="gold"
-      fluff="This piece of jewelry seems purely ornamental at first glance. When worn on the forehead, though, magic within stimulates the wearer's mind, improving alertness." /> <!-- TODO: sprite (head accessory slot filler) -->
+      color="gold" slotFillers="face:217"
+      fluff="This piece of jewelry seems purely ornamental at first glance. When worn on the forehead, though, magic within stimulates the wearer's mind, improving alertness." />
     <entry name="intimidating mask" hitsToCrits="30"
-      color="bone"
-      fluff="A mask with a scary facial expression. If your opponents feel fear upon seeing it, you will soon prove their fear justified." /> <!-- TODO: sprite (head accessory slot filler) -->
+      color="bone" slotFillers="face:216"
+      fluff="A mask with a scary facial expression. If your opponents feel fear upon seeing it, you will soon prove their fear justified." />
     <entry name="shield" defense="15"
       color="steel"
       fluff="A simple shield, likely once held by a Karhun soldier. Shields are ineffective against magic, so they aren't all that popular nowadays." /> <!-- TODO: sprite (slot filler for an offhand slot?) -->
@@ -878,8 +887,8 @@
       color="rusty"
       fluff="A rusty old lantern, that once was used to burn some odd oil. It is too foul to light up anymore, but the residue inside seems to dampen magic in some way." /> <!-- TODO: sprite (slot filler for an offhand slot?) -->
     <entry name="silver spectacles" specialAttackPower="30"
-      color="silver"
-      fluff="A seemingly-magical pair of glasses, presumably left behind by someone long dead. Through these lenses, the openings that foes leave stand out in incredibly sharp focus." /> <!-- TODO: sprite (head accessory slot filler) -->
+      color="silver" slotFillers="face:215"
+      fluff="A seemingly-magical pair of glasses, presumably left behind by someone long dead. Through these lenses, the openings that foes leave stand out in incredibly sharp focus." />
     <entry name="bloody thorn" powerVsUninjured="40" dodge="-15"
       fluff="A magical thorn, found safely locked away in a box. Impale the palm of your hand with this and you'll unlock a vengeful power... at the cost of distracting pain." />
     <entry name="wind bangles" moveDistance="1" dodge="7"
