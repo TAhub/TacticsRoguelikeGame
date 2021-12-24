@@ -35,6 +35,11 @@ class Level extends BonusSource {
   }
 
   /** @return {number} */
+  get resistance() {
+    return this.scalingBonus;
+  }
+
+  /** @return {number} */
   get accuracy() {
     return this.scalingBonus;
   }
