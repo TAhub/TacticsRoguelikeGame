@@ -230,13 +230,13 @@
       physiqueModifier="2" accuracy="10" armorProfiencyLevel="2" proficiencies="sword,mace,spear,slam,typhoon slash,sword wave,blitz strike"
       fluff="Warriors are those who focus on conventional close-range combat. They learn how to use various weapons and techniques, and how to fight in heavy armor." />
     <entry name="rogue" reqSpecies="karhun,skuri"
-      agilityModifier="2" dodge="10" attackPowerWhenDisengaged="40" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,brain rattler,crimson fangs,venom sting,miasma bolt,poison powder"
-      fluff="Rogues train in how to fight with a mobile, offensive style. They are strongest when they aren't tied down; for example, when stabbing a foe who is busy fighting someone else." />
+      agilityModifier="2" resistance="10" attackPowerWhenDisengaged="40" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,brain rattler,crimson fangs,venom sting,miasma bolt,poison powder"
+      fluff="Rogues train in how to fight with a mobile, offensive style. They are strongest when fighting distracted enemies, especially mages." />
     <entry name="mage" reqSpecies="firin,skuri"
-      senseModifier="2" specialPower="15" astra="20" initiative="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage,enchanted blade"
+      senseModifier="2" specialPower="15" astra="20" life="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage,enchanted blade"
       fluff="Mages practice a standardized set of combat magic spells, focusing on sheer magical firepower. They excel at taking down armored foes, who usually lack resistance to magic." />
     <entry name="mechanic" reqSpecies="skuri"
-      cunningModifier="2" specialPower="15" initiative="15" armorProfiencyLevel="1" proficiencies="mace,pistol,saw crawler,gun turret,slam,coordinated attack"
+      cunningModifier="2" specialPower="15" attackPower="15" armorProfiencyLevel="1" proficiencies="mace,pistol,saw crawler,gun turret,slam,coordinated attack"
       fluff="Mechanics learn how to maintain and operate Skuri automata. They are most common in civilian life, but some do end up using their skills to deploy deadly combat automata." />
     <entry name="healer" reqSpecies="karhun"
       willpowerModifier="2" specialPower="10" astra="20" life="20" proficiencies="dagger,mace,first aid,siphon,venom sting,poison powder"
@@ -245,7 +245,7 @@
       agilityModifier="2" accuracy="22" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash,blitz strike"
       fluff="Wanderers learn a traditional Firin fighting style that combines steel and spell. Once taught to noble scions, this style is now practiced by secretive nomads." />
     <entry name="lab rat" reqSpecies="skuri"
-      senseModifier="1" physiqueModifier="1" astra="10" life="20" attackPower="10" defense="10" proficiencies="dagger,spear,agony release,miasma bolt,mend,crimson fangs"
+      senseModifier="1" physiqueModifier="1" astra="10" life="30" defense="10" proficiencies="dagger,spear,agony release,miasma bolt,mend,crimson fangs"
       fluff="Lab rats are those who act as test subjects for life-affecting spells, harmful and helpful both. Those who survive often learn the very magic that once tormented them so." />
     <entry name="martial artist" reqSpecies="karhun"
       willpowerModifier="1" physiqueModifier="1" dodge="20" attackPower="10" life="20" martialArts="1" proficiencies="eye gouge,inner strength,illusion fist,solar combo"
@@ -254,7 +254,7 @@
       senseModifier="1" cunningModifier="1" resistance="30" astra="20" proficiencies="spear,sword,ashball,agony release,inner strength,siphon,unearth"
       fluff="Sages are the remnants of the old Firin masters of magic theory. They study a variety of specialist spells, and excel at the art of counter-magic." />
     <entry name="survivor" reqSpecies="karhun,firin,skuri"
-      willpowerModifier="2" resistance="20" attackPower="5" specialPower="5" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,slam,arcana arrow,snipe,first aid"
+      willpowerModifier="2" resistance="20" attackPower="5" specialPower="5" armorProfiencyLevel="1" proficiencies="dagger,spear,pistol,slam,arcana arrow,snipe,first aid"
       fluff="Survivors are made, not trained; they pick up a little bit of everything, in their attempts to learn how to live through dangerous situations." />
     <entry name="gunner" reqSpecies="karhun,firin,skuri"
       agilityModifier="1" physiqueModifier="1" attackPower="15" accuracy="15" armorProfiencyLevel="1" proficiencies="pistol,snipe,inferno shot,brain rattler,spell barrage"
