@@ -42,12 +42,12 @@ class Particle {
   /**
    * @param {string} color
    * @param {number} sprite
+   * @param {number} scale
    * @param {?string} sound
    * @param {number} pitch
    * @return {!Particle}
    */
-  static makeProjectileParticle(color, sprite, sound, pitch) {
-    const scale = 1; // TODO: ask for scale?
+  static makeProjectileParticle(color, sprite, scale, sound, pitch) {
     const particle = Particle.makePuffParticle([sprite], scale, color, 0);
     particle.blocking = true;
     particle.creationSound = sound;

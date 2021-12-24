@@ -1382,6 +1382,7 @@ class Creature {
         if (!target) return;
         for (let hit = 0; hit < weapon.numHits; hit++) {
           const sprite = weapon.animProjSprite;
+          const scale = weapon.animProjScale * (this.monstrous ? 1.5 : 1);
           let color = weapon.animProjColor;
           if (weapon.animProjSkinColor) {
             color = this.species.getColor('skinColor');
@@ -1389,7 +1390,7 @@ class Creature {
           const pitch = weapon.animPitch +
               (Math.random() * 2 - 1) * 25 - (this.monstrous ? 200 : 0);
           const projectile = Particle.makeProjectileParticle(
-              color, sprite, weapon.animSound, pitch);
+              color, sprite, scale, weapon.animSound, pitch);
           [projectile.x, projectile.y, projectile.h] = getPosition(this);
           const [xD, yD, hD] = getPosition(target);
           const speed = weapon.animProjSpeed;

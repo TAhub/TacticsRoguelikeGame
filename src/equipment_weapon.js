@@ -278,6 +278,13 @@ class Weapon extends Equipment {
   }
 
   /** @return {number} */
+  get animProjScale() {
+    const scale = (this.getNumberValue('animProjScale') || 100) / 100;
+    if (this.baseWeapon) return scale * this.baseWeapon.animProjScale;
+    return scale;
+  }
+
+  /** @return {number} */
   get animProjDelay() {
     const delay = this.getNumberValue('animProjDelay') || 0;
     if (!delay && this.baseWeapon) return this.baseWeapon.animProjDelay;
@@ -345,7 +352,7 @@ class Weapon extends Equipment {
     const ranged = this.ranged || this.targetRingUser;
     pitch += (this.animProjSpeed - (ranged ? 8 : 5)) * 200;
     pitch += (this.numHits - 1) * 75;
-    // TODO: modify by projectile size (higher size = lower pitch)
+    pitch += (this.animProjScale - 1) * -400;
     return pitch;
   }
 
