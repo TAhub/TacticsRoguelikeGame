@@ -53,6 +53,10 @@ class Item {
         sprite = 511;
         h = 0.4;
         color = this.contents.color;
+      } else if (this.contents instanceof Ring) {
+        sprite = 512;
+        h = 0.4;
+        color = this.contents.color;
       }
     } else {
       switch (this.contents) {

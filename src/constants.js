@@ -6,7 +6,7 @@ const gfxScreenHeight = 6.5 * gfxTileSize;
 const gfxFov = 90;
 const gfxFarPlane = 15;
 const gfxMinimapSize = gfxScreenHeight / 4;
-const gfxStatusParticleTimerInterval = 0.15;
+const gfxStatusParticleTimerInterval = 0.3;
 const gfxThScale = 0.1;
 
 // Map-generation constants.

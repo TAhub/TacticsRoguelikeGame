@@ -91,6 +91,8 @@ class Creature {
     this.weapon;
     /** @type {?Accessory} */
     this.accessory;
+    /** @type {?Ring} */
+    this.ring;
     /** @type {!Array.<string>} */
     this.techTypes = [];
 
@@ -203,6 +205,7 @@ class Creature {
     this.skills.forEach((skill) => total += fn(skill));
     this.armors.forEach((armor) => total += fn(armor));
     if (this.accessory) total += fn(this.accessory);
+    if (this.ring) total += fn(this.ring);
     if (this.weapon) total += fn(this.weapon);
     return total;
   }
@@ -790,6 +793,14 @@ class Creature {
         Math.random() < 0.25 - (this.life / this.maxLife)) {
       this.addBloodParticle_();
     }
+    if (this.statuses.has(Weapon.Status.Confused)) {
+      const color = data.getColorByNameSafe('confusion');
+      const scatter = 0.3;
+      const sprites = [500, 501];
+      const scale = 0.15;
+      this.addGenericParticle_(
+          Particle.makePuffParticle(sprites, scale, color, scatter));
+    }
     if (this.statuses.has(Weapon.Status.Poisoned)) {
       const color = data.getColorByNameSafe('poison');
       const scatter = 0.25;
@@ -802,7 +813,7 @@ class Creature {
       const color = data.getColorByNameSafe('smoke');
       const scatter = 0.05;
       const sprites = [502, 503, 504];
-      const scale = 0.4;
+      const scale = 0.3;
       this.addGenericParticle_(
           Particle.makePuffParticle(sprites, scale, color, scatter));
     }
@@ -981,10 +992,6 @@ class Creature {
   }
 
   turnStart() {
-    if (this.summonAwake) {
-      this.hasMove = true;
-      this.hasAction = true;
-    }
     if (this.chargingTarget && this.chargingWeapon &&
         !this.chargingTarget.dead) {
       this.effectAction(() => {
@@ -993,6 +1000,25 @@ class Creature {
       });
       this.attack_(this.chargingTarget, this.chargingWeapon,
           Creature.AttackType.Charged);
+    }
+    if (this.summonAwake) {
+      this.effectAction(() => {
+        // Do you lose your turn to confusion?
+        let confused = this.statuses.get(Weapon.Status.Confused) || 0;
+        if ((Math.random() * 100) < confused) {
+          this.addTextParticle_('CONFUSED', 0);
+          // Each time you lose your turn to confusion, your confusion lowers.
+          confused -= 100;
+          if (confused <= 0) {
+            this.statuses.delete(Weapon.Status.Confused);
+          } else {
+            this.statuses.set(Weapon.Status.Confused, confused);
+          }
+        } else {
+          this.hasMove = true;
+          this.hasAction = true;
+        }
+      });
     }
   }
 
@@ -1038,6 +1064,35 @@ class Creature {
     return unarmed;
   }
 
+  /**
+   * @param {string} techType
+   * @return {?Weapon}
+   */
+  makeTech(techType) {
+    const weapon = new Weapon(techType);
+    if (weapon.scaling) {
+      switch (weapon.scaling) {
+        case Weapon.Scaling.MeleeWeapon:
+        case Weapon.Scaling.RangedWeapon:
+          let weaponUsed = this.weapon;
+          if (weapon.scaling == Weapon.Scaling.MeleeWeapon) {
+            if (this.martialArts) weaponUsed = this.unarmed;
+            if (!weaponUsed || weaponUsed.ranged) return null;
+          } else {
+            if (!this.weapon) return null;
+            if (!weaponUsed || !weaponUsed.ranged) return null;
+          }
+          weapon.forceTier = weaponUsed.tier;
+          weapon.baseWeapon = weaponUsed;
+          break;
+        case Weapon.Scaling.Level:
+          weapon.forceTier = this.levelObj.tier;
+          break;
+      }
+    }
+    return weapon;
+  }
+
   /** @return {!Array.<!Weapon>} */
   get usableWeapons() {
     const weapons = [];
@@ -1059,17 +1114,24 @@ class Creature {
       weapons.push(copy);
     }
 
+    let techTypes = this.techTypes;
+    if (this.ring) {
+      techTypes = techTypes.slice();
+      techTypes.push(this.ring.techType);
+    }
+
     // Add techniques.
     const exhaustedTechTypes = this.exhaustedTechTypes.slice();
-    for (const type of this.techTypes) {
-      const idx = exhaustedTechTypes.indexOf(type);
+    for (const techType of techTypes) {
+      const idx = exhaustedTechTypes.indexOf(techType);
       if (idx != -1) {
         // If it's been exhausted, don't add (this instance of) the tech.
         exhaustedTechTypes.splice(idx, 1);
         continue;
       }
 
-      const weapon = new Weapon(type);
+      const weapon = this.makeTech(techType);
+      if (!weapon) continue;
       if (weapon.summon) {
         if (this.currentSummon) {
           if (this.currentSummon.dead) {
@@ -1080,29 +1142,6 @@ class Creature {
         }
       }
       if (weapon.astraCost > this.astra) continue;
-      let tier = undefined;
-      if (weapon.scaling) {
-        switch (weapon.scaling) {
-          case Weapon.Scaling.MeleeWeapon:
-          case Weapon.Scaling.RangedWeapon:
-            let weaponUsed = this.weapon;
-            if (weapon.scaling == Weapon.Scaling.MeleeWeapon) {
-              if (this.martialArts) weaponUsed = this.unarmed;
-              if (!weaponUsed || weaponUsed.ranged) break;
-            } else {
-              if (!this.weapon) break;
-              if (!weaponUsed || !weaponUsed.ranged) break;
-            }
-            tier = weaponUsed.tier;
-            weapon.baseWeapon = weaponUsed;
-            break;
-          case Weapon.Scaling.Level:
-            tier = this.levelObj.tier;
-            break;
-        }
-      }
-      if (tier == undefined) continue;
-      weapon.forceTier = tier;
       weapons.push(weapon);
     }
 
@@ -1119,21 +1158,34 @@ class Creature {
 
     const inRangeTiles = new Set();
     const tooCloseTiles = new Set();
-    const minRange = weapon.minRange;
-    const maxRange = weapon.maxRange + (weapon.ranged ? this.rangeBonus : 0);
-    this.tileCallback(mapController, this.x, this.y, (center) => {
-      if (!center) return;
-      for (let y = center.y - maxRange; y <= center.y + maxRange; y++) {
-        for (let x = center.x - maxRange; x <= center.x + maxRange; x++) {
-          const distance = Math.abs(x - center.x) + Math.abs(y - center.y);
-          if (distance > maxRange) continue;
-          const tile = mapController.tileAt(x, y);
-          if (!tile) continue;
+
+    if (weapon.targetRingUser) {
+      for (const creature of mapController.creatures) {
+        if (creature == this) continue;
+        if (!creature.ring) continue;
+        if (creature.ring.type != weapon.targetRingUser) continue;
+        creature.tileCallback(mapController, creature.x, creature.y, (tile) => {
+          if (!tile) return;
           inRangeTiles.add(tile);
-          if (distance < minRange) tooCloseTiles.add(tile);
-        }
+        });
       }
-    });
+    } else {
+      const minRange = weapon.minRange;
+      const maxRange = weapon.maxRange + (weapon.ranged ? this.rangeBonus : 0);
+      this.tileCallback(mapController, this.x, this.y, (center) => {
+        if (!center) return;
+        for (let y = center.y - maxRange; y <= center.y + maxRange; y++) {
+          for (let x = center.x - maxRange; x <= center.x + maxRange; x++) {
+            const distance = Math.abs(x - center.x) + Math.abs(y - center.y);
+            if (distance > maxRange) continue;
+            const tile = mapController.tileAt(x, y);
+            if (!tile) continue;
+            inRangeTiles.add(tile);
+            if (distance < minRange) tooCloseTiles.add(tile);
+          }
+        }
+      });
+    }
 
     const attackInfos = new Map();
     for (const tile of inRangeTiles) {
@@ -1381,8 +1433,8 @@ class Creature {
         this.astra -= weapon.astraCost;
         this.makeBar();
       }
-      if (weapon.summon) {
-        // Summons exhaust after one use.
+      if (weapon.onePerBattle) {
+        // Exhausts after one use.
         this.exhaustedTechTypes.push(weapon.type);
       }
       if (attackType == Creature.AttackType.Normal) {
@@ -1995,6 +2047,10 @@ class Creature {
     if (accessory) {
       creature.accessory = new Accessory(accessory);
     }
+    const ring = getVVariants('ring');
+    if (ring) {
+      creature.ring = new Ring(ring);
+    }
     creature.techTypes = getAVariants('techniques');
 
     // Level up.
@@ -2127,6 +2183,9 @@ class Creature {
       if (save['accessory']) {
         creature.accessory = new Accessory(save['accessory']);
       }
+      if (save['ring']) {
+        creature.ring = new Ring(save['ring']);
+      }
       if (save['techniques']) {
         creature.techTypes = save['techniques'].split(',');
       }
@@ -2185,6 +2244,9 @@ class Creature {
       }
       if (this.accessory) {
         save['accessory'] = this.accessory.saveString;
+      }
+      if (this.ring) {
+        save['ring'] = this.ring.saveString;
       }
       if (this.techTypes.length > 0) {
         save['techniques'] = this.techTypes.join(',');

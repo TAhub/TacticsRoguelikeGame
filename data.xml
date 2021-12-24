@@ -59,7 +59,7 @@
     <entry name="white fabric" color="#E6E6E6" />
     <entry name="rusty" color="#C7998F" />
     <entry name="steel" color="#BAC4C4" />
-    <entry name="truegold" color="#F0EBC2" />
+    <entry name="gold" color="#F0EBC2" />
     <entry name="bronze" color="#CD7F32" />
     <entry name="silver" color="#BDC0C1" />
     <entry name="poison" color="#9C54E3" />
@@ -74,6 +74,7 @@
     <entry name="bullet" color="#FFCFB3" />
     <entry name="magical water" color="#75D1F0" />
     <entry name="lightning" color="#F7E9BA" />
+    <entry name="confusion" color="#B8F9CA" />
     <!-- body colors -->
     <entry name="yellow fur" color="#DEDDBA" />
     <entry name="brown fur" color="#957250" />
@@ -277,8 +278,8 @@
   <category name="creature templates">
     <!-- special -->
     <entry name="sample player t0" species="karhun" jobs="warrior" weapon="mace:0" armors="helmet:0,breastplate:0,greaves:0" techniques="slam" />
-    <entry name="sample player t1" species="karhun" jobs="warrior" weapon="mace:1" armors="helmet:1,breastplate:1,greaves:1" accessory="regal cloak" techniques="slam" />
-    <entry name="sample player t2" species="karhun" jobs="warrior,survivor" weapon="mace:2" armors="helmet:2,breastplate:2,greaves:2" accessory="regal cloak" techniques="slam" />
+    <entry name="sample player t1" species="karhun" jobs="warrior" weapon="mace:1" armors="helmet:1,breastplate:1,greaves:1" accessory="regal cloak" techniques="slam" ring="brass knuckles" />
+    <entry name="sample player t2" species="karhun" jobs="warrior,survivor" weapon="mace:2" armors="helmet:2,breastplate:2,greaves:2" accessory="regal cloak" techniques="slam" ring="brass knuckles" />
 
     <!-- grasslands enemies (levels 1-6) -->
     <entry name="scavenger" species="scavenger" jobs="sneaky monster" level="4" weapon="claws:0" />
@@ -506,7 +507,7 @@
     <entry name="slime"
       appearanceSizeMult="85"
       colorationTickets0="1" skinColor0="blood"
-      colorationTickets1="1" skinColor1="truegold">
+      colorationTickets1="1" skinColor1="gold">
       <!-- TODO: actual appearance (slime) -->
       <!-- TODO: headHeightPoint (for spell lines) -->
       <layer sprite="703" color="skinColor" showAllStatuses="1" />
@@ -514,7 +515,7 @@
     <entry name="baby slime"
       appearanceSizeMult="75"
       colorationTickets0="1" skinColor0="blood"
-      colorationTickets1="1" skinColor1="truegold">
+      colorationTickets1="1" skinColor1="gold">
       <!-- TODO: actual appearance (slime) -->
       <!-- TODO: headHeightPoint (for spell lines) -->
       <layer sprite="703" color="skinColor" showAllStatuses="1" />
@@ -695,7 +696,7 @@
         color="steel" slotFillers="weaponHand:602"
         fluff="A pistol made to tight specifications, perhaps for a sharpshooter or similar." />
       <variety name="golden gun" tier="2" weaponAccuracy="125" ranged="1"
-        color="truegold" slotFillers="weaponHand:602"
+        color="gold" slotFillers="weaponHand:602"
         fluff="A beautiful pistol with a casing made of a gold alloy, enchanted to fire bullets that twist in midair to seek foes. Left behind by a Skuri noble who got tethered." />
     </entry> <!-- pistol -->
     <entry name="mace"
@@ -748,12 +749,15 @@
     <entry name="blitz strike" astraCost="10" weaponAccuracy="90" weaponHitsToCrits="10" scaling="melee weapon" ranged="1" teleports="1"
       animProjSpeed="2" animProjColor="lightning" animProjGlows="1" animPreStepPause="22"
       fluff="Quickly leap to the target, and execute a single attack with blinding speed." />
-    <entry name="eye gouge" astraCost="10" weaponAccuracy="75" scaling="level" blindedPercent="45"
+    <entry name="eye gouge" astraCost="10" weaponAccuracy="75" scaling="level" blindedPercent="55"
       animProjSprite="1" animProjSpeed="5" animProjSkinColor="1" animStep="20" animSound="swing"
       fluff="Lunge for the opponent's eyes, and cruelly stab into them with your fingers." /> <!-- TODO: projectile sprite and scale -->
     <entry name="solar combo" astraCost="15" weaponAccuracy="70" scaling="level" burningPercent="40" numHits="4" lifeCostPercent="10"
       animProjSprite="1" animProjSpeed="6" animProjColor="fire" animProjDelay="22" animProjGlows="1" animStep="20" animPreStepPause="15" animSound="swing"
       fluff="Launch into a super-fast combination of hits, your fists flying so fast that they ignite in midair." /> <!-- TODO: projectile sprite and scale -->
+    <entry name="cheap shot" astraCost="5" weaponAccuracy="90" scaling="level" bleedingPercent="25" onePerBattle="1" weaponHitsToCrits="25"
+      animProjSprite="1" animProjSpeed="6" animProjColor="bronze" animProjGlows="1" animStep="15" animSound="swing"
+      fluff="Slip your fingers into your brass knuckles and make a surprise swing at your opponent." /> <!-- TODO: projectile sprite and scale -->
     <entry name="snipe" astraCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1"
       animProjSpeed="2" animStep="-20" animPostStepPause="33"
       fluff="Carefully aim your pistol, and try to read your enemy's movements, then take your shot." />
@@ -768,9 +772,15 @@
     <entry name="wild spark" astraCost="5" weaponAccuracy="90" weaponHitsToCrits="50" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" noProficiency="1"
       animProjSprite="1" animProjSpeed="7" animProjColor="arcana" animProjGlows="1" animPostStepPause="15" animSound="spell electric crack"
       fluff="Build up your astra and simply release it, without attempting to shape a formal spell. Not very strong, but quite simple to use." /> <!-- TODO: projectile sprite and scale -->
+    <entry name="thorns of madness" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="3" bleedingPercent="25" blindedPercent="25" poisonedPercent="25"
+      animProjSprite="1" animProjSpeed="9" animProjColor="grass wall" animProjGlows="1" animProjDelay="35" animStep="-10" animPostStepPause="33"
+      fluff="Use your ring as a focus, to fire a barrage of thorns of astra. The thorns pierce the foe as though they were solid, cutting them and then dissolving into a magical poison that blurs vision." /> <!-- TODO: projectile sprite and scale (needle-shaped, like arcana arrow) --> <!-- TODO: sounds -->
     <entry name="arcana arrow" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1"
       animProjSprite="1" animProjSpeed="8" animProjColor="arcana" animProjGlows="1" animStep="-10" animPostStepPause="22" animSound="spell concussive crack"
       fluff="Build up astra and shape it into the rough shape of an arrow, which you can then launch as a projectile. A basic but effective attack spell." /> <!-- TODO: projectile sprite and scale -->
+    <entry name="mage needles" astraCost="5" weaponAccuracy="95" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="3"
+      animProjSprite="1" animProjSpeed="9" animProjColor="arcana" animProjDelay="15" animProjGlows="1" animStep="-10" animPostStepPause="15" animSound="spell concussive crack"
+      fluff="Channel astra into your ring, where it is released as a flurry of magical needles. A reasonably efficient spell, albeit a bit harder to control than an arcana arrow." /> <!-- TODO: projectile sprite and scale -->
     <entry name="siphon" astraCost="5" weaponAccuracy="110" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" drains="1"
       animProjSprite="1" animProjSpeed="8" animProjColor="blood" animProjGlows="1" animStep="-10" animPostStepPause="33"
       fluff="Jab your opponent with a thin needle of astra, then drain their blood through the hole. A spell that is subtle and gross in equal measures." /> <!-- TODO: projectile sprite and scale --> <!-- TODO: sounds -->
@@ -780,6 +790,12 @@
     <entry name="ashball" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" blindedPercent="55"
       animProjSprite="1" animProjSpeed="7" animProjColor="smoke" animStep="-10" animPostStepPause="22"
       fluff="Scoop up some ash or soot, and flood it with a charge of astra. If you get the technique down, it'll stay together for just long enough for it to be fired at an enemy." /> <!-- TODO: projectile sprite and scale --> <!-- TODO: sounds -->
+    <entry name="blinding flash" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" magic="1" blindedPercent="95" onePerBattle="1"
+      animProjSprite="1" animProjSpeed="6" animProjColor="white" animStep="-5" animPostStepPause="22" animSound="spell electric crack"
+      fluff="Channel some astra into your ring, to make it glow as bright as the sun for a moment. This is faster than most spells, so it is good at surprising the enemy... the first time, at least." /> <!-- TODO: projectile sprite and scale -->
+    <entry name="mind wrench" astraCost="15" weaponAccuracy="100" scaling="level" usesSpecialPower="1" magic="1" spell="1" ranged="1" confusedPercent="95"
+      animProjSprite="1" animProjSpeed="9" animProjColor="confusion" animStep="-15" animPostStepPause="33" animSound="spell electric crack"
+      fluff="Fill your ring with an uncomfortable amount of astra. The ring then releases it, as a wave of mind-warping energy." /> <!-- TODO: projectile sprite and scale (slash) -->
     <entry name="sword wave" astraCost="10" weaponAccuracy="85" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1" ranged="1"
       animProjSprite="1" animProjSpeed="3" animProjColor="arcana" animProjGlows="1" animStep="10" animPostStepPause="22"
       fluff="Build up astra in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." /> <!-- TODO: projectile sprite and scale -->
@@ -804,6 +820,9 @@
     <entry name="mend" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" spell="1" heals="1" scaling="level" usesSpecialPower="1"
       animProjSprite="1" animProjSpeed="6" animProjColor="blood" animProjGlows="1" animStep="10" animPostStepPause="22"
       fluff="Build up astra and pattern it with the will and instructions to heal others. An effective use of magic, but watch out for enemies attempting to intercept your spells!" /> <!-- TODO: projectile sprite and scale --> <!-- TODO: sounds -->
+    <entry name="sacrifice" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" heals="1" scaling="level" usesSpecialPower="1" lifeCostPercent="5" targetRingUser="wedding ring"
+      animProjSprite="1" animProjSpeed="8" animProjColor="blood" animProjGlows="1" animStep="10" animPostStepPause="22"
+      fluff="Prick yourself with a spike on the inside of your ring, and channel your astra through the bead of blood. The spell in the ring sends the charged blood off heal your beloved... or at least, to heal whomever is wearing the other ring." /> <!-- TODO: projectile sprite and scale --> <!-- TODO: sounds -->
     <entry name="first aid" astraCost="5" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="2"
       animProjSprite="1" animProjSpeed="4" animProjColor="blood" animProjDelay="50" animStep="20" animPostStepPause="22"
       fluff="Apply some basic first aid to an ally, patching up their wounds as best as you can." /> <!-- TODO: projectile sprite and scale --> <!-- TODO: sounds -->
@@ -817,6 +836,26 @@
     <entry name="unearth" astraCost="20" summonSpecies="firin" summonJobs="undead,tough monster" summonWeapon="deathly grasp" summonFluff="magical undead" scaling="level" usesSpecialPower="1"
       fluff="Dredge up a long-dead corpse and fill it with astra, to create a temporary undead servant. The servant is overflowing with astra, and can release it with a touch." />
   </category> <!-- weapons -->
+  <category name="rings">
+    <entry name="wedding ring" life="5" techType="sacrifice"
+      color="silver"
+      fluff="An enchanted wedding ring, from a set of two. Even when apart, you will be able to save each other." />
+    <entry name="thorny band" specialAttackPower="10" techType="thorns of madness"
+      color="grass wall"
+      fluff="An unusual ring made of oddly-stiff thorny vines woven together. The magic inside makes you feel prickly." />
+    <entry name="brass knuckles" dodge="5" techType="cheap shot"
+      color="bronze"
+      fluff="A set of spiked brass knuckles, a dirty little weapon worn on the fingers under a normal weapon. Prevents the wearing of a ring." />
+    <entry name="sungold ring" accuracy="5" techType="blinding flash"
+      color="gold"
+      fluff="A golden ring enchanted with simple magic. Dozens of these rings were made, so their light-generating properties are now well-known." />
+    <entry name="rusted focus" initiative="5" techType="mind wrench"
+      color="rusty"
+      fluff="A rusty old metal ring, with shocking power within. It's part of an array of focuses for some huge spell, but can be used on its own too." />
+    <entry name="mage band" astra="5" techType="mage needles"
+      color="smoke"
+      fluff="An unassuming ring meant to act as a focus for a basic attack spell. Mostly a novelty, since magic items like this are expensive." />
+  </category> <!-- rings -->
   <category name="accessories">
     <entry name="regal cloak" accuracy="5" attackPower="5" specialPower="5"
       color="red fabric"
@@ -828,7 +867,7 @@
       color="brown fabric"
       fluff="A warm, fur-lined cloak. Wearing this will help against protect against the elements." /> <!-- TODO: sprite (cloak sprite layer) -->
     <entry name="third eye" initiative="15"
-      color="truegold"
+      color="gold"
       fluff="This piece of jewelry seems purely ornamental at first glance. When worn on the forehead, though, magic within stimulates the wearer's mind, improving alertness." /> <!-- TODO: sprite (head accessory slot filler) -->
     <entry name="intimidating mask" hitsToCrits="30"
       color="bone"
@@ -1004,11 +1043,11 @@
       -->
     <entry name="catacombs" regionId="0" condition="key map branch"
       tileset="catacombs" enemyTemplates="scavenger"
-      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)fur cloak,(C)silver spectacles,(A)breastplate:0" />
+      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)fur cloak,(C)silver spectacles,(A)breastplate:0,(R)wedding ring" />
       <!-- TODO: undead enemies -->
     <entry name="grasslands" regionId="0"
       tileset="grasslands" enemyTemplates="scavenger,black cat"
-      loot="(W)dagger:0,(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid" />
+      loot="(W)dagger:0,(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid,(R)wedding ring" />
       <!-- TODO: one more enemy type? -->
 
     <!-- regionId 1 (t0): shore -->
@@ -1017,7 +1056,7 @@
       loot="(C)intimidating mask,(W)pistol:0,(W)snipe" />
     <entry name="rocky shore" regionId="1" condition="key map branch"
       tileset="rocky beach" enemyTemplates="pirate brawler,pirate mage"
-      loot="(W)sword:0,(A)cap:0,(A)jerkin:0,(A)greaves:0,(A)hat:0,(W)ashball,(W)eye gouge" />
+      loot="(W)sword:0,(A)cap:0,(A)jerkin:0,(A)greaves:0,(A)hat:0,(W)ashball,(W)eye gouge,(R)brass knuckles" />
     <entry name="shore" regionId="1"
       tileset="beach" enemyTemplates="shore hopper,sea bird,giant turtle"
       loot="(W)spear:0,(W)mace:0,(A)leggings:0,(A)hat:0,(A)skirt:0,(A)helmet:0,(A)greaves:0,(A)breastplate:0,(W)slam" />
@@ -1037,7 +1076,7 @@
       -->
     <entry name="caverns" regionId="2"
       tileset="stone tunnels" enemyTemplates="skull rat,tunnel snake,blood slime"
-      loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave" />
+      loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave,(R)sungold ring" />
       <!-- TODO: one more template... a spare undead, perhaps? -->
 
     <!-- regionId 3 (t1): bandit town -->
@@ -1047,12 +1086,12 @@
       <!-- TODO: undead enemies -->
     <entry name="bandit town" regionId="3"
       tileset="village" enemyTemplates="bandit,bandit sneak,bandit enforcer,bandit jack,black cat"
-      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder" />
+      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band" />
 
     <!-- regionId 4 (t2): twisted wasteland -->
     <entry name="hedge maze" regionId="4" condition="boss map branch"
       tileset="hedge maze" enemyTemplates="mossy cat,seed spitter,walking topiary,walking bonsai,corpse picker"
-      loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade" />
+      loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade,(R)thorny band" />
     <entry name="twisted wasteland" regionId="4"
       tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar"
       loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike" />
@@ -1077,7 +1116,7 @@
       loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3" />
     <entry name="tether assembly" regionId="5"
       tileset="tether assembly" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer,reinforced gun turret"
-      loot="(C)third eye,(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3" />
+      loot="(C)third eye,(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3,(R)rusted focus" />
   </category> <!-- sub regions -->
   <category name="tilesets">
     <!-- a special tileset solely for the second upscale. Not used as an actual tileset (e.g. no colors, sprites, etc) -->

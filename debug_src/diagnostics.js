@@ -9,6 +9,8 @@ function checkBonusSourceValidity(bS) {
     category = 'armors';
   } else if (bS instanceof Accessory) {
     category = 'accessories';
+  } else if (bS instanceof Ring) {
+    category = 'rings';
   } else if (bS instanceof Skill) {
     category = 'skills';
   } else if (bS instanceof Species) {
@@ -43,6 +45,7 @@ function checkCreatureValidity(creature) {
     checkBonusSourceValidity(skill);
   }
   if (creature.accessory) checkBonusSourceValidity(creature.accessory);
+  if (creature.ring) checkBonusSourceValidity(creature.ring);
   if (creature.weapon) checkBonusSourceValidity(creature.weapon);
   checkBonusSourceValidity(creature.species);
   for (const job of creature.jobs) {
@@ -142,6 +145,8 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
         return gear.astraCost > 0;
       } else if (gear instanceof Accessory) {
         return true;
+      } else if (gear instanceof Ring) {
+        return true;
       } else {
         return false;
       }
@@ -212,6 +217,10 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
     addCategory('weapons', (type) => new Weapon(type), (gear) => {
       if (!(gear instanceof Weapon)) return 0;
       if (gear.astraCost > 0) {
+        const allRings = data.getCategoryEntriesArray('rings') || [];
+        for (const type of allRings) {
+          if ((new Ring(type)).techType == gear.type) return 0;
+        }
         return 1;
       } else {
         return gear.noProficiency ? 3 : 1;
@@ -222,6 +231,10 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
       return 2;
     });
     addCategory('accessories', (type) => new Accessory(type), (gear) => 1);
+    addCategory('rings', (type) => new Ring(type), (gear) => {
+      if (!(gear instanceof Ring)) return 0;
+      return (new Weapon(gear.techType)).targetRingUser ? 2 : 1;
+    });
 
     /**
      * @param {!Array.<string>} loot
@@ -582,6 +595,7 @@ allDiagnostics.set('Bonus Source Diagnostic', () => {
     return value * bS.slotMult;
   });
   check('accessories', (type) => new Accessory(type), (bS) => 15);
+  check('rings', (type) => new Ring(type), (bS) => 5);
 });
 
 allDiagnostics.set('Sound Test', async () => {

@@ -26,6 +26,11 @@ class Weapon extends Equipment {
   }
 
   /** @return {boolean} */
+  get onePerBattle() {
+    return this.summon || this.getBooleanValue('onePerBattle');
+  }
+
+  /** @return {boolean} */
   get usesSpecialPower() {
     return this.getBooleanValue('usesSpecialPower');
   }
@@ -103,6 +108,7 @@ class Weapon extends Equipment {
     if (this.selfTargeting) damage *= 1.15;
     if (this.teleports) damage *= 0.8;
     if (this.commandsSummon) damage *= this.usesSpecialPower ? 0.45 : 0.65;
+    if (!this.summon && this.onePerBattle) damage *= 1.05;
     return damage;
   }
 
@@ -178,6 +184,11 @@ class Weapon extends Equipment {
   /** @return {boolean} */
   get ranged() {
     return this.getBooleanValue('ranged');
+  }
+
+  /** @return {?string} */
+  get targetRingUser() {
+    return this.getValue('targetRingUser');
   }
 
   /** @return {boolean} */
@@ -331,7 +342,8 @@ class Weapon extends Equipment {
   /** @return {number} */
   get animPitch() {
     let pitch = 0;
-    pitch += (this.animProjSpeed - (this.ranged ? 8 : 5)) * 200;
+    const ranged = this.ranged || this.targetRingUser;
+    pitch += (this.animProjSpeed - (ranged ? 8 : 5)) * 200;
     pitch += (this.numHits - 1) * 75;
     // TODO: modify by projectile size (higher size = lower pitch)
     return pitch;
@@ -370,7 +382,12 @@ class Weapon extends Equipment {
     }
 
     // Misc properties.
-    effects.push(this.minRange + '-' + this.maxRange + ' range');
+    if (this.targetRingUser) {
+      effects.push('targets another person wearing a ' + this.targetRingUser +
+                   ' at any range');
+    } else {
+      effects.push(this.minRange + '-' + this.maxRange + ' range');
+    }
     if (!this.helpful && !this.summon) {
       effects.push(this.weaponAccuracy + '% accuracy');
       if (this.weaponHitsToCrits > 0) {
@@ -385,6 +402,7 @@ class Weapon extends Equipment {
                  ' power');
     if (this.scaling) effects.push('scales with ' + this.scaling);
     if (this.noProficiency) effects.push('no proficiency required');
+    if (this.onePerBattle) effects.push('can only be used once per fight');
   }
 
   /** @return {string} */
@@ -407,6 +425,7 @@ Weapon.Status = {
   Bleeding: 'bleeding',
   Shaken: 'shaken',
   Blinded: 'blinded',
+  Confused: 'confused',
 };
 /** @type {!Array.<!Weapon.Status>} */
 Weapon.allStatuses = [
@@ -415,4 +434,5 @@ Weapon.allStatuses = [
   Weapon.Status.Bleeding,
   Weapon.Status.Shaken,
   Weapon.Status.Blinded,
+  Weapon.Status.Confused,
 ];

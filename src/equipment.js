@@ -24,6 +24,8 @@ class Equipment extends BonusSource {
       return new Armor(saveString);
     } else if (saveString.startsWith('(C)')) {
       return new Accessory(saveString);
+    } else if (saveString.startsWith('(R)')) {
+      return new Ring(saveString);
     } else {
       return new Equipment(saveString); // Unknown type...
     }

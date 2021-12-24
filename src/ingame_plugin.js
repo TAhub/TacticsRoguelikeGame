@@ -401,6 +401,12 @@ class IngamePlugin extends GamePlugin {
           console.log('TODO: using misc item');
         }
       };
+      const equipCleanUp = () => {
+        creature.makeAppearance();
+        creature.life = Math.min(creature.life, creature.maxLife);
+        creature.astra = Math.min(creature.astra, creature.maxAstra);
+        creature.makeBar();
+      };
       const attachFn = (slot) => {
         if (!slot.attachData) return false;
         const split = slot.attachData.split('-');
@@ -409,7 +415,7 @@ class IngamePlugin extends GamePlugin {
           const other = mapC.inventory[j];
           mapC.inventory[j] = item;
           setFn(other);
-          creature.makeAppearance(); // In case you un-equipped something.
+          equipCleanUp(); // In case you un-equipped something.
           this.menuController.clear();
           return true;
         } else if (split[0] == 'eqp') {
@@ -445,7 +451,18 @@ class IngamePlugin extends GamePlugin {
               setFn(null);
             }
             creature.weapon = item.contents;
-            creature.makeAppearance();
+            equipCleanUp();
+            this.menuController.clear();
+            return true;
+          } else if (split[1] == 'ring') {
+            if (!(item.contents instanceof Ring)) return false;
+            if (creature.ring) {
+              setFn(new Item(creature.ring));
+            } else {
+              setFn(null);
+            }
+            creature.ring = item.contents;
+            equipCleanUp();
             this.menuController.clear();
             return true;
           } else if (split[1] == 'accessory') {
@@ -456,7 +473,7 @@ class IngamePlugin extends GamePlugin {
               setFn(null);
             }
             creature.accessory = item.contents;
-            creature.makeAppearance();
+            equipCleanUp();
             this.menuController.clear();
             return true;
           } else {
@@ -474,7 +491,7 @@ class IngamePlugin extends GamePlugin {
               setFn(null);
             }
             creature.armors.push(item.contents);
-            creature.makeAppearance();
+            equipCleanUp();
             this.menuController.clear();
             return true;
           }
@@ -547,6 +564,9 @@ class IngamePlugin extends GamePlugin {
     y = topH;
 
     // Second column (techniques).
+    addEquipmentSlot(creature.ring, 'eqp-ring', 'Ring', (g) => {
+      creature.ring = g;
+    });
     for (let i = 0; i < mechNumTechSlots; i++) {
       const current =
           creature.techTypes[i] ? new Weapon(creature.techTypes[i]) : null;
