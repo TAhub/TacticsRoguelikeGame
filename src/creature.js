@@ -2164,7 +2164,7 @@ class Creature {
     const template = save['t'];
     const player = !template;
     let creature;
-    if (!player) { // TODO: if it's an enemy
+    if (!player) {
       // Reproduction info.
       const seed = saveManager.intFromSaveObj(save, 's');
       creature = Creature.makeFromTemplate(template, seed);
