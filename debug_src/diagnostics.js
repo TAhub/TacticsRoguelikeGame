@@ -439,6 +439,7 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
       if (overworldTile.hasBoss) terms.push('B');
       if (overworldTile.hasCampfire) terms.push('C');
       if (terms.length > 0) text += ' [' + terms.join(',') + ']';
+      text += ' {' + overworldTile.numSecurityLevels + '}';
       gfx.drawText(ctx, x, y, text,
           Graphics.TextAlign.Center, Graphics.TextBaseline.Top);
     }

@@ -49,14 +49,27 @@ class MetaMap {
    * @return {number} seed
    */
   generate(seed, optGenLimit, optLogFn) {
+    // Use door id checkpoints to ensure that the door ids don't change when
+    // reloading the map (since that changes the number of generation attempts).
+    MetaMap.checkpointGlobalDoorId();
+
     for (let gen = 0; ; gen++) {
       if (optGenLimit && gen > optGenLimit) return seed;
       const rng = seededRNG(seed);
       if (this.generateOne_(rng, optLogFn)) break;
       this.tiles.clear();
       seed += 1;
+      MetaMap.restoreGlobalDoorId();
     }
     return seed;
+  }
+
+  static checkpointGlobalDoorId() {
+    MetaMap.globalDoorIdCheckpoint_ = MetaMap.globalDoorId_;
+  }
+
+  static restoreGlobalDoorId() {
+    MetaMap.globalDoorId_ = MetaMap.globalDoorIdCheckpoint_;
   }
 
   /** @return {number} */
@@ -251,3 +264,6 @@ class MetaMap {
 
 /** @type {number} */
 MetaMap.globalDoorId_ = 1;
+
+/** @type {number} */
+MetaMap.globalDoorIdCheckpoint_ = 1;
