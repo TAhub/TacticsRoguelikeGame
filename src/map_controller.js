@@ -466,7 +466,7 @@ class MapController {
         creature.removeFromTiles(this);
         creatureDead = true;
         creature.clear3DData();
-        if (!creature.player && creature.exp > 0) {
+        if (creature.side == Creature.Side.Enemy && creature.exp > 0) {
           this.awardEXPFor_(creature);
         }
         if (creature.deathLedgerId) {

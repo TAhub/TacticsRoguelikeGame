@@ -134,7 +134,7 @@ class MenuTile {
   draw2D(ctx) {
     const suffix = (this.selected ? ' selected' : '') +
                    (this.over ? ' over' : '') +
-                   (this.colorSuffix ? ' ' + this.colorSuffix : '');
+                   (this.colorSuffix ? this.colorSuffix : '');
 
     let x = this.x;
     let y = this.y;

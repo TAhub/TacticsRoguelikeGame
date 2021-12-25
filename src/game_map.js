@@ -1042,7 +1042,7 @@ class GameMap {
     if (templates.length == 0) {
       console.log('WARNING: Sub-region #' +
                   overworldMapTile.regionId + ' has no templates!');
-      samplePlayer.player = false;
+      samplePlayer.side = Creature.Side.Enemy;
       return [samplePlayer];
     }
 

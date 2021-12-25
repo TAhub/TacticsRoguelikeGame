@@ -60,14 +60,14 @@ class AttackEstimate {
 
 class Creature {
   /**
-   * @param {boolean} player
+   * @param {!Creature.Side} side
    * @param {string} species
    * @param {!Array.<string>} jobs
    */
-  constructor(player, species, jobs) {
+  constructor(side, species, jobs) {
     // Stats.
     this.name = '';
-    this.player = player;
+    this.side = side;
     this.level = 1;
     this.species = new Species(species);
     this.jobs = jobs.map((type) => new Job(type));
@@ -225,7 +225,7 @@ class Creature {
   get maxAstra() {
     const mult = 100 + this.tallyBonusSources_((bS) => bS.astra);
     let astra = 50 * mult / 100;
-    if (this.player) astra *= mechPlayerAstraMult;
+    if (this.side == Creature.Side.Player) astra *= mechPlayerAstraMult;
     return Math.floor(astra);
   }
 
@@ -433,8 +433,8 @@ class Creature {
       techs += 1;
       const value = weaponValue(weapon) - freeAttackValue;
       if (value <= 0) continue;
-      const adjMaxAstra =
-          this.maxAstra / (this.player ? mechPlayerAstraMult : 1);
+      const isPlayer = this.side == Creature.Side.Player;
+      const adjMaxAstra = this.maxAstra / (isPlayer ? mechPlayerAstraMult : 1);
       const uses = adjMaxAstra / weapon.astraCost;
       techAttackValue += value * uses / 10;
     }
@@ -540,6 +540,16 @@ class Creature {
     return {x, y, r};
   }
 
+  /** @return {string} */
+  get colorSuffix() {
+    switch (this.side) {
+      case Creature.Side.Player: return ' player';
+      case Creature.Side.Enemy: return ' enemy';
+      case Creature.Side.Npc: return ' npc';
+      default: return '';
+    }
+  }
+
   /**
    * @param {!CanvasRenderingContext2D} ctx
    * @private
@@ -547,13 +557,11 @@ class Creature {
   drawFloorShape_(ctx) {
     ctx.translate(-this.x * gfxTileSize, -this.y * gfxTileSize);
 
-    const color = data.getColorByNameSafe(
-        'tile' + (this.player ? ' player' : ' enemy'));
+    const color = data.getColorByNameSafe('tile' + this.colorSuffix);
     const fsd = this.getFloorShapeDimensions_();
 
     if (this.engaged) {
-      const oColor = data.getColorByNameSafe(
-          'tile' + (this.engaged.player ? ' player' : ' enemy'));
+      const oColor = data.getColorByNameSafe('tile' + this.engaged.colorSuffix);
       const oFsd = this.engaged.getFloorShapeDimensions_();
       const a = calcAngle(oFsd.x - fsd.x, oFsd.y - fsd.y);
       ctx.fillStyle = colorLerp(color, oColor, 0.5);
@@ -591,7 +599,6 @@ class Creature {
     const b = 2;
     const lH = h * 0.75;
     const aH = h * 0.9;
-    const colorSuffix = this.player ? ' player' : ' enemy';
     const setAstraFont = () => gfx.setFont(ctx, aH);
     const setLifeFont = () => gfx.setFont(ctx, lH);
 
@@ -613,12 +620,12 @@ class Creature {
     ctx.fillRect(b, b, (lW - 2 * b) * this.life / this.maxLife, lH - 2 * b);
 
     // Life bar.
-    ctx.fillStyle = data.getColorByNameSafe('tile' + colorSuffix);
+    ctx.fillStyle = data.getColorByNameSafe('tile' + this.colorSuffix);
     const modLife = this.life - this.dotDamage;
     ctx.fillRect(b, b, (lW - 2 * b) * modLife / this.maxLife, lH - 2 * b);
 
     // Life number.
-    ctx.fillStyle = data.getColorByNameSafe('tile text' + colorSuffix);
+    ctx.fillStyle = data.getColorByNameSafe('tile text' + this.colorSuffix);
     setLifeFont();
     gfx.drawText(ctx, 0, 0, ' ' + this.life,
         Graphics.TextAlign.Left, Graphics.TextBaseline.Top);
@@ -628,7 +635,7 @@ class Creature {
     ctx.fillRect(lW, 0, w - lW, h);
 
     // Astra number.
-    ctx.fillStyle = data.getColorByNameSafe('tile text' + colorSuffix);
+    ctx.fillStyle = data.getColorByNameSafe('tile text' + this.colorSuffix);
     setAstraFont();
     gfx.drawText(ctx, w, h - aH / 2, astraText,
         Graphics.TextAlign.Right, Graphics.TextBaseline.Middle);
@@ -964,7 +971,7 @@ class Creature {
         tiles.set(i, tile);
         for (const creature of tile.creatures) {
           if (creature == this) continue;
-          if (creature.player == this.player && ignoreAllies) continue;
+          if (creature.side == this.side && ignoreAllies) continue;
           invalid = true;
           break;
         }
@@ -1201,8 +1208,14 @@ class Creature {
       } else {
         if (tile.creatures.length == 0) continue;
         const target = tile.creatures[0];
-        const isFriend = target.player == this.player;
-        if (isFriend != weapon.helpful) continue;
+        if (weapon.helpful) {
+          if (target.side != this.side) continue;
+        } else {
+          if (this.side == Creature.Side.Player &&
+              target.side != Creature.Side.Enemy) continue;
+          if (this.side == Creature.Side.Enemy &&
+                target.side != Creature.Side.Player) continue;
+        }
         if (!this.hasLOS(tile.x + 0.5, tile.y + 0.5, mapController)) continue;
         if (this.engaged) {
           willBreakEngagement = target != this && target != this.engaged;
@@ -1500,7 +1513,7 @@ class Creature {
     // Make the summon.
     const summonSpecies = weapon.summonSpecies || '';
     const summonJobs = weapon.summonJobs || [];
-    const summon = new Creature(this.player, summonSpecies, summonJobs);
+    const summon = new Creature(this.side, summonSpecies, summonJobs);
     while (summon.level < this.level) {
       summon.levelUp();
     }
@@ -1933,7 +1946,7 @@ class Creature {
         if (!tile) return;
         const creature = tile.creatures[0];
         if (!creature) return;
-        if (creature.player == this.player) return;
+        if (creature.side == this.side) return;
         if (creature.zonesStacks == 0) return;
         zoningAttacks.add(creature);
       };
@@ -2039,7 +2052,7 @@ class Creature {
     // Make the base creature.
     const speciesType = getV('species');
     const jobTypes = getA('jobs');
-    const creature = new Creature(false, speciesType, jobTypes);
+    const creature = new Creature(Creature.Side.Enemy, speciesType, jobTypes);
     const species = creature.species;
     const jobs = creature.jobs;
 
@@ -2162,15 +2175,15 @@ class Creature {
     const save = saveManager.stringToSaveObj(saveString);
 
     const template = save['t'];
-    const player = !template;
+    const side = template ? Creature.Side.Enemy : Creature.Side.Player;
     let creature;
-    if (!player) {
+    if (side != Creature.Side.Player) {
       // Reproduction info.
       const seed = saveManager.intFromSaveObj(save, 's');
       creature = Creature.makeFromTemplate(template, seed);
     } else {
       // Stats.
-      creature = new Creature(player, save['species'], save['jobs'].split(','));
+      creature = new Creature(side, save['species'], save['jobs'].split(','));
       creature.level = saveManager.intFromSaveObj(save, 'level');
       for (const stat of creature.stats) {
         stat.number = saveManager.intFromSaveObj(save, stat.type) + 10;
@@ -2212,7 +2225,7 @@ class Creature {
     creature.x = saveManager.intFromSaveObj(save, 'x');
     creature.y = saveManager.intFromSaveObj(save, 'y');
     creature.exp = saveManager.intFromSaveObj(save, 'xp');
-    if (player) {
+    if (side == Creature.Side.Player) {
       creature.statPoints = saveManager.intFromSaveObj(save, 'stP');
       creature.skillPoints = saveManager.intFromSaveObj(save, 'skP');
       creature.astra = saveManager.intFromSaveObj(save, 'a');
@@ -2231,7 +2244,7 @@ class Creature {
   get saveString() {
     const save = {};
 
-    if (!this.player) {
+    if (this.side != Creature.Side.Player) {
       // Reproduction info.
       save['t'] = this.template;
       saveManager.intToSaveObj(save, 's', this.seed);
@@ -2276,7 +2289,7 @@ class Creature {
     saveManager.intToSaveObj(save, 'y', this.y);
     saveManager.intToSaveObj(save, 'xp', this.exp);
     saveManager.intToSaveObj(save, 'l', this.life);
-    if (this.player) {
+    if (this.side == Creature.Side.Player) {
       saveManager.intToSaveObj(save, 'stP', this.statPoints);
       saveManager.intToSaveObj(save, 'skP', this.skillPoints);
       saveManager.intToSaveObj(save, 'a', this.astra);
@@ -2288,6 +2301,13 @@ class Creature {
     return JSON.stringify(save);
   }
 }
+
+/** @enum {number} */
+Creature.Side = {
+  Enemy: 0,
+  Player: 1,
+  Npc: 2,
+};
 
 /** @enum {number} */
 Creature.HitResult = {

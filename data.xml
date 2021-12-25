@@ -47,6 +47,14 @@
     <entry name="tile text selected enemy" color="#EDDEDE" />
     <entry name="tile text over enemy" color="#F2D9D9" />
     <entry name="tile text selected over enemy" color="#FFFFFF" />
+    <entry name="tile npc" color="#5C7070" />
+    <entry name="tile selected npc" color="#59A6A6" />
+    <entry name="tile over npc" color="#669999" />
+    <entry name="tile selected over npc" color="#70C2C2" />
+    <entry name="tile text npc" color="#C7D1D1" />
+    <entry name="tile text selected npc" color="#DEEDED" />
+    <entry name="tile text over npc" color="#D9F2F2" />
+    <entry name="tile text selected over npc" color="#FFFFFF" />
     <entry name="tooltip" color="#463D39" />
     <entry name="tooltip text" color="#BAAFAB" />
     <!-- material colors -->

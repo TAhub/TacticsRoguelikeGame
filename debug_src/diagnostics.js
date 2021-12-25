@@ -88,7 +88,7 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
   constructor(loadMode) {
     super();
     this.mapController = new MapController();
-    const player = new Creature(true, 'firin', ['warrior']);
+    const player = new Creature(Creature.Side.Player, 'firin', ['warrior']);
     if (loadMode) {
       this.mapController.load();
       for (const tile of this.mapController.overworldMap.tiles.values()) {
@@ -546,7 +546,7 @@ allDiagnostics.set('Job Diagnostic', () => {
 });
 
 allDiagnostics.set('Bonus Source Diagnostic', () => {
-  const creature = new Creature(true, 'firin', ['warrior']);
+  const creature = new Creature(Creature.Side.Player, 'firin', ['warrior']);
 
   /**
    * @param {string} category

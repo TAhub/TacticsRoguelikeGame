@@ -645,7 +645,7 @@ class CharacterCreatorPlugin extends GamePlugin {
       }
     }
 
-    const creature = new Creature(true, species, [job]);
+    const creature = new Creature(Creature.Side.Player, species, [job]);
     creature.species.gender = gender;
     creature.species.hairstyle.type = 'short';
     this.pickNameFor_(creature);

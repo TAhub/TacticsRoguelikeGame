@@ -40,12 +40,12 @@ class IngamePlugin extends GamePlugin {
    */
   getEncounterIdsToWake_() {
     const mapC = this.mapController;
-    if (!mapC.active.player) return new Set(); // No need.
+    if (mapC.active.side != Creature.Side.Player) return new Set(); // No need.
 
     const toWake = new Set();
     for (const creature of mapC.creatures) {
       if (toWake.has(creature.encounterId)) continue;
-      if (creature.player) continue;
+      if (creature.side != Creature.Side.Enemy) continue;
 
       // Don't bother triggering already-awake creatures, if in combat already.
       if (mapC.inCombat && !creature.encounterId) continue;
@@ -67,7 +67,7 @@ class IngamePlugin extends GamePlugin {
     if (idsToWake.size > 0) {
       for (const creature of this.mapController.creatures) {
         if (!idsToWake.has(creature.encounterId)) continue;
-        if (creature.player) continue;
+        if (creature.side != Creature.Side.Enemy) continue;
         creature.encounterId = 0;
       }
       if (!this.mapController.inCombat) {
@@ -160,7 +160,7 @@ class IngamePlugin extends GamePlugin {
       const slot = new MenuTileSlot(x, y, topW, topH,
           {attachData, mouseOverFn, mouseOffFn, disabled: player.dead});
       const clickFn = mapC.inCombat ? undefined : () => {
-        if (!player.player) return;
+        if (player.side != Creature.Side.Player) return;
         this.inventoryPlayer = this.inventoryPlayer == player ? null : player;
         this.selectedWeaponI = null;
         this.menuController.clear();
@@ -180,9 +180,7 @@ class IngamePlugin extends GamePlugin {
       };
       const selected = player == this.inventoryPlayer;
       const tileOptions = {clickFn, attachFn, spriteCanvas, selected};
-      if (mapC.inCombat) {
-        tileOptions.colorSuffix = player.player ? 'player' : 'enemy';
-      }
+      if (mapC.inCombat) tileOptions.colorSuffix = player.colorSuffix;
       slot.attachTile(new MenuTile(player.name, tileOptions));
       this.menuController.slots.push(slot);
     }
@@ -202,7 +200,7 @@ class IngamePlugin extends GamePlugin {
       // TODO: maybe slots that represent items should be
       // draggable...? how would that work?
       const slot = new MenuTileSlot(x, y, s, s, {});
-      if (active.player) {
+      if (active.side == Creature.Side.Player) {
         if (i == bottomBarSlots - 2) {
           // Undo move button.
           const x = this.turnStartX;
@@ -615,7 +613,8 @@ class IngamePlugin extends GamePlugin {
         tile.setCursorColor(null);
       }
     }
-    if (mapController.active.player && !mapController.animating) {
+    if (mapController.active.side == Creature.Side.Player &&
+        !mapController.animating) {
       if (mapController.inCombat || this.selectedWeapon) {
         let actions;
         if (this.selectedWeapon) {
@@ -634,7 +633,7 @@ class IngamePlugin extends GamePlugin {
         tileOver.setCursorColor(data.getColorByNameSafe('tile over'));
       }
       for (const cr of this.highlighted) {
-        const colorName = 'tile over ' + (cr.player ? 'player' : 'enemy');
+        const colorName = 'tile over' + cr.colorSuffix;
         const color = data.getColorByNameSafe(colorName);
         cr.tileCallback(this.mapController, cr.x, cr.y, (tile) => {
           if (tile) tile.setCursorColor(color);
@@ -646,7 +645,7 @@ class IngamePlugin extends GamePlugin {
       const active = mapController.active;
       if (active && ((!active.hasAction && !active.hasMove) || active.dead)) {
         if (!mapController.animating) this.endTurn_();
-      } else if (active && !active.player) {
+      } else if (active && active.side == Creature.Side.Enemy) {
         if (!mapController.animating) AI.aiDecision(this.mapController);
       }
     }
@@ -756,7 +755,7 @@ class IngamePlugin extends GamePlugin {
     }
     if (!mapController.inCombat) return;
     const enemiesAlive = mapController.creatures.some((cr) => {
-      return !cr.dead && !cr.player && !cr.encounterId;
+      return !cr.dead && cr.side == Creature.Side.Enemy && !cr.encounterId;
     });
     if (!enemiesAlive) {
       // Combat over!
@@ -888,7 +887,7 @@ class IngamePlugin extends GamePlugin {
 
     if (this.menuController.slotOver) return; // Block all non-spin input!
     const active = this.mapController.active;
-    if (!active || !active.player) return;
+    if (!active || active.side != Creature.Side.Player) return;
     if (this.mapController.animating) return;
 
     let tileOver;

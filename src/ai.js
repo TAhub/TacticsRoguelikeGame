@@ -100,7 +100,7 @@ class AI {
     }
 
     // Don't heal enemies, or attack friends!
-    const isFriend = defender.player == attacker.player;
+    const isFriend = defender.side == attacker.side;
     if (isFriend != weapon.helpful) value *= -1; // Bad idea!
 
     return value;
@@ -170,7 +170,7 @@ class AI {
       }
       let distanceToNearestEnemy = 999;
       for (const creature of mapController.creatures) {
-        if (creature.player == active.player) continue;
+        if (creature.side == active.side) continue;
         const distance = Math.abs(creature.x - active.x) +
                          Math.abs(creature.y - active.y);
         distanceToNearestEnemy = Math.min(distance, distanceToNearestEnemy);
