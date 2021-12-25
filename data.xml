@@ -339,9 +339,9 @@
       hairstyle="short,bald" />
     <entry name="undead servant" species="firin" jobs="undead" level="18" weapon0="dagger:1" weapon1="mace:1" armors="shirt:1,pants:1" accessory="lantern" techniques="eye gouge"
       hairstyle="short" />
-    <entry name="undead aristocrat" species="firin" jobs="undead" level="20" weapon="deathly grasp:1" armors="hat:1,shirt:1,pants:1" techniques="siphon"
+    <entry name="undead aristocrat" species="firin" jobs="undead" level="20" weapon="deathly grasp:1" armors="hat:1,shirt:1,pants:1" techniques="siphon" accessory="regal cloak"
       hairstyle="medium,long" />
-    <entry name="undead butcher" species="firin" jobs="armored undead" level="19" weapon0="sword:1" weapon1="dagger:1" armors="cap:1,jerkin:1,leggings:1" techniques="crimson fangs"
+    <entry name="undead butcher" species="firin" jobs="armored undead" level="19" weapon0="sword:1" weapon1="dagger:1" armors="cap:1,jerkin:1,leggings:1" techniques="crimson fangs" accessory="intimidating mask"
       hairstyle="ponytail,short" />
 
     <!-- twisted wasteland enemies (levels 25-30) -->
@@ -361,17 +361,17 @@
     <entry name="walking bonsai" species="walking bonsai" jobs="tough monster" level="24" weapon="tackle:2" techniques="eye gouge" />
 
     <!-- tether assembly enemies (levels 31-36) -->
-    <entry name="tethered warrior" species="karhun" jobs="warrior,tethered" level="28" weapon="sword:2" armors="helmet:2,breastplate:2,greaves:2" techniques="blitz strike,typhoon slash"
+    <entry name="tethered warrior" species="karhun" jobs="warrior,tethered" level="28" weapon="sword:2" armors="helmet:2,breastplate:2,greaves:2" techniques="blitz strike,typhoon slash" accessory="shield"
       hairstyle="short,bald" />
-    <entry name="tethered rogue" species="skuri" jobs="rogue,tethered" level="28" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" techniques="crimson fangs,venom sting"
+    <entry name="tethered rogue" species="skuri" jobs="rogue,tethered" level="28" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" techniques="crimson fangs,venom sting" accessory="wind bangles"
       hairstyle="short,medium" />
-    <entry name="tethered mage" species="firin" jobs="mage,tethered" level="28" weapon="spear:2" armors0="hat:2,shirt:2,pants:2" armors1="hat:2,shirt:2,skirt:2" techniques="arcana arrow,phantom flames"
+    <entry name="tethered mage" species="firin" jobs="mage,tethered" level="28" weapon="spear:2" armors0="hat:2,shirt:2,pants:2" armors1="hat:2,shirt:2,skirt:2" techniques="arcana arrow,phantom flames" accessory="third eye"
       hairstyle="medium,ponytail" />
-    <entry name="tethered mechanic" species="skuri" jobs="mechanic,tethered" level="30" weapon="mace:2" armors="cap:2,jerkin:2,leggings:2" techniques="saw crawler,slam"
+    <entry name="tethered mechanic" species="skuri" jobs="mechanic,tethered" level="30" weapon="mace:2" armors="cap:2,jerkin:2,leggings:2" techniques="saw crawler,slam" accessory="lantern"
       hairstyle="medium,long" />
-    <entry name="tethered gunner" species="firin" jobs="gunner,tethered" level="30" weapon="pistol:2" armors="cap:2,jerkin:2,leggings:2" techniques="snipe,brain rattler"
+    <entry name="tethered gunner" species="firin" jobs="gunner,tethered" level="30" weapon="pistol:2" armors="cap:2,jerkin:2,leggings:2" techniques="snipe,brain rattler" accessory="oilskin cloak"
       hairstyle="short,ponytail" />
-    <entry name="tethered healer" species="karhun" jobs="healer,tethered" level="30" weapon="mace:2" armors="hat:2,shirt:2,pants:2" techniques="first aid,siphon"
+    <entry name="tethered healer" species="karhun" jobs="healer,tethered" level="30" weapon="mace:2" armors="hat:2,shirt:2,pants:2" techniques="first aid,siphon" accessory="fur cloak"
       hairstyle="short,ponytail" />
     <entry name="reinforced gun turret" species="turret" jobs="ranged monster,tough monster" level="31" weapon="automata gun:2" techniques="inferno shot" />
     <entry name="gold slime" species="slime" jobs="magic monster,tough monster" level="33" weapon="tackle:2" techniques="arcana arrow,spell barrage,gold splitting"
