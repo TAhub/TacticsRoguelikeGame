@@ -381,7 +381,8 @@ class GameMap {
    */
   constructor(overworldMapTile, optGenLimit, optLogFn) {
     this.startI = 0;
-    this.centerI = toI(mapGameMapSize / 2, mapGameMapSize / 2);
+    this.centerI =
+        toI(Math.floor(mapGameMapSize / 2), Math.floor(mapGameMapSize / 2));
 
     /** @type {!Map.<number, string>} */
     this.enemyRecords = new Map();
@@ -405,11 +406,8 @@ class GameMap {
     for (const otherMapTileI of overworldMapTile.doorIds.keys()) {
       const otherMapTileX = toX(otherMapTileI);
       const otherMapTileY = toY(otherMapTileI);
-      // TODO: instead of mapGameMapSize/2 here, each overworld map link should
-      // pick an "interfacePoint" between, say, 1 and (mapGameMapSize-2)...
-      // and then start the (x,y) here as both being interfacePoint
-      let x = mapGameMapSize / 2;
-      let y = mapGameMapSize / 2;
+      let x = toX(this.centerI);
+      let y = toY(this.centerI)
       if (otherMapTileX < overworldMapTile.x) {
         x = 0;
       } else if (otherMapTileX > overworldMapTile.x) {
@@ -425,39 +423,39 @@ class GameMap {
     }
     const numSecurityLevels = overworldMapTile.numSecurityLevels;
     const tilesPerNumGoalIs = [
-      mapGameMapSize * 1.5,
       mapGameMapSize * 2,
       mapGameMapSize * 2.5,
       mapGameMapSize * 3,
+      mapGameMapSize * 3.5,
     ];
     const tilesPerSecurityLevel = Math.ceil(
         (tilesPerNumGoalIs[goalIs.length]) / numSecurityLevels);
     const branchLimitPerSecurityLevel = 4;
-    const directness = 2;
-    const branchChance = 25;
+    const directness = 1;
+    const branchChance = 35;
     const metaMap = new MetaMap(
         mapGameMapSize, mapGameMapSize, goalIs, numSecurityLevels,
         tilesPerSecurityLevel, branchLimitPerSecurityLevel, directness,
         branchChance);
     overworldMapTile.seed = metaMap.generate(
         overworldMapTile.seed, optGenLimit, optLogFn);
-    const rng = seededRNG(overworldMapTile.seed);
-
-    const notUpscaledTiles = this.translateTilesInitial_(
-        metaMap, rng, overworldMapTile, overworldMapIToGoalI);
 
     /** @type {!Map.<number, !GameMapTile>} */
     this.tiles = new Map();
+    if (metaMap.tiles.size == 0) return; // It failed...
+
+    // Make the meta-map into the actual tiles, with actual contents.
+    const rng = seededRNG(overworldMapTile.seed);
+    const notUpscaledTiles = this.translateTilesInitial_(
+        metaMap, rng, overworldMapTile, overworldMapIToGoalI);
     this.upscaleTiles_(notUpscaledTiles, rng, mapTileUpscale, mapTileUpscale);
     const firstUpscaleTiles = this.tiles;
     this.tiles = new Map();
     this.upscaleTiles_(firstUpscaleTiles, rng, mapSecondTileUpscale,
         mapTileUpscale * mapSecondTileUpscale, 'second upscale');
-
     if (overworldMapTile.hasCampfire) {
       this.placeObject_(rng, Item.Code.Campfire);
     }
-
     this.setTerrainHeights_();
   }
 

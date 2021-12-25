@@ -11,7 +11,7 @@ const gfxThScale = 0.1;
 
 // Map-generation constants.
 const mapOverworldMapSize = 18;
-const mapGameMapSize = 6;
+const mapGameMapSize = 5;
 const mapTileUpscale = 3;
 const mapSecondTileUpscale = 3;
 const mapRegionSize = 12;
