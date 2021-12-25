@@ -24,6 +24,11 @@ class OverworldMapTile {
   }
 
   /** @return {string} */
+  get npc() {
+    return data.getValue('sub regions', this.type, 'npc') || '';
+  }
+
+  /** @return {string} */
   get tileset() {
     return data.getValue('sub regions', this.type, 'tileset') || '';
   }

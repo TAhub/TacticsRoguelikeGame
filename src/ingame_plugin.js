@@ -241,41 +241,62 @@ class IngamePlugin extends GamePlugin {
             const name = active.statuses.has(Weapon.Status.Burning) ?
                 'Put Out Fire' : 'Skip Turn';
             slot.attachTile(new MenuTile(name, {clickFn}));
-          } else if (item && item.contents == Item.Code.Campfire) {
-            // It's a rest button instead, out of combat, if over a campfire.
-            const clickFn = () => {
-              mapC.rest();
-              this.inventoryPlayer = null;
-              this.mapController.revive();
-              this.menuController.clear();
-              this.mapController.save();
-            };
-            slot.attachTile(new MenuTile('Rest', {clickFn}));
-          } else if (item && item.canPickUp) {
-            // It's a pick up button, if the tile has an item that could be...
-            // actually picked up.
-            let slotNum = -1;
-            for (let i = 0; i < mapC.inventory.length; i++) {
-              if (mapC.inventory[i]) continue;
-              slotNum = i;
-              break;
+          } else {
+            // Talk with NPCs.
+            for (let j = 0; j < 4; j++) {
+              let x = active.x;
+              let y = active.y;
+              switch (j) {
+                case 0: x -= 1; break;
+                case 1: x += 1; break;
+                case 2: y -= 1; break;
+                case 3: y += 1; break;
+              }
+              const tile = mapC.tileAt(x, y);
+              if (!tile) continue;
+              const creature = tile.creatures[0];
+              if (!creature || creature.side != Creature.Side.Npc) continue;
+              const clickFn = () => creature.talk();
+              slot.attachTile(new MenuTile('Talk', {clickFn}));
             }
-            let clickFn = () => {};
-            const tooltip = item.getDescription(active);
-            if (slotNum == -1) {
-              slot.disabled = true;
-              tooltip.push('WARNING: Cannot pick up! No inventory space left!');
-            } else {
-              clickFn = () => {
-                item.clear3DData();
-                mapC.inventory[slotNum] = tile.item;
-                tile.item = null;
-                this.inventoryPlayer = active;
+
+            // Interact with items.
+            if (item && item.contents == Item.Code.Campfire) {
+              // It's a rest button instead, out of combat, if over a campfire.
+              const clickFn = () => {
+                mapC.rest();
+                this.inventoryPlayer = null;
+                this.mapController.revive();
                 this.menuController.clear();
+                this.mapController.save();
               };
+              slot.attachTile(new MenuTile('Rest', {clickFn}));
+            } else if (item && item.canPickUp) {
+              // It's a pick up button, if the tile has an item that could be...
+              // actually picked up.
+              let slotNum = -1;
+              for (let i = 0; i < mapC.inventory.length; i++) {
+                if (mapC.inventory[i]) continue;
+                slotNum = i;
+                break;
+              }
+              let clickFn = () => {};
+              const tooltip = item.getDescription(active);
+              if (slotNum == -1) {
+                slot.disabled = true;
+                tooltip.push('WARNING: Cannot pick up! No inventory space!');
+              } else {
+                clickFn = () => {
+                  item.clear3DData();
+                  mapC.inventory[slotNum] = tile.item;
+                  tile.item = null;
+                  this.inventoryPlayer = active;
+                  this.menuController.clear();
+                };
+              }
+              const name = 'Get ' + item.name;
+              slot.attachTile(new MenuTile(name, {clickFn, tooltip}));
             }
-            const name = 'Get ' + item.name;
-            slot.attachTile(new MenuTile(name, {clickFn, tooltip}));
           }
         } else {
           const usableWeapons = active.usableWeapons;

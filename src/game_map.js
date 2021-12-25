@@ -1060,6 +1060,7 @@ class GameMap {
       creatures.push(creature);
       generationPoints -= creature.generationPoints;
     }
+
     return creatures;
   }
 
@@ -1196,8 +1197,9 @@ class GameMap {
    * @param {rng} rng
    * @param {number} encounterTally
    * @return {?Array.<!Creature>} encounterTally
+   * @private
    */
-  generateEncounters(overworldMapTile, rng, encounterTally) {
+  generateEncountersInner_(overworldMapTile, rng, encounterTally) {
     if (overworldMapTile.enemyTemplates.length == 0) return [];
     const numEncounters = 4; // TODO: get?
     const encounters = [];
@@ -1321,6 +1323,47 @@ class GameMap {
           break;
         }
       }
+    }
+
+    return enemies;
+  }
+
+  /**
+   * @param {!OverworldMapTile} overworldMapTile
+   * @param {rng} rng
+   * @param {number} encounterTally
+   * @return {?Array.<!Creature>} encounterTally
+   */
+  generateEncounters(overworldMapTile, rng, encounterTally) {
+    let enemies = this.generateEncountersInner_(
+        overworldMapTile, rng, encounterTally);
+
+    // After all of the enemies have been added, add the NPC (if any).
+    if (overworldMapTile.npc) {
+      const validTiles = [];
+      for (const tile of this.tiles.values()) {
+        if (tile.creatures.length > 0) continue;
+        if (tile.item) continue;
+        let tooClose = false;
+        for (const enemy of (enemies || [])) {
+          const dist = Math.abs(enemy.x - tile.x) + Math.abs(enemy.y - tile.y);
+          if (dist > 6) continue;
+          tooClose = true;
+          break;
+        }
+        if (tooClose) continue;
+        validTiles.push(tile);
+      }
+      // If the NPC cannot find a place to spawn, try again.
+      if (validTiles.length == 0) {
+        return this.generateEncounters(overworldMapTile, rng, encounterTally);
+      }
+      const tile = getRandomArrayEntry(validTiles, rng);
+      const npc = Creature.makeFromTemplate(overworldMapTile.npc, 1);
+      npc.x = tile.x;
+      npc.y = tile.y;
+      if (!enemies) enemies = [];
+      enemies.push(npc);
     }
 
     return enemies;

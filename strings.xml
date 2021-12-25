@@ -1,4 +1,25 @@
 <data>
+  <category name="npc lines">
+    <entry name="roros">
+      <line s="Did you four sleepwalk here too?" />
+      <line s="All sorts of people seem to be drawn here, by something." />
+      <line s="Lots of bandit types were drawn here, too. Be careful." />
+      <line s="I'm happy where I am, thanks." />
+    </entry> <!-- roros -->
+    <entry name="Ilretaami">
+      <line s="You managed to avoid those pirates?" />
+      <line s="It just gets worse from here." />
+      <line s="I'd avoid the burrows, in this cave system. The Skuri there are hostile." />
+      <line s="Me? These caves are comfortable. The sky is way too high, in the beach." />
+    </entry> <!-- Ilretaami -->
+    <entry name="Greeter">
+      <line s="Welcome! You took longer than expected." />
+      <line s="If you had sleepwalked all the way here, everyone would have left you alone." />
+      <line s="But now that you're here, so you can serve the master!" />
+      <line s="You don't look very cooperative... oh well." />
+      <line s="You'll serve, in time." />
+    </entry> <!-- Greeter -->
+  </category> <!-- npc lines -->
   <category name="name parts">
     <!-- main name generators -->
     <entry name="skuri male names">

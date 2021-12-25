@@ -111,17 +111,22 @@ class MapController {
             tile, defaultRNG(), encounterTally);
         if (enemies) {
           for (const enemy of enemies) {
-            enemy.deathLedgerId = deathLedgerId++;
             this.addCreature(enemy);
-            encounterTally = Math.max(encounterTally, enemy.encounterId + 1);
 
-            // Before adding the creature to the map's ledger, set its EXP to 0
-            // temporarily. This ensures that you can't grind by killing and
-            // respawning the same enemy over and over.
-            const oldEXP = enemy.exp;
-            enemy.exp = 0;
-            gameMap.enemyRecords.set(enemy.deathLedgerId, enemy.saveString);
-            enemy.exp = oldEXP;
+            // Some "enemies" are actually NPCs... they don't need to be added
+            // to the death ledger, as they will never be killed.
+            if (enemy.side == Creature.Side.Enemy) {
+              enemy.deathLedgerId = deathLedgerId++;
+              encounterTally = Math.max(encounterTally, enemy.encounterId + 1);
+
+              // Before adding the creature to the map's ledger, set its EXP to
+              // 0 temporarily. This ensures that you can't grind by killing and
+              // respawning the same enemy over and over.
+              const oldEXP = enemy.exp;
+              enemy.exp = 0;
+              gameMap.enemyRecords.set(enemy.deathLedgerId, enemy.saveString);
+              enemy.exp = oldEXP;
+            }
           }
           break;
         }
@@ -338,6 +343,7 @@ class MapController {
     this.active = null;
     for (const creature of this.creatures) {
       if (creature.encounterId) continue;
+      if (creature.side == Creature.Side.Npc) continue;
       if (this.turnTaken.has(creature)) continue;
       if (this.active) {
         if (this.active.getModifiedInitiative() >=

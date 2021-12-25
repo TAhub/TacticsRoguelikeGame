@@ -294,6 +294,14 @@
     <entry name="sample player t1" species="karhun" jobs="warrior" weapon="mace:1" armors="helmet:1,breastplate:1,greaves:1" accessory="regal cloak" techniques="slam" ring="brass knuckles" />
     <entry name="sample player t2" species="karhun" jobs="warrior,survivor" weapon="mace:2" armors="helmet:2,breastplate:2,greaves:2" accessory="regal cloak" techniques="slam" ring="brass knuckles" />
 
+    <!-- npcs -->
+    <entry name="Roros" species="firin" jobs="survivor" level="1" armors="shirt:0,pants:0"
+      gender="0" hairstyle="short" coloration="1" npcLines="roros" />
+    <entry name="Ilretaami" species="skuri" jobs="rogue" level="14" weapon="dagger:1" armors="jerkin:1,leggings:1"
+      gender="1" hairstyle="medium" coloration="0" npcLines="Ilretaami" />
+    <entry name="Greeter" species="firin" jobs="mage,tethered" level="30" armors="shirt:2,skirt:2" accessory="silver spectacles" techniques="arcana arrow,phantom flames"
+      gender="1" hairstyle="ponytail" coloration="0" npcLines="Greeter" />
+
     <!-- grasslands enemies (levels 1-6) -->
     <entry name="scavenger" species="scavenger" jobs="sneaky monster" level="3" weapon="claws:0" />
     <entry name="tortoise" species="turtle" jobs="tough monster" level="4" weapon="tackle:0" />
@@ -1077,15 +1085,8 @@
   <category name="sub regions">
     <!-- regionId 0 (t0): grasslands -->
     <entry name="clearing" regionId="0" condition="first map"
-      tileset="grasslands"
+      tileset="grasslands" npc="Roros"
       loot="(W)rusty metal rod:0,(W)wild spark,(A)pants:0" />
-      <!-- TODO: neutral NPC: firin civilian (M)
-        line 1: "Did you four sleepwalk here too?"
-        line 2: "All sorts of people seem to be drawn here by something."
-        line 3: "Lots of bandit types were drawn here, too. Be careful."
-        line 4+: "I'm happy where I am, thanks."
-        TODO: I guess all these dialogue lines should be stored in the strings file?
-      -->
     <entry name="catacombs" regionId="0" condition="key map branch"
       tileset="catacombs" securityLevelTickets="1,2,2,3" enemyTemplates="undead noble,undead soldier"
       loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)fur cloak,(C)silver spectacles,(A)breastplate:0,(R)wedding ring" />
@@ -1109,14 +1110,8 @@
       tileset="burrow" securityLevelTickets="2,3" enemyTemplates="gun turret,saw crawler,paranoid tunneler,paranoid rogue,paranoid mage"
       loot="(W)gun turret,(W)pistol:1,(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot,(W)coordinated attack" />
     <entry name="caverns entrance" regionId="2" condition="first map"
-      tileset="stone tunnels" enemyTemplates="skull rat,giant turtle"
+      tileset="stone tunnels" enemyTemplates="skull rat,giant turtle" npc="Ilretaami"
       loot="(A)jerkin:1,(C)shield,(W)brain rattler" />
-      <!-- TODO: neutral NPC: skuri exile (F)
-        line 1: "You managed to avoid those pirates?"
-        line 2: "It just gets worse from here."
-        line 3: "I'd avoid the burrows, in this cave system. The Skuri there are hostile."
-        line 4+: "Me? These caves are comfortable. The sky is way too high, in the beach."
-      -->
     <entry name="caverns" regionId="2"
       tileset="stone tunnels" securityLevelTickets="1,1,1,1,2" enemyTemplates="skull rat,tunnel snake,blood slime,undead soldier"
       loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave,(R)sungold ring" />
@@ -1139,19 +1134,8 @@
 
     <!-- regionId 5 (t2): tether assembly -->
     <entry name="gateway" regionId="5" condition="first map"
-      tileset="gateway"
+      tileset="gateway" npc="Greeter"
       loot="(C)bloody thorn,(A)helmet:2,(W)solar combo" />
-      <!-- TODO: ok I haven't thought too hard about the plot yet, but here's a fun idea:
-        neutral NPC: undead firin servant (F) named "greeter"
-          line 1: "Welcome! You took longer than expected."
-          line 2: "If you had sleepwalked all the way here, everyone would have left you alone."
-          line 3: "But now that you're here, so you can serve the master!"
-          line 4: "You don't look very cooperative... oh well."
-          line 5+: "You'll serve, in time."
-        TODO: this would suggest that the tether assembly exists to gather mind-controlled slaves
-          perhaps most people are gradually brainwashed as they stay in the area, and eventually end up here?
-          something like that
-      -->
     <entry name="animal pen" regionId="5" condition="random connecting maps"
       tileset="gateway" enemyTemplates="wasteland serpent,walking topiary,poison turtle,monster boar,gold slime,tethered healer,tethered rogue,tethered gunner"
       loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3" />

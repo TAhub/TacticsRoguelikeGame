@@ -106,12 +106,15 @@ class Creature {
     this.encounterId = 0;
     this.deathLedgerId = 0;
     this.exp = 0;
+    this.npcLineOn = 0;
 
     // Temporary.
     this.th = 0;
     this.floorTh = 0;
     this.facing = 0;
     this.rockAngle = 0;
+    /** @type {?string} */
+    this.npcLines;
     this.hasMove = false;
     this.hasAction = false;
     /** @type {!Map.<!Weapon.Status, number>} */
@@ -1974,6 +1977,20 @@ class Creature {
     return moveInfos;
   }
 
+  talk() {
+    if (!this.npcLines) return;
+    const line = data.getValue('npc lines', this.npcLines, 's', this.npcLineOn);
+    if (line) {
+      this.addTextParticle_(line, -1);
+      // TODO: make talking sounds?
+      this.npcLineOn += 1;
+    } else if (this.npcLineOn > 0) {
+      // Whoops, you've gone past the last line. Back up, and try again.
+      this.npcLineOn -= 1;
+      this.talk();
+    }
+  }
+
 
   // Save/load.
 
@@ -2134,19 +2151,31 @@ class Creature {
     // Fill up life, astra, etc.
     creature.refill();
 
+    // Set NPC values.
+    const npcLines = getV('npcLines');
+    if (npcLines) {
+      creature.side = Creature.Side.Npc;
+      creature.npcLines = npcLines;
+      creature.makeBar();
+    }
+
     // Set name.
     creature.name = capitalizeFirstLetterOfEachWord(template);
 
-    // Random gender.
-    species.gender = rng() < 0.3; // TODO: species-based chance?
+    // Fixed gender.
+    if (getV('gender')) {
+      species.gender = getN('gender');
+    } else {
+      // Random gender.
+      species.gender = rng() < 0.3; // TODO: species-based chance?
+    }
 
     // Hairstyle is always fixed.
     species.hairstyle.type = getVVariants('hairstyle') || 'bald';
 
-    // Fixed coloration?
-    const coloration = getV('coloration');
-    if (coloration) {
-      species.coloration = parseInt(coloration, 10);
+    // Fixed coloration.
+    if (getV('coloration')) {
+      species.coloration = getN('coloration');
     } else {
       // Random coloration.
       const colorationTickets = [];
@@ -2233,6 +2262,7 @@ class Creature {
       creature.refill(); // Enemies refill astra if you flee.
       creature.encounterId = saveManager.intFromSaveObj(save, 'eId');
       creature.deathLedgerId = saveManager.intFromSaveObj(save, 'dId');
+      creature.npcLineOn = saveManager.intFromSaveObj(save, 'nLO');
     }
     creature.life = saveManager.intFromSaveObj(save, 'l');
     creature.makeBar();
@@ -2296,6 +2326,7 @@ class Creature {
     } else {
       saveManager.intToSaveObj(save, 'eId', this.encounterId);
       saveManager.intToSaveObj(save, 'dId', this.deathLedgerId);
+      saveManager.intToSaveObj(save, 'nLO', this.npcLineOn);
     }
 
     return JSON.stringify(save);

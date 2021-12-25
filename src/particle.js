@@ -85,8 +85,9 @@ class Particle {
     const particle = new Particle();
     particle.text = text;
     particle.boldness = boldness;
-    particle.lifetime = 0.75;
-    particle.hSpeed = 0.5;
+    const durationMult = 1 + (text.length / 30);
+    particle.lifetime = 0.75 * durationMult;
+    particle.hSpeed = 0.4 / durationMult;
     particle.color = data.getColorByNameSafe('tile text');
     particle.scale = 1.5;
     particle.blocking = true;
