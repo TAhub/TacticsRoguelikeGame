@@ -344,8 +344,8 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
           if (!optKeys.has(tile.item.keyCode)) {
             optKeys.add(tile.item.keyCode);
             this.tileAccessibilityTest_(optKeys);
+            return;
           }
-          return;
         }
       }
     }
