@@ -240,7 +240,7 @@
       cunningModifier="2" specialPower="15" attackPower="15" armorProfiencyLevel="1" proficiencies="mace,pistol,saw crawler,gun turret,slam,coordinated attack"
       fluff="Mechanics learn how to maintain and operate Skuri automata. They are most common in civilian life, but some do end up using their skills to deploy deadly combat automata." />
     <entry name="healer" reqSpecies="karhun"
-      willpowerModifier="2" specialPower="10" astra="20" life="20" proficiencies="dagger,mace,first aid,siphon,venom sting,poison powder"
+      willpowerModifier="2" specialPower="10" astra="20" life="20" proficiencies="dagger,mace,first aid,triage,siphon,venom sting,poison powder"
       fluff="Healers learn battlefield-tested Karhun first aid techniques, as well as a scattering of magic. They are perfect supports for a group of warriors." />
     <entry name="wanderer" reqSpecies="firin"
       agilityModifier="2" accuracy="22" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash,blitz strike"
@@ -834,6 +834,9 @@
     <entry name="first aid" astraCost="5" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="2"
       animProjSprite="513" animProjScale="100" animProjSpeed="4" animProjColor="blood" animProjDelay="50" animStep="20" animPostStepPause="22"
       fluff="Apply some basic first aid to an ally, patching up their wounds as best as you can." /> <!-- TODO: sounds -->
+    <entry name="triage" astraCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="2" curePercent="85"
+      animProjSprite="513" animProjScale="110" animProjSpeed="4" animProjColor="blood" animProjDelay="50" animStep="15" animPostStepPause="33"
+      fluff="Analyze an ally, and find and treat the root cause of their ailments. Helps against non-damaging status effects, such as blinded or shaken." /> <!-- TODO: sounds -->
     <entry name="inner strength" astraCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="3" selfTargeting="1"
       animProjSprite="515" animProjScale="50" animProjSpeed="1" animProjColor="blood" animProjDelay="30" animPostStepPause="22"
       fluff="Build up a large concentration of astra within yourself, and then direct it to circulate through your body, causing rapid regeneration." /> <!-- TODO: sounds -->
@@ -1094,7 +1097,7 @@
       <!-- TODO: undead enemies -->
     <entry name="bandit town" regionId="3"
       tileset="village" enemyTemplates="bandit,bandit sneak,bandit enforcer,bandit jack,black cat"
-      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band" />
+      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band,(W)triage" />
 
     <!-- regionId 4 (t2): twisted wasteland -->
     <entry name="hedge maze" regionId="4" condition="boss map branch"

@@ -433,6 +433,7 @@ Weapon.Status = {
   Shaken: 'shaken',
   Blinded: 'blinded',
   Confused: 'confused',
+  Cure: 'cure',
 };
 /** @type {!Array.<!Weapon.Status>} */
 Weapon.allStatuses = [
@@ -442,4 +443,5 @@ Weapon.allStatuses = [
   Weapon.Status.Shaken,
   Weapon.Status.Blinded,
   Weapon.Status.Confused,
+  Weapon.Status.Cure,
 ];

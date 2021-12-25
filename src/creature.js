@@ -1708,10 +1708,10 @@ class Creature {
 
     // Status effects.
     if (mult > 0) {
-      for (const status of Weapon.allStatuses) {
-        let effect = weapon.getStatus(status) * mult / 100;
+      for (const statusType of Weapon.allStatuses) {
+        let effect = weapon.getStatus(statusType) * mult / 100;
         if (effect <= 0) continue;
-        switch (status) {
+        switch (statusType) {
           case Weapon.Status.Bleeding:
           case Weapon.Status.Burning:
           case Weapon.Status.Poisoned:
@@ -1725,11 +1725,30 @@ class Creature {
             effect *= 250;
             break;
         }
-        effect = Math.ceil(effect / (target.halveStatuses ? 2 : 1));
-        const old = target.statuses.get(status) || 0;
-        target.statuses.set(status, old + effect);
-        target.addTextParticle_(status.toUpperCase(), 0);
-        if (old == 0) target.makeAppearance();
+        if (statusType == Weapon.Status.Cure) {
+          // Cure is a bit stronger than the other non-damaging status effects
+          // since it's purely reactive.
+          effect *= 1.3;
+        } else if (target.halveStatuses) effect /= 2;
+        effect = Math.ceil(effect);
+        if (statusType == Weapon.Status.Cure) {
+          const cureStatus = (statusType) => {
+            const old = target.statuses.get(statusType) || 0;
+            const used = Math.min(effect, old);
+            if (used == 0) return;
+            target.statuses.set(statusType, old - used);
+            effect -= used;
+          };
+          cureStatus(Weapon.Status.Shaken);
+          cureStatus(Weapon.Status.Blinded);
+          cureStatus(Weapon.Status.Confused);
+          target.makeAppearance();
+        } else {
+          const old = target.statuses.get(statusType) || 0;
+          target.statuses.set(statusType, old + effect);
+          if (old == 0) target.makeAppearance();
+        }
+        target.addTextParticle_(statusType.toUpperCase(), 0);
       }
       if (weapon.damage == 0) {
         // The damage script won't remake their bar, so do it manually here.
