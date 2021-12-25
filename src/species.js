@@ -46,12 +46,17 @@ class Species extends BonusSource {
 
   /**
    * @param {string} colorName
+   * @param {!Array.<!Job>} jobs
    * @return {string}
    */
-  getColor(colorName) {
+  getColor(colorName, jobs) {
     const category = 'species appearances';
-    return data.getColorValue(
+    let color = data.getColorValue(
         category, this.type, colorName + this.coloration) || '#FFFFFF';
+    for (const job of jobs) {
+      color = job.modifyColor(colorName, color);
+    }
+    return color;
   }
 
   /** @return {?number} */
@@ -86,9 +91,10 @@ class Species extends BonusSource {
    * @param {?Weapon} weapon
    * @param {?Accessory} accessory
    * @param {!Set.<!Weapon.Status>} statusTypes
+   * @param {!Array.<!Job>} jobs
    * @return {!Array.<!SpeciesSpriteLayer>}
    */
-  getSpriteLayers(armors, weapon, accessory, statusTypes) {
+  getSpriteLayers(armors, weapon, accessory, statusTypes, jobs) {
     /** @type {!Array.<!Equipment>} */
     const equips = armors.concat(
         [weapon, accessory, this.hairstyle]).filter((e) => e);
@@ -138,7 +144,8 @@ class Species extends BonusSource {
 
       // If no explicit color was provided, use the layer's color.
       if (!color) {
-        color = this.getColor(data.getValue(category, type, 'color', i) || '');
+        const colorName = data.getValue(category, type, 'color', i) || '';
+        color = this.getColor(colorName, jobs);
       }
 
       // Set the position and scale, if it shouldn't be kept.

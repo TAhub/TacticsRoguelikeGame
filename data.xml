@@ -271,11 +271,14 @@
     <entry name="magic monster"
       senseModifier="2" specialPower="30" life="10" astra="10" unarmoredDefense="1" />
     <entry name="tethered"
-      willpowerModifier="2" astra="25" life="25" />
+      willpowerModifier="2" astra="25" life="25"
+      eyeColorReplacer="white" pupilColorReplacer="white" />
     <entry name="undead"
-      physiqueModifier="2" defense="20" life="30" unarmoredDefense="1" />
+      physiqueModifier="2" defense="20" life="30" unarmoredDefense="1"
+      skinColorSaturationBlend="10" hairColorBlend="vaguely green fur" hairColorValueBlend="10" hairColorSaturationBlend="85" eyeColorBlend="red" tailColorBlend="bone" />
     <entry name="armored undead"
-      physiqueModifier="2" armorProfiencyLevel="1" defense="10" life="20" unarmoredDefense="1" />
+      physiqueModifier="2" armorProfiencyLevel="1" defense="10" life="20" unarmoredDefense="1"
+      skinColorSaturationBlend="10" hairColorBlend="vaguely green fur" hairColorValueBlend="10" hairColorSaturationBlend="85" eyeColorBlend="red" tailColorBlend="bone" />
   </category> <!-- jobs -->
   <category name="creature templates">
     <!-- special -->

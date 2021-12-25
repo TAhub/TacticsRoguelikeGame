@@ -14,6 +14,31 @@ class Job extends BonusSource {
     return this.getArrayValue('reqSpecies');
   }
 
+  /**
+   * @param {string} colorName
+   * @param {string} color
+   * @return {string}
+   */
+  modifyColor(colorName, color) {
+    const replacer = this.getColorValue(colorName + 'Replacer');
+    if (replacer) return replacer;
+    const blend = this.getColorValue(colorName + 'Blend');
+    if (blend) color = colorLerp(color, blend, 0.35);
+    const valueBlend = this.getNumberValue(colorName + 'ValueBlend');
+    if (valueBlend) {
+      const hsv = getHSV(color);
+      hsv.v = lerp(hsv.v, valueBlend / 100, 0.35);
+      color = constructColorHSV(hsv);
+    }
+    const saturationBlend = this.getNumberValue(colorName + 'SaturationBlend');
+    if (saturationBlend) {
+      const hsv = getHSV(color);
+      hsv.s = lerp(hsv.s, saturationBlend / 100, 0.35);
+      color = constructColorHSV(hsv);
+    }
+    return color;
+  }
+
   /** @return {number} */
   getBonusSourceValue() {
     let value = super.getBonusSourceValue();

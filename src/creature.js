@@ -507,7 +507,7 @@ class Creature {
   draw(ctx) {
     const statusTypes = new Set(this.statuses.keys());
     const spriteLayers = this.species.getSpriteLayers(
-        this.armors, this.weapon, this.accessory, statusTypes);
+        this.armors, this.weapon, this.accessory, statusTypes, this.jobs);
     for (const layer of spriteLayers) {
       const x = layer.x + gfxTileSize / 2;
       const y = layer.y + ctx.canvas.height - gfxTileSize / 2;
@@ -1386,7 +1386,7 @@ class Creature {
           const scale = weapon.animProjScale * (this.monstrous ? 1.5 : 1);
           let color = weapon.animProjColor;
           if (weapon.animProjSkinColor) {
-            color = this.species.getColor('skinColor');
+            color = this.species.getColor('skinColor', this.jobs);
           }
           const pitch = weapon.animPitch +
               (Math.random() * 2 - 1) * 25 - (this.monstrous ? 200 : 0);
