@@ -1883,10 +1883,9 @@ class Creature {
 
   /**
    * @param {!MapController} mapController
-   * @param {(function())=} optInterceptionFn
    * @return {!Map.<number, !AttackOrMoveInfo>} moves
    */
-  getMoves(mapController, optInterceptionFn) {
+  getMoves(mapController) {
     if (!this.hasMove && mapController.inCombat) return new Map();
     if (this.moveDistance <= 0) return new Map();
     const maxDistance = mapController.inCombat ? this.moveDistance : 10;
@@ -1949,9 +1948,6 @@ class Creature {
         for (const i of path) {
           this.moveAction_(toX(i), toY(i), 12, rockDir, null, mapController);
           rockDir *= -1;
-          if (optInterceptionFn) {
-            this.effectAction(optInterceptionFn);
-          }
         }
         this.effectAction(() => {
           this.hasMove = false;

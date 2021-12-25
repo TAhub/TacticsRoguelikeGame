@@ -34,18 +34,21 @@ class IngamePlugin extends GamePlugin {
     this.maybeTriggerEncounters_();
   }
 
-  /** @private */
-  maybeTriggerEncounters_() {
+  /**
+   * @return {!Set.<number>}
+   * @private
+   */
+  getEncounterIdsToWake_() {
     const mapC = this.mapController;
-    if (!mapC.active.player) return;
+    if (!mapC.active.player) return new Set(); // No need.
 
+    const toWake = new Set();
     for (const creature of mapC.creatures) {
+      if (toWake.has(creature.encounterId)) continue;
       if (creature.player) continue;
 
-      if (mapC.inCombat && !creature.encounterId) {
-        // No need to activate this!
-        continue;
-      }
+      // Don't bother triggering already-awake creatures, if in combat already.
+      if (mapC.inCombat && !creature.encounterId) continue;
 
       const distance = Math.abs(mapC.active.cX - creature.cX) +
                        Math.abs(mapC.active.cY - creature.cY);
@@ -53,27 +56,25 @@ class IngamePlugin extends GamePlugin {
 
       if (!creature.hasLOS(mapC.active.cX, mapC.active.cY, mapC)) continue;
 
-      if (creature.encounterId) {
-        // Wake up all of this enemy's friends.
-        for (const other of mapC.creatures) {
-          if (creature.encounterId != other.encounterId) continue;
-          if (other.player) continue;
-          other.encounterId = 0;
-        }
+      toWake.add(creature.encounterId);
+    }
+    return toWake;
+  }
+
+  /** @private */
+  maybeTriggerEncounters_() {
+    const idsToWake = this.getEncounterIdsToWake_();
+    if (idsToWake.size > 0) {
+      for (const creature of this.mapController.creatures) {
+        if (!idsToWake.has(creature.encounterId)) continue;
+        if (creature.player) continue;
+        creature.encounterId = 0;
       }
-
-      // No need to start combat again! If the code below is called, the new
-      // enemy might interrupt the current person's turn.
-      if (mapC.inCombat) break;
-
-      // If you ran into a stray awake enemy, separate from an
-      // encounter, also enter combat. This can happen if the player
-      // triggers an encounter, gets an enemy trapped somehow, then leaves
-      // and goes to another map.
-      mapC.inCombat = true;
-      mapC.active = null;
-      this.endTurn_();
-      break;
+      if (!this.mapController.inCombat) {
+        this.mapController.inCombat = true;
+        this.mapController.active = null;
+        this.endTurn_();
+      }
     }
   }
 
@@ -776,66 +777,65 @@ class IngamePlugin extends GamePlugin {
     const mapC = this.mapController;
     const active = mapC.active;
 
-    // Set up the interception mechanism.
-    let intercepted = false;
-    const interceptionFn = () => {
-      mapC.reloadMaps();
-      const wasInCombat = mapC.inCombat;
-      this.maybeTriggerEncounters_();
-      if (!wasInCombat && mapC.inCombat) {
-        // You just entered combat! Cancel the rest of this move.
-        active.actions = [];
-        intercepted = true;
-      }
+    // If multiple people are moving, only do post-move checks once every one of
+    // them has moved.
+    const movesInProgress = new Set();
+    const registerPostMoveCheckTo = (creature) => {
+      movesInProgress.add(creature);
+      creature.effectAction(() => {
+        movesInProgress.delete(creature);
+        if (movesInProgress.size == 0) {
+          mapC.reloadMaps();
+          this.maybeTriggerEncounters_();
+          this.checkBattleOver_();
+          this.menuController.clear();
+        }
+      });
     };
 
-    const moveInfos = active.getMoves(mapC, interceptionFn);
-    const moveInfo = moveInfos.get(toI(this.cursorX, this.cursorY));
+    const moveInfos = active.getMoves(mapC);
+    let moveInfo = moveInfos.get(toI(this.cursorX, this.cursorY));
     if (!moveInfo) return;
 
-    // What path should be followed by others?
-    const reservedI = [];
-    const followPath = [toI(active.x, active.y)].concat(moveInfo.path);
-
-    reservedI.push(followPath.pop());
-    moveInfo.fn();
-    active.effectAction(() => {
-      this.menuController.clear();
-      this.checkBattleOver_();
-    });
-
+    // Out of combat, end moves early if they will trigger an encounter.
     if (!mapC.inCombat) {
-      // Follow the leader!
+      const [oldX, oldY] = [active.x, active.y];
+      let shouldStop = false;
+      for (const i of moveInfo.path) {
+        if (!shouldStop) {
+          [active.x, active.y] = [toX(i), toY(i)];
+          shouldStop = this.getEncounterIdsToWake_().size > 0;
+        }
+        if (!shouldStop) continue;
+
+        // If "shouldStop" has been set, stop as soon as you have a clear path.
+        const newMoveInfo = moveInfos.get(i);
+        if (!newMoveInfo) continue; // Whoops, can't stop here. Keep going!
+        // Move here instead.
+        moveInfo = newMoveInfo;
+        break;
+      }
+      [active.x, active.y] = [oldX, oldY];
+    }
+
+    // Move to that spot!
+    moveInfo.fn();
+    registerPostMoveCheckTo(active);
+
+    // Out of combat, other party members follow the active player.
+    if (!mapC.inCombat) {
+      const followPath = [toI(active.x, active.y)].concat(moveInfo.path);
+      const reservedI = [followPath.pop()];
       for (const player of mapC.players) {
-        if (player == active) continue;
-        if (player.dead) continue;
-        const interceptionFn = () => {
-          if (!intercepted) return;
-          // Intercept the movement!
-          player.actions = [];
-          const tile = mapC.tileAt(player.x, player.y);
-          if (!tile) return; // Uh... that's bad!
-          if (tile.creatures.length <= 1) return; // Good!
-          // You need to move somewhere else, so that the map doesn't have
-          // multiple people on the same tile during battle.
-          const moveInfos = player.getMoves(mapC);
-          const moveInfosAr = Array.from(moveInfos.values());
-          shuffleArray(moveInfosAr);
-          for (const moveInfo of moveInfosAr) {
-            if (moveInfo.path.length > 1) continue;
-            const tile = mapC.tileAt(moveInfo.x, moveInfo.y);
-            if (!tile || tile.creatures.length > 0) continue;
-            moveInfo.fn();
-            break;
-          }
-        };
-        const moveInfos = player.getMoves(mapC, interceptionFn);
+        if (player.dead || player == active) continue;
+
+        const moveInfos = player.getMoves(mapC);
         let moveInfo = moveInfos.get(followPath.pop());
         const followI = reservedI[reservedI.length - 1];
         const followX = toX(followI);
         const followY = toY(followI);
         if (!moveInfo) {
-          // Just stand NEXT to the last person in line...
+          // If you can't follow exactly, stand next to the last person in line.
           let bestValue = -Infinity;
           for (const info of moveInfos.values()) {
             const distance = Math.abs(info.x - followX) +
@@ -850,6 +850,7 @@ class IngamePlugin extends GamePlugin {
         if (moveInfo) {
           reservedI.push(toI(moveInfo.x, moveInfo.y));
           moveInfo.fn();
+          registerPostMoveCheckTo(player);
         } else {
           // Just teleport next to someone.
           player.removeFromTiles(mapC);
@@ -857,6 +858,7 @@ class IngamePlugin extends GamePlugin {
             // It failed to find anywhere! So return to the old position.
             player.addToTiles(mapC);
           }
+          reservedI.push(toI(player.x, player.y));
         }
       }
     }
