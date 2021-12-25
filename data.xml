@@ -311,7 +311,7 @@
       coloration="0" />
     <entry name="gun turret" species="turret" jobs="ranged monster" level="17" weapon="automata gun:1" />
     <entry name="saw crawler" species="crawler" jobs="tough monster" level="16" weapon="automata saw:1" />
-    <entry name="paranoid tunneler" species="skuri" jobs="survivor" level="14" weapon0="dagger:1" weapon1="sword:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1"
+    <entry name="paranoid tunneler" species="skuri" jobs="survivor" level="14" weapon0="dagger:1" weapon1="spear:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1"
       hairstyle="short,medium,long" />
     <entry name="paranoid rogue" species="skuri" jobs="rogue" level="15" weapon0="dagger:1" weapon1="pistol:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1" techniques="crimson fangs,brain rattler"
       hairstyle="short,medium" />
@@ -319,13 +319,13 @@
       hairstyle="medium,long" />
 
     <!-- bandit town enemies (levels 19-24) -->
-    <entry name="bandit" species="karhun" jobs="survivor" level="16" weapon0="dagger:1" weapon1="sword:1" weapon2="pistol:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="cap:1,bandit armor:0,pants:1" armors5="bandit armor:0,leggings:1" armors6="cap:1,bandit armor:1,leggings:1"
+    <entry name="bandit" species="karhun" jobs="survivor" level="16" weapon0="dagger:1" weapon1="spear:1" weapon2="pistol:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="cap:1,bandit armor:0,pants:1" armors5="bandit armor:0,leggings:1" armors6="cap:1,bandit armor:1,leggings:1"
       hairstyle="short,bald" />
     <entry name="bandit sneak" species="karhun" jobs="rogue" level="19" weapon0="dagger:1" weapon1="sword:1" armors0="shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="bandit armor:0,leggings:1" armors5="bandit armor:0,pants:1" techniques="crimson fangs"
       hairstyle="short,bald" />
-    <entry name="bandit enforcer" species="karhun" jobs="warrior" level="21" weapon0="mace:1" weapon="sword:1" armors0="helmet:1,breastplate:1,greaves:1" armors1="cap:1,breastplate:1,leggings:1" armors2="helmet:1,jerkin:1,greaves:1" armors3="helmet:1,breastplate:1,leggings:1" techniques="slam"
+    <entry name="bandit enforcer" species="karhun" jobs="warrior" level="21" weapon0="mace:1" weapon1="sword:1" armors0="helmet:1,breastplate:1,greaves:1" armors1="cap:1,breastplate:1,leggings:1" armors2="helmet:1,jerkin:1,greaves:1" armors3="helmet:1,breastplate:1,leggings:1" techniques="slam"
       hairstyle="short,bald" />
-    <entry name="bandit jack" species="karhun" jobs="survivor" level="18" weapon0="dagger:1" weapon="sword:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="cap:1,bandit armor:0,pants:1" armors5="cap:1,bandit armor:1,leggings:1" techniques="arcana arrow"
+    <entry name="bandit jack" species="karhun" jobs="survivor" level="18" weapon0="dagger:1" weapon1="spear:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="cap:1,bandit armor:0,pants:1" armors5="cap:1,bandit armor:1,leggings:1" techniques="arcana arrow"
       hairstyle="short,bald" />
 
     <!-- twisted wasteland enemies (levels 25-30) -->
