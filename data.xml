@@ -1053,7 +1053,7 @@
         TODO: I guess all these dialogue lines should be stored in the strings file?
       -->
     <entry name="catacombs" regionId="0" condition="key map branch"
-      tileset="catacombs" enemyTemplates="scavenger"
+      tileset="catacombs" securityLevelTickets="1,2,2,3" enemyTemplates="scavenger"
       loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)fur cloak,(C)silver spectacles,(A)breastplate:0,(R)wedding ring" />
       <!-- TODO: undead enemies -->
     <entry name="grasslands" regionId="0"
@@ -1063,7 +1063,7 @@
 
     <!-- regionId 1 (t0): shore -->
     <entry name="shipwreck" regionId="1" condition="key map"
-      tileset="ship" enemyTemplates="pirate brawler,pirate crewmate,pirate mage,pirate boarder"
+      tileset="ship" securityLevelTickets="3" enemyTemplates="pirate brawler,pirate crewmate,pirate mage,pirate boarder"
       loot="(C)intimidating mask,(W)pistol:0,(W)snipe" />
     <entry name="rocky shore" regionId="1" condition="key map branch"
       tileset="rocky beach" enemyTemplates="pirate brawler,pirate mage"
@@ -1074,7 +1074,7 @@
 
     <!-- regionId 2 (t1): caverns -->
     <entry name="burrow" regionId="2" condition="key map branch"
-      tileset="burrow" enemyTemplates="gun turret,saw crawler,paranoid tunneler,paranoid rogue,paranoid mage"
+      tileset="burrow" securityLevelTickets="2,3" enemyTemplates="gun turret,saw crawler,paranoid tunneler,paranoid rogue,paranoid mage"
       loot="(W)gun turret,(W)pistol:1,(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot,(W)coordinated attack" />
     <entry name="caverns entrance" regionId="2" condition="first map"
       tileset="stone tunnels" enemyTemplates="skull rat,giant turtle"
@@ -1086,22 +1086,22 @@
         line 4+: "Me? These caves are comfortable. The sky is way too high, in the beach."
       -->
     <entry name="caverns" regionId="2"
-      tileset="stone tunnels" enemyTemplates="skull rat,tunnel snake,blood slime"
+      tileset="stone tunnels" securityLevelTickets="1,1,1,1,2" enemyTemplates="skull rat,tunnel snake,blood slime"
       loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave,(R)sungold ring" />
       <!-- TODO: one more template... a spare undead, perhaps? -->
 
     <!-- regionId 3 (t1): bandit town -->
     <entry name="spooky manor" regionId="3" condition="boss map branch"
-      tileset="spooky manor" enemyTemplates="bandit"
+      tileset="spooky manor" securityLevelTickets="1,2" enemyTemplates="bandit"
       loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)siphon,(C)lantern,(W)unearth" />
       <!-- TODO: undead enemies -->
     <entry name="bandit town" regionId="3"
-      tileset="village" enemyTemplates="bandit,bandit sneak,bandit enforcer,bandit jack,black cat"
+      tileset="village" securityLevelTickets="1,1,2" enemyTemplates="bandit,bandit sneak,bandit enforcer,bandit jack,black cat"
       loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band,(W)triage" />
 
     <!-- regionId 4 (t2): twisted wasteland -->
     <entry name="hedge maze" regionId="4" condition="boss map branch"
-      tileset="hedge maze" enemyTemplates="mossy cat,seed spitter,walking topiary,walking bonsai,corpse picker"
+      tileset="hedge maze" securityLevelTickets="2" enemyTemplates="mossy cat,seed spitter,walking topiary,walking bonsai,corpse picker"
       loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade,(R)thorny band" />
     <entry name="twisted wasteland" regionId="4"
       tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar"
@@ -1126,7 +1126,7 @@
       tileset="gateway" enemyTemplates="wasteland serpent,walking topiary,poison turtle,monster boar,gold slime,tethered healer,tethered rogue,tethered gunner"
       loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3" />
     <entry name="tether assembly" regionId="5"
-      tileset="tether assembly" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer,reinforced gun turret"
+      tileset="tether assembly" securityLevelTickets="1,2,3" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer,reinforced gun turret"
       loot="(C)third eye,(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3,(R)rusted focus" />
   </category> <!-- sub regions -->
   <category name="tilesets">

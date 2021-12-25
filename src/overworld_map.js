@@ -15,7 +15,7 @@ class OverworldMapTile {
     /** @type {!Map.<number, number>} */
     this.doorIds = new Map();
     this.isStart = false;
-    this.numSecurityLevels = (seededRNG(seed)() < 0.35) ? 2 : 1;
+    this.numSecurityLevels = 1;
     this.keyId = 0;
     this.hasCampfire = false;
     this.hasBoss = false;
@@ -60,8 +60,6 @@ class OverworldMap {
    * @private
    */
   tryGenerate_(optGenLimit, optLogFn) {
-    // TODO: get values? make them constant?
-    // TODO: are these good positions for the goalIs?
     const size = mapOverworldMapSize;
     const goalIs = [
       toI(size / 2, 0),
@@ -288,6 +286,14 @@ class OverworldMap {
         }
         tile.type = type;
         subRegionTiles.push(tile);
+      }
+
+      // Determine how many security levels each tile should have.
+      const securityLevelTickets =
+          (data.getArrayValue('sub regions', type, 'securityLevelTickets') ||
+          ['1']).map((s) => parseInt(s, 10));
+      for (const tile of subRegionTiles) {
+        tile.numSecurityLevels = getRandomArrayEntry(securityLevelTickets, rng);
       }
     }
 
