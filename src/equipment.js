@@ -11,6 +11,11 @@ class Equipment extends BonusSource {
     }
   }
 
+  /** @return {string} */
+  get idChar() {
+    return '';
+  }
+
   /**
    * @param {string} saveString
    * @return {!Equipment}
@@ -66,6 +71,8 @@ class Equipment extends BonusSource {
 
   /** @return {string} */
   get saveString() {
-    return this.type + ':' + this.subtype;
+    let saveString = '(' + this.idChar + ')' + this.type;
+    if (this.subtype != undefined) saveString += ':' + this.subtype;
+    return saveString;
   }
 }

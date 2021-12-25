@@ -5,7 +5,7 @@ class Accessory extends Equipment {
   }
 
   /** @return {string} */
-  get saveString() {
-    return '(C)' + this.type + ':' + this.subtype;
+  get idChar() {
+    return 'C';
   }
 }

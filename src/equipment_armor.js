@@ -4,6 +4,11 @@ class Armor extends Equipment {
     return 'armors';
   }
 
+  /** @return {string} */
+  get idChar() {
+    return 'A';
+  }
+
   /** @return {!Armor.Slot} */
   get slot() {
     const raw = this.getValue('slot');
@@ -56,11 +61,6 @@ class Armor extends Equipment {
     // Armor proficiency level.
     const req = Armor.armorProficiencyDescription(this.armorProfiencyLevel);
     if (req) effects.push('requires ' + req + ' proficiency');
-  }
-
-  /** @return {string} */
-  get saveString() {
-    return '(A)' + this.type + ':' + this.subtype;
   }
 }
 

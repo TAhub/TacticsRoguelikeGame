@@ -5,13 +5,13 @@ class Ring extends Equipment {
   }
 
   /** @return {string} */
-  get techType() {
-    return this.getValue('techType') || '';
+  get idChar() {
+    return 'R';
   }
 
   /** @return {string} */
-  get saveString() {
-    return '(R)' + this.type + ':' + this.subtype;
+  get techType() {
+    return this.getValue('techType') || '';
   }
 
   /**

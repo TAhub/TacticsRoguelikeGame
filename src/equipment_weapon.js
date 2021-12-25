@@ -14,6 +14,11 @@ class Weapon extends Equipment {
     return 'weapons';
   }
 
+  /** @return {string} */
+  get idChar() {
+    return 'W';
+  }
+
   /** @return {number} */
   get tier() {
     if (this.forceTier != null) return this.forceTier;
@@ -410,11 +415,6 @@ class Weapon extends Equipment {
     if (this.scaling) effects.push('scales with ' + this.scaling);
     if (this.noProficiency) effects.push('no proficiency required');
     if (this.onePerBattle) effects.push('can only be used once per fight');
-  }
-
-  /** @return {string} */
-  get saveString() {
-    return '(W)' + this.type + ':' + this.subtype;
   }
 }
 
