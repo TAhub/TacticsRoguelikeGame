@@ -339,10 +339,10 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
         accessibleTiles.add(i);
         toExplore.add(i);
 
-        if (tile.item && tile.item.contents == Item.Code.Key) {
+        if (otherTile.item && otherTile.item.contents == Item.Code.Key) {
           if (!optKeys) optKeys = new Set();
-          if (!optKeys.has(tile.item.keyCode)) {
-            optKeys.add(tile.item.keyCode);
+          if (!optKeys.has(otherTile.item.keyCode)) {
+            optKeys.add(otherTile.item.keyCode);
             this.tileAccessibilityTest_(optKeys);
             return;
           }
@@ -384,9 +384,6 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
     const startY = Math.floor(this.cursorY - height / 2);
     const endY = Math.ceil(this.cursorY + height / 2);
 
-    // TODO: eventually expand, adapt, and break out this code into a minimap
-    // drawer utility for actual in-game use
-
     const mapSize = mapTileUpscale * mapGameMapSize * mapSecondTileUpscale;
 
     // Draw presence of maps.
@@ -409,13 +406,13 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
         const tile = this.mapController.tileAt(x, y);
         if (!tile) continue;
         ctx.fillStyle = data.getColorByNameSafe('tile');
+        if (this.inaccessibleTileIs.has(toI(x, y))) {
+          ctx.fillStyle = data.getColorByNameSafe('orange');
+        }
         if (tile.item && tile.item.contents == Item.Code.Key) {
           ctx.fillStyle = data.getColorByNameSafe('tile over');
         } else if (tile.item && tile.item.contents == Item.Code.Campfire) {
           ctx.fillStyle = data.getColorByNameSafe('green');
-        }
-        if (this.inaccessibleTileIs.has(toI(x, y))) {
-          ctx.fillStyle = data.getColorByNameSafe('orange');
         }
         if (this.errorTileIs.has(toI(x, y))) {
           ctx.fillStyle = data.getColorByNameSafe('red');

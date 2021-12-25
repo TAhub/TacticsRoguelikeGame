@@ -64,6 +64,11 @@ class MetaMap {
     return seed;
   }
 
+  static resetGlobalDoorId() {
+    MetaMap.globalDoorIdCheckpoint_ = 1;
+    MetaMap.globalDoorId_ = 1;
+  }
+
   static checkpointGlobalDoorId() {
     MetaMap.globalDoorIdCheckpoint_ = MetaMap.globalDoorId_;
   }

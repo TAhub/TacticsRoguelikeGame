@@ -392,13 +392,13 @@ class GameMap {
 
     this.overworldX = overworldMapTile.x;
     this.overworldY = overworldMapTile.y;
+
+    // Determine the goals.
+    // Note that the first goal is going to be the point that the map branches
+    // from (AKA the "start")... if it isn't, the key system might break.
     const goalIs = [];
-    if (overworldMapTile.isStart || overworldMapTile.doorIds.size == 1 ||
-        overworldMapTile.keyId || overworldMapTile.hasBoss) {
-      // Add the start room, or boss room!
-      // Also, if this map just has one exit, add a center room to make sure
-      // that the map actually generates... the meta map algorithm really
-      // fucks up if you provide only a single goalI.
+    if (overworldMapTile.isStart) {
+      // Add the start room!
       goalIs.push(this.centerI);
     }
     /** @type {!Map.<number, number>} */
@@ -407,7 +407,7 @@ class GameMap {
       const otherMapTileX = toX(otherMapTileI);
       const otherMapTileY = toY(otherMapTileI);
       let x = toX(this.centerI);
-      let y = toY(this.centerI)
+      let y = toY(this.centerI);
       if (otherMapTileX < overworldMapTile.x) {
         x = 0;
       } else if (otherMapTileX > overworldMapTile.x) {
@@ -421,6 +421,15 @@ class GameMap {
       overworldMapIToGoalI.set(otherMapTileI, i);
       goalIs.push(i);
     }
+    if (!overworldMapTile.isStart &&
+        (overworldMapTile.doorIds.size == 1 ||
+         overworldMapTile.keyId || overworldMapTile.hasBoss)) {
+      // Add a non-start center room.
+      // For example a boss room, or a center room to give a leaf-map shape.
+      goalIs.push(this.centerI);
+    }
+
+    // Generate the meta map.
     const numSecurityLevels = overworldMapTile.numSecurityLevels;
     const tilesPerNumGoalIs = [
       mapGameMapSize * 2,
