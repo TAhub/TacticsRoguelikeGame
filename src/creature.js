@@ -104,6 +104,7 @@ class Creature {
     this.statPoints = 0;
     this.skillPoints = 1;
     this.encounterId = 0;
+    this.deathLedgerId = 0;
     this.exp = 0;
 
     // Temporary.
@@ -2218,6 +2219,7 @@ class Creature {
     } else {
       creature.refill(); // Enemies refill astra if you flee.
       creature.encounterId = saveManager.intFromSaveObj(save, 'eId');
+      creature.deathLedgerId = saveManager.intFromSaveObj(save, 'dId');
     }
     creature.life = saveManager.intFromSaveObj(save, 'l');
     creature.makeBar();
@@ -2280,6 +2282,7 @@ class Creature {
       saveManager.intToSaveObj(save, 'a', this.astra);
     } else {
       saveManager.intToSaveObj(save, 'eId', this.encounterId);
+      saveManager.intToSaveObj(save, 'dId', this.deathLedgerId);
     }
 
     return JSON.stringify(save);

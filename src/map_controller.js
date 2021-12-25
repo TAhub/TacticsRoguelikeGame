@@ -21,6 +21,10 @@ class MapController {
     this.turnTaken = new Set();
     /** @type {!Array.<?Item>} */
     this.inventory = [];
+    /** @type {!Set.<number>} */
+    this.deathLedger = new Set();
+    /** @type {!Set.<number>} */
+    this.reviveLedger = new Set();
     for (let i = 0; i < mechInventoryWidth * mechInventoryHeight; i++) {
       this.inventory.push(null);
     }
@@ -93,6 +97,7 @@ class MapController {
 
     // Generate all encounters.
     let encounterTally = 1;
+    let deathLedgerId = 1;
     for (const i of this.overworldMap.tiles.keys()) {
       const gameMap = this.gameMaps.get(i);
       const tile = this.overworldMap.tiles.get(i);
@@ -106,8 +111,17 @@ class MapController {
             tile, defaultRNG(), encounterTally);
         if (enemies) {
           for (const enemy of enemies) {
+            enemy.deathLedgerId = deathLedgerId++;
             this.addCreature(enemy);
             encounterTally = Math.max(encounterTally, enemy.encounterId + 1);
+
+            // Before adding the creature to the map's ledger, set its EXP to 0
+            // temporarily. This ensures that you can't grind by killing and
+            // respawning the same enemy over and over.
+            const oldEXP = enemy.exp;
+            enemy.exp = 0;
+            gameMap.enemyRecords.set(enemy.deathLedgerId, enemy.saveString);
+            enemy.exp = oldEXP;
           }
           break;
         }
@@ -160,10 +174,48 @@ class MapController {
       this.addCreature(player);
     }
     this.active = this.players[0];
+    if (save['dLedger']) {
+      this.deathLedger =
+          new Set(save['dLedger'].split(',').map((s) => parseInt(s, 10)));
+    }
+    if (save['rLedger']) {
+      this.deathLedger =
+          new Set(save['rLedger'].split(',').map((s) => parseInt(s, 10)));
+    }
     for (let i = 0; i < this.inventory.length; i++) {
       const saveString = save['i' + i];
       if (!saveString) continue;
       this.inventory[i] = Item.load(saveString);
+    }
+  }
+
+  revive() {
+    // Transfer everything in the death ledger to the revive ledger, so that
+    // when we load a map we know to respawn that enemy.
+    for (const deathLedgerId of this.deathLedger) {
+      this.reviveLedger.add(deathLedgerId);
+    }
+    this.deathLedger.clear();
+
+    // Also respawn any enemies inside currently-loaded maps.
+    for (const gameMap of this.gameMaps.values()) {
+      this.reviveForMap_(gameMap);
+    }
+  }
+
+  /**
+   * @param {!GameMap} gameMap
+   * @private
+   */
+  reviveForMap_(gameMap) {
+    for (const deathLedgerId of gameMap.enemyRecords.keys()) {
+      if (!this.reviveLedger.has(deathLedgerId)) continue;
+      const record = gameMap.enemyRecords.get(deathLedgerId);
+      this.reviveLedger.delete(deathLedgerId);
+
+      // Revive that record as close to it's original position as possible.
+      const creature = Creature.load(record);
+      this.pickNewSpotFor(creature, creature.x, creature.y);
     }
   }
 
@@ -174,6 +226,8 @@ class MapController {
     for (let i = 0; i < this.players.length; i++) {
       save['player' + i] = this.players[i].saveString;
     }
+    save['dLedger'] = Array.from(this.deathLedger).join(',');
+    save['rLedger'] = Array.from(this.reviveLedger).join(',');
     for (let i = 0; i < this.inventory.length; i++) {
       const item = this.inventory[i];
       if (!item) continue;
@@ -223,6 +277,9 @@ class MapController {
         creaturesToSave.add(creature);
       }
     }
+    for (const ledgerId of gameMap.enemyRecords.keys()) {
+      save['er-' + ledgerId] = gameMap.enemyRecords.get(ledgerId);
+    }
     const creaturesToSaveAr = Array.from(creaturesToSave);
     for (let i = 0; i < creaturesToSaveAr.length; i++) {
       save['c' + i] = creaturesToSaveAr[i].saveString;
@@ -256,6 +313,10 @@ class MapController {
       }
     };
     loadLocalIList('discovered', gameMap.discoveredTileIs);
+    for (const key in save) {
+      if (!key.startsWith('er-')) continue;
+      gameMap.enemyRecords.set(parseInt(key.replace('er-', ''), 10), save[key]);
+    }
     for (let i = 0; ; i++) {
       const saveString = save['c' + i];
       if (!saveString) break;
@@ -272,6 +333,7 @@ class MapController {
         tile.item = Item.load(saveString);
       }
     }
+    this.reviveForMap_(gameMap);
   }
 
   pickNewActive() {
@@ -409,6 +471,9 @@ class MapController {
         creature.clear3DData();
         if (!creature.player && creature.exp > 0) {
           this.awardEXPFor_(creature);
+        }
+        if (creature.deathLedgerId) {
+          this.deathLedger.add(creature.deathLedgerId);
         }
       }
     }

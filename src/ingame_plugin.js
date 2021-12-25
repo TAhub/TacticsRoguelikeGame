@@ -248,6 +248,7 @@ class IngamePlugin extends GamePlugin {
             const clickFn = () => {
               mapC.rest();
               this.inventoryPlayer = null;
+              this.mapController.revive();
               this.menuController.clear();
               this.mapController.save();
             };

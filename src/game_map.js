@@ -383,6 +383,9 @@ class GameMap {
     this.startI = 0;
     this.centerI = toI(mapGameMapSize / 2, mapGameMapSize / 2);
 
+    /** @type {!Map.<number, string>} */
+    this.enemyRecords = new Map();
+
     /** @type {!Set.<number>} */
     this.discoveredTileIs = new Set();
 
