@@ -170,7 +170,7 @@ class MapController {
       const player = Creature.load(raw);
       this.players.push(player);
       if (player.dead) continue; // Don't bother adding to map...
-      this.loadGameMap_(this.overworldIFor_(player.x, player.y));
+      this.loadGameMap(this.overworldIFor_(player.x, player.y));
       this.addCreature(player);
     }
     this.active = this.players[0];
@@ -287,11 +287,8 @@ class MapController {
     saveManager.save('map-' + i, JSON.stringify(save));
   }
 
-  /**
-   * @param {number} i
-   * @private
-   */
-  loadGameMap_(i) {
+  /** @param {number} i */
+  loadGameMap(i) {
     if (this.gameMaps.has(i)) return; // No need!
     const save = saveManager.loadSaveObj('map-' + i);
     const tile = this.overworldMap.tiles.get(i);
@@ -575,7 +572,7 @@ class MapController {
     // Load any maps that are needed but we do not have yet.
     for (const i of desiredMapIs) {
       if (this.gameMaps.has(i)) continue;
-      this.loadGameMap_(i);
+      this.loadGameMap(i);
     }
   }
 

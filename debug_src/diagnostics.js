@@ -84,11 +84,21 @@ function checkCreatureValidity(creature) {
 
 /** @suppress {checkVars} */
 class MapPreviewDiagnosticPlugin extends GamePlugin {
-  constructor() {
+  /** @param {boolean} loadMode */
+  constructor(loadMode) {
     super();
     this.mapController = new MapController();
     const player = new Creature(true, 'firin', ['warrior']);
-    this.mapController.generateNew([player], 10000);
+    if (loadMode) {
+      this.mapController.load();
+      for (const tile of this.mapController.overworldMap.tiles.values()) {
+        const i = toI(tile.x, tile.y);
+        if (this.mapController.gameMaps.has(i)) continue;
+        this.mapController.loadGameMap(i);
+      }
+    } else {
+      this.mapController.generateNew([player], 10000);
+    }
     this.cursorX = this.mapController.players[0].x;
     this.cursorY = this.mapController.players[0].y;
     /** @type {!Set.<number>} */
@@ -486,8 +496,12 @@ allDiagnostics.set('Name Picker', () => {
   }
 });
 
-allDiagnostics.set('Map Preview', () => {
-  game.plugin.switchToPlugin(new MapPreviewDiagnosticPlugin());
+allDiagnostics.set('Random Map Preview', () => {
+  game.plugin.switchToPlugin(new MapPreviewDiagnosticPlugin(false));
+});
+
+allDiagnostics.set('Last Map Viewer', () => {
+  game.plugin.switchToPlugin(new MapPreviewDiagnosticPlugin(true));
 });
 
 allDiagnostics.set('Generation Points Diagnostic', () => {
