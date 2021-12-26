@@ -133,8 +133,9 @@ class Minimap {
       }
       ctx.fillStyle = data.getColorByNameSafe(
           'tile selected' + creature.colorSuffix);
-      ctx.fillRect(scale * creature.x, scale * creature.y,
-          scale * creature.s, scale * creature.s);
+      const b = 1;
+      ctx.fillRect(scale * creature.x + b, scale * creature.y + b,
+          scale * creature.s - 2 * b, scale * creature.s - 2 * b);
     }
     ctx.restore();
 
