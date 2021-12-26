@@ -122,10 +122,13 @@ class MapController {
               // Before adding the creature to the map's ledger, set its EXP to
               // 0 temporarily. This ensures that you can't grind by killing and
               // respawning the same enemy over and over.
-              const oldEXP = enemy.exp;
+              // Also reduce the creature's current life, so that they respawn
+              // at reduced life, to give the impression they are "injured".
+              const [oldLife, oldEXP] = [enemy.life, enemy.exp];
               enemy.exp = 0;
+              enemy.life = Math.ceil(enemy.life * 0.7);
               gameMap.enemyRecords.set(enemy.deathLedgerId, enemy.saveString);
-              enemy.exp = oldEXP;
+              [enemy.life, enemy.exp] = [oldLife, oldEXP];
             }
           }
           break;
