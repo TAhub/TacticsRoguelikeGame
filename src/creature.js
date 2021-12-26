@@ -1053,11 +1053,12 @@ class Creature {
   }
 
   turnEnd() {
-    if (this.dotDamage > 0) {
-      this.takeDamage_(this.dotDamage, Creature.HitResult.Graze);
+    const dotDamage = this.dotDamage;
+    if (dotDamage > 0) {
+      // Bleeding goes away after doing damage.
+      this.statuses.delete(Weapon.Status.Bleeding);
+      this.takeDamage_(dotDamage, Creature.HitResult.Graze);
     }
-    // Bleeding goes away after doing damage.
-    this.statuses.delete(Weapon.Status.Bleeding);
     if (this.summonOwner) this.summonAwake = false;
   }
 
