@@ -548,20 +548,16 @@
       <layer sprite="703" color="skinColor" showAllStatuses="1" />
     </entry> <!-- rat -->
     <entry name="slime"
-      appearanceSizeMult="85"
+      appearanceSizeMult="85" headHeightPoint="65"
       colorationTickets0="1" skinColor0="blood"
       colorationTickets1="1" skinColor1="gold">
-      <!-- TODO: actual appearance (slime) -->
-      <!-- TODO: headHeightPoint (for spell lines) -->
-      <layer sprite="703" color="skinColor" showAllStatuses="1" />
+      <layer sprite="704" color="skinColor" showAllStatuses="1" />
     </entry> <!-- slime -->
     <entry name="baby slime"
-      appearanceSizeMult="75"
+      appearanceSizeMult="75" headHeightPoint="65"
       colorationTickets0="1" skinColor0="blood"
       colorationTickets1="1" skinColor1="gold">
-      <!-- TODO: actual appearance (slime) -->
-      <!-- TODO: headHeightPoint (for spell lines) -->
-      <layer sprite="703" color="skinColor" showAllStatuses="1" />
+      <layer sprite="704" color="skinColor" showAllStatuses="1" />
     </entry> <!-- baby slime -->
     <entry name="seed spitter"
       appearanceSizeMult="85"
@@ -602,20 +598,16 @@
       <layer sprite="700" color="skinColor" showAllStatuses="1" />
     </entry> <!-- snake -->
     <entry name="giant turtle"
-      appearanceSizeMult="95" headHeightPoint="85"
+      appearanceSizeMult="95" headHeightPoint="45"
       colorationTickets0="1" skinColor0="green scales"
       colorationTickets1="1" skinColor1="yellow scales">
-      <!-- TODO: actual appearance (use the "turtle" sprite) -->
-      <!-- TODO: headHeightPoint (for spell lines) -->
-      <layer sprite="700" color="skinColor" showAllStatuses="1" />
+      <layer sprite="705" color="skinColor" showAllStatuses="1" />
     </entry> <!-- giant turtle -->
     <entry name="turtle"
-      appearanceSizeMult="105" headHeightPoint="85"
+      appearanceSizeMult="105" headHeightPoint="45"
       colorationTickets0="1" skinColor0="green scales"
       colorationTickets1="1" skinColor1="yellow scales">
-      <!-- TODO: actual appearance (use the "turtle" sprite) -->
-      <!-- TODO: headHeightPoint (for spell lines) -->
-      <layer sprite="700" color="skinColor" showAllStatuses="1" />
+      <layer sprite="705" color="skinColor" showAllStatuses="1" />
     </entry> <!-- turtle -->
     <entry name="giant boar"
       appearanceSizeMult="115" headHeightPoint="45"
@@ -625,14 +617,12 @@
       <layer sprite="702" color="skinColor" showAllStatuses="1" />
     </entry> <!-- giant boar -->
     <entry name="scavenger"
-      appearanceSizeMult="100"
+      appearanceSizeMult="100" headHeightPoint="55"
       colorationTickets0="1" skinColor0="brown fur"
       colorationTickets1="1" skinColor1="tan fur"
       colorationTickets2="1" skinColor2="dull brown fur"
       colorationTickets3="0" skinColor3="black fur">
-      <!-- TODO: actual appearance (use the "gnasher" sprite) -->
-      <!-- TODO: headHeightPoint (for spell lines) -->
-      <layer sprite="700" color="skinColor" showAllStatuses="1" />
+      <layer sprite="706" color="skinColor" showAllStatuses="1" />
     </entry> <!-- scavenger -->
     <entry name="frog"
       appearanceSizeMult="90"
