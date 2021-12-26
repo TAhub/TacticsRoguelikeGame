@@ -257,6 +257,15 @@ class MapController {
     const save = {};
     saveManager.intToSaveObj(save, 'seed', overworldMapTile.seed);
     const creaturesToSave = new Set();
+    const doorFrameIs = [];
+    for (const tile of gameMap.tiles.values()) {
+      for (const i of tile.doorFrameIs) {
+        doorFrameIs.push(toI(tile.x, tile.y) + '-' + i);
+      }
+    }
+    if (doorFrameIs.length > 0) {
+      save['dfi'] = doorFrameIs.join(',');
+    }
     /**
      * @param {string} name
      * @param {!Set.<number>} takeFrom
@@ -300,6 +309,15 @@ class MapController {
     if (save) tile.seed = saveManager.intFromSaveObj(save, 'seed');
     const gameMap = new GameMap(tile);
     this.gameMaps.set(i, gameMap);
+    if (save['dfi']) {
+      for (const pair of save['dfi'].split(',')) {
+        const split = pair.split('-').map((s) => parseInt(s, 10));
+        const tile = gameMap.tiles.get(split[0]);
+        if (!tile) continue;
+        tile.doorIds.set(split[1], 0);
+        tile.doorFrameIs.add(split[1]);
+      }
+    }
     /**
      * @param {string} name
      * @param {!Set.<number>} addTo

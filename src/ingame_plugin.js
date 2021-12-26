@@ -400,8 +400,10 @@ class IngamePlugin extends GamePlugin {
               const otherTile = mapC.tileAt(toX(doorI), toY(doorI));
               if (!otherTile) continue;
               tile.doorIds.set(doorI, 0);
+              tile.doorFrameIs.add(doorI);
               tile.clear3DData();
               otherTile.doorIds.set(toI(active.x, active.y), 0);
+              otherTile.doorFrameIs.add(toI(active.x, active.y));
               otherTile.clear3DData();
               // TODO: unlock door sound effect?
               setFn(null);

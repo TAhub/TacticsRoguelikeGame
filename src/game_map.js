@@ -28,6 +28,8 @@ class GameMapTile {
     this.creatures = [];
     /** @type {!Map.<number, number>} */
     this.doorIds = new Map();
+    /** @type {!Set.<number>} */
+    this.doorFrameIs = new Set();
     /** @type {?Item} */
     this.item;
 
@@ -239,15 +241,32 @@ class GameMapTile {
    * @param {number} y1
    * @param {number} x2
    * @param {number} y2
+   * @param {boolean} isDoor
+   * @param {boolean} isFrame
    * @private
    */
-  addArbitraryWallToGroup_(group, rng, x1, y1, x2, y2) {
+  addArbitraryWallToGroup_(group, rng, x1, y1, x2, y2, isDoor, isFrame) {
     const width = calcDistance(x2 - x1, y2 - y1);
     const geometry = new THREE.PlaneGeometry(width, 1);
-    const color = this.getColor_('wall');
-    const sprite = this.getSprite_(rng, 'wall');
+    let color = '';
+    let sprite = 0;
+    if (isFrame) {
+      color = data.getColorByNameSafe('stone wall');
+      sprite = 9;
+    } else if (isDoor) {
+      color = data.getColorByNameSafe('stone wall');
+      sprite = 8;
+    } else {
+      color = this.getColor_('wall');
+      sprite = this.getSprite_(rng, 'wall');
+    }
     const map = gfx.getSpriteAsTexture(sprite, color);
-    const material = new THREE.MeshStandardMaterial({map});
+    const materialProperties = {map};
+    if (isFrame) {
+      materialProperties.transparent = true;
+      materialProperties.alphaTest = 0.5;
+    }
+    const material = new THREE.MeshStandardMaterial(materialProperties);
     const plane = new THREE.Mesh(geometry, material);
     plane.position.set(
         (x2 + x1) / 2, 0.5 + this.th * gfxThScale, (y2 + y1) / 2);
@@ -300,10 +319,12 @@ class GameMapTile {
    */
   addWallToGroup_(group, rng, xW, yW) {
     const i = toI(this.x + xW, this.y + yW);
-    if (this.doorIds.has(i) && this.doorIds.get(i) == 0) return;
+    const isFrame = this.doorFrameIs.has(i);
+    if (!isFrame && this.doorIds.has(i) && this.doorIds.get(i) == 0) return;
     const [x1, y1] = this.getWallEndPoint_(xW, yW, false);
     const [x2, y2] = this.getWallEndPoint_(xW, yW, true);
-    this.addArbitraryWallToGroup_(group, rng, x1, y1, x2, y2);
+    const isDoor = this.doorIds.has(i);
+    this.addArbitraryWallToGroup_(group, rng, x1, y1, x2, y2, isDoor, isFrame);
   }
 
   /**
