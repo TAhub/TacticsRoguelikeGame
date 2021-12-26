@@ -316,14 +316,21 @@ class OverworldMap {
       if (j >= 200) return false;
       let numCampfires = Math.ceil(mapRegionSize / 2) - 2;
       const validTiles = new Set();
+      const forceTiles = new Set();
       for (const tile of tiles) {
         // Maps with bosses and such cannot have campfires.
-        if (tile.keyId > 0 || tile.hasBoss || tile.isStart) continue;
+        if (tile.keyId > 0 || tile.hasBoss) continue;
         validTiles.add(tile);
+        if (tile.isStart) forceTiles.add(tile);
       }
       while (numCampfires > 0) {
         if (validTiles.size == 0) break; // Can't place a tile!
-        const tile = getRandomArrayEntry(Array.from(validTiles), rng);
+        let tile;
+        if (forceTiles.size > 0) {
+          tile = getRandomArrayEntry(Array.from(forceTiles), rng);
+        } else {
+          tile = getRandomArrayEntry(Array.from(validTiles), rng);
+        }
         tile.hasCampfire = true;
         numCampfires -= 1;
 
@@ -340,6 +347,7 @@ class OverworldMap {
           }
         };
         explore(tile, 0);
+        forceTiles.delete(tile);
       }
       if (numCampfires == 0) break; // Success!
       // Clear campfires.
