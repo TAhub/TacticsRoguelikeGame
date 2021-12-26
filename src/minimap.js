@@ -4,6 +4,10 @@ class Minimap {
     this.bufferLastId = '';
   }
 
+  clearBuffer() {
+    this.bufferLastId = '';
+  }
+
   /**
    * @param {!CanvasRenderingContext2D} ctx
    * @param {!MapController} mapController
@@ -16,8 +20,15 @@ class Minimap {
     if (DEBUG) debugTrackTime('Minimap.draw');
 
     const active = mapController.active;
-    const scale = 4;
+    const scale = 6;
     const angle = mapController.cameraAngle;
+
+    /** @param {!CanvasRenderingContext2D} ctx */
+    const applyTransformations = (ctx) => {
+      ctx.translate(w / 2, h / 2);
+      ctx.rotate(-angle - Math.PI / 2);
+      ctx.translate(-scale * active.cX, -scale * active.cY);
+    };
 
     const bufferId = [active.x, active.y, angle, w, h].join(':');
     if (bufferId != this.bufferLastId) {
@@ -34,9 +45,7 @@ class Minimap {
 
       // Position and scale.
       ctx.save();
-      ctx.translate(w / 2, h / 2);
-      ctx.rotate(-angle - Math.PI / 2);
-      ctx.translate(-scale * active.cX, -scale * active.cY);
+      applyTransformations(ctx);
 
       // Draw the tiles.
       // TODO: don't draw a tile if it's off-screen?
@@ -45,7 +54,8 @@ class Minimap {
           const i = toI(tile.x, tile.y);
           if (!gameMap.discoveredTileIs.has(i)) continue;
           // TODO: actual drawing (including walls)
-          ctx.fillStyle = '#AAAAAA';
+          ctx.fillStyle = data.getColorByNameSafe(
+              tile.item ? 'tile selected' : 'tile');
           ctx.fillRect(tile.x * scale, tile.y * scale, scale, scale);
         }
       }
@@ -81,13 +91,31 @@ class Minimap {
     // Copy the buffer onto the actual drawing surface.
     ctx.drawImage(this.buffer, x, y, w, h);
 
-    for (const gameMap of mapController.gameMaps.values()) {
-      for (const tile of gameMap.tiles.values()) {
-        if (tile.creatures.length == 0) continue;
-        // TODO: draw creature marker at this tile, if
-        // it's within the minimap?
+    ctx.save();
+    // TODO: account for non (0, 0) minimap positions?
+    applyTransformations(ctx);
+    const maxDistance = Math.min(w, h) * 0.3 / scale;
+    for (const creature of mapController.creatures) {
+      if (creature != active) {
+        const distance = calcDistance(
+            creature.cX - active.cX, creature.cY - active.cY);
+        if (distance > maxDistance) continue;
       }
+      if (creature.side != Creature.Side.Player) {
+        const x = Math.round(creature.x);
+        const y = Math.round(creature.y);
+        const tile = mapController.tileAt(x, y);
+        if (!tile) continue;
+        const gameMap = mapController.gameMapAt(x, y);
+        if (!gameMap) continue;
+        if (!gameMap.discoveredTileIs.has(toI(x, y))) continue;
+      }
+      ctx.fillStyle = data.getColorByNameSafe(
+          'tile selected' + creature.colorSuffix);
+      ctx.fillRect(scale * creature.x, scale * creature.y,
+          scale * creature.s, scale * creature.s);
     }
+    ctx.restore();
 
     if (DEBUG) debugTrackTimeDone();
   }

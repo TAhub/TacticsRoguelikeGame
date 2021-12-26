@@ -292,6 +292,7 @@ class IngamePlugin extends GamePlugin {
                   tile.item = null;
                   this.inventoryPlayer = active;
                   this.menuController.clear();
+                  this.minimap.clearBuffer();
                 };
               }
               const name = 'Get ' + item.name;
@@ -405,6 +406,7 @@ class IngamePlugin extends GamePlugin {
               otherTile.doorIds.set(toI(active.x, active.y), 0);
               otherTile.doorFrameIs.add(toI(active.x, active.y));
               otherTile.clear3DData();
+              this.minimap.clearBuffer();
               // TODO: unlock door sound effect?
               setFn(null);
               used = true;

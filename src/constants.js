@@ -5,7 +5,7 @@ const gfxScreenWidth = 10.5 * gfxTileSize;
 const gfxScreenHeight = 6.5 * gfxTileSize;
 const gfxFov = 90;
 const gfxFarPlane = 15;
-const gfxMinimapSize = gfxScreenHeight / 4;
+const gfxMinimapSize = gfxScreenHeight * 3 / 8;
 const gfxStatusParticleTimerInterval = 0.3;
 const gfxThScale = 0.1;
 
