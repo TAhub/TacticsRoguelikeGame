@@ -248,7 +248,7 @@
       cunningModifier="2" specialPower="15" attackPower="15" armorProfiencyLevel="1" proficiencies="mace,pistol,saw crawler,gun turret,slam,coordinated attack"
       fluff="Mechanists learn how to maintain and operate Skuri automata. They are most common in civilian life, but some do end up using their skills to deploy deadly combat automata." />
     <entry name="healer" reqSpecies="karhun"
-      willpowerModifier="2" specialPower="10" astra="20" life="20" proficiencies="dagger,mace,first aid,triage,siphon,venom sting,poison powder"
+      willpowerModifier="2" specialPower="15" astra="20" life="15" proficiencies="dagger,mace,first aid,triage,siphon,venom sting,poison powder"
       fluff="Healers learn battlefield-tested Karhun first aid techniques, as well as a scattering of magic. They are perfect supports for a group of warriors." />
     <entry name="wanderer" reqSpecies="firin"
       agilityModifier="2" accuracy="22" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash,blitz strike"
