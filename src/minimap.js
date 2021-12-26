@@ -51,25 +51,61 @@ class Minimap {
       ctx.save();
       applyTransformations(ctx);
 
-      // Draw the tiles.
-      // TODO: don't draw a tile if it's off-screen?
+      const compassThickness = 15;
+      const compassRadius = (Math.min(w, h) / 2) - compassThickness;
+      const outsideThickness = (calcDistance(w, h) / 2) - compassRadius;
+
+      // Get which tiles should be drawn.
+      const drawTiles = new Set();
       for (const gameMap of mapController.gameMaps.values()) {
         for (const tile of gameMap.tiles.values()) {
           const i = toI(tile.x, tile.y);
           if (!gameMap.discoveredTileIs.has(i)) continue;
-          // TODO: actual drawing (including walls)
-          ctx.fillStyle = data.getColorByNameSafe(
-              tile.item ? 'tile selected' : 'tile');
-          ctx.fillRect(tile.x * scale, tile.y * scale, scale, scale);
+          const distance = scale * calcDistance(
+              tile.x + 0.5 - active.cX, tile.y + 0.5 - active.cY);
+          if (distance > compassRadius * 1.25) continue;
+          drawTiles.add(tile);
         }
+      }
+
+      // Draw the tiles.
+      for (const tile of drawTiles) {
+        ctx.fillStyle = data.getColorByNameSafe(
+            tile.item ? 'tile selected' : 'tile');
+        ctx.fillRect(tile.x * scale - 0.25, tile.y * scale - 0.25,
+            scale + 0.5, scale + 0.5);
+      }
+
+      // Draw walls and doors.
+      for (const tile of drawTiles) {
+        const i = toI(tile.x, tile.y);
+        const tryXY = (xD, yD) => {
+          const oTile = mapController.tileAt(tile.x + xD, tile.y + yD);
+          if (!oTile) return;
+          if (oTile.doorIds.get(i) == 0) return; // No need for a wall!
+          const isDoor = oTile.doorIds.has(i);
+          ctx.fillStyle = data.getColorByNameSafe(
+              isDoor ? 'tile selected over' : 'tile slot back');
+          const b = isDoor ? 2 : 1;
+          let x = tile.x * scale;
+          let y = tile.y * scale;
+          let w = 2 * b;
+          let h = 2 * b;
+          if (xD == 1) {
+            h = scale;
+            x += scale - b;
+          } else {
+            w = scale;
+            y += scale - b;
+          }
+          ctx.fillRect(x, y, w, h);
+        };
+        tryXY(1, 0);
+        tryXY(0, 1);
       }
 
       // Undo the transformations.
       ctx.restore();
-
-      const compassThickness = 15;
-      const compassRadius = (Math.min(w, h) / 2) - compassThickness;
-      const outsideThickness = (calcDistance(w, h) / 2) - compassRadius;
 
       // Crop the outside of the compass.
       ctx.lineWidth = outsideThickness;
@@ -102,7 +138,7 @@ class Minimap {
         const width = gfx.measureText(ctx, ' ' + dir + ' ');
         ctx.fillStyle = data.getColorByNameSafe('tile border');
         ctx.fillRect(northX - width / 2, northY, width, markerFontSize);
-        ctx.fillStyle = data.getColorByNameSafe('title');
+        ctx.fillStyle = data.getColorByNameSafe('tile text selected');
         gfx.drawText(ctx, northX, northY, dir,
             Graphics.TextAlign.Center, Graphics.TextBaseline.Top);
         ctx.restore();
