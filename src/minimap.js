@@ -75,7 +75,7 @@ class Minimap {
       ctx.lineWidth = outsideThickness;
       ctx.strokeStyle = '#000000';
       ctx.beginPath();
-      ctx.arc(w / 2, h / 2, compassRadius + outsideThickness / 2,
+      ctx.arc(w / 2, h / 2, compassRadius + outsideThickness / 2 + 2,
           0, 2 * Math.PI);
       ctx.globalCompositeOperation = 'destination-out';
       ctx.stroke();
