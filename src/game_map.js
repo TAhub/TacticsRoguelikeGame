@@ -1187,7 +1187,7 @@ class GameMap {
       if (tile.creatures.length > 0) continue;
       tiles.add(tile);
     }
-    for (const equip of overworldMapTile.loot) {
+    for (const item of overworldMapTile.loot) {
       const set = tiles.size > 0 ? tiles : fallbackTiles;
       const tickets = [];
       for (const tile of set) {
@@ -1196,7 +1196,7 @@ class GameMap {
         for (let i = 0; i < numTickets; i++) tickets.push(tile);
       }
       const tile = getRandomArrayEntry(tickets, rng);
-      tile.item = new Item(equip);
+      tile.item = item;
       const eliminate = (x, y) => {
         const tile = this.tileAt(x, y);
         if (!tile) return;

@@ -10,6 +10,8 @@ class Item {
     this.keyCode;
     /** @type {?string} */
     this.keyColorName;
+    /** @type {?number} */
+    this.tier;
   }
 
   clear3DData() {
@@ -68,9 +70,29 @@ class Item {
           sprite = 506;
           color = data.getColorByNameSafe(this.keyColorName || '');
           break;
+        case Item.Code.Healing:
+          sprite = 516;
+          let colorName = 'white';
+          switch (this.tier) {
+            case 0: colorName = 'greenish brown fabric'; break;
+            case 1: colorName = 'red fabric'; break;
+            case 2: colorName = 'gold'; break;
+          }
+          color = data.getColorByNameSafe(colorName);
+          break;
       }
     }
     return {sprite, color, scale, h};
+  }
+
+  /** @return {number} */
+  get healingAmount() {
+    if (this.tier == undefined) return 0;
+    let amount = mechBaseLife * 0.5;
+    amount *= multForTier(this.tier);
+    const level = levelForTier(this.tier);
+    amount *= (100 + Level.scaledStatForLevel(level).attackPower) / 100;
+    return Math.ceil(amount / 5) * 5;
   }
 
   /** @return {!HTMLCanvasElement} */
@@ -110,6 +132,7 @@ class Item {
     } else {
       switch (this.contents) {
         case Item.Code.Key:
+        case Item.Code.Healing:
           return true;
       }
     }
@@ -124,6 +147,12 @@ class Item {
       switch (this.contents) {
         case Item.Code.Key:
           return capitalizeFirstLetter(this.keyColorName || '') + ' Key';
+        case Item.Code.Healing:
+          switch (this.tier) {
+            case 0: return 'Herbal Poultice'; break;
+            case 1: return 'Crimson Poultice'; break;
+            case 2: return 'Alchemical Poultice'; break;
+          }
       }
     }
     return 'Unknown';
@@ -144,6 +173,13 @@ class Item {
             'An old key made of ' + (this.keyColorName || '') + '.',
             'Left click to use!',
           ];
+        case Item.Code.Healing:
+          return [
+            'A poultice made of slow-acting healing medicine, which heals ' +
+            this.healingAmount + ' life.',
+            'You are at ' + creature.life + ' / ' + creature.maxLife + ' life.',
+            'Left click to use!',
+          ];
       }
     }
     return [];
@@ -160,6 +196,11 @@ class Item {
       item.keyCode = parseInt(split[0], 10);
       item.keyColorName = split[1];
       return item;
+    } else if (saveString.startsWith('(H)')) {
+      const split = saveString.split(')');
+      const item = new Item(Item.Code.Healing);
+      item.tier = parseInt(split[1], 10);
+      return item;
     } else if (saveString.startsWith('(I)')) {
       const split = saveString.split(')');
       return new Item(/** @type {!Item.Code} */ (parseInt(split[1], 10)));
@@ -174,6 +215,8 @@ class Item {
       return this.contents.saveString;
     } else if (this.contents == Item.Code.Key) {
       return '(K)' + this.keyCode + ':' + this.keyColorName;
+    } else if (this.contents == Item.Code.Healing) {
+      return '(H)' + this.tier;
     } else {
       return '(I)' + this.contents;
     }
@@ -184,4 +227,5 @@ class Item {
 Item.Code = {
   Campfire: 1,
   Key: 2,
+  Healing: 3,
 };

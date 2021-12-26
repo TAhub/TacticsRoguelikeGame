@@ -19,7 +19,7 @@ class OverworldMapTile {
     this.keyId = 0;
     this.hasCampfire = false;
     this.hasBoss = false;
-    /** @type {!Array.<!Equipment>} */
+    /** @type {!Array.<!Item>} */
     this.loot = [];
   }
 
@@ -107,7 +107,7 @@ class OverworldMap {
         const loots = data.getArrayValue('sub regions', type, 'loot');
         if (loots) {
           for (const saveString of loots) {
-            loot.push(Equipment.load(saveString));
+            loot.push(Item.load(saveString));
           }
         }
         while (loot.length > 0) {

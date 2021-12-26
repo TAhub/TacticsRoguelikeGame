@@ -54,14 +54,28 @@ class Level extends BonusSource {
     return this.scalingBonus;
   }
 
+  /**
+   * @param {number} level
+   * @return {number}
+   */
+  static numSkillPointsAtLevel(level) {
+    return 1 + Math.floor(level / mechLevelsPerSkill);
+  }
+
+  /**
+   * @param {number} level
+   * @return {!Stat}
+   */
+  static scaledStatForLevel(level) {
+    const numStatPoints = (level - this.numSkillPointsAtLevel(level) - 1) / 4;
+    return new Stat('physique', 10 + numStatPoints, new Species(''), []);
+  }
+
   /** @return {number} */
   get scalingDefenseValue() {
-    const numSkillPoints = 1 + Math.floor(this.number / mechLevelsPerSkill);
-    const numStatPoints = (this.number - numSkillPoints - 1 ) / 4;
     let defense = this.scalingBonus;
-    const scaledStat =
-        new Stat('physique', 10 + numStatPoints, new Species(''), []);
-    defense += scaledStat.attackPower;
+    defense += Level.scaledStatForLevel(this.number).attackPower;
+    const numSkillPoints = Level.numSkillPointsAtLevel(this.number);
     const skill = new Skill('enemy');
     defense += skill.defense * numSkillPoints;
     return Math.floor(defense);

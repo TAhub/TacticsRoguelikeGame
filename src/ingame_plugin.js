@@ -391,7 +391,13 @@ class IngamePlugin extends GamePlugin {
     const makeEquipTile = (item, setFn) => {
       const spriteCanvas = item.get2DCanvas();
       const clickFn = () => {
-        if (item.keyCode) {
+        if (item.contents == Item.Code.Healing) {
+          if (creature.life == creature.maxLife) return;
+          creature.receiveHealing(item.healingAmount);
+          setFn(null);
+          this.inventoryPlayer = null;
+          this.menuController.clear();
+        } else if (item.contents == Item.Code.Key) {
           const tile = mapC.tileAt(active.x, active.y);
           if (tile) {
             let used = false;
@@ -410,6 +416,7 @@ class IngamePlugin extends GamePlugin {
               // TODO: unlock door sound effect?
               setFn(null);
               used = true;
+              this.inventoryPlayer = null;
               this.menuController.clear();
               break;
             }

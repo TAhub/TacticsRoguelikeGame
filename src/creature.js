@@ -896,11 +896,8 @@ class Creature {
     this.makeBar();
   }
 
-  /**
-   * @param {number} healing
-   * @private
-   */
-  receiveHealing_(healing) {
+  /** @param {number} healing */
+  receiveHealing(healing) {
     let healingLeft = healing;
 
     const usedOnLife = Math.min(healingLeft, this.maxLife - this.life);
@@ -1777,11 +1774,11 @@ class Creature {
     // Damage.
     const damage = Math.ceil(mult * weapon.damage / 100);
     if (weapon.heals) {
-      target.receiveHealing_(damage);
+      target.receiveHealing(damage);
     } else {
       target.takeDamage_(damage, hitResult);
     }
-    if (weapon.drains && damage) this.receiveHealing_(damage);
+    if (weapon.drains && damage) this.receiveHealing(damage);
   }
 
   /**

@@ -78,6 +78,19 @@ function tierForLevel(level) {
 }
 
 /**
+ * @param {number} tier
+ * @return {number} level
+ */
+function levelForTier(tier) {
+  if (tier < 0) return 1;
+  for (let level = 1; level <= mechMaxLevel; level++) {
+    if (tierForLevel(level) != tier) continue;
+    return level + 1; // A little extra!
+  }
+  return mechMaxLevel;
+}
+
+/**
  * @param {number} number
  * @return {number}
  */
