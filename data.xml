@@ -244,9 +244,9 @@
     <entry name="mage" reqSpecies="firin,skuri"
       senseModifier="2" specialPower="15" astra="20" life="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage,enchanted blade"
       fluff="Mages practice a standardized set of combat magic spells, focusing on sheer magical firepower. They excel at taking down armored foes, who usually lack resistance to magic." />
-    <entry name="mechanic" reqSpecies="skuri"
+    <entry name="mechanist" reqSpecies="skuri"
       cunningModifier="2" specialPower="15" attackPower="15" armorProfiencyLevel="1" proficiencies="mace,pistol,saw crawler,gun turret,slam,coordinated attack"
-      fluff="Mechanics learn how to maintain and operate Skuri automata. They are most common in civilian life, but some do end up using their skills to deploy deadly combat automata." />
+      fluff="Mechanists learn how to maintain and operate Skuri automata. They are most common in civilian life, but some do end up using their skills to deploy deadly combat automata." />
     <entry name="healer" reqSpecies="karhun"
       willpowerModifier="2" specialPower="10" astra="20" life="20" proficiencies="dagger,mace,first aid,triage,siphon,venom sting,poison powder"
       fluff="Healers learn battlefield-tested Karhun first aid techniques, as well as a scattering of magic. They are perfect supports for a group of warriors." />
@@ -383,7 +383,7 @@
       hairstyle="short,medium" />
     <entry name="tethered mage" species="firin" jobs="mage,tethered" level="28" weapon="spear:2" armors0="hat:2,shirt:2,pants:2" armors1="hat:2,shirt:2,skirt:2" techniques="arcana arrow,phantom flames" accessory="third eye"
       hairstyle="medium,ponytail" />
-    <entry name="tethered mechanic" species="skuri" jobs="mechanic,tethered" level="30" weapon="mace:2" armors="cap:2,jerkin:2,leggings:2" techniques="saw crawler,slam" accessory="lantern"
+    <entry name="tethered mechanist" species="skuri" jobs="mechanist,tethered" level="30" weapon="mace:2" armors="cap:2,jerkin:2,leggings:2" techniques="saw crawler,slam" accessory="lantern"
       hairstyle="medium,long" />
     <entry name="tethered gunner" species="firin" jobs="gunner,tethered" level="30" weapon="pistol:2" armors="cap:2,jerkin:2,leggings:2" techniques="snipe,brain rattler" accessory="oilskin cloak"
       hairstyle="short,ponytail" />
@@ -1140,7 +1140,7 @@
       tileset="gateway" enemyTemplates="wasteland serpent,walking topiary,poison turtle,monster boar,gold slime,tethered healer,tethered rogue,tethered gunner"
       loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3" />
     <entry name="tether assembly" regionId="5"
-      tileset="tether assembly" securityLevelTickets="1,2,3" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanic,tethered gunner,tethered healer,reinforced gun turret"
+      tileset="tether assembly" securityLevelTickets="1,2,3" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanist,tethered gunner,tethered healer,reinforced gun turret"
       loot="(C)third eye,(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3,(R)rusted focus" />
   </category> <!-- sub regions -->
   <category name="tilesets">
