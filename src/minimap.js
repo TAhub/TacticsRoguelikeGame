@@ -23,10 +23,14 @@ class Minimap {
     const scale = 6;
     const angle = mapController.cameraAngle;
 
-    /** @param {!CanvasRenderingContext2D} ctx */
-    const applyTransformations = (ctx) => {
+    /**
+     * @param {!CanvasRenderingContext2D} ctx
+     * @param {number=} optExtraAngle
+     */
+    const applyTransformations = (ctx, optExtraAngle) => {
       ctx.translate(w / 2, h / 2);
       ctx.rotate(-angle - Math.PI / 2);
+      if (optExtraAngle) ctx.rotate(optExtraAngle);
       ctx.translate(-scale * active.cX, -scale * active.cY);
     };
 
@@ -85,7 +89,24 @@ class Minimap {
           0, 2 * Math.PI);
       ctx.stroke();
 
-      // TODO: draw a north marker on the compass?
+      // Draw compass markers.
+      const markerFontSize = 20;
+      gfx.setFont(ctx, markerFontSize);
+      let extraAngle = 0;
+      for (const dir of ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW']) {
+        ctx.save();
+        applyTransformations(ctx, extraAngle);
+        extraAngle += Math.PI / 4;
+        const northX = scale * active.cX;
+        const northY = scale * active.cY - h / 2;
+        const width = gfx.measureText(ctx, ' ' + dir + ' ');
+        ctx.fillStyle = data.getColorByNameSafe('tile border');
+        ctx.fillRect(northX - width / 2, northY, width, markerFontSize);
+        ctx.fillStyle = data.getColorByNameSafe('title');
+        gfx.drawText(ctx, northX, northY, dir,
+            Graphics.TextAlign.Center, Graphics.TextBaseline.Top);
+        ctx.restore();
+      }
     }
 
     // Copy the buffer onto the actual drawing surface.
