@@ -635,21 +635,17 @@
       <layer sprite="706" color="skinColor" showAllStatuses="1" />
     </entry> <!-- scavenger -->
     <entry name="frog"
-      appearanceSizeMult="90"
+      appearanceSizeMult="90" headHeightPoint="55"
       colorationTickets0="1" skinColor0="green scales"
       colorationTickets1="1" skinColor1="yellow scales">
-      <!-- TODO: actual appearance (use the "frog" sprite) -->
-      <!-- TODO: headHeightPoint (for spell lines) -->
-      <layer sprite="700" color="skinColor" showAllStatuses="1" />
+      <layer sprite="707" color="skinColor" showAllStatuses="1" />
     </entry> <!-- frog -->
     <entry name="bird"
-      appearanceSizeMult="90"
+      appearanceSizeMult="90" headHeightPoint="20"
       colorationTickets0="1" skinColor0="white fur"
       colorationTickets1="1" skinColor1="vaguely blue fur"
       colorationTickets2="1" skinColor2="black fur">
-      <!-- TODO: actual appearance (use the "bird" sprite) -->
-      <!-- TODO: headHeightPoint (for spell lines) -->
-      <layer sprite="700" color="skinColor" showAllStatuses="1" />
+      <layer sprite="708" color="skinColor" showAllStatuses="1" />
     </entry> <!-- bird -->
   </category> <!-- species appearances -->
   <category name="weapons">
