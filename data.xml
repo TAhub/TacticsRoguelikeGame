@@ -283,10 +283,10 @@
       eyeColorReplacer="white" pupilColorReplacer="white" />
     <entry name="undead"
       physiqueModifier="2" defense="20" life="30" unarmoredDefense="1"
-      skinColorSaturationBlend="10" hairColorBlend="vaguely green fur" hairColorValueBlend="10" hairColorSaturationBlend="85" eyeColorBlend="red" tailColorBlend="bone" />
+      skinColorSaturationBlend="10" hairColorBlend="vaguely green fur" hairColorValueBlend="10" hairColorSaturationBlend="85" eyeColorBlend="red" tailColorBlend="bone" bloodColorBlend="green" bloodColorSaturationBlend="25" />
     <entry name="armored undead"
       physiqueModifier="2" armorProfiencyLevel="1" defense="10" life="20" unarmoredDefense="1"
-      skinColorSaturationBlend="10" hairColorBlend="vaguely green fur" hairColorValueBlend="10" hairColorSaturationBlend="85" eyeColorBlend="red" tailColorBlend="bone" />
+      skinColorSaturationBlend="10" hairColorBlend="vaguely green fur" hairColorValueBlend="10" hairColorSaturationBlend="85" eyeColorBlend="red" tailColorBlend="bone" bloodColorBlend="green" bloodColorSaturationBlend="25" />
   </category> <!-- jobs -->
   <category name="creature templates">
     <!-- special -->
@@ -468,9 +468,9 @@
     <!-- playable species -->
     <entry name="karhun"
       appearanceSizeMult="115" headHeightPoint="85"
-      coloration0="Forest" colorationTickets0="3" skinColor0="brown fur" hairColor0="vaguely green fur" eyeColor0="light orange" pupilColor0="black"
+      coloration0="Forest" colorationTickets0="3" skinColor0="brown fur" hairColor0="vaguely green fur" eyeColor0="light orange" pupilColor0="black" bloodColor0="blood"
       colorationFluff0="Forest Karhun prefer to live in scattered enclaves in the forests, living off the land."
-      coloration1="River" colorationTickets1="2" skinColor1="orange fur" hairColor1="vaguely blue fur" eyeColor1="light orange" pupilColor1="black"
+      coloration1="River" colorationTickets1="2" skinColor1="orange fur" hairColor1="vaguely blue fur" eyeColor1="light orange" pupilColor1="black" bloodColor1="blood"
       colorationFluff1="River Karhun live by rivers, and are happier with city-life than the forest Karhun. As such, they are the more dominant ethnicity, nowadays.">
       <layer spriteM="312" spriteF="313" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (back) armor layer -->
       <layer color="hairColor" xAdd="1" yAdd="-49" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
@@ -491,9 +491,9 @@
     </entry> <!-- karhun -->
     <entry name="firin"
       appearanceSizeMult="95" headHeightPoint="75"
-      coloration0="Tabby" colorationTickets0="3" skinColor0="orange fur" hairColor0="yellow fur" eyeColor0="orange" pupilColor0="black"
+      coloration0="Tabby" colorationTickets0="3" skinColor0="orange fur" hairColor0="yellow fur" eyeColor0="orange" pupilColor0="black" bloodColor0="blood"
       colorationFluff0="The tabby Firin might not have any actual noble heritage, but they still have the bearing of a noble."
-      coloration1="Ginger" colorationTickets1="2" skinColor1="red scales" hairColor1="orange fur" eyeColor1="orange" pupilColor1="black"
+      coloration1="Ginger" colorationTickets1="2" skinColor1="red scales" hairColor1="orange fur" eyeColor1="orange" pupilColor1="black" bloodColor1="blood"
       colorationFluff1="The reddish coloration ginger Firin was once considered a trait of the royal family. Nowadays, though, it has become quite common.">
       <layer spriteM="113" spriteF="114" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (back) armor layer -->
       <layer color="hairColor" xAdd="1" yAdd="-36" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
@@ -515,9 +515,9 @@
     </entry> <!-- firin -->
     <entry name="skuri"
       appearanceSizeMult="85" headHeightPoint="55"
-      coloration0="Field" colorationTickets0="3" skinColor0="tan fur" hairColor0="brown fur" eyeColor0="black" tailColor0="flesh"
+      coloration0="Field" colorationTickets0="3" skinColor0="tan fur" hairColor0="brown fur" eyeColor0="black" tailColor0="flesh" bloodColor0="blood"
       colorationFluff0="Despite the name, field Skuri rarely actually live outside in fields. Rather, they were once used by the Firin empire as slaves, working the fields."
-      coloration1="Albino" colorationTickets1="1" skinColor1="white fur" hairColor1="white" eyeColor1="blood" tailColor1="flesh"
+      coloration1="Albino" colorationTickets1="1" skinColor1="white fur" hairColor1="white" eyeColor1="blood" tailColor1="flesh" bloodColor1="blood"
       colorationFluff1="Albinism is much more common in Skuri than it is in other species.">
       <layer sprite="407" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (back) armor layer -->
       <layer color="hairColor" xAdd="4" yAdd="-9" scale="90" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
@@ -540,107 +540,107 @@
     <!-- monster species -->
     <entry name="crawler"
       appearanceSizeMult="95"
-      colorationTickets0="1" skinColor0="steel">
+      colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
       <!-- TODO: actual appearance, with multiple layers for parts and such... lots of pieces and valves and shit -->
       <!-- TODO: headHeightPoint (for spell lines) -->
       <layer sprite="701" color="skinColor" showAllStatuses="1" />
     </entry> <!-- crawler -->
     <entry name="turret"
       appearanceSizeMult="95"
-      colorationTickets0="1" skinColor0="steel">
+      colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
       <!-- TODO: actual appearance, with multiple layers for parts and such... lots of pieces and valves and shit -->
       <!-- TODO: headHeightPoint (for spell lines) -->
       <layer sprite="701" color="skinColor" showAllStatuses="1" />
     </entry> <!-- turret -->
     <entry name="rat"
       appearanceSizeMult="65" headHeightPoint="25"
-      colorationTickets0="1" skinColor0="bone">
+      colorationTickets0="1" skinColor0="bone" bloodColor0="blood">
       <layer sprite="703" color="skinColor" showAllStatuses="1" />
     </entry> <!-- rat -->
     <entry name="slime"
       appearanceSizeMult="85" headHeightPoint="65"
-      colorationTickets0="1" skinColor0="blood"
-      colorationTickets1="1" skinColor1="gold">
+      colorationTickets0="1" skinColor0="blood" bloodColor0="blood"
+      colorationTickets1="1" skinColor1="gold" bloodColor1="gold">
       <layer sprite="704" color="skinColor" showAllStatuses="1" />
     </entry> <!-- slime -->
     <entry name="baby slime"
       appearanceSizeMult="75" headHeightPoint="65"
-      colorationTickets0="1" skinColor0="blood"
-      colorationTickets1="1" skinColor1="gold">
+      colorationTickets0="1" skinColor0="blood" bloodColor0="blood"
+      colorationTickets1="1" skinColor1="gold" bloodColor1="gold">
       <layer sprite="704" color="skinColor" showAllStatuses="1" />
     </entry> <!-- baby slime -->
     <entry name="seed spitter"
       appearanceSizeMult="85"
-      colorationTickets0="1" skinColor0="green plumage">
+      colorationTickets0="1" skinColor0="green scales" bloodColor0="green scales">
       <!-- TODO: actual appearance (make a new sprite, looks like a killer plant) -->
       <!-- TODO: headHeightPoint (for spell lines) -->
       <layer sprite="701" color="skinColor" showAllStatuses="1" />
     </entry> <!-- seed spitter -->
     <entry name="walking topiary"
       appearanceSizeMult="85" headHeightPoint="50"
-      colorationTickets0="1" skinColor0="grass wall">
+      colorationTickets0="1" skinColor0="grass wall" bloodColor0="grass wall">
       <layer sprite="709" color="skinColor" showAllStatuses="1" />
     </entry> <!-- walking topiary -->
     <entry name="walking bonsai"
       appearanceSizeMult="90" headHeightPoint="50"
-      colorationTickets0="1" skinColor0="grass wall">
+      colorationTickets0="1" skinColor0="grass wall" bloodColor0="grass wall">
       <layer sprite="709" color="skinColor" showAllStatuses="1" />
     </entry> <!-- walking bonsai -->
     <entry name="cat"
       appearanceSizeMult="75" headHeightPoint="50"
-      colorationTickets0="1" skinColor0="black fur"
-      colorationTickets1="1" skinColor1="green plumage">
+      colorationTickets0="1" skinColor0="black fur" bloodColor0="blood"
+      colorationTickets1="1" skinColor1="green plumage" bloodColor1="blood">
       <layer sprite="701" color="skinColor" showAllStatuses="1" />
     </entry> <!-- cat -->
     <entry name="serpent"
       appearanceSizeMult="95" headHeightPoint="85"
-      colorationTickets0="1" skinColor0="green scales"
-      colorationTickets1="1" skinColor1="yellow scales">
+      colorationTickets0="1" skinColor0="green scales" bloodColor0="blood"
+      colorationTickets1="1" skinColor1="yellow scales" bloodColor1="blood">
       <layer sprite="700" color="skinColor" showAllStatuses="1" />
     </entry> <!-- serpent -->
     <entry name="snake"
       appearanceSizeMult="105" headHeightPoint="85"
-      colorationTickets0="1" skinColor0="brown fur">
+      colorationTickets0="1" skinColor0="brown fur" bloodColor0="blood">
       <layer sprite="700" color="skinColor" showAllStatuses="1" />
     </entry> <!-- snake -->
     <entry name="giant turtle"
       appearanceSizeMult="95" headHeightPoint="45"
-      colorationTickets0="1" skinColor0="green scales"
-      colorationTickets1="1" skinColor1="yellow scales">
+      colorationTickets0="1" skinColor0="green scales" bloodColor0="blood"
+      colorationTickets1="1" skinColor1="yellow scales" bloodColor1="blood">
       <layer sprite="705" color="skinColor" showAllStatuses="1" />
     </entry> <!-- giant turtle -->
     <entry name="turtle"
       appearanceSizeMult="105" headHeightPoint="45"
-      colorationTickets0="1" skinColor0="green scales"
-      colorationTickets1="1" skinColor1="yellow scales">
+      colorationTickets0="1" skinColor0="green scales" bloodColor0="blood"
+      colorationTickets1="1" skinColor1="yellow scales" bloodColor1="blood">
       <layer sprite="705" color="skinColor" showAllStatuses="1" />
     </entry> <!-- turtle -->
     <entry name="giant boar"
       appearanceSizeMult="115" headHeightPoint="45"
-      colorationTickets0="1" skinColor0="brown fur"
-      colorationTickets1="1" skinColor1="brown fabric"
-      colorationTickets2="1" skinColor2="dull brown fabric">
+      colorationTickets0="1" skinColor0="brown fur" bloodColor0="blood"
+      colorationTickets1="1" skinColor1="brown fabric" bloodColor1="blood"
+      colorationTickets2="1" skinColor2="dull brown fabric" bloodColor2="blood">
       <layer sprite="702" color="skinColor" showAllStatuses="1" />
     </entry> <!-- giant boar -->
     <entry name="scavenger"
       appearanceSizeMult="100" headHeightPoint="55"
-      colorationTickets0="1" skinColor0="brown fur"
-      colorationTickets1="1" skinColor1="tan fur"
-      colorationTickets2="1" skinColor2="dull brown fur"
-      colorationTickets3="0" skinColor3="black fur">
+      colorationTickets0="1" skinColor0="brown fur" bloodColor0="blood"
+      colorationTickets1="1" skinColor1="tan fur" bloodColor1="blood"
+      colorationTickets2="1" skinColor2="dull brown fur" bloodColor2="blood"
+      colorationTickets3="0" skinColor3="black fur" bloodColor3="blood">
       <layer sprite="706" color="skinColor" showAllStatuses="1" />
     </entry> <!-- scavenger -->
     <entry name="frog"
       appearanceSizeMult="90" headHeightPoint="55"
-      colorationTickets0="1" skinColor0="green scales"
-      colorationTickets1="1" skinColor1="yellow scales">
+      colorationTickets0="1" skinColor0="green scales" bloodColor0="blood"
+      colorationTickets1="1" skinColor1="yellow scales" bloodColor1="blood">
       <layer sprite="707" color="skinColor" showAllStatuses="1" />
     </entry> <!-- frog -->
     <entry name="bird"
       appearanceSizeMult="90" headHeightPoint="20"
-      colorationTickets0="1" skinColor0="white fur"
-      colorationTickets1="1" skinColor1="vaguely blue fur"
-      colorationTickets2="1" skinColor2="black fur">
+      colorationTickets0="1" skinColor0="white fur" bloodColor0="blood"
+      colorationTickets1="1" skinColor1="vaguely blue fur" bloodColor1="blood"
+      colorationTickets2="1" skinColor2="black fur" bloodColor2="blood">
       <layer sprite="708" color="skinColor" showAllStatuses="1" />
     </entry> <!-- bird -->
   </category> <!-- species appearances -->

@@ -1637,7 +1637,7 @@ class Creature {
 
   /** @private */
   addBloodParticle_() {
-    const color = data.getColorByNameSafe('blood');
+    const color = this.species.getColor('bloodColor', this.jobs);
     const scatter = 0.2;
     const sprites = [500, 501];
     const scale = 0.125;
