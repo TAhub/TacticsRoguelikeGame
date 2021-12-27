@@ -275,7 +275,7 @@
     <entry name="ranged monster"
       physiqueModifier="1" agilityModifier="1" attackPower="40" life="10" unarmoredDefense="1" />
     <entry name="sneaky monster"
-      agilityModifier="2" dodge="15" resistance="15" attackPowerWhenDisengaged="40" unarmoredDefense="1" />
+      agilityModifier="2" dodge="10" resistance="20" attackPowerWhenDisengaged="40" unarmoredDefense="1" />
     <entry name="magic monster"
       senseModifier="2" specialPower="30" life="10" astra="10" unarmoredDefense="1" />
     <entry name="tethered"
