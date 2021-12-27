@@ -23,8 +23,9 @@ class CharacterCreatorPlugin extends GamePlugin {
   /**
    * @param {function(!Array.<!Creature>):!GamePlugin} getNextPluginFn
    * @param {Array.<!Creature>=} optPlayersToLevelUp
+   * @param {Creature=} optFocusPlayer
    */
-  constructor(getNextPluginFn, optPlayersToLevelUp) {
+  constructor(getNextPluginFn, optPlayersToLevelUp, optFocusPlayer) {
     super();
 
     this.getNextPluginFn = getNextPluginFn;
@@ -45,7 +46,7 @@ class CharacterCreatorPlugin extends GamePlugin {
       this.resetValues.push(this.resetValuesFor_(player));
     }
     this.menuController = new MenuController();
-    this.selectedCreature = this.players[0];
+    this.selectedCreature = optFocusPlayer || this.players[0];
     this.appearanceMode = false;
     this.remakeUI_();
   }
@@ -446,18 +447,18 @@ class CharacterCreatorPlugin extends GamePlugin {
     };
     const clickFn = (type) => {
       if (creature.jobs.some((job) => job.type == type)) return;
-      const latestI = creature.jobs.length - 1;
       if (creature.jobs.length < creature.desiredNumJobs) {
         creature.jobs.push(new Job(type));
       } else {
-        creature.jobs[latestI].type = type;
+        creature.jobs[creature.jobs.length - 1].type = type;
         if (!this.levelUpMode) {
           this.pickCosmeticShowGearFor_(creature);
         }
       }
       if (this.levelUpMode) {
         creature.stats = creature.stats.map((stat) => {
-          const bonus = creature.jobs[latestI].getStatModifierFor(stat.type);
+          const job = creature.jobs[creature.jobs.length - 1];
+          const bonus = job.getStatModifierFor(stat.type);
           return new Stat(
               stat.type, stat.number + bonus, creature.species, creature.jobs);
         });

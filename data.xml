@@ -1098,7 +1098,7 @@
     <!-- regionId 2 (t1): caverns -->
     <entry name="burrow" regionId="2" condition="key map branch"
       tileset="burrow" securityLevelTickets="2,3" enemyTemplates="gun turret,saw crawler,paranoid tunneler,paranoid rogue,paranoid mage"
-      loot="(W)gun turret,(W)pistol:1,(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot,(W)coordinated attack,(H)1,(H)1" />
+      loot="(W)gun turret,(W)pistol:1,(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot,(W)coordinated attack,(H)1,(H)1,(I)4" />
     <entry name="caverns entrance" regionId="2" condition="first map"
       tileset="stone tunnels" enemyTemplates="skull rat,giant turtle" npc="Ilretaami"
       loot="(A)jerkin:1,(C)shield,(W)brain rattler,(H)1" />
@@ -1120,18 +1120,18 @@
       loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade,(R)thorny band,(H)2,(H)2" />
     <entry name="twisted wasteland" regionId="4"
       tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar"
-      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(H)2" />
+      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(H)2,(I)4" />
 
     <!-- regionId 5 (t2): tether assembly -->
     <entry name="gateway" regionId="5" condition="first map"
       tileset="gateway" npc="Greeter"
-      loot="(C)bloody thorn,(A)helmet:2,(W)solar combo,(H)2" />
+      loot="(C)bloody thorn,(A)helmet:2,(W)solar combo,(H)2,(I)4" />
     <entry name="animal pen" regionId="5" condition="random connecting maps"
       tileset="gateway" enemyTemplates="wasteland serpent,walking topiary,poison turtle,monster boar,gold slime,tethered healer,tethered rogue,tethered gunner"
       loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3,(H)2,(H)2,(H)2,(H)2" />
     <entry name="tether assembly" regionId="5"
       tileset="tether assembly" securityLevelTickets="1,2,3" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanist,tethered gunner,tethered healer,reinforced gun turret"
-      loot="(C)third eye,(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3,(R)rusted focus,(H)2,(H)2" />
+      loot="(C)third eye,(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3,(R)rusted focus,(H)2,(H)2,(I)4" />
   </category> <!-- sub regions -->
   <category name="tilesets">
     <!-- a special tileset solely for the second upscale. Not used as an actual tileset (e.g. no colors, sprites, etc) -->

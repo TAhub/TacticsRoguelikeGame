@@ -373,6 +373,80 @@ class IngamePlugin extends GamePlugin {
   }
 
   /**
+   * @param {!Creature} creature
+   * @private
+   */
+  respec_(creature) {
+    creature.stats = creature.stats.map((stat) => {
+      let number = stat.number;
+      // Un-apply job bonuses.
+      for (const job of creature.jobs) {
+        number -= job.getStatModifierFor(stat.type);
+      }
+      return new Stat(stat.type, number, creature.species, []);
+    });
+    creature.jobs = [];
+    creature.skillPoints += creature.skills.length;
+    creature.skills = [];
+
+    // Un-equip all gear that requires a proficiency.
+    const unequipped = [];
+    if (creature.weapon && !creature.weapon.noProficiency) {
+      unequipped.push(creature.weapon);
+      creature.weapon = null;
+    }
+    creature.armors = creature.armors.filter((armor) => {
+      if (armor.armorProfiencyLevel == 0) return true;
+      unequipped.push(armor);
+      return false;
+    });
+    creature.techTypes = creature.techTypes.filter((type) => {
+      const sample = new Weapon(type);
+      if (sample.noProficiency) return true;
+      unequipped.push(sample);
+      return false;
+    });
+    this.equipCleanUp_(creature);
+
+    // Put the unequipped stuff into the inventory on the floor, as required.
+    const mapC = this.mapController;
+    for (let i = 0; i < mapC.inventory.length && unequipped.length > 0; i++) {
+      if (mapC.inventory[i]) continue;
+      mapC.inventory[i] = new Item(unequipped.pop());
+    }
+    let r = 0;
+    while (unequipped.length > 0) {
+      const validTiles = [];
+      for (let y = creature.y - r; y <= creature.y + r; y++) {
+        for (let x = creature.x - r; x <= creature.x + r; x++) {
+          const tile = mapC.tileAt(x, y);
+          if (!tile || tile.item) continue;
+          const distance = Math.abs(x - creature.x) + Math.abs(y - creature.y);
+          if (distance != r) continue;
+          validTiles.push(tile);
+        }
+      }
+      shuffleArray(validTiles);
+      for (const tile of validTiles) {
+        tile.item = new Item(unequipped.pop());
+        if (unequipped.length == 0) break;
+      }
+      r += 1;
+    }
+  }
+
+  /**
+   * @param {!Creature} creature
+   * @private
+   */
+  equipCleanUp_(creature) {
+    creature.makeAppearance();
+    creature.life = Math.min(creature.life, creature.maxLife);
+    creature.astra = Math.min(creature.astra, creature.maxAstra);
+    creature.makeBar();
+  }
+
+  /**
    * @param {number} topH
    * @param {!Creature} creature
    * @private
@@ -394,9 +468,18 @@ class IngamePlugin extends GamePlugin {
         if (item.contents == Item.Code.Healing) {
           if (creature.life == creature.maxLife) return;
           creature.receiveHealing(item.healingAmount);
+          // TODO: poultice sound
           setFn(null);
           this.inventoryPlayer = null;
           this.menuController.clear();
+        } else if (item.contents == Item.Code.Respec) {
+          if (creature.jobs.length == 0 && creature.skills.length == 0) return;
+          setFn(null);
+          this.respec_(creature);
+          // TODO: respec sound
+          this.inventoryPlayer = null;
+          this.menuController.clear();
+          this.openLevelUpUI_(creature);
         } else if (item.contents == Item.Code.Key) {
           const tile = mapC.tileAt(active.x, active.y);
           if (tile) {
@@ -433,12 +516,6 @@ class IngamePlugin extends GamePlugin {
           console.log('TODO: using misc item');
         }
       };
-      const equipCleanUp = () => {
-        creature.makeAppearance();
-        creature.life = Math.min(creature.life, creature.maxLife);
-        creature.astra = Math.min(creature.astra, creature.maxAstra);
-        creature.makeBar();
-      };
       const attachFn = (slot) => {
         if (!slot.attachData) return false;
         const split = slot.attachData.split('-');
@@ -447,7 +524,7 @@ class IngamePlugin extends GamePlugin {
           const other = mapC.inventory[j];
           mapC.inventory[j] = item;
           setFn(other);
-          equipCleanUp(); // In case you un-equipped something.
+          this.equipCleanUp_(creature); // In case you un-equipped something.
           this.menuController.clear();
           return true;
         } else if (split[0] == 'eqp') {
@@ -483,7 +560,7 @@ class IngamePlugin extends GamePlugin {
               setFn(null);
             }
             creature.weapon = item.contents;
-            equipCleanUp();
+            this.equipCleanUp_(creature);
             this.menuController.clear();
             return true;
           } else if (split[1] == 'ring') {
@@ -494,7 +571,7 @@ class IngamePlugin extends GamePlugin {
               setFn(null);
             }
             creature.ring = item.contents;
-            equipCleanUp();
+            this.equipCleanUp_(creature);
             this.menuController.clear();
             return true;
           } else if (split[1] == 'accessory') {
@@ -505,7 +582,7 @@ class IngamePlugin extends GamePlugin {
               setFn(null);
             }
             creature.accessory = item.contents;
-            equipCleanUp();
+            this.equipCleanUp_(creature);
             this.menuController.clear();
             return true;
           } else {
@@ -523,7 +600,7 @@ class IngamePlugin extends GamePlugin {
               setFn(null);
             }
             creature.armors.push(item.contents);
-            equipCleanUp();
+            this.equipCleanUp_(creature);
             this.menuController.clear();
             return true;
           }
@@ -611,6 +688,20 @@ class IngamePlugin extends GamePlugin {
   }
 
   /**
+   * @param {Creature=} optFocusPlayer
+   * @private
+   */
+  openLevelUpUI_(optFocusPlayer) {
+    const creator = new CharacterCreatorPlugin((players) => {
+      this.menuController.clear();
+      // In level-up mode, the character creator cannot actually
+      // REPLACE any players, so no need to use the "players" arg.
+      return this;
+    }, this.mapController.players, optFocusPlayer);
+    this.switchToPlugin(creator);
+  }
+
+  /**
    * @param {number} topH
    * @private
    */
@@ -620,14 +711,7 @@ class IngamePlugin extends GamePlugin {
     const name = this.mapController.players.some((pl) => {
       return pl.statPoints > 0 || pl.skillPoints > 0;
     }) ? 'Level Up' : 'Stats';
-    const clickFn = () => {
-      const creator = new CharacterCreatorPlugin((players) => {
-        // In level-up mode, the character creator cannot actually
-        // REPLACE any players, so no need to use the "players" arg.
-        return this;
-      }, this.mapController.players);
-      this.switchToPlugin(creator);
-    };
+    const clickFn = () => this.openLevelUpUI_();
     const slot = new MenuTileSlot(gfxScreenWidth - w, topH, w, h);
     slot.attachTile(new MenuTile(name, {clickFn}));
     this.menuController.slots.push(slot);

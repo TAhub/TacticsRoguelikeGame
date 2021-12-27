@@ -70,6 +70,10 @@ class Item {
           sprite = 506;
           color = data.getColorByNameSafe(this.keyColorName || '');
           break;
+        case Item.Code.Respec:
+          sprite = 517;
+          color = data.getColorByNameSafe('silver');
+          break;
         case Item.Code.Healing:
           sprite = 516;
           let colorName = 'white';
@@ -132,6 +136,7 @@ class Item {
     } else {
       switch (this.contents) {
         case Item.Code.Key:
+        case Item.Code.Respec:
         case Item.Code.Healing:
           return true;
       }
@@ -147,6 +152,8 @@ class Item {
       switch (this.contents) {
         case Item.Code.Key:
           return capitalizeFirstLetter(this.keyColorName || '') + ' Key';
+        case Item.Code.Respec:
+          return 'Brain Scrambler';
         case Item.Code.Healing:
           switch (this.tier) {
             case 0: return 'Herbal Poultice'; break;
@@ -171,6 +178,12 @@ class Item {
         case Item.Code.Key:
           return [
             'An old key made of ' + (this.keyColorName || '') + '.',
+            'Left click to use!',
+          ];
+        case Item.Code.Respec:
+          return [
+            'A rare magical item, which causes amnesia then burns itself out.',
+            'Allows the user to re-train their jobs and skills.',
             'Left click to use!',
           ];
         case Item.Code.Healing:
@@ -228,4 +241,5 @@ Item.Code = {
   Campfire: 1,
   Key: 2,
   Healing: 3,
+  Respec: 4,
 };
