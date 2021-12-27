@@ -10,7 +10,7 @@ const gfxStatusParticleTimerInterval = 0.3;
 const gfxThScale = 0.1;
 
 // Map-generation constants.
-const mapOverworldMapSize = 18;
+const mapOverworldMapSize = 16;
 const mapGameMapSize = 5;
 const mapTileUpscale = 3;
 const mapSecondTileUpscale = 3;

@@ -299,6 +299,10 @@
       gender="0" hairstyle="short" coloration="1" npcLines="roros" />
     <entry name="Ilretaami" species="skuri" jobs="rogue" level="14" weapon="dagger:1" armors="jerkin:1,leggings:1"
       gender="1" hairstyle="medium" coloration="0" npcLines="Ilretaami" />
+    <entry name="Joonert" species="karhun" jobs="survivor" level="17" weapon="dagger:1" armors="jerkin:1,leggings:1"
+      gender="0" hairstyle="bald" coloration="1" npcLines="Joonert" />
+    <entry name="Gulas" species="firin" jobs="sage,survivor" level="25" armors="hat:2,shirt:2,leggings:2" techniques="ashball,unearth"
+      gender="0" hairstyle="short" coloration="0" npcLines="Gulas" />
     <entry name="Greeter" species="firin" jobs="mage,tethered" level="30" armors="shirt:2,skirt:2" accessory="silver spectacles" techniques="arcana arrow,phantom flames"
       gender="1" hairstyle="ponytail" coloration="0" npcLines="Greeter" />
 
@@ -311,6 +315,10 @@
       hairstyle="short,medium,bald,bald" />
     <entry name="undead soldier" species="firin" jobs="armored undead" level="6" weapon="spear:0" armors0="jerkin:0,leggings:0" armors1="jerkin:0,leggings:0,cap:0"
       hairstyle="short,bald" />
+    <entry name="undead bridesmaid" species="firin" jobs="undead" level="4" weapon="deathly grasp:0" armors="shirt:0,skirt:0" techniques="arcana arrow"
+      hairstyle="medium,long" gender="1" />
+    <entry name="undead best man" species="firin" jobs="undead" level="4" weapon="sword:0" armors="hat:0,shirt:0,skirt:0"
+      hairstyle="short,ponytail" gender="0" />
 
     <!-- shore enemies (levels 7-12) -->
     <entry name="shore hopper" species="frog" jobs="sneaky monster" level="7" weapon="tackle:0" techniques="venom sting"
@@ -342,6 +350,8 @@
     <entry name="paranoid rogue" species="skuri" jobs="rogue" level="15" weapon0="dagger:1" weapon1="pistol:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1" techniques="crimson fangs,brain rattler"
       hairstyle="short,medium" />
     <entry name="paranoid mage" species="skuri" jobs="mage" level="15" weapon0="spear:1" weapon1="mace:1" armors0="shirt:1,pants:1" armors1="hat:1,shirt:1,pants:1" techniques="arcana arrow,phantom flames"
+      hairstyle="medium,long" />
+    <entry name="paranoid mechanist" species="skuri" jobs="mechanist" level="16" weapon0="mace:1" weapon1="pistol:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1" techniques="saw crawler"
       hairstyle="medium,long" />
 
     <!-- bandit town enemies (levels 19-24) -->
@@ -1077,12 +1087,18 @@
     <entry name="clearing" regionId="0" condition="first map"
       tileset="grasslands" npc="Roros"
       loot="(W)rusty metal rod:0,(W)wild spark,(A)pants:0,(H)0,(H)0" />
+    <entry name="side grasslands" offshootFrom="clearing"
+      tileset="grasslands" enemyTemplates="scavenger"
+      loot="(W)dagger:0,(H)0" />
     <entry name="catacombs" regionId="0" condition="key map branch"
       tileset="catacombs" securityLevelTickets="1,2,2,3" enemyTemplates="undead noble,undead soldier"
-      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)fur cloak,(C)silver spectacles,(A)breastplate:0,(R)wedding ring,(H)0" />
+      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)silver spectacles,(A)breastplate:0,(H)0" />
+    <entry name="tomb" offshootFrom="catacombs"
+      tileset="catacombs" enemyTemplates="undead best man,undead bridesmaid"
+      loot="(R)wedding ring,(C)fur cloak" />
     <entry name="grasslands" regionId="0"
       tileset="grasslands" enemyTemplates="scavenger,black cat,tortoise"
-      loot="(W)dagger:0,(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid,(R)wedding ring,(H)0,(H)0,(H)0,(H)0,(H)0" />
+      loot="(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid,(R)wedding ring,(H)0,(H)0,(H)0,(H)0" />
 
     <!-- regionId 1 (t0): shore -->
     <entry name="shipwreck" regionId="1" condition="key map"
@@ -1098,7 +1114,10 @@
     <!-- regionId 2 (t1): caverns -->
     <entry name="burrow" regionId="2" condition="key map branch"
       tileset="burrow" securityLevelTickets="2,3" enemyTemplates="gun turret,saw crawler,paranoid tunneler,paranoid rogue,paranoid mage"
-      loot="(W)gun turret,(W)pistol:1,(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot,(W)coordinated attack,(H)1,(H)1,(I)4" />
+      loot="(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot,(W)coordinated attack,(H)1,(H)1,(I)4" />
+    <entry name="workshop" offshootFrom="burrow"
+      tileset="workshop" enemyTemplates="gun turret,saw crawler,paranoid mechanist"
+      loot="(W)gun turret,(W)pistol:1" />
     <entry name="caverns entrance" regionId="2" condition="first map"
       tileset="stone tunnels" enemyTemplates="skull rat,giant turtle" npc="Ilretaami"
       loot="(A)jerkin:1,(C)shield,(W)brain rattler,(H)1" />
@@ -1112,15 +1131,21 @@
       loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)siphon,(C)lantern,(W)unearth,(H)1" />
     <entry name="bandit town" regionId="3"
       tileset="village" securityLevelTickets="1,1,2" enemyTemplates="bandit,bandit sneak,bandit enforcer,bandit jack,black cat"
-      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)hat:1,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band,(W)triage,(H)1,(H)1,(H)1,(H)1,(H)2" />
+      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band,(W)triage,(H)1,(H)1,(H)1,(H)1" />
+    <entry name="house" offshootFrom="bandit town"
+      tileset="house" npc="Joonert"
+      loot="(A)hat:1,(H)2" />
 
     <!-- regionId 4 (t2): twisted wasteland -->
     <entry name="hedge maze" regionId="4" condition="boss map branch"
       tileset="hedge maze" securityLevelTickets="2" enemyTemplates="mossy cat,seed spitter,walking topiary,walking bonsai,corpse picker"
-      loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade,(R)thorny band,(H)2,(H)2" />
+      loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade,(H)2,(H)2" />
+    <entry name="groundkeepers hut" offshootFrom="hedge maze"
+      tileset="house" npc="Gulas"
+      loot="(R)thorny band,(I)4,(I)1" />
     <entry name="twisted wasteland" regionId="4"
       tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar"
-      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(H)2,(I)4" />
+      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(H)2" />
 
     <!-- regionId 5 (t2): tether assembly -->
     <entry name="gateway" regionId="5" condition="first map"
@@ -1154,6 +1179,16 @@
       replacersTJoins="natural hallway split A,natural hallway split B,natural hallway split C,narrow hallway split,null"
       replacersHJoins="natural chamber A,natural chamber B,natural chamber C,narrow hallway fourway,null,null,column room" />
       <!-- TODO: wood plank wall sprites -->
+      <!-- TODO: village-type furniture? -->
+    <entry name="house"
+      small="1"
+      lightingIntensity="70" lightingColor="white"
+      ledgeColor="stone wall" baseTh="0"
+      floorSprites="0,1,2,3" floorColor="wood floor"
+      wallSprites="4,5,6,7" wallColor="wood wall"
+      inheritJoinsFrom="ship" />
+      <!-- TODO: wood plank wall sprites -->
+      <!-- TODO: lamps that glow "pale red" -->
       <!-- TODO: village-type furniture? -->
     <entry name="hedge maze"
       lightingIntensity="75" lightingColor="pale purple"
@@ -1214,13 +1249,22 @@
       <!-- TODO: cave wall sprites -->
     <entry name="burrow"
       lightingIntensity="25" lightingColor="gray"
-      ledgeColor="stone wall" baseTh="0" cellularTh="1" noiseTh="1"
+      ledgeColor="stone wall" baseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="4,5,6,7" wallColor="stone wall"
       inheritJoinsFrom="dirt tunnels" />
       <!-- TODO: cave wall sprites -->
       <!-- TODO: lamps that glow "pale red" -->
       <!-- TODO: village type furniture? -->
+    <entry name="workshop"
+      lightingIntensity="30" lightingColor="gray"
+      ledgeColor="stone wall" baseTh="0" cellularTh="1" noiseTh="1"
+      floorSprites="0,1,2,3" floorColor="dirt floor"
+      wallSprites="4,5,6,7" wallColor="stone wall"
+      inheritJoinsFrom="ship" />
+      <!-- TODO: cave wall sprites -->
+      <!-- TODO: lamps that glow "pale red" -->
+      <!-- TODO: workshop type furniture? -->
     <entry name="catacombs"
       lightingIntensity="10" lightingColor="green"
       ledgeColor="stone wall" baseTh="1" noiseTh="0"

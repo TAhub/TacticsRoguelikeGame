@@ -67,7 +67,7 @@ class OverworldMap {
   tryGenerate_(optGenLimit, optLogFn) {
     const size = mapOverworldMapSize;
     const goalIs = [
-      toI(size / 2, 0),
+      toI(0, 0),
       toI(size / 2, size - 1),
     ];
     const numSecurityLevels = mechNumTiers * mechRegionsPerTier;
@@ -87,6 +87,7 @@ class OverworldMap {
     for (let regionId = 0; regionId < numSecurityLevels; regionId++) {
       if (!this.finishRegion_(regionId, goalIs, metaMap, rng)) return false;
     }
+    if (!this.makeOffshoots_(rng)) return false;
     return true;
   }
 
@@ -142,6 +143,56 @@ class OverworldMap {
         tile.doorIds.set(doorTileI, metaMapTile.doorIds.get(doorTileI));
       }
     }
+  }
+
+  /**
+   * @param {rng} rng
+   * @return {boolean}
+   * @private
+   */
+  makeOffshoots_(rng) {
+    // Paint offshoot sub-regions.
+    const allSubRegions = data.getCategoryEntriesArray('sub regions') || [];
+    for (const type of allSubRegions) {
+      const offshootFrom = data.getValue('sub regions', type, 'offshootFrom');
+      if (!offshootFrom) continue;
+
+      /**
+       * @type {!Array.<{
+       *   x: number,
+       *   y: number,
+       *   from: !OverworldMapTile,
+       * }>}
+       */
+      const validSpots = [];
+      for (const overworldMapTile of this.tiles.values()) {
+        if (overworldMapTile.type != offshootFrom) continue;
+        if (overworldMapTile.hasBoss) continue;
+        if (overworldMapTile.keyId > 0) continue;
+        const tryXY = (x, y) => {
+          if (x < 0 || y < 0) return;
+          if (x >= mapOverworldMapSize || y >= mapOverworldMapSize) return;
+          if (this.tileAt(x, y)) return;
+          validSpots.push({x, y, from: overworldMapTile});
+        };
+        tryXY(overworldMapTile.x - 1, overworldMapTile.y);
+        tryXY(overworldMapTile.x + 1, overworldMapTile.y);
+        tryXY(overworldMapTile.x, overworldMapTile.y - 1);
+        tryXY(overworldMapTile.x, overworldMapTile.y + 1);
+      }
+      if (validSpots.length == 0) return false;
+
+      // We have an open spot! Yay!
+      const spot = getRandomArrayEntry(validSpots, rng);
+      const tile = new OverworldMapTile(
+          spot.x, spot.y, generateSeed(rng), spot.from.regionId);
+      tile.level = spot.from.level;
+      tile.type = type;
+      tile.doorIds.set(toI(spot.from.x, spot.from.y), 0);
+      spot.from.doorIds.set(toI(spot.x, spot.y), 0);
+      this.tiles.set(toI(spot.x, spot.y), tile);
+    }
+    return true;
   }
 
   /**
@@ -258,6 +309,10 @@ class OverworldMap {
     for (const type of allSubRegions) {
       const id = data.getNumberValue('sub regions', type, 'regionId');
       if (id != regionId) continue;
+
+      // Offshoots are not placed in this step.
+      const offshootFrom = data.getValue('sub regions', type, 'offshootFrom');
+      if (offshootFrom) continue;
 
       const condition = data.getValue('sub regions', type, 'condition');
 

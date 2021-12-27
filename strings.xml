@@ -19,6 +19,20 @@
       <line s="You don't look very cooperative... oh well." />
       <line s="You'll serve, in time." />
     </entry> <!-- Greeter -->
+    <entry name="Gulas">
+      <line s="Welcome! Enjoying the hedge maze?" />
+      <line s="My family have been the groundskeepers of this place for generations." />
+      <line s="The monsters in the hedge maze don't attack us, which keeps us safe." />
+      <line s="And those weird people who live in the ruins at the end ignore me as long as I do my job." />
+      <line s="Guide you through? Sorry, that's not part of my job." />
+    </entry> <!-- Gulas -->
+    <entry name="Joonert">
+      <line s="Huh. You're not in the gang." />
+      <line s="Well, I don't really care." />
+      <line s="The boss had us move here a year ago. Nobody really understands why." />
+      <line s="The only people to fight here are the pirates, or those weird people off in the wastes." />
+      <line s="I'm just tired of it all." />
+    </entry> <!-- Joonert -->
   </category> <!-- npc lines -->
   <category name="name parts">
     <!-- main name generators -->

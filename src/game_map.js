@@ -452,17 +452,22 @@ class GameMap {
 
     // Generate the meta map.
     const numSecurityLevels = overworldMapTile.numSecurityLevels;
+    const branchLimitPerSecurityLevel = 4;
+    let directness = 1;
+    const branchChance = 35;
     const tilesPerNumGoalIs = [
       mapGameMapSize * 2,
       mapGameMapSize * 2.5,
       mapGameMapSize * 3,
       mapGameMapSize * 3.5,
     ];
-    const tilesPerSecurityLevel = Math.ceil(
-        (tilesPerNumGoalIs[goalIs.length]) / numSecurityLevels);
-    const branchLimitPerSecurityLevel = 4;
-    const directness = 1;
-    const branchChance = 35;
+    let tilesPerSecurityLevel =
+        (tilesPerNumGoalIs[goalIs.length]) / numSecurityLevels;
+    if (data.getBooleanValue('tilesets', overworldMapTile.tileset, 'small')) {
+      tilesPerSecurityLevel *= 0.4;
+      directness += 2;
+    }
+    tilesPerSecurityLevel = Math.ceil(tilesPerSecurityLevel);
     const metaMap = new MetaMap(
         mapGameMapSize, mapGameMapSize, goalIs, numSecurityLevels,
         tilesPerSecurityLevel, branchLimitPerSecurityLevel, directness,
