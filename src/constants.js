@@ -27,6 +27,7 @@ for (let i = 0; ; i++) {
 }
 
 // Mechanical constants.
+const mechMaxSeed = 1000000;
 const mechBaseDamage = 50;
 const mechBaseLife = 100;
 const mechLevelsPerSkill = 3;
@@ -133,7 +134,7 @@ function toY(i) {
  */
 function generateSeed(optRng) {
   const rng = optRng || defaultRNG();
-  return Math.floor(1 + rng() * 1000000);
+  return Math.floor(1 + rng() * mechMaxSeed);
 }
 
 /**

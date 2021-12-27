@@ -55,6 +55,7 @@ class OverworldMap {
       if (this.tryGenerate_(optGenLimit, optLogFn)) return;
       this.tiles.clear();
       this.seed += 1;
+      if (this.seed > mechMaxSeed) this.seed = 1;
     }
   }
 

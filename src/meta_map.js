@@ -59,6 +59,7 @@ class MetaMap {
       if (this.generateOne_(rng, optLogFn)) break;
       this.tiles.clear();
       seed += 1;
+      if (seed > mechMaxSeed) seed = 1;
       MetaMap.restoreGlobalDoorId();
     }
     return seed;
