@@ -546,11 +546,9 @@
       <layer sprite="701" color="skinColor" showAllStatuses="1" />
     </entry> <!-- crawler -->
     <entry name="turret"
-      appearanceSizeMult="95"
+      appearanceSizeMult="125" headHeightPoint="30"
       colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
-      <!-- TODO: actual appearance, with multiple layers for parts and such... lots of pieces and valves and shit -->
-      <!-- TODO: headHeightPoint (for spell lines) -->
-      <layer sprite="701" color="skinColor" showAllStatuses="1" />
+      <layer sprite="710" color="skinColor" showAllStatuses="1" />
     </entry> <!-- turret -->
     <entry name="rat"
       appearanceSizeMult="65" headHeightPoint="25"
