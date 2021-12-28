@@ -548,12 +548,7 @@ class GameMap {
 
   /** @param {!THREE.Group} group */
   addAmbientLight(group) {
-    let sampleTile;
-    // TODO: Seriously? This is "unreachable"?
-    for (const tile of this.tiles.values()) {
-      sampleTile = tile;
-      break;
-    }
+    const sampleTile = this.tiles.values().next().value;
     if (!sampleTile) return;
     const i = sampleTile.lightingIntensity;
     if (i == 0) return;
@@ -1328,9 +1323,8 @@ class GameMap {
 
       // Pick spots for the enemies!
       for (const enemy of encounterEnemies) {
-        // TODO: The compiler says this code is "unreachable" but that's
-        // bullshit, it totally works... how annoying!
-        while (true) {
+        let success = false;
+        while (!success) {
           if (territory.length == 0) {
             return null; // Uh-oh! Try again!
           }
@@ -1354,7 +1348,7 @@ class GameMap {
           enemy.x = tile.x;
           enemy.y = tile.y;
           enemies.push(enemy);
-          break;
+          success = true;
         }
       }
     }
