@@ -18,9 +18,20 @@ class OverworldMapTile {
     this.numSecurityLevels = 1;
     this.keyId = 0;
     this.hasCampfire = false;
-    this.hasBoss = false;
+    this.bossMap = false;
     /** @type {!Array.<!Item>} */
     this.loot = [];
+  }
+
+  /** @return {boolean} */
+  get shouldGenerateBoss() {
+    if (this.bossMap) return true;
+    return this.keyId > 0 && !!this.bossTemplate;
+  }
+
+  /** @return {?string} */
+  get bossTemplate() {
+    return data.getValue('sub regions', this.type, 'bossTemplate');
   }
 
   /** @return {string} */
@@ -168,7 +179,7 @@ class OverworldMap {
       const validSpots = [];
       for (const overworldMapTile of this.tiles.values()) {
         if (overworldMapTile.type != offshootFrom) continue;
-        if (overworldMapTile.hasBoss) continue;
+        if (overworldMapTile.bossMap) continue;
         if (overworldMapTile.keyId > 0) continue;
         const tryXY = (x, y) => {
           if (x < 0 || y < 0) return;
@@ -218,7 +229,7 @@ class OverworldMap {
       if (i == goalIs[0]) {
         tile.isStart = true;
       } else if (i == goalIs[1]) {
-        tile.hasBoss = true;
+        tile.bossMap = true;
         isLastRegion = true;
       }
     }
@@ -229,7 +240,7 @@ class OverworldMap {
         const link = this.tiles.get(i);
         if (!link) continue;
         if (link.regionId != regionId + 1) continue;
-        tile.hasBoss = true;
+        tile.bossMap = true;
         break;
       }
     }
@@ -272,7 +283,7 @@ class OverworldMap {
       const tile = regionTiles[i];
       if (tile.keyId > 0) {
         exploreBackFrom(i, keyMapBranchTiles);
-      } else if (tile.hasBoss) {
+      } else if (tile.bossMap) {
         exploreBackFrom(i, bossMapBranchTiles);
       }
     }
@@ -294,7 +305,7 @@ class OverworldMap {
     const connectingMaps = [];
     for (const tile of regionTiles) {
       if (tile == regionTiles[0]) continue; // Not the first tile!
-      if (tile.keyId != 0 || tile.hasBoss) continue; // Nothing important.
+      if (tile.keyId != 0 || tile.bossMap) continue; // Nothing important.
       if (tile.doorIds.size != 2) continue; // No dead ends or intersections.
       connectingMaps.push(tile);
     }
@@ -340,7 +351,7 @@ class OverworldMap {
               conditionMet = bossMapBranchTiles.has(tile);
               break;
             case 'boss map':
-              conditionMet = tile.hasBoss;
+              conditionMet = tile.bossMap;
               break;
           }
           if (!conditionMet) continue;
@@ -375,7 +386,7 @@ class OverworldMap {
       const forceTiles = new Set();
       for (const tile of tiles) {
         // Maps with bosses and such cannot have campfires.
-        if (tile.keyId > 0 || tile.hasBoss) continue;
+        if (tile.keyId > 0 || tile.bossMap) continue;
         validTiles.add(tile);
         if (tile.isStart) forceTiles.add(tile);
       }

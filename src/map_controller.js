@@ -115,7 +115,9 @@ class MapController {
 
             // Some "enemies" are actually NPCs... they don't need to be added
             // to the death ledger, as they will never be killed.
-            if (enemy.side == Creature.Side.Enemy) {
+            // Similarly, bosses should not respawn, since it'd be a pain to
+            // fight them again.
+            if (enemy.side == Creature.Side.Enemy && !enemy.boss) {
               enemy.deathLedgerId = deathLedgerId++;
               encounterTally = Math.max(encounterTally, enemy.encounterId + 1);
 

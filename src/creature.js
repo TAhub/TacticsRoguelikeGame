@@ -107,6 +107,7 @@ class Creature {
     this.deathLedgerId = 0;
     this.exp = 0;
     this.npcLineOn = 0;
+    this.boss = false;
 
     // Temporary.
     this.th = 0;
@@ -229,6 +230,7 @@ class Creature {
     const mult = 100 + this.tallyBonusSources_((bS) => bS.astra);
     let astra = 50 * mult / 100;
     if (this.side == Creature.Side.Player) astra *= mechPlayerAstraMult;
+    if (this.boss) astra *= 2;
     return Math.floor(astra);
   }
 
@@ -356,6 +358,7 @@ class Creature {
     let life = mechBaseLife;
     if (this.monstrous) life *= 4;
     if (this.summonOwner) life *= 0.75; // Summons are a little more fragile.
+    if (this.boss) life *= 2;
     life *= this.levelObj.lifeMultiplier;
     return life;
   }
@@ -2252,6 +2255,7 @@ class Creature {
     creature.x = saveManager.intFromSaveObj(save, 'x');
     creature.y = saveManager.intFromSaveObj(save, 'y');
     creature.exp = saveManager.intFromSaveObj(save, 'xp');
+    creature.boss = saveManager.boolFromSaveObj(save, 'boss');
     if (side == Creature.Side.Player) {
       creature.statPoints = saveManager.intFromSaveObj(save, 'stP');
       creature.skillPoints = saveManager.intFromSaveObj(save, 'skP');
@@ -2317,6 +2321,7 @@ class Creature {
     saveManager.intToSaveObj(save, 'y', this.y);
     saveManager.intToSaveObj(save, 'xp', this.exp);
     saveManager.intToSaveObj(save, 'l', this.life);
+    saveManager.boolToSaveObj(save, 'boss', this.boss);
     if (this.side == Creature.Side.Player) {
       saveManager.intToSaveObj(save, 'stP', this.statPoints);
       saveManager.intToSaveObj(save, 'skP', this.skillPoints);

@@ -306,6 +306,21 @@
     <entry name="Greeter" species="firin" jobs="mage,tethered" level="30" armors="shirt:2,skirt:2" accessory="silver spectacles" techniques="arcana arrow,phantom flames"
       gender="1" hairstyle="ponytail" coloration="0" npcLines="Greeter" />
 
+    <!-- bosses -->
+    <entry name="scavenger alpha" species="scavenger" jobs="sneaky monster" level="6" weapon="claws:0" techniques="crimson fangs"
+      gender="0" /> <!-- TODO: larger size -->
+    <entry name="Captain Linner" species="firin" jobs="gunner" level="12" weapon="pistol:1" armors="hat:0,jerkin:0,pants:0" techniques="snipe,inferno shot,brain rattler"
+      gender="0" hairstyle="ponytail" coloration="1" />
+    <!-- TODO: shore boss (lv 14) -->
+    <!-- TODO: burrow miniboss (lv 17) -->
+    <!-- TODO: caverns boss (lv 19) -->
+    <!-- TODO: bandit boss (lv 24) -->
+    <!-- TODO: mansion boss (lv 25) -->
+    <!-- TODO: twisted wasteland miniboss (lv 28) -->
+    <!-- TODO: hedge maze boss (lv 30) -->
+    <entry name="Lord Rigus" species="firin" jobs="mage,undead" level="36" weapon="claws:2" armors="shirt:2,pants:2" accessory="regal cloak" ring="rusted focus" techniques="arcana arrow,spell barrage,enchanted blade"
+      gender="0" hairstyle="medium" coloration="0" />
+
     <!-- grasslands enemies (levels 1-6) -->
     <entry name="scavenger" species="scavenger" jobs="sneaky monster" level="3" weapon="claws:0" />
     <entry name="tortoise" species="turtle" jobs="tough monster" level="4" weapon="tackle:0" />
@@ -1087,12 +1102,12 @@
       tileset="catacombs" enemyTemplates="undead best man,undead bridesmaid"
       loot="(R)wedding ring,(C)fur cloak" />
     <entry name="grasslands" regionId="0"
-      tileset="grasslands" enemyTemplates="scavenger,black cat,tortoise"
+      tileset="grasslands" enemyTemplates="scavenger,black cat,tortoise" bossTemplate="scavenger alpha"
       loot="(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid,(R)wedding ring,(H)0,(H)0,(H)0,(H)0" />
 
     <!-- regionId 1 (t0): shore -->
     <entry name="shipwreck" regionId="1" condition="key map"
-      tileset="ship" securityLevelTickets="3" enemyTemplates="pirate brawler,pirate crewmate,pirate mage,pirate boarder"
+      tileset="ship" securityLevelTickets="3" enemyTemplates="pirate brawler,pirate crewmate,pirate mage,pirate boarder" bossTemplate="Captain Linner"
       loot="(C)intimidating mask,(W)pistol:0,(W)snipe,(H)0,(H)1" />
     <entry name="rocky shore" regionId="1" condition="key map branch"
       tileset="rocky beach" enemyTemplates="pirate brawler,pirate mage"
@@ -1145,7 +1160,7 @@
       tileset="gateway" enemyTemplates="wasteland serpent,walking topiary,poison turtle,monster boar,gold slime,tethered healer,tethered rogue,tethered gunner"
       loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3,(H)2,(H)2,(H)2,(H)2" />
     <entry name="tether assembly" regionId="5"
-      tileset="tether assembly" securityLevelTickets="1,2,3" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanist,tethered gunner,tethered healer,reinforced gun turret"
+      tileset="tether assembly" securityLevelTickets="1,2,3" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanist,tethered gunner,tethered healer,reinforced gun turret" bossTemplate="Lord Rigus"
       loot="(C)third eye,(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3,(R)rusted focus,(H)2,(H)2,(I)4" />
   </category> <!-- sub regions -->
   <category name="tilesets">

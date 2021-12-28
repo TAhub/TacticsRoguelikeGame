@@ -69,8 +69,10 @@ function checkCreatureValidity(creature) {
     // unarmed strike, or to equip enemy-only stuff.
     if (allProficiencies.size > 0 && !allProficiencies.has(weapon.type) &&
         weapon.fluff) {
-      console.log('--WARNING: ' + creature.name +
-                  ' is missing proficiency for ' + weapon.type);
+      if (!creature.ring || creature.ring.techType != weapon.type) {
+        console.log('--WARNING: ' + creature.name +
+                    ' is missing proficiency for ' + weapon.type);
+      }
     }
     if (weapon.teleports && creature.monstrous) {
       console.log('--WARNING: ' + creature.name +
@@ -433,7 +435,7 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
       let text = 'lv' + overworldTile.level + ' (' + overworldTile.type + ')';
       const terms = [];
       if (overworldTile.keyId) terms.push('K');
-      if (overworldTile.hasBoss) terms.push('B');
+      if (overworldTile.bossMap) terms.push('B');
       if (overworldTile.hasCampfire) terms.push('C');
       if (terms.length > 0) text += ' [' + terms.join(',') + ']';
       text += ' {' + overworldTile.numSecurityLevels + '}';

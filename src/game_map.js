@@ -444,7 +444,7 @@ class GameMap {
     }
     if (!overworldMapTile.isStart &&
         (overworldMapTile.doorIds.size == 1 ||
-         overworldMapTile.keyId || overworldMapTile.hasBoss)) {
+         overworldMapTile.keyId || overworldMapTile.bossMap)) {
       // Add a non-start center room.
       // For example a boss room, or a center room to give a leaf-map shape.
       goalIs.push(this.centerI);
@@ -1057,7 +1057,7 @@ class GameMap {
     const level = overworldMapTile.level;
     const samplePlayer = Creature.makeSamplePlayerAtLevel(level);
     let generationPoints = samplePlayer.generationPoints * mechNumPlayers;
-    if (overworldMapTile.hasBoss) generationPoints *= 1.5;
+    if (overworldMapTile.bossMap) generationPoints *= 1.5;
     else if (overworldMapTile.keyId > 0) generationPoints *= 1.25;
     generationPoints *= 1 + (encounters.length - 1) * 0.25;
     generationPoints *= Math.min(1, 0.6 + level * 0.15);
@@ -1073,9 +1073,17 @@ class GameMap {
     }
 
     const creatures = [];
-    if (overworldMapTile.hasBoss) {
-      // TODO: make the desired boss
-      // be sure to subtract it from the points budget
+    if (overworldMapTile.shouldGenerateBoss) {
+      let template = overworldMapTile.bossTemplate;
+      if (!template) {
+        console.log('WARNING: Sub-region #' + overworldMapTile.regionId +
+                    ' has no boss template!');
+        template = 'sample player t0';
+      }
+      const boss = Creature.makeFromTemplate(template, generateSeed(rng));
+      boss.boss = true;
+      creatures.push(boss);
+      generationPoints -= boss.generationPoints;
     }
     while (generationPoints > 0) {
       const validCreatures = templates.map((template) => {
@@ -1140,7 +1148,7 @@ class GameMap {
       return points;
     };
 
-    if (overworldMapTile.hasBoss) {
+    if (overworldMapTile.shouldGenerateBoss) {
       // Put the boss into the boss encounter.
       addCreatureToEncounter(creatures[0], encounters[0]);
     }
@@ -1248,7 +1256,7 @@ class GameMap {
     for (let j = 0; j < numEncounters; j++) {
       let size = 2; // TODO: higher size for "big encounters"
       let tile;
-      if (j == 0 && overworldMapTile.hasBoss) {
+      if (j == 0 && overworldMapTile.shouldGenerateBoss) {
         // This is the boss encounter!
         size = 6;
         // Put it in the center, or as close to the center as possible!
