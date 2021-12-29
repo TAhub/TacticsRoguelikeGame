@@ -1031,6 +1031,10 @@ class Creature {
         }
       });
     }
+    // Bosses talk on the start of each turn.
+    if (this.side != Creature.Side.Npc && this.npcLines) {
+      this.talk();
+    }
   }
 
   skipTurn() {
@@ -1985,8 +1989,10 @@ class Creature {
       this.addTextParticle_(line, -1);
       // TODO: make talking sounds?
       this.npcLineOn += 1;
-    } else if (this.npcLineOn > 0) {
+    } else if (this.npcLineOn > 0 && this.side != Creature.Side.Npc) {
       // Whoops, you've gone past the last line. Back up, and try again.
+      // Only do this if you're an NPC, of course; bosses shouldn't keep
+      // blabbing once they are out of lines.
       this.npcLineOn -= 1;
       this.talk();
     }
@@ -2167,6 +2173,12 @@ class Creature {
       creature.side = Creature.Side.Npc;
       creature.npcLines = npcLines;
       creature.makeBar();
+    }
+
+    // Enemies (bosses, basically) also have lines.
+    const enemyLines = getV('enemyLines');
+    if (enemyLines) {
+      creature.npcLines = enemyLines;
     }
 
     // Set name.

@@ -33,6 +33,51 @@
       <line s="The only people to fight here are the pirates, or those weird people off in the wastes." />
       <line s="I'm just tired of it all." />
     </entry> <!-- Joonert -->
+    <entry name="Kaspikka">
+      <line s="I see the cave monsters don't respect you yet. They put up a fight." />
+      <line s="I can't let you through. The boss doesn't want any more pirates wandering in." />
+      <line s="Now die!" />
+    </entry> <!-- Kaspikka -->
+    <entry name="Asrami">
+      <line s="What are you doing here?" />
+      <line s="Our burrow!" />
+      <line s="Our burrow!" />
+      <line s="Go away!" />
+      <line s="Die!" />
+    </entry> <!-- Asrami -->
+    <entry name="Gatekeeper">
+      <line s="Your tethers aren't complete yet..." />
+      <line s="You're not ready yet." />
+      <line s="Go away." />
+      <line s="Fine. Prove yourself worthy, then!" />
+    </entry> <!-- Gatekeeper -->
+    <entry name="Linner">
+      <line s="Here to pillage my pirates? Turnabout is fair play, I suppose." />
+      <line s="You don't look like bandits, but I might be wrong..." />
+      <line s="Don't think you'll live to enjoy your loot." />
+      <line s="Now! Have at ye!" />
+    </entry> <!-- Linner -->
+    <entry name="Jyrku">
+      <line s="You've been giving my boys hell." />
+      <line s="I won't let you disrespect us." />
+      <line s="I'll enjoy grinding you to dust." />
+    </entry> <!-- Jyrku -->
+    <entry name="Latos">
+      <line s="Have you enjoyed my manor?" />
+      <line s="I'm far more hospitable than prissy old Rigus." />
+      <line s="Just let me kill you, and you can be one of my servants. A good deal!" />
+      <line s="Don't waste my time too much, mind you." />
+    </entry> <!-- Latos -->
+    <entry name="Rigus">
+      <line s="You managed to fight through all of my tethered servants?" />
+      <line s="I should have focused more astra on you four..." />
+      <line s="Well. It's too late now. You have to die." />
+      <line s="My plans are still in their early stages! I cannot stop for this!" />
+      <line s="I suppose I'm not used to dealing with people with free will, anymore." />
+      <line s="But I'm still the greatest mage of the Empire! You're nothing, compared to me!" />
+      <line s="You really are persistent..." />
+      <line s="Don't think it will save you." />
+    </entry> <!-- Rigus -->
   </category> <!-- npc lines -->
   <category name="name parts">
     <!-- main name generators -->
