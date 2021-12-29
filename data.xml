@@ -313,13 +313,13 @@
       gender="0" />
     <entry name="Captain Linner" species="firin" jobs="gunner" level="12" weapon="pistol:1" armors="hat:0,jerkin:0,pants:0" techniques="snipe,inferno shot,brain rattler" skills="prey instincts"
       gender="0" hairstyle="ponytail" coloration="1" enemyLines="Linner" />
-    <entry name="beach slime" species="slime" jobs="tough monster" level="14" weapon="tackle:0" techniques="arcana arrow,gold splitting"
+    <entry name="beach slime" species="slime" jobs="tough monster" level="14" weapon="tackle:0" techniques="arcana arrow,gold splitling"
       coloration="1" />
-    <entry name="Asrami" species="skuri" jobs="lab rat" level="17" weapon="dagger:1" armors="hat:1,shirt:1,skirt:1" techniques="agony release,miasma bolt,crimson fangs" accessory="lantern"
+    <entry name="Asrami" species="skuri" jobs="lab rat" level="17" weapon="dagger:1" armors="hat:1,shirt:1,skirt:1" techniques="agony release,miasma bolt,crimson fangs,mend" accessory="lantern"
       gender="1" hairstyle="long hair" coloration="1" enemyLines="Gatekeeper" />
-    <entry name="Tunnel Guard Kaspikka" species="karhun" jobs="warrior" level="19" weapon="spear:1" armors="helmet:1,breastplate:1,greaves:1" techniques="sword wave,slam" accessory="shield" skills="skin hardening,organ hardening,zoning"
+    <entry name="Tunnel Guard Kaspikka" species="karhun" jobs="warrior" level="19" weapon="spear:1" armors="helmet:1,breastplate:1,greaves:1" techniques="sword wave,slam,trained rat" accessory="shield" skills="skin hardening,organ hardening,zoning"
       gender="1" hairstyle="short hair" coloration="1" enemyLines="Kaspikka" />
-    <entry name="Boss Jyrku" species="karhun" jobs="warrior" level="24" weapon="sword:2" armors="helmet:1,breastplate:1,greaves:1" techniques="blitz strike,typhoon slash" accessory="fur cloak"
+    <entry name="Boss Jyrku" species="karhun" jobs="warrior" level="24" weapon="sword:2" armors="helmet:1,breastplate:1,greaves:1" techniques="blitz strike,typhoon slash,bandit flunky" accessory="fur cloak"
       gender="0" hairstyle="bald" coloration="0" enemyLines="Jyrku" />
     <entry name="Lord Latos" species="firin" jobs="sage,undead" level="25" weapon="claws:1" armors="hat:2,shirt:2,pants:2" accessory="regal cloak" techniques="ashball,siphon,unearth" skills="flight"
       gender="0" hairstyle="ponytail" coloration="1" enemyLines="Latos" />
@@ -327,7 +327,7 @@
       gender="0" />
     <entry name="Gatekeeper" species="karhun" jobs="rogue,tethered" level="30" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" accessory="intimidating mask" techniques="crimson fangs,venom sting" skills="form"
       gender="0" hairstyle="short" coloration="1" enemyLines="Gatekeeper" />
-    <entry name="Lord Rigus" species="firin" jobs="mage,undead" level="36" weapon="mace:2" armors="shirt:2,pants:2" accessory="regal cloak" ring="rusted focus" techniques="arcana arrow,spell barrage,enchanted blade,unearth" skills="prey instincts,zoning"
+    <entry name="Lord Rigus" species="firin" jobs="mage,undead" level="36" weapon="mace:2" armors="shirt:2,pants:2" accessory="regal cloak" ring="rusted focus" techniques="arcana arrow,spell barrage,enchanted blade,court guard,court mage,court assassin" skills="prey instincts,zoning"
       gender="0" hairstyle="medium" coloration="0" enemyLines="Rigus" />
 
     <!-- grasslands enemies (levels 1-6) -->
@@ -365,7 +365,7 @@
       coloration="0" />
     <entry name="tunnel snake" species="rat" jobs="tough monster" level="14" weapon="tackle:1" techniques="venom sting"
       coloration="0" />
-    <entry name="blood slime" species="slime" jobs="magic monster" level="15" weapon="tackle:1" techniques="siphon,blood splitting"
+    <entry name="blood slime" species="slime" jobs="magic monster" level="15" weapon="tackle:1" techniques="siphon,blood splitling"
       coloration="0" />
     <entry name="gun turret" species="turret" jobs="ranged monster" level="17" weapon="automata gun:1" />
     <entry name="saw crawler" species="crawler" jobs="tough monster" level="16" weapon="automata saw:1" />
@@ -424,7 +424,7 @@
     <entry name="tethered healer" species="karhun" jobs="healer,tethered" level="30" weapon="mace:2" armors="hat:2,shirt:2,pants:2" techniques="first aid,siphon" accessory="fur cloak"
       hairstyle="short,ponytail" />
     <entry name="reinforced gun turret" species="turret" jobs="ranged monster,tough monster" level="31" weapon="automata gun:2" techniques="inferno shot" />
-    <entry name="gold slime" species="slime" jobs="magic monster,tough monster" level="33" weapon="tackle:2" techniques="arcana arrow,spell barrage,gold splitting"
+    <entry name="gold slime" species="slime" jobs="magic monster,tough monster" level="33" weapon="tackle:2" techniques="arcana arrow,spell barrage,gold splitling"
       coloration="1" />
   </category> <!-- creature templates -->
   <category name="species">
@@ -708,8 +708,13 @@
     </entry> <!-- seed spit -->
     <entry name="poison bullet" astraCost="10" weaponAccuracy="90" poisonedPercent="40" scaling="ranged weapon" ranged="1"
       animProjColor="poison" animPreStepPause="22" />
-    <entry name="blood splitting" astraCost="15" summonSpecies="baby slime" summonJobs="ranged monster,tough monster" summonWeapon="tackle" summonFluff="slime" summonColoration="0" scaling="level" usesSpecialPower="1" />
-    <entry name="gold splitting" astraCost="20" summonSpecies="baby slime" summonJobs="sneaky monster,tough monster" summonWeapon="tackle" summonFluff="slime" summonColoration="1" scaling="level" usesSpecialPower="1" />
+    <entry name="blood splitling" astraCost="15" summonSpecies="baby slime" summonJobs="ranged monster,tough monster" summonWeapon="tackle" summonColoration="0" scaling="level" usesSpecialPower="1" />
+    <entry name="gold splitling" astraCost="20" summonSpecies="baby slime" summonJobs="sneaky monster,tough monster" summonWeapon="tackle" summonColoration="1" scaling="level" usesSpecialPower="1" />
+    <entry name="trained rat" astraCost="15" summonSpecies="rat" summonJobs="sneaky monster,sneaky monster" summonWeapon="claws" summonColoration="0" scaling="level" usesSpecialPower="1" />
+    <entry name="bandit flunky" astraCost="15" summonSpecies="karhun" summonJobs="survivor,gunner" summonWeapon="dagger" summonArmors="cap,bandit armor,leggings" scaling="level" usesSpecialPower="1" />
+    <entry name="court guard" astraCost="20" summonSpecies="karhun" summonJobs="warrior,tethered" summonWeapon="spear" summonArmors="helmet,breastplate,greaves" scaling="level" usesSpecialPower="1" />
+    <entry name="court mage" astraCost="20" summonSpecies="firin" summonJobs="mage,tethered" summonWeapon="mace" summonArmors="hat,shirt,pants" scaling="level" usesSpecialPower="1" />
+    <entry name="court assassin" astraCost="20" summonSpecies="skuri" summonJobs="rogue,tethered" summonWeapon="dagger" summonArmors="cap,jerkin,leggings" scaling="level" usesSpecialPower="1" />
 
     <!-- weapons -->
     <entry name="rusty metal rod" noProficiency="1"

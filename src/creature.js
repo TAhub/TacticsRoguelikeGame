@@ -1542,6 +1542,12 @@ class Creature {
     } else {
       summonModifier += 15; // Make up for being unarmed.
     }
+    const summonArmors = weapon.summonArmors;
+    if (summonArmors) {
+      summon.armors = summonArmors.map((type) => {
+        return new Armor(type + ':' + weapon.tier);
+      });
+    }
     if (weapon.summonColoration != null) {
       summon.species.coloration = weapon.summonColoration;
     }

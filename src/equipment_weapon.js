@@ -245,6 +245,11 @@ class Weapon extends Equipment {
     return this.getValue('summonWeapon');
   }
 
+  /** @return {?Array.<string>} */
+  get summonArmors() {
+    return this.getArrayValue('summonArmors');
+  }
+
   /** @return {boolean} */
   get spell() {
     return this.getBooleanValue('spell');
