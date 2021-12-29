@@ -1077,6 +1077,7 @@ class GameMap {
       }
       const boss = Creature.makeFromTemplate(template, generateSeed(rng));
       boss.boss = true;
+      boss.refill();
       creatures.push(boss);
       generationPoints -= boss.generationPoints;
     }
