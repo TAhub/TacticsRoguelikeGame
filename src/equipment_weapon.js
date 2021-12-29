@@ -108,6 +108,7 @@ class Weapon extends Equipment {
   get baseDamage() {
     let damage = this.generationPointsDamage + this.lifeCost;
     if (this.armorPiercing) damage *= 0.87; // Vs heavy armor
+    if (this.armorBlunted) damage *= 1.3; // Vs light armor.
     if (this.spell) damage *= 1.1; // To make up for it being inconvenient.
     if (this.magic && !this.spell) damage *= 0.9; // Possible, but non-ideal.
     if (this.selfTargeting) damage *= 1.15;
@@ -278,6 +279,13 @@ class Weapon extends Equipment {
     return this.getBooleanValue('armorPiercing');
   }
 
+  /** @return {boolean} */
+  get armorBlunted() {
+    if (this.magic || this.summon || this.armorPiercing) return false;
+    if (this.baseWeapon && this.baseWeapon.armorBlunted) return true;
+    return this.getBooleanValue('armorBlunted');
+  }
+
   /** @return {string} */
   get damageTerm() {
     if (this.summon) return 'summon strength';
@@ -402,6 +410,7 @@ class Weapon extends Equipment {
 
     if (this.numHits > 1) effects.push('hits ' + this.numHits + ' times');
     if (this.armorPiercing) effects.push('ignores part of target armor');
+    if (this.armorBlunted) effects.push('strongly resisted by target armor');
     if (this.teleports) effects.push('teleports next to target if possible');
     if (this.commandsSummon) {
       effects.push('lets your summon move and act this round');

@@ -1609,6 +1609,7 @@ class Creature {
       } else {
         mult -= target.defense;
         if (weapon.armorPiercing) mult += target.defensePierced;
+        else if (weapon.armorBlunted) mult -= target.defensePierced;
       }
     }
     if (attackType == Creature.AttackType.Disengage) {

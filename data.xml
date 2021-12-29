@@ -676,7 +676,7 @@
     -->
 
     <!-- special -->
-    <entry name="unarmed" weaponAccuracy="100" numHits="2"
+    <entry name="unarmed" weaponAccuracy="100" numHits="2" armorBlunted="1"
       animProjSprite="515" animProjScale="30" animProjSpeed="5" animProjSkinColor="1" animProjDelay="30" animStep="20" animSound="swing" animStrikeSound="smash" />
     <entry name="tackle" weaponAccuracy="80"
       animProjSprite="513" animProjScale="200" animProjSpeed="4" animProjSkinColor="1" animStep="30" animSound="swing" animStrikeSound="smash">
@@ -708,7 +708,7 @@
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- automata gun -->
-    <entry name="seed spit" weaponAccuracy="95" ranged="1" numHits="2"
+    <entry name="seed spit" weaponAccuracy="95" ranged="1" numHits="2" armorBlunted="1"
       animProjSprite="515" animProjScale="15" animProjSpeed="7" animProjColor="grass wall" animProjDelay="25" animStep="-10" animSound="spit" animStrikeSound="slash">
       <variety tier="0" />
       <variety tier="1" />
@@ -736,31 +736,31 @@
     </entry> <!-- rusty metal rod -->
     <entry name="dagger"
       animProjSprite="514" animProjScale="50" animProjSpeed="6" animStep="15" animSound="swing" animStrikeSound="slash">
-      <variety name="dagger" tier="0" weaponAccuracy="105" weaponHitsToCrits="10" bleedingPercent="25"
+      <variety name="dagger" tier="0" weaponAccuracy="105" weaponHitsToCrits="10" bleedingPercent="25" armorBlunted="1"
         color="iron" slotFillers="weaponHand:603"
         fluff="A small, cheaply made dagger." />
-      <variety name="fine dagger" tier="1" weaponAccuracy="105" weaponHitsToCrits="15" bleedingPercent="30"
+      <variety name="fine dagger" tier="1" weaponAccuracy="105" weaponHitsToCrits="15" bleedingPercent="30" armorBlunted="1"
         color="steel" slotFillers="weaponHand:603"
         fluff="A higher-quality dagger, made to be extra-sharp." />
-      <variety name="bone dagger" tier="2" weaponAccuracy="100" weaponHitsToCrits="15" bleedingPercent="40"
+      <variety name="bone dagger" tier="2" weaponAccuracy="100" weaponHitsToCrits="15" bleedingPercent="40" armorBlunted="1"
         color="bone" slotFillers="weaponHand:603"
         fluff="A dagger carved out of chemically-treated monster bone. Sharp, but a bit hard to hold." />
-      <variety name="blood drinker" tier="2" weaponAccuracy="100" drains="1" bleedingPercent="25"
+      <variety name="blood drinker" tier="2" weaponAccuracy="100" drains="1" bleedingPercent="25" armorBlunted="1"
         color="blood" slotFillers="weaponHand:603" animProjGlows="1"
         fluff="A magical dagger imbued with a continuous spell, a weak form of the siphon spell, so it sucks up the blood of its victims." />
     </entry> <!-- dagger -->
     <entry name="sword"
       animProjSprite="513" animProjScale="90" animProjSpeed="5" animStep="10" animSound="swing" animStrikeSound="slash">
-      <variety name="rusty sword" tier="0" weaponAccuracy="90" defense="10"
+      <variety name="rusty sword" tier="0" weaponAccuracy="90" defense="10" armorBlunted="1"
         color="rusty" slotFillers="weaponHand:604"
         fluff="A sword that has not been maintained well. The edge is barely sharp anymore." />
-      <variety name="sword" tier="1" weaponAccuracy="95" defense="10"
+      <variety name="sword" tier="1" weaponAccuracy="95" defense="10" armorBlunted="1"
         color="iron" slotFillers="weaponHand:604"
         fluff="A basic but effective sword. Well-balanced, and good at parrying." />
-      <variety name="noble sword" tier="2" weaponAccuracy="95" defense="15"
+      <variety name="noble sword" tier="2" weaponAccuracy="95" defense="15" armorBlunted="1"
         color="steel" slotFillers="weaponHand:605"
         fluff="A well-made sword that has been designed to be even better at parrying." />
-      <variety name="firebrand" tier="2" weaponAccuracy="90" defense="10" burningPercent="40"
+      <variety name="firebrand" tier="2" weaponAccuracy="90" defense="10" burningPercent="40" armorBlunted="1"
         color="fire" slotFillers="weaponHand:604" animProjGlows="1" animStrikeSound="explosion"
         fluff="A surprisingly dull sword with a powerful enchantment on it. The edge heats up whenever it is swung, to a painful degree." />
     </entry> <!-- sword -->
