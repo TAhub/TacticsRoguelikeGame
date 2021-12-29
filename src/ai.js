@@ -18,6 +18,10 @@ class AI {
         const tile = mapController.tileAt(info.x, info.y);
         let value = 0;
         if (weapon.summon) {
+          if (active.boss || active.monstrous) {
+            // Big-time enemies don't use summons until injured.
+            if (active.life > active.maxLife / 2) continue;
+          }
           const mult = active.getAttackEstimate(active, weapon,
               Creature.HitResult.Hit, Creature.AttackType.Normal).mult;
           value += weapon.damage * mult / 100;
