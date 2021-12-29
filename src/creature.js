@@ -226,8 +226,10 @@ class Creature {
   }
 
   /** @return {number} */
-  get monsterAttackBonus() {
-    return this.monstrous ? 15 : 0;
+  get miscAttackBonus() {
+    if (this.boss) return 20;
+    if (this.monstrous) return 15;
+    return 0;
   }
 
   /** @return {number} */
@@ -246,7 +248,7 @@ class Creature {
 
   /** @return {number} */
   get attackPower() {
-    let attackPower = 100 + this.summonModifier + this.monsterAttackBonus;
+    let attackPower = 100 + this.summonModifier + this.miscAttackBonus;
     attackPower += this.tallyBonusSources_((bS) => bS.attackPower);
     if (this.summonOwner) {
       // If you're a summon, and your weapon DOESN'T use special power, turn
@@ -270,7 +272,7 @@ class Creature {
 
   /** @return {number} */
   get specialPower() {
-    let specialPower = 100 + this.summonModifier + this.monsterAttackBonus;
+    let specialPower = 100 + this.summonModifier + this.miscAttackBonus;
     specialPower += this.tallyBonusSources_((bS) => bS.specialPower);
     return specialPower;
   }
@@ -302,7 +304,7 @@ class Creature {
 
   /** @return {number} */
   get defense() {
-    let defense = this.summonModifier + this.monsterAttackBonus;
+    let defense = this.summonModifier + this.miscAttackBonus;
     defense += this.tallyBonusSources_((bS) => bS.defense);
     defense += this.defenseFromExcessArmorProfiencyLevel;
     if (this.unarmoredDefense) defense += this.levelObj.scalingBonus;
@@ -311,7 +313,7 @@ class Creature {
 
   /** @return {number} */
   get resistance() {
-    let resistance = this.summonModifier + this.monsterAttackBonus;
+    let resistance = this.summonModifier + this.miscAttackBonus;
     resistance += this.tallyBonusSources_((bS) => bS.resistance);
     if (this.unarmoredDefense) resistance += this.levelObj.scalingBonus;
     return resistance;
@@ -361,9 +363,10 @@ class Creature {
   /** @return {number} */
   get baseMaxLife() {
     let life = mechBaseLife;
-    if (this.monstrous) life *= 4;
+    if (this.monstrous && this.boss) life *= 6;
+    else if (this.monstrous) life *= 4;
+    else if (this.boss) life *= 2;
     if (this.summonOwner) life *= 0.75; // Summons are a little more fragile.
-    if (this.boss) life *= 2;
     life *= this.levelObj.lifeMultiplier;
     return life;
   }
@@ -444,21 +447,19 @@ class Creature {
       techs += 1;
       const value = weaponValue(weapon) - freeAttackValue;
       if (value <= 0) continue;
-      const isPlayer = this.side == Creature.Side.Player;
-      const adjMaxAstra = this.maxAstra / (isPlayer ? mechPlayerAstraMult : 1);
-      const uses = adjMaxAstra / weapon.astraCost;
+      let uses = this.maxAstra / weapon.astraCost;
+      if (this.side == Creature.Side.Player) uses /= mechPlayerAstraMult;
+      else if (this.boss) uses /= 2;
       techAttackValue += value * uses / 10;
     }
     if (techs > 0) techAttackValue /= techs;
 
-    const totalDefense = this.resistance + this.defense;
-
     let generationPoints = this.maxLife / mechBaseLife;
-    generationPoints *= (mechBaseDamage + totalDefense) / 100;
-    const dodge =
+    generationPoints *= (mechBaseDamage + this.resistance + this.defense) / 100;
+    const totalDodge =
         this.dodge + (this.dodgeVsDisengage / 3) + (this.flying ? 15 : 0);
-    generationPoints *= (100 + dodge) / 100;
-    generationPoints *= (100 + this.initiative) / 100;
+    generationPoints *= (100 + totalDodge) / 100;
+    generationPoints *= (200 + this.initiative) / 200;
     generationPoints *= 0.3 + freeAttackValue + techAttackValue;
     generationPoints *= (5 + this.moveDistance) / 8;
     if (this.monstrous) generationPoints *= 0.75; // Big monsters are unwieldly.

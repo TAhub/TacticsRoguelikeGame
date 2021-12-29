@@ -313,7 +313,7 @@
       gender="0" />
     <entry name="Captain Linner" species="firin" jobs="gunner" level="12" weapon="pistol:1" armors="hat:0,jerkin:0,pants:0" techniques="snipe,inferno shot,brain rattler" skills="prey instincts"
       gender="0" hairstyle="ponytail" coloration="1" enemyLines="Linner" />
-    <entry name="beach slime" species="slime" jobs="tough monster" level="14" weapon="tackle:0" techniques="arcana arrow,gold splitling"
+    <entry name="beach slime" species="slime" jobs="tough monster" level="12" weapon="tackle:0" techniques="arcana arrow,gold splitling"
       coloration="1" />
     <entry name="Asrami" species="skuri" jobs="lab rat" level="17" weapon="dagger:1" armors="hat:1,shirt:1,skirt:1" techniques="agony release,miasma bolt,crimson fangs,mend" accessory="lantern"
       gender="1" hairstyle="long hair" coloration="1" enemyLines="Gatekeeper" />
