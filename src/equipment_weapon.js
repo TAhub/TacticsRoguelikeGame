@@ -32,7 +32,7 @@ class Weapon extends Equipment {
 
   /** @return {boolean} */
   get onePerBattle() {
-    return this.summon || this.getBooleanValue('onePerBattle');
+    return this.getBooleanValue('onePerBattle');
   }
 
   /** @return {boolean} */
@@ -113,7 +113,14 @@ class Weapon extends Equipment {
     if (this.selfTargeting) damage *= 1.15;
     if (this.teleports) damage *= 0.8;
     if (this.commandsSummon) damage *= this.usesSpecialPower ? 0.45 : 0.65;
-    if (!this.summon && this.onePerBattle) damage *= 1.05;
+    if (this.summon) {
+      // Summons that are unlimited should be stronger, since the summon
+      // basically becomes inert after one attack.
+      if (!this.onePerBattle) damage *= 1.15;
+    } else {
+      // Attacks that are usable once-per-battle should be a bit better.
+      if (this.onePerBattle) damage *= 1.075;
+    }
     return damage;
   }
 

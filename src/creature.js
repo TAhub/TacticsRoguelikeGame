@@ -1545,7 +1545,9 @@ class Creature {
     if (weapon.summonColoration != null) {
       summon.species.coloration = weapon.summonColoration;
     }
-    this.currentSummon = summon;
+    // Summon weapons that can be used endlessly are "one shot", so you
+    // can't command them after the first turn.
+    if (weapon.onePerBattle) this.currentSummon = summon;
     summon.summonOwner = this;
     summon.summonModifier = summonModifier;
     summon.name = weapon.name;

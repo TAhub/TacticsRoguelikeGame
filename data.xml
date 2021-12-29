@@ -896,11 +896,11 @@
     <entry name="inner strength" astraCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="3" selfTargeting="1"
       animProjSprite="515" animProjScale="50" animProjSpeed="1" animProjColor="blood" animProjDelay="30" animPostStepPause="22"
       fluff="Build up a large concentration of astra within yourself, and then direct it to circulate through your body, causing rapid regeneration." /> <!-- TODO: sounds -->
-    <entry name="saw crawler" astraCost="15" summonSpecies="crawler" summonJobs="tough monster,tough monster" summonWeapon="automata saw" summonFluff="melee combat automata" scaling="level" usesSpecialPower="1"
+    <entry name="saw crawler" astraCost="15" summonSpecies="crawler" summonJobs="tough monster,tough monster" summonWeapon="automata saw" summonFluff="melee combat automata" scaling="level" usesSpecialPower="1" onePerBattle="1"
       fluff="Deploy a tough Skuri combat automata armed with a deadly buzzsaw. Not very skillful, but it's an effective distraction." />
-    <entry name="gun turret" astraCost="20" summonSpecies="turret" summonJobs="ranged monster,tough monster" summonWeapon="automata gun" summonFluff="ranged combat automata" scaling="level" usesSpecialPower="1"
+    <entry name="gun turret" astraCost="20" summonSpecies="turret" summonJobs="ranged monster,tough monster" summonWeapon="automata gun" summonFluff="ranged combat automata" scaling="level" usesSpecialPower="1" onePerBattle="1"
       fluff="Deploy an immobile Skuri combat automata fitted with an auto-loading gun. Not as tactically flexible as a close-combat automata, but useful when raw firepower is needed." />
-    <entry name="unearth" astraCost="20" summonSpecies="firin" summonJobs="undead,tough monster" summonWeapon="deathly grasp" summonFluff="magical undead" scaling="level" usesSpecialPower="1"
+    <entry name="unearth" astraCost="20" summonSpecies="firin" summonJobs="undead,tough monster" summonWeapon="deathly grasp" summonFluff="magical undead" scaling="level" usesSpecialPower="1" onePerBattle="1"
       fluff="Dredge up a long-dead corpse and fill it with astra, to create a temporary undead servant. The servant is overflowing with astra, and can release it with a touch." />
   </category> <!-- weapons -->
   <category name="rings">
