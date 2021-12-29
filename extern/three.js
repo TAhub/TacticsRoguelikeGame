@@ -121,6 +121,11 @@ THREE.Mesh = class extends THREE.Object3D {
 }
 
 THREE.Material = class {
+  constructor() {
+    /** @type {number} */
+    this.opacity;
+  }
+
   dispose() {};
 }
 
