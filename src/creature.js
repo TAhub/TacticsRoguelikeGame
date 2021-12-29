@@ -1249,6 +1249,7 @@ class Creature {
           this.hasAction = false;
           this.hasMove = false;
           this.addTextParticle_('CASTING...', 0);
+          audio.play('spell charge', 0, 1);
         } else {
           this.attack_(target || tile, weapon, Creature.AttackType.Normal,
               mapController);
@@ -1392,6 +1393,10 @@ class Creature {
           summon.x = tile.x;
           summon.y = tile.y;
           optMapController.addCreature(summon);
+          if (weapon.animStrikeSound) {
+            const pitch = this.pitchForWeapon_(weapon);
+            audio.play(weapon.animStrikeSound, pitch, 1);
+          }
         }
       });
     } else {
@@ -1418,8 +1423,7 @@ class Creature {
           if (weapon.animProjSkinColor) {
             color = this.species.getColor('skinColor', this.jobs);
           }
-          const pitch = weapon.animPitch +
-              (Math.random() * 2 - 1) * 25 - (this.monstrous ? 200 : 0);
+          const pitch = this.pitchForWeapon_(weapon);
           const projectile = Particle.makeProjectileParticle(
               color, sprite, scale, weapon.animSound, pitch);
           [projectile.x, projectile.y, projectile.h] = getPosition(this);
@@ -1700,6 +1704,16 @@ class Creature {
   }
 
   /**
+   * @param {!Weapon} weapon
+   * @return {number}
+   * @private
+   */
+  pitchForWeapon_(weapon) {
+    return weapon.animPitch +
+        (Math.random() * 2 - 1) * 25 - (this.monstrous ? 200 : 0);
+  }
+
+  /**
    * @param {!Creature} target
    * @param {!Weapon} weapon
    * @param {!Creature.AttackType} attackType
@@ -1727,7 +1741,7 @@ class Creature {
         case Creature.HitResult.Miss:
           // TODO: dodge visual/audio effects on target?
           target.addTextParticle_('DODGE', -1);
-          return;
+          break;
         case Creature.HitResult.Graze:
           // TODO: graze visual/audio effects on target?
           target.addTextParticle_('GRAZE', -1);
@@ -1741,6 +1755,23 @@ class Creature {
           break;
       }
     }
+
+    let pitch = this.pitchForWeapon_(weapon);
+    let sound = weapon.animStrikeSound || '';
+    switch (hitResult) {
+      case Creature.HitResult.Miss:
+        sound = 'dodge';
+        pitch = target.monstrous ? -300 : 0;
+        break;
+      case Creature.HitResult.Crit:
+        pitch -= 200;
+        break;
+      case Creature.HitResult.Graze:
+        pitch += 200;
+        break;
+    }
+    if (sound) audio.play(sound, pitch, 1);
+    if (hitResult == Creature.HitResult.Miss) return;
 
     const mult = this.getAttackEstimate(
         target, weapon, hitResult, attackType, true).mult / weapon.numHits;

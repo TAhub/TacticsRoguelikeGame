@@ -363,6 +363,13 @@ class Weapon extends Equipment {
     return sound;
   }
 
+  /** @return {?string} */
+  get animStrikeSound() {
+    const sound = this.getValue('animStrikeSound');
+    if (!sound && this.baseWeapon) return this.baseWeapon.animStrikeSound;
+    return sound;
+  }
+
   /** @return {number} */
   get animPitch() {
     let pitch = 0;

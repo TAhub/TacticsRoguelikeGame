@@ -468,7 +468,7 @@ class IngamePlugin extends GamePlugin {
         if (item.contents == Item.Code.Healing) {
           if (creature.life == creature.maxLife) return;
           creature.receiveHealing(item.healingAmount);
-          // TODO: poultice sound
+          audio.play('regen', 0, 1);
           setFn(null);
           this.inventoryPlayer = null;
           this.menuController.clear();
@@ -476,7 +476,7 @@ class IngamePlugin extends GamePlugin {
           if (creature.jobs.length == 0 && creature.skills.length == 0) return;
           setFn(null);
           this.respec_(creature);
-          // TODO: respec sound
+          audio.play('spell charge', 0, 1);
           this.inventoryPlayer = null;
           this.menuController.clear();
           this.openLevelUpUI_(creature);
@@ -496,7 +496,7 @@ class IngamePlugin extends GamePlugin {
               otherTile.doorFrameIs.add(toI(active.x, active.y));
               otherTile.clear3DData();
               this.minimap.clearBuffer();
-              // TODO: unlock door sound effect?
+              audio.play('unlock', 0, 1);
               setFn(null);
               used = true;
               this.inventoryPlayer = null;
@@ -507,7 +507,7 @@ class IngamePlugin extends GamePlugin {
               for (const doorI of tile.doorIds.keys()) {
                 const doorId = tile.doorIds.get(doorI);
                 if (doorId == 0) continue;
-                // TODO: fail to unlock sound effect
+                audio.play('key click', 0, 1);
                 break;
               }
             }

@@ -667,50 +667,61 @@
     </entry> <!-- bird -->
   </category> <!-- species appearances -->
   <category name="weapons">
+    <!-- TODO: animStrikeSound options
+      slash
+      smash
+      scream (for confusion?)
+      explosion
+      poison
+    -->
+
     <!-- special -->
     <entry name="unarmed" weaponAccuracy="100" numHits="2"
-      animProjSprite="515" animProjScale="30" animProjSpeed="5" animProjSkinColor="1" animProjDelay="30" animStep="20" animSound="swing" />
+      animProjSprite="515" animProjScale="30" animProjSpeed="5" animProjSkinColor="1" animProjDelay="30" animStep="20" animSound="swing" animStrikeSound="smash" />
     <entry name="tackle" weaponAccuracy="80"
-      animProjSprite="513" animProjScale="200" animProjSpeed="4" animProjSkinColor="1" animStep="30" animSound="swing">
+      animProjSprite="513" animProjScale="200" animProjSpeed="4" animProjSkinColor="1" animStep="30" animSound="swing" animStrikeSound="smash">
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- tackle -->
     <entry name="claws" weaponAccuracy="90" numHits="2" bleedingPercent="20"
-      animProjSprite="513" animProjScale="70" animProjSpeed="6" animProjColor="bone" animProjDelay="22" animStep="20" animSound="swing">
+      animProjSprite="513" animProjScale="70" animProjSpeed="6" animProjColor="bone" animProjDelay="22" animStep="20" animSound="swing" animStrikeSound="slash">
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- claws -->
     <entry name="deathly grasp" weaponAccuracy="100" magic="1"
-      animProjSprite="515" animProjScale="40" animProjSpeed="3" animProjColor="arcana" animProjGlows="1" animStep="20" animPostStepPause="15"> <!-- TODO: sounds -->
+      animProjSprite="515" animProjScale="40" animProjSpeed="3" animProjColor="arcana" animProjGlows="1" animStep="20" animPostStepPause="15" animSound="spell electric crack" animStrikeSound="spell strike">
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- deathly grasp -->
     <entry name="automata saw" weaponAccuracy="85" weaponHitsToCrits="10" numHits="3" bleedingPercent="30"
-      animProjSprite="513" animProjScale="80" animProjSpeed="6" animProjSkinColor="1" animProjDelay="15" animStep="15" animPostStepPause="45"> <!-- TODO: sounds -->
+      animProjSprite="513" animProjScale="80" animProjSpeed="6" animProjSkinColor="1" animProjDelay="15" animStep="15" animPostStepPause="45" animSound="saw" animStrikeSound="slash">
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- automata saw -->
     <entry name="automata gun" weaponAccuracy="85" ranged="1" numHits="3"
-      animProjSprite="515" animProjScale="15" animProjSpeed="8" animProjColor="bullet" animProjGlows="1" animProjDelay="15" animStep="-10" animPostStepPause="45" animSound="gun">
+      animProjSprite="515" animProjScale="15" animProjSpeed="8" animProjColor="bullet" animProjGlows="1" animProjDelay="15" animStep="-10" animPostStepPause="45" animSound="gun" animStrikeSound="slash">
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- automata gun -->
     <entry name="seed spit" weaponAccuracy="95" ranged="1" numHits="2"
-      animProjSprite="515" animProjScale="15" animProjSpeed="7" animProjColor="grass wall" animProjDelay="25" animStep="-10" animSound="spit">
+      animProjSprite="515" animProjScale="15" animProjSpeed="7" animProjColor="grass wall" animProjDelay="25" animStep="-10" animSound="spit" animStrikeSound="slash">
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- seed spit -->
     <entry name="poison bullet" astraCost="10" weaponAccuracy="90" poisonedPercent="40" scaling="ranged weapon" ranged="1"
-      animProjColor="poison" animPreStepPause="22" />
-    <entry name="blood splitling" astraCost="15" summonSpecies="baby slime" summonJobs="ranged monster,tough monster" summonWeapon="tackle" summonColoration="0" scaling="level" usesSpecialPower="1" />
-    <entry name="gold splitling" astraCost="20" summonSpecies="baby slime" summonJobs="sneaky monster,tough monster" summonWeapon="tackle" summonColoration="1" scaling="level" usesSpecialPower="1" />
-    <entry name="trained rat" astraCost="15" summonSpecies="rat" summonJobs="sneaky monster,sneaky monster" summonWeapon="claws" summonColoration="0" scaling="level" usesSpecialPower="1" />
+      animProjColor="poison" animPreStepPause="22" animStrikeSound="poison" />
+    <entry name="blood splitling" astraCost="15" summonSpecies="baby slime" summonJobs="ranged monster,tough monster" summonWeapon="tackle" summonColoration="0" scaling="level" usesSpecialPower="1"
+      animStrikeSound="spit" />
+    <entry name="gold splitling" astraCost="20" summonSpecies="baby slime" summonJobs="sneaky monster,tough monster" summonWeapon="tackle" summonColoration="1" scaling="level" usesSpecialPower="1"
+      animStrikeSound="spit" />
+    <entry name="trained rat" astraCost="15" summonSpecies="rat" summonJobs="sneaky monster,sneaky monster" summonWeapon="claws" summonColoration="0" scaling="level" usesSpecialPower="1"
+      animStrikeSound="smash" />
     <entry name="bandit flunky" astraCost="15" summonSpecies="karhun" summonJobs="survivor,gunner" summonWeapon="dagger" summonArmors="cap,bandit armor,leggings" scaling="level" usesSpecialPower="1" />
     <entry name="court guard" astraCost="20" summonSpecies="karhun" summonJobs="warrior,tethered" summonWeapon="spear" summonArmors="helmet,breastplate,greaves" scaling="level" usesSpecialPower="1" />
     <entry name="court mage" astraCost="20" summonSpecies="firin" summonJobs="mage,tethered" summonWeapon="mace" summonArmors="hat,shirt,pants" scaling="level" usesSpecialPower="1" />
@@ -718,13 +729,13 @@
 
     <!-- weapons -->
     <entry name="rusty metal rod" noProficiency="1"
-      animProjSprite="513" animProjScale="100" animProjSpeed="4" animStep="10" animSound="swing">
+      animProjSprite="513" animProjScale="100" animProjSpeed="4" animStep="10" animSound="swing" animStrikeSound="smash">
       <variety tier="0" weaponAccuracy="85"
         color="rusty" slotFillers="weaponHand:606"
         fluff="This old metal rod looks like it was once part of a machine. It could be used as a crude weapon." />
     </entry> <!-- rusty metal rod -->
     <entry name="dagger"
-      animProjSprite="514" animProjScale="50" animProjSpeed="6" animStep="15" animSound="swing">
+      animProjSprite="514" animProjScale="50" animProjSpeed="6" animStep="15" animSound="swing" animStrikeSound="slash">
       <variety name="dagger" tier="0" weaponAccuracy="105" weaponHitsToCrits="10" bleedingPercent="25"
         color="iron" slotFillers="weaponHand:603"
         fluff="A small, cheaply made dagger." />
@@ -739,7 +750,7 @@
         fluff="A magical dagger imbued with a continuous spell, a weak form of the siphon spell, so it sucks up the blood of its victims." />
     </entry> <!-- dagger -->
     <entry name="sword"
-      animProjSprite="513" animProjScale="90" animProjSpeed="5" animStep="10" animSound="swing">
+      animProjSprite="513" animProjScale="90" animProjSpeed="5" animStep="10" animSound="swing" animStrikeSound="slash">
       <variety name="rusty sword" tier="0" weaponAccuracy="90" defense="10"
         color="rusty" slotFillers="weaponHand:604"
         fluff="A sword that has not been maintained well. The edge is barely sharp anymore." />
@@ -750,11 +761,11 @@
         color="steel" slotFillers="weaponHand:605"
         fluff="A well-made sword that has been designed to be even better at parrying." />
       <variety name="firebrand" tier="2" weaponAccuracy="90" defense="10" burningPercent="40"
-        color="fire" slotFillers="weaponHand:604" animProjGlows="1"
+        color="fire" slotFillers="weaponHand:604" animProjGlows="1" animStrikeSound="explosion"
         fluff="A surprisingly dull sword with a powerful enchantment on it. The edge heats up whenever it is swung, to a painful degree." />
     </entry> <!-- sword -->
     <entry name="pistol"
-      animProjSprite="515" animProjScale="15" animProjSpeed="8" animProjColor="bullet" animProjGlows="1" animStep="-10" animPostStepPause="45" animSound="gun">
+      animProjSprite="515" animProjScale="15" animProjSpeed="8" animProjColor="bullet" animProjGlows="1" animStep="-10" animPostStepPause="45" animSound="gun" animStrikeSound="slash">
       <variety name="corroded pistol" tier="0" weaponAccuracy="80" ranged="1"
         color="rusty" slotFillers="weaponHand:602"
         fluff="This pistol is in such rough shape, it's a wonder that it can fire at all." />
@@ -769,7 +780,7 @@
         fluff="A beautiful pistol with a casing made of a gold alloy, enchanted to fire bullets that twist in midair to seek foes. Left behind by a Skuri noble who got tethered." />
     </entry> <!-- pistol -->
     <entry name="mace"
-      animProjSprite="513" animProjScale="130" animProjSpeed="4" animStep="10" animPostStepPause="22" animSound="swing">
+      animProjSprite="513" animProjScale="130" animProjSpeed="4" animStep="10" animPostStepPause="22" animSound="swing" animStrikeSound="smash">
       <variety name="antique mace" tier="0" weaponAccuracy="80" armorPiercing="1"
         color="rusty" slotFillers="weaponHand:607"
         fluff="An old mace from who knows where. The heft of this weapon is at least half rust." />
@@ -784,7 +795,7 @@
         fluff="A bronze mace with a strange enchantment on it, which seems to pull it roughly towards foes. It almost jerks itself out of your hands whenever an enemy approaches." />
     </entry> <!-- mace -->
     <entry name="spear"
-      animProjSprite="514" animProjScale="90" animProjSpeed="5" animStep="-10" animPreStepPause="15" animSound="swing">
+      animProjSprite="514" animProjScale="90" animProjSpeed="5" animStep="-10" animPreStepPause="15" animSound="swing" animStrikeSound="slash">
       <variety name="old spear" tier="0" weaponAccuracy="90" zones="1"
         color="rusty" slotFillers="weaponHand:600"
         fluff="A spear that looks like it was used in the old war, and hasn't been cleaned since. It's better than a long stick, but not by much." />
@@ -804,28 +815,28 @@
       animProjColor="blood" animProjDelay="18" animProjSpeed="2"
       fluff="A risky combat technique that tries to rapidly strike the foe's weak spots, often missing in the process." />
     <entry name="venom sting" astraCost="10" weaponAccuracy="90" scaling="melee weapon" poisonedPercent="25"
-      animProjColor="poison" animPreStepPause="33"
+      animProjColor="poison" animPreStepPause="33" animStrikeSound="poison"
       fluff="Coat your weapon in poison and make a quick and accurate strike on your foe." />
     <entry name="slam" astraCost="5" weaponAccuracy="75" scaling="melee weapon" shakenPercent="30"
-      animProjSpeed="1" animProjColor="lightning" animPostStepPause="15"
+      animProjSpeed="1" animProjColor="lightning" animPostStepPause="15" animStrikeSound="smash"
       fluff="Swing your weapon with more force but less finesse, hitting enemies hard enough to leave them shaken." />
     <entry name="coordinated attack" astraCost="5" weaponAccuracy="80" scaling="melee weapon" commandsSummon="1"
       animProjSpeed="-1" animProjColor="steel" animProjGlows="1" animPreStepPause="33"
       fluff="Make a quick attack while simultaneously giving an order to your summon, aiming to overwhelm your enemy." />
     <entry name="typhoon slash" astraCost="10" weaponAccuracy="85" scaling="melee weapon" numHits="3"
-      animProjSpeed="1" animProjColor="magical water" animProjGlows="1" animProjDelay="22" animPreStepPause="22"
+      animProjSpeed="1" animProjColor="magical water" animProjGlows="1" animProjDelay="22" animPreStepPause="22" animStrikeSound="slash"
       fluff="Execute a practiced three-hit combo, trying to overwhelm the opponent with strikes." />
     <entry name="blitz strike" astraCost="10" weaponAccuracy="90" weaponHitsToCrits="10" scaling="melee weapon" ranged="1" teleports="1"
       animProjSpeed="2" animProjColor="lightning" animProjGlows="1" animPreStepPause="22"
       fluff="Quickly leap to the target, and execute a single attack with blinding speed." />
     <entry name="eye gouge" astraCost="10" weaponAccuracy="75" scaling="level" blindedPercent="55"
-      animProjSprite="514" animProjScale="50" animProjSpeed="5" animProjSkinColor="1" animStep="20" animSound="swing"
+      animProjSprite="514" animProjScale="50" animProjSpeed="5" animProjSkinColor="1" animStep="20" animSound="swing" animStrikeSound="slash"
       fluff="Lunge for the opponent's eyes, and cruelly stab into them with your fingers." />
     <entry name="solar combo" astraCost="15" weaponAccuracy="70" scaling="level" burningPercent="40" numHits="4" lifeCostPercent="10"
-      animProjSprite="515" animProjScale="30" animProjSpeed="6" animProjColor="fire" animProjDelay="22" animProjGlows="1" animStep="20" animPreStepPause="15" animSound="swing"
+      animProjSprite="515" animProjScale="30" animProjSpeed="6" animProjColor="fire" animProjDelay="22" animProjGlows="1" animStep="20" animPreStepPause="15" animSound="swing" animStrikeSound="explosion"
       fluff="Launch into a super-fast combination of hits, your fists flying so fast that they ignite in midair." />
     <entry name="cheap shot" astraCost="5" weaponAccuracy="90" scaling="level" bleedingPercent="25" onePerBattle="1" weaponHitsToCrits="25"
-      animProjSprite="515" animProjScale="30" animProjSpeed="6" animProjColor="bronze" animProjGlows="1" animStep="15" animSound="swing"
+      animProjSprite="515" animProjScale="30" animProjSpeed="6" animProjColor="bronze" animProjGlows="1" animStep="15" animSound="swing" animStrikeSound="slash"
       fluff="Slip your fingers into your brass knuckles and make a surprise swing at your opponent." />
     <entry name="snipe" astraCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1"
       animProjSpeed="2" animStep="-20" animPostStepPause="33"
@@ -834,78 +845,81 @@
       animProjSpeed="2" animPostStepPause="-22"
       fluff="Snap a quick pistol-shot at your opponent's head, attempting to leave them dazed and confused." />
     <entry name="inferno shot" astraCost="10" weaponAccuracy="90" burningPercent="35" scaling="ranged weapon" ranged="1"
-      animProjColor="fire" animPostStepPause="22"
+      animProjColor="fire" animPostStepPause="22" animStrikeSound="explosion"
       fluff="Fire a special bullet that has been coated in incendiary chemicals, meant to light the opponent on fire." />
 
     <!-- spells/special techniques -->
     <entry name="wild spark" astraCost="5" weaponAccuracy="90" weaponHitsToCrits="50" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" noProficiency="1"
-      animProjSprite="515" animProjScale="30" animProjSpeed="7" animProjColor="arcana" animProjGlows="1" animPostStepPause="15" animSound="spell electric crack"
+      animProjSprite="515" animProjScale="30" animProjSpeed="7" animProjColor="arcana" animProjGlows="1" animPostStepPause="15" animSound="spell electric crack" animStrikeSound="spell strike"
       fluff="Build up your astra and simply release it, without attempting to shape a formal spell. Not very strong, but quite simple to use." />
     <entry name="thorns of madness" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="3" bleedingPercent="25" blindedPercent="25" poisonedPercent="25"
-      animProjSprite="514" animProjScale="40" animProjSpeed="9" animProjColor="grass wall" animProjGlows="1" animProjDelay="35" animStep="-10" animPostStepPause="33"
-      fluff="Use your ring as a focus, to fire a barrage of thorns of astra. The thorns pierce the foe as though they were solid, cutting them and then dissolving into a magical poison that blurs vision." /> <!-- TODO: sounds -->
+      animProjSprite="514" animProjScale="40" animProjSpeed="9" animProjColor="grass wall" animProjGlows="1" animProjDelay="35" animStep="-10" animPostStepPause="33" animSound="spell concussive crack" animStrikeSound="slash"
+      fluff="Use your ring as a focus, to fire a barrage of thorns of astra. The thorns pierce the foe as though they were solid, cutting them and then dissolving into a magical poison that blurs vision." />
     <entry name="arcana arrow" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1"
-      animProjSprite="514" animProjScale="80" animProjSpeed="8" animProjColor="arcana" animProjGlows="1" animStep="-10" animPostStepPause="22" animSound="spell concussive crack"
+      animProjSprite="514" animProjScale="80" animProjSpeed="8" animProjColor="arcana" animProjGlows="1" animStep="-10" animPostStepPause="22" animSound="spell concussive crack" animStrikeSound="spell strike"
       fluff="Build up astra and shape it into the rough shape of an arrow, which you can then launch as a projectile. A basic but effective attack spell." />
     <entry name="mage needles" astraCost="5" weaponAccuracy="95" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="3"
-      animProjSprite="514" animProjScale="50" animProjSpeed="9" animProjColor="arcana" animProjDelay="15" animProjGlows="1" animStep="-10" animPostStepPause="15" animSound="spell concussive crack"
+      animProjSprite="514" animProjScale="50" animProjSpeed="9" animProjColor="arcana" animProjDelay="15" animProjGlows="1" animStep="-10" animPostStepPause="15" animSound="spell concussive crack" animStrikeSound="spell strike"
       fluff="Channel astra into your ring, where it is released as a flurry of magical needles. A reasonably efficient spell, albeit a bit harder to control than an arcana arrow." />
     <entry name="siphon" astraCost="5" weaponAccuracy="110" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" drains="1"
-      animProjSprite="514" animProjScale="60" animProjSpeed="8" animProjColor="blood" animProjGlows="1" animStep="-10" animPostStepPause="33"
-      fluff="Jab your opponent with a thin needle of astra, then drain their blood through the hole. A spell that is subtle and gross in equal measures." /> <!-- TODO: sounds -->
+      animProjSprite="514" animProjScale="60" animProjSpeed="8" animProjColor="blood" animProjGlows="1" animStep="-10" animPostStepPause="33" animSound="spell concussive crack" animStrikeSound="slash"
+      fluff="Jab your opponent with a thin needle of astra, then drain their blood through the hole. A spell that is subtle and gross in equal measures." />
     <entry name="phantom flames" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" burningPercent="40" numHits="2"
-      animProjSprite="515" animProjScale="50" animProjSpeed="7" animProjColor="fire" animProjGlows="1" animProjDelay="45" animStep="-10" animPostStepPause="22" animSound="swing"
+      animProjSprite="515" animProjScale="50" animProjSpeed="7" animProjColor="fire" animProjGlows="1" animProjDelay="45" animStep="-10" animPostStepPause="22" animSound="swing" animStrikeSound="explosion"
       fluff="Build up astra, and pattern it with the will to burn others, forming throwable balls of fire-like magic around your hands." />
     <entry name="ashball" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" blindedPercent="55"
-      animProjSprite="515" animProjScale="100" animProjSpeed="7" animProjColor="smoke" animStep="-10" animPostStepPause="22"
-      fluff="Scoop up some ash or soot, and flood it with a charge of astra. If you get the technique down, it'll stay together for just long enough for it to be fired at an enemy." /> <!-- TODO: sounds -->
+      animProjSprite="515" animProjScale="100" animProjSpeed="7" animProjColor="smoke" animStep="-10" animPostStepPause="22" animSound="spell concussive crack" animStrikeSound="smash"
+      fluff="Scoop up some ash or soot, and flood it with a charge of astra. If you get the technique down, it'll stay together for just long enough for it to be fired at an enemy." />
     <entry name="blinding flash" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" magic="1" blindedPercent="95" onePerBattle="1"
-      animProjSprite="513" animProjScale="120" animProjSpeed="6" animProjColor="white" animStep="-5" animPostStepPause="22" animSound="spell electric crack"
+      animProjSprite="513" animProjScale="120" animProjSpeed="6" animProjColor="white" animStep="-5" animPostStepPause="22" animSound="spell electric crack" animStrikeSound="scream"
       fluff="Channel some astra into your ring, to make it glow as bright as the sun for a moment. This is faster than most spells, so it is good at surprising the enemy... the first time, at least." />
     <entry name="mind wrench" astraCost="15" weaponAccuracy="100" scaling="level" usesSpecialPower="1" magic="1" spell="1" ranged="1" confusedPercent="95"
-      animProjSprite="513" animProjScale="130" animProjSpeed="9" animProjColor="confusion" animStep="-15" animPostStepPause="33" animSound="spell electric crack"
+      animProjSprite="513" animProjScale="130" animProjSpeed="9" animProjColor="confusion" animStep="-15" animPostStepPause="33" animSound="spell electric crack" animStrikeSound="scream"
       fluff="Fill your ring with an uncomfortable amount of astra. The ring then releases it, as a wave of mind-warping energy." />
     <entry name="sword wave" astraCost="10" weaponAccuracy="85" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1" ranged="1"
-      animProjSprite="513" animProjScale="110" animProjSpeed="3" animProjColor="arcana" animProjGlows="1" animStep="10" animPostStepPause="22"
+      animProjSprite="513" animProjScale="110" animProjSpeed="3" animProjColor="arcana" animProjGlows="1" animStep="10" animPostStepPause="22" animStrikeSound="spell strike"
       fluff="Build up astra in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." />
     <entry name="enchanted blade" astraCost="10" weaponAccuracy="105" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1"
-      animProjSpeed="-1" animProjColor="arcana" animProjGlows="1" animStep="10"
+      animProjSpeed="-1" animProjColor="arcana" animProjGlows="1" animStep="10" animStrikeSound="spell strike"
       fluff="Build up astra in your weapon, draw a spell-channel to your enemy, and let the channel guide your weapon with great force and accuracy. A spell designed for mages, to help them when they are caught up in melee combat." />
     <entry name="illusion fist" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
-      animProjSprite="515" animProjScale="30" animProjSpeed="11" animProjColor="arcana" animProjGlows="1" animStep="15" animPreStepPause="15" animSound="swing"
+      animProjSprite="515" animProjScale="30" animProjSpeed="11" animProjColor="arcana" animProjGlows="1" animStep="15" animPreStepPause="15" animSound="swing" animStrikeSound="spell strike"
       fluff="Build up some astra in your arm, and then pull it into your hand at the same time as you throw a punch, launching it as a fast-moving projectile. A magical martial arts move, meant to injure and stun." />
     <entry name="spell barrage" astraCost="20" weaponAccuracy="90" weaponHitsToCrits="15" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="4"
-      animProjSprite="514" animProjScale="90" animProjSpeed="9" animProjColor="arcana" animProjGlows="1" animProjDelay="18" animStep="-20" animPostStepPause="33" animSound="spell concussive crack"
+      animProjSprite="514" animProjScale="90" animProjSpeed="9" animProjColor="arcana" animProjGlows="1" animProjDelay="18" animStep="-20" animPostStepPause="33" animSound="spell concussive crack" animStrikeSound="spell strike"
       fluff="Build up a large amount of astra and release it in a flurry of magical bolts. A powerful but unsubtle spell." />
     <entry name="miasma bolt" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" poisonedPercent="50"
-      animProjSprite="514" animProjScale="90" animProjSpeed="7" animProjColor="poison" animProjGlows="1" animStep="-10" animPostStepPause="22"
-      fluff="Infuse your astra with a toxic quality, and fire it out as a deadly magical bolt." /> <!-- TODO: sounds -->
+      animProjSprite="514" animProjScale="90" animProjSpeed="7" animProjColor="poison" animProjGlows="1" animStep="-10" animPostStepPause="22" animSound="spell concussive crack" animStrikeSound="poison"
+      fluff="Infuse your astra with a toxic quality, and fire it out as a deadly magical bolt." />
     <entry name="poison powder" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" poisonedPercent="70" blindedPercent="30"
-      animProjSprite="513" animProjScale="120" animProjSpeed="4" animProjColor="poison" animStep="10" animPreStepPause="15" animSound="swing"
+      animProjSprite="513" animProjScale="120" animProjSpeed="4" animProjColor="poison" animStep="10" animPreStepPause="15" animSound="swing" animStrikeSound="poison"
       fluff="Blow a handful of home-made poisonous powder into an opponent's face, poisoning and blinding them." />
     <entry name="agony release" astraCost="10" lifeCostPercent="20" weaponAccuracy="100" weaponHitsToCrits="25" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
-      animProjSprite="514" animProjScale="70" animProjSpeed="8" animProjColor="blood" animProjGlows="1" animStep="-10" animPostStepPause="33"
-      fluff="Stab yourself with a knife, and use the pain reflex to shape a wicked spell. An unusual but surprisingly effective form of magic." /> <!-- TODO: sounds -->
+      animProjSprite="514" animProjScale="70" animProjSpeed="8" animProjColor="blood" animProjGlows="1" animStep="-10" animPostStepPause="33" animSound="scream" animStrikeSound="spell strike"
+      fluff="Stab yourself with a knife, and use the pain reflex to shape a wicked spell. An unusual but surprisingly effective form of magic." />
     <entry name="mend" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" spell="1" heals="1" scaling="level" usesSpecialPower="1"
-      animProjSprite="513" animProjScale="100" animProjSpeed="6" animProjColor="blood" animProjGlows="1" animStep="10" animPostStepPause="22"
-      fluff="Build up astra and pattern it with the will and instructions to heal others. An effective use of magic, but watch out for enemies attempting to intercept your spells!" /> <!-- TODO: sounds -->
+      animProjSprite="513" animProjScale="100" animProjSpeed="6" animProjColor="blood" animProjGlows="1" animStep="10" animPostStepPause="22" animSound="spell concussive crack" animStrikeSound="regen"
+      fluff="Build up astra and pattern it with the will and instructions to heal others. An effective use of magic, but watch out for enemies attempting to intercept your spells!" />
     <entry name="sacrifice" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" heals="1" scaling="level" usesSpecialPower="1" lifeCostPercent="5" targetRingUser="wedding ring"
-      animProjSprite="515" animProjScale="30" animProjSpeed="8" animProjColor="blood" animProjGlows="1" animStep="10" animPostStepPause="22"
+      animProjSprite="515" animProjScale="30" animProjSpeed="8" animProjColor="blood" animProjGlows="1" animStep="10" animPostStepPause="22" animSound="charge" animStrikeSound="regen"
       fluff="Prick yourself with a spike on the inside of your ring, and channel your astra through the bead of blood. The spell in the ring sends the charged blood off heal your beloved... or at least, to heal whomever is wearing the other ring." /> <!-- TODO: sounds -->
     <entry name="first aid" astraCost="5" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="2"
-      animProjSprite="513" animProjScale="100" animProjSpeed="4" animProjColor="blood" animProjDelay="50" animStep="20" animPostStepPause="22"
-      fluff="Apply some basic first aid to an ally, patching up their wounds as best as you can." /> <!-- TODO: sounds -->
+      animProjSprite="513" animProjScale="100" animProjSpeed="4" animProjColor="blood" animProjDelay="50" animStep="20" animPostStepPause="22" animSound="swing" animStrikeSound="regen"
+      fluff="Apply some basic first aid to an ally, patching up their wounds as best as you can." />
     <entry name="triage" astraCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="2" curePercent="85"
-      animProjSprite="513" animProjScale="110" animProjSpeed="4" animProjColor="blood" animProjDelay="50" animStep="15" animPostStepPause="33"
-      fluff="Analyze an ally, and find and treat the root cause of their ailments. Helps against non-damaging status effects, such as blinded or shaken." /> <!-- TODO: sounds -->
-    <entry name="inner strength" astraCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="3" selfTargeting="1"
-      animProjSprite="515" animProjScale="50" animProjSpeed="1" animProjColor="blood" animProjDelay="30" animPostStepPause="22"
-      fluff="Build up a large concentration of astra within yourself, and then direct it to circulate through your body, causing rapid regeneration." /> <!-- TODO: sounds -->
+      animProjSprite="513" animProjScale="110" animProjSpeed="4" animProjColor="blood" animProjDelay="50" animStep="15" animPostStepPause="33" animSound="swing" animStrikeSound="regen"
+      fluff="Analyze an ally, and find and treat the root cause of their ailments. Helps against non-damaging status effects, such as blinded or shaken." />
+    <entry name="inner strength" astraCost="10" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" selfTargeting="1"
+      animProjSprite="515" animProjScale="50" animProjSpeed="1" animProjColor="blood" animPostStepPause="22" animSound="spell charge" animStrikeSound="regen"
+      fluff="Build up a large concentration of astra within yourself, and then direct it to circulate through your body, causing rapid regeneration." />
     <entry name="saw crawler" astraCost="15" summonSpecies="crawler" summonJobs="tough monster,tough monster" summonWeapon="automata saw" summonFluff="melee combat automata" scaling="level" usesSpecialPower="1" onePerBattle="1"
+      animStrikeSound="deploy"
       fluff="Deploy a tough Skuri combat automata armed with a deadly buzzsaw. Not very skillful, but it's an effective distraction." />
     <entry name="gun turret" astraCost="20" summonSpecies="turret" summonJobs="ranged monster,tough monster" summonWeapon="automata gun" summonFluff="ranged combat automata" scaling="level" usesSpecialPower="1" onePerBattle="1"
+      animStrikeSound="deploy"
       fluff="Deploy an immobile Skuri combat automata fitted with an auto-loading gun. Not as tactically flexible as a close-combat automata, but useful when raw firepower is needed." />
     <entry name="unearth" astraCost="20" summonSpecies="firin" summonJobs="undead,tough monster" summonWeapon="deathly grasp" summonFluff="magical undead" scaling="level" usesSpecialPower="1" onePerBattle="1"
+      animStrikeSound="scream"
       fluff="Dredge up a long-dead corpse and fill it with astra, to create a temporary undead servant. The servant is overflowing with astra, and can release it with a touch." />
   </category> <!-- weapons -->
   <category name="rings">
@@ -1408,54 +1422,34 @@
       credit="explosion6.wav by ReadeOnly | License: Creative Commons 0" />
     <entry name="spell electric crack" filename="136542__joelaudio__electric-zap-001.wav"
       credit="ELECTRIC_ZAP_001.wav by JoelAudio | License: Creative Commons 0" />
-
-    <!-- TODO: old sound effects to be sorted -->
-    <entry name="menu" filename="411749__natty23__bell-ding.wav" volume="-12"
-      credit="Bell Ding by Natty23 -- https://freesound.org/s/411749/ -- License: Attribution" />
-    <entry name="dodge" filename="92736__robinhood76__01522-swoosh-1.wav"
-      credit="01522 swoosh 1.wav by Robinhood76 -- https://freesound.org/s/92736/ -- License: Attribution Noncommercial" />
-    <entry name="bow" filename="65733__erdie__bow01.wav"
-      credit="bow01.wav by Erdie -- https://freesound.org/s/65733/ -- License: Attribution" />
-    <entry name="explosion" filename="349131__deganoth__impact-2-full.wav" volume="-3"
-      credit="Impact_2_full.wav by Deganoth | License: Attribution" />
-    <entry name="drink" filename="433645__dersuperanton__drinking-and-swallow.wav"
-      credit="Drinking and swallow by dersuperanton | License: Attribution" />
     <entry name="slash" filename="420674__sypherzent__deep-cut-slash-gash.wav" volume="-12"
       credit="Deep Cut / Slash / Gash by SypherZent -- https://freesound.org/s/420674/ -- License: Creative Commons 0" />
     <entry name="smash" filename="470587__silverillusionist__heavy-impact.wav"
       credit="Heavy Impact by SilverIllusionist -- https://freesound.org/s/470587/ -- License: Attribution" />
-    <entry name="crit" filename="170635__swedger__fami-crash.wav"
-      credit="Fami crash.wav by Swedger | License: Creative Commons 0" />
-    <entry name="fire" filename="442872__qubodup__fire-magic.wav"
-      credit="Fire Magic by qubodup | License: Creative Commons 0" />
-    <entry name="poison" filename="101799__robinhood76__01911-air-leak.wav" volume="5"
+    <entry name="scream" filename="61033__timtube__scream-3.wav"
+      credit="scream 3.wav by timtube | License: Attribution Noncommercial" />
+    <entry name="explosion" filename="349131__deganoth__impact-2-full.wav" volume="-4"
+      credit="Impact_2_full.wav by Deganoth | License: Attribution" />
+    <entry name="poison" filename="101799__robinhood76__01911-air-leak.wav" volume="4"
       credit="01911 air leak.wav by Robinhood76 | License: Attribution Noncommercial" />
-    <entry name="defend" filename="103628__benboncan__large-anvil-steel-hammer.wav"
-      credit="Large Anvil Steel Hammer .wav by Benboncan | License: Attribution" />
-    <entry name="open chest" filename="408001__judith136__20.wav"
-      credit="20.wav by JUDITH136 | License: Attribution" />
-    <entry name="beam" filename="464904__plasterbrain__8bit-beam.flac"
-      credit="8bit Beam by plasterbrain | License: Creative Commons 0" />
-    <entry name="spray" filename="464424__michael-grinnell__spray-can-hiss.wav" volume="8"
-      credit="Spray_Can_Hiss.wav by michael_grinnell | License: Creative Commons 0" />
-    <entry name="glass smash" filename="344265__inspectorj__glass-smash-bottle-d.wav"
-      credit="Glass Smash, Bottle, D.wav by InspectorJ | License: Attribution" />
-    <entry name="open rack" filename="107589__qat__unsheath-sword.wav"
-      credit="unsheath_sword.wav by Qat | License: Creative Commons 0" />
     <entry name="regen" filename="524609__clearwavsound__bone-crunch.wav"
       credit="Bone Crunch by Clearwavsound | License: Attribution" />
-    <entry name="dive" filename="274254__kwahmah-02__splash.wav"
-      credit="Splash! by kwahmah_02 | License: Attribution" />
-    <entry name="heal strike" filename="419493__plasterbrain__bell-chime-alert.flac"
-      credit="Bell Chime Alert by plasterbrain | License: Creative Commons 0" />
-    <entry name="heal" filename="62978__radian__chime-0003.wav"
-      credit="Chime 0003.wav by radian | License: Attribution" />
-    <entry name="focus" filename="376749__zenithinfinitivestudios__fantasy-ui-button-5.wav"
+    <entry name="spell charge" filename="376749__zenithinfinitivestudios__fantasy-ui-button-5.wav"
       credit="Fantasy_ui_Button_5.wav by ZenithInfinitiveStudios | License: Creative Commons 0" />
-    <entry name="phantom" filename="61033__timtube__scream-3.wav"
-      credit="scream 3.wav by timtube | License: Attribution Noncommercial" />
-    <entry name="stone smash" filename="503554__robinhood76__08191-heavy-stones-falling.wav"
-      credit="08191 heavy stones falling.wav by Robinhood76 | License: Attribution Noncommercial" />
+    <entry name="spell strike" filename="170635__swedger__fami-crash.wav"
+      credit="Fami crash.wav by Swedger | License: Creative Commons 0" />
+    <entry name="dodge" filename="92736__robinhood76__01522-swoosh-1.wav"
+      credit="01522 swoosh 1.wav by Robinhood76 -- https://freesound.org/s/92736/ -- License: Attribution Noncommercial" />
+    <entry name="saw" filename="62493__the-sacha-rush__saw-1.wav"
+      credit="saw_1.wav by The-Sacha-Rush | License: Creative Commons 0" />
+    <entry name="key click" filename="457036__breviceps__trigger-switch.wav"
+      credit="Trigger switch by Breviceps | License: Creative Commons 0" />
+    <entry name="unlock" filename="408001__judith136__20.wav"
+      credit="20.wav by JUDITH136 | License: Attribution" />
+    <entry name="deploy" filename="103628__benboncan__large-anvil-steel-hammer.wav"
+      credit="Large Anvil Steel Hammer .wav by Benboncan | License: Attribution" />
+
+    <!-- footsteps -->
     <entry name="footstep gravel 1" filename="384889__ali-6868__knight-right-footstep-on-gravel-3-with-chainmail.wav" volume="-12"
       credit="Knight Right Footstep on Gravel 3 (With Chainmail) by Ali_6868 | License: Creative Commons 0" />
     <entry name="footstep gravel 2" filename="384888__ali-6868__knight-right-footstep-on-gravel-4-with-chainmail.wav" volume="-12"
@@ -1472,16 +1466,12 @@
       credit="Footstep on Stone 3 by Samulis | License: Creative Commons 0" />
     <entry name="footstep stone 4" filename="197779__samulis__footstep-on-stone-2.wav" volume="4"
       credit="Footstep on Stone 2 by Samulis | License: Creative Commons 0" />
+
+    <!-- voice sounds -->
     <entry name="voice 1" filename="voice 1.wav" notAfter="voice 2" />
     <entry name="voice 2" filename="voice 2.wav" notAfter="voice 1" />
     <entry name="voice 3" filename="voice 3.wav" notAfter="voice 3,voice 4" />
     <entry name="voice 4" filename="voice 4.wav" notAfter="voice 3,voice 4" /> <!-- TODO: I don't like how this one sounds very much -->
-    <entry name="oof male" filename="257780__xtrgamr__man-oof.wav" volume="-6"
-      credit="Man oof.wav by xtrgamr -- https://freesound.org/s/257780/ -- License: Attribution" />
-    <entry name="oof female" filename="47356__fotoshop__oof.wav" volume="-6"
-      credit="oof.wav by fotoshop -- https://freesound.org/s/47356/ -- License: Creative Commons 0" />
-    <entry name="growl" filename="368011__trngle__meow-8.wav" volume="-4"
-      credit="Meow 8.wav by TRNGLE -- https://freesound.org/s/368011/ -- License: Attribution" />
 
     <!-- TODO: old music -->
     <entry name="menu bgm" filename="arcadia-by-kevin-macleod-from-filmmusic-io.mp3" music="1"

@@ -512,6 +512,34 @@ allDiagnostics.set('Generation Points Diagnostic', () => {
   }
 });
 
+allDiagnostics.set('Weapon Diagnostic', () => {
+  const allWeapons = data.getCategoryEntriesArray('weapons') || [];
+  for (const type of allWeapons) {
+    const weapon = new Weapon(type);
+    const subtypes = [];
+    if (weapon.numSubtypes > 0) {
+      for (let i = 0; i < weapon.numSubtypes; i++) subtypes.push(i);
+    } else {
+      subtypes.push(undefined);
+    }
+    for (const subtype of subtypes) {
+      weapon.subtype = subtype;
+      console.log(weapon.name + ' (t' + weapon.tier + '):');
+
+      if (weapon.scaling == Weapon.Scaling.Level || weapon.astraCost == 0) {
+        if (!weapon.summon && !weapon.animSound) {
+          console.log('  --WARNING: has no attack sound');
+        }
+        if (!weapon.animStrikeSound) {
+          console.log('  --WARNING: has no strike sound');
+        }
+      }
+
+      // TODO: other diagnostics?
+    }
+  }
+});
+
 allDiagnostics.set('Job Diagnostic', () => {
   const allJobs = data.getCategoryEntriesArray('jobs') || [];
   for (const type of allJobs) {
