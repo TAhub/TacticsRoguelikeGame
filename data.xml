@@ -441,9 +441,9 @@
 
     <!-- monster species -->
     <entry name="crawler"
-      physiqueModifier="5" cunningModifier="-5" defense="10" />
+      physiqueModifier="7" cunningModifier="-7" defense="10" />
     <entry name="turret"
-      physiqueModifier="5" cunningModifier="-5" accuracy="10" moveDistance="-3" rangeBonus="2" />
+      physiqueModifier="5" cunningModifier="-5" attackPower="10" moveDistance="-3" rangeBonus="2" />
     <entry name="seed spitter"
       agilityModifier="5" cunningModifier="-5" initiative="10" moveDistance="-3" rangeBonus="2" />
     <entry name="walking topiary"
@@ -696,13 +696,13 @@
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- deathly grasp -->
-    <entry name="automata saw" weaponAccuracy="85" weaponHitsToCrits="10" numHits="3" bleedingPercent="30"
+    <entry name="automata saw" weaponAccuracy="85" weaponHitsToCrits="10" numHits="3" bleedingPercent="30" zones="1"
       animProjSprite="513" animProjScale="80" animProjSpeed="6" animProjSkinColor="1" animProjDelay="15" animStep="15" animPostStepPause="45" animSound="saw" animStrikeSound="slash">
       <variety tier="0" />
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- automata saw -->
-    <entry name="automata gun" weaponAccuracy="85" ranged="1" numHits="3"
+    <entry name="automata gun" weaponAccuracy="50" ranged="1" numHits="3"
       animProjSprite="515" animProjScale="15" animProjSpeed="8" animProjColor="bullet" animProjGlows="1" animProjDelay="15" animStep="-10" animPostStepPause="45" animSound="gun" animStrikeSound="slash">
       <variety tier="0" />
       <variety tier="1" />
@@ -879,7 +879,7 @@
     <entry name="sword wave" astraCost="10" weaponAccuracy="85" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1" ranged="1"
       animProjSprite="513" animProjScale="110" animProjSpeed="3" animProjColor="arcana" animProjGlows="1" animStep="10" animPostStepPause="22" animStrikeSound="spell strike"
       fluff="Build up astra in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." />
-    <entry name="enchanted blade" astraCost="10" weaponAccuracy="105" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1"
+    <entry name="enchanted blade" astraCost="10" weaponAccuracy="105" scaling="melee weapon" usesSpecialPower="1" spell="1"
       animProjSpeed="-1" animProjColor="arcana" animProjGlows="1" animStep="10" animStrikeSound="spell strike"
       fluff="Build up astra in your weapon, draw a spell-channel to your enemy, and let the channel guide your weapon with great force and accuracy. A spell designed for mages, to help them when they are caught up in melee combat." />
     <entry name="illusion fist" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
