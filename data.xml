@@ -327,7 +327,7 @@
       gender="0" />
     <entry name="Gatekeeper" species="karhun" jobs="rogue,tethered" level="30" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" accessory="intimidating mask" techniques="crimson fangs,venom sting" skills="form"
       gender="0" hairstyle="short" coloration="1" enemyLines="Gatekeeper" />
-    <entry name="Lord Rigus" species="firin" jobs="mage,undead" level="36" weapon="mace:2" armors="shirt:2,pants:2" accessory="regal cloak" ring="rusted focus" techniques="arcana arrow,spell barrage,enchanted blade" skills="prey instincts,zoning"
+    <entry name="Lord Rigus" species="firin" jobs="mage,undead" level="36" weapon="mace:2" armors="shirt:2,pants:2" accessory="regal cloak" ring="rusted focus" techniques="arcana arrow,spell barrage,enchanted blade,unearth" skills="prey instincts,zoning"
       gender="0" hairstyle="medium" coloration="0" enemyLines="Rigus" />
 
     <!-- grasslands enemies (levels 1-6) -->

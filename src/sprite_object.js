@@ -5,6 +5,7 @@
  *   drawBack: (number|undefined),
  *   renderOrder: (number|undefined),
  *   rockAngle: (number|undefined),
+ *   transparent: (boolean|undefined),
  * }}
  */
 let SpriteObjectOptions;
@@ -105,6 +106,11 @@ class SpriteObject {
 
     if (optOptions && optOptions.renderOrder != undefined) {
       this.mesh.renderOrder = optOptions.renderOrder;
+    }
+
+    this.material.opacity = 1;
+    if (optOptions && optOptions.transparent) {
+      this.material.opacity = 0.75;
     }
 
     // If configured, the object will move back slightly, so that it doesn't

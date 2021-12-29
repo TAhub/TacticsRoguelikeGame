@@ -168,6 +168,11 @@ class Creature {
     return this.dead && !this.animating;
   }
 
+  /** @return {boolean} */
+  get immune() {
+    return this.boss && !!this.currentSummon;
+  }
+
   /** @return {number} */
   get s() {
     return this.monstrous ? 2 : 1;
@@ -850,8 +855,9 @@ class Creature {
 
     // Draw.
     if (!this.spriteObject) this.makeAppearance();
-    this.spriteObject.addToGroup(group, camera, x, y, this.th,
-        {facing: this.facing, rockAngle: this.rockAngle});
+    const options = {facing: this.facing, rockAngle: this.rockAngle};
+    if (this.immune) options.transparent = true;
+    this.spriteObject.addToGroup(group, camera, x, y, this.th, options);
     if (!this.barSpriteObject) this.makeBar();
     this.barSpriteObject.addToGroup(
         group, camera, this.cX, this.cY, this.th, {drawBack: -0.05});
@@ -1219,6 +1225,8 @@ class Creature {
         if (weapon.helpful) {
           if (target.side != this.side) continue;
         } else {
+          if (target.immune) continue;
+          // Can't attack allies.
           if (this.side == Creature.Side.Player &&
               target.side != Creature.Side.Enemy) continue;
           if (this.side == Creature.Side.Enemy &&
