@@ -1242,7 +1242,8 @@ class Creature {
       const fn = () => {
         if (willBreakEngagement) this.breakEngagement_();
         const target = tile.creatures[0];
-        if (weapon.spell && this.engaged != target && mapController.inCombat) {
+        if (weapon.spell && this.engaged != target && mapController.inCombat &&
+            target != this) {
           this.chargingTarget = target;
           this.chargingWeapon = weapon;
           this.hasAction = false;
