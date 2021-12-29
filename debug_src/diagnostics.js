@@ -68,7 +68,7 @@ function checkCreatureValidity(creature) {
     // Ah, but only do that for stuff with fluff. It's okay for anyone to have
     // unarmed strike, or to equip enemy-only stuff.
     if (allProficiencies.size > 0 && !allProficiencies.has(weapon.type) &&
-        weapon.fluff) {
+        weapon.fluff && !weapon.noProficiency) {
       if (!creature.ring || creature.ring.techType != weapon.type) {
         console.log('--WARNING: ' + creature.name +
                     ' is missing proficiency for ' + weapon.type);

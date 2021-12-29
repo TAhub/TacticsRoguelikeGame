@@ -649,7 +649,7 @@ class Creature {
 
   /** @return {number} */
   get appearanceSizeMult() {
-    return this.species.appearanceSizeMult;
+    return this.species.appearanceSizeMult * (this.boss ? 1.2 : 1);
   }
 
   /** @return {number} */
@@ -2079,6 +2079,15 @@ class Creature {
       stat.number += species.getStatModifierFor(stat.type);
       for (const job of jobs) {
         stat.number += job.getStatModifierFor(stat.type);
+      }
+    }
+
+    // Starting skills.
+    const skills = getA('skills');
+    if (skills.length > 0) {
+      for (const type of skills) {
+        creature.skillPoints -= 1;
+        creature.skills.push(new Skill(type));
       }
     }
 

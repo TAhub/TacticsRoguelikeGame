@@ -1230,7 +1230,7 @@ class GameMap {
    */
   generateEncountersInner_(overworldMapTile, rng, encounterTally) {
     if (overworldMapTile.enemyTemplates.length == 0) return [];
-    const numEncounters = 4; // TODO: get?
+    const numEncounters = overworldMapTile.bossMap ? 3 : 4;
     const encounters = [];
 
     // Pre-filter tiles, to get rid of tiles that wouldn't make good encounters.
