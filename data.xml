@@ -964,9 +964,9 @@
     <entry name="lantern" resistance="15"
       color="rusty"
       fluff="A rusty old lantern, that once was used to burn some odd oil. It is too foul to light up anymore, but the residue inside seems to dampen magic in some way." /> <!-- TODO: sprite (slot filler for an offhand slot?) -->
-    <entry name="silver spectacles" specialAttackPower="30"
+    <entry name="silver spectacles" zones="1" specialAttackPower="10"
       color="silver" slotFillers="face:215"
-      fluff="A seemingly-magical pair of glasses, presumably left behind by someone long dead. Through these lenses, the openings that foes leave stand out in incredibly sharp focus." />
+      fluff="A seemingly-magical pair of glasses, presumably left behind by someone long dead. Through these lenses, you can see where opponents plan to go, a split-second before they start moving." />
     <entry name="bloody thorn" powerVsUninjured="40" dodge="-15"
       fluff="A magical thorn, found safely locked away in a box. Impale the palm of your hand with this and you'll unlock a vengeful power... at the cost of distracting pain." />
     <entry name="wind bangles" moveDistance="1" dodge="7"
