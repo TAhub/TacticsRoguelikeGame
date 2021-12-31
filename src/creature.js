@@ -772,7 +772,7 @@ class Creature {
       this.particleDelayTimer = 0;
       if (this.delayedCachedParticles.length > 0) {
         this.cachedParticles.push(this.delayedCachedParticles.shift());
-        this.particleDelayTimer = 0.35;
+        this.particleDelayTimer = 0.25;
       }
     }
     this.statusParticleTimer += elapsed;
