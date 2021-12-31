@@ -109,8 +109,8 @@ class Weapon extends Equipment {
     let damage = this.generationPointsDamage + this.lifeCost;
     if (this.armorPiercing) damage *= 0.87; // Vs heavy armor
     if (this.armorBlunted) damage *= 1.3; // Vs light armor.
-    if (this.spell) damage *= 1.1; // To make up for it being inconvenient.
-    if (this.magic && !this.spell) damage *= 0.9; // Possible, but non-ideal.
+    if (this.charged) damage *= 1.15; // To make up for it being inconvenient.
+    if (this.magic && !this.charged) damage *= 0.9; // Possible, but non-ideal.
     if (this.selfTargeting) damage *= 1.15;
     if (this.teleports) damage *= 0.8;
     if (this.commandsSummon) damage *= this.usesSpecialPower ? 0.45 : 0.65;
@@ -175,7 +175,7 @@ class Weapon extends Equipment {
   /** @return {number} */
   get minRange() {
     if (this.heals || this.selfTargeting) return 0;
-    return (this.ranged && !this.spell) ? 2 : 1;
+    return (this.ranged && !this.charged && this.usesSpecialPower) ? 2 : 1;
   }
 
   /** @return {number} */
@@ -252,8 +252,8 @@ class Weapon extends Equipment {
   }
 
   /** @return {boolean} */
-  get spell() {
-    return this.getBooleanValue('spell');
+  get charged() {
+    return this.getBooleanValue('charged');
   }
 
   /** @return {boolean} */
@@ -415,6 +415,7 @@ class Weapon extends Equipment {
     if (this.commandsSummon) {
       effects.push('lets your summon move and act this round');
     }
+    if (this.charged) effects.push('takes a turn to charge');
 
     if (this.summon) {
       const summonFluff = this.getValue('summonFluff') || 'summon';

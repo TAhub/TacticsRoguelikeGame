@@ -1243,14 +1243,18 @@ class Creature {
       const fn = () => {
         if (willBreakEngagement) this.breakEngagement_();
         const target = tile.creatures[0];
-        if (weapon.spell && this.engaged != target && mapController.inCombat &&
-            target != this) {
+        if (weapon.charged && this.engaged != target &&
+            mapController.inCombat && target != this) {
           this.chargingTarget = target;
           this.chargingWeapon = weapon;
           this.hasAction = false;
           this.hasMove = false;
-          this.addTextParticle_('CASTING...', 0);
-          audio.play('spell charge', 0, 1);
+          if (weapon.usesSpecialPower) {
+            this.addTextParticle_('CASTING...', 0);
+            audio.play('spell charge', 0, 1);
+          } else {
+            this.addTextParticle_('AIMING...', 0);
+          }
         } else {
           this.attack_(target || tile, weapon, Creature.AttackType.Normal,
               mapController);

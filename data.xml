@@ -838,9 +838,9 @@
     <entry name="cheap shot" astraCost="5" weaponAccuracy="90" scaling="level" bleedingPercent="25" onePerBattle="1" weaponHitsToCrits="25"
       animProjSprite="515" animProjScale="30" animProjSpeed="6" animProjColor="bronze" animProjGlows="1" animStep="15" animSound="swing" animStrikeSound="slash"
       fluff="Slip your fingers into your brass knuckles and make a surprise swing at your opponent." />
-    <entry name="snipe" astraCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1"
-      animProjSpeed="2" animStep="-20" animPostStepPause="33"
-      fluff="Carefully aim your pistol, and try to read your enemy's movements, then take your shot." />
+    <entry name="snipe" astraCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1" charged="1"
+      animProjSpeed="2" animPostStepPause="25"
+      fluff="Carefully aim your pistol, and try to read your enemy's movements for as long as possible, then take a deadly shot." />
     <entry name="brain rattler" astraCost="10" weaponAccuracy="80" scaling="ranged weapon" ranged="1" shakenPercent="35"
       animProjSpeed="2" animPostStepPause="-22"
       fluff="Snap a quick pistol-shot at your opponent's head, attempting to leave them dazed and confused." />
@@ -849,55 +849,55 @@
       fluff="Fire a special bullet that has been coated in incendiary chemicals, meant to light the opponent on fire." />
 
     <!-- spells/special techniques -->
-    <entry name="wild spark" astraCost="5" weaponAccuracy="90" weaponHitsToCrits="50" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" noProficiency="1"
+    <entry name="wild spark" astraCost="5" weaponAccuracy="90" weaponHitsToCrits="50" scaling="level" usesSpecialPower="1" charged="1" magic="1" ranged="1" noProficiency="1"
       animProjSprite="515" animProjScale="30" animProjSpeed="7" animProjColor="arcana" animProjGlows="1" animPostStepPause="15" animSound="spell electric crack" animStrikeSound="spell strike"
       fluff="Build up your astra and simply release it, without attempting to shape a formal spell. Not very strong, but quite simple to use." />
-    <entry name="thorns of madness" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="3" bleedingPercent="25" blindedPercent="25" poisonedPercent="25"
+    <entry name="thorns of madness" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" charged="1" magic="1" ranged="1" numHits="3" bleedingPercent="25" blindedPercent="25" poisonedPercent="25"
       animProjSprite="514" animProjScale="40" animProjSpeed="9" animProjColor="grass wall" animProjGlows="1" animProjDelay="35" animStep="-10" animPostStepPause="33" animSound="spell concussive crack" animStrikeSound="slash"
       fluff="Use your ring as a focus, to fire a barrage of thorns of astra. The thorns pierce the foe as though they were solid, cutting them and then dissolving into a magical poison that blurs vision." />
-    <entry name="arcana arrow" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1"
+    <entry name="arcana arrow" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" charged="1" magic="1" ranged="1"
       animProjSprite="514" animProjScale="80" animProjSpeed="8" animProjColor="arcana" animProjGlows="1" animStep="-10" animPostStepPause="22" animSound="spell concussive crack" animStrikeSound="spell strike"
       fluff="Build up astra and shape it into the rough shape of an arrow, which you can then launch as a projectile. A basic but effective attack spell." />
-    <entry name="mage needles" astraCost="5" weaponAccuracy="95" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="3"
+    <entry name="mage needles" astraCost="5" weaponAccuracy="95" scaling="level" usesSpecialPower="1" charged="1" magic="1" ranged="1" numHits="3"
       animProjSprite="514" animProjScale="50" animProjSpeed="9" animProjColor="arcana" animProjDelay="15" animProjGlows="1" animStep="-10" animPostStepPause="15" animSound="spell concussive crack" animStrikeSound="spell strike"
       fluff="Channel astra into your ring, where it is released as a flurry of magical needles. A reasonably efficient spell, albeit a bit harder to control than an arcana arrow." />
-    <entry name="siphon" astraCost="5" weaponAccuracy="110" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" drains="1"
+    <entry name="siphon" astraCost="5" weaponAccuracy="110" scaling="level" usesSpecialPower="1" charged="1" magic="1" ranged="1" drains="1"
       animProjSprite="514" animProjScale="60" animProjSpeed="8" animProjColor="blood" animProjGlows="1" animStep="-10" animPostStepPause="33" animSound="spell concussive crack" animStrikeSound="slash"
       fluff="Jab your opponent with a thin needle of astra, then drain their blood through the hole. A spell that is subtle and gross in equal measures." />
-    <entry name="phantom flames" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" burningPercent="40" numHits="2"
+    <entry name="phantom flames" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" charged="1" magic="1" ranged="1" burningPercent="40" numHits="2"
       animProjSprite="515" animProjScale="50" animProjSpeed="7" animProjColor="fire" animProjGlows="1" animProjDelay="45" animStep="-10" animPostStepPause="22" animSound="swing" animStrikeSound="explosion"
       fluff="Build up astra, and pattern it with the will to burn others, forming throwable balls of fire-like magic around your hands." />
-    <entry name="ashball" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" blindedPercent="55"
+    <entry name="ashball" astraCost="10" weaponAccuracy="100" scaling="level" usesSpecialPower="1" charged="1" magic="1" ranged="1" blindedPercent="55"
       animProjSprite="515" animProjScale="100" animProjSpeed="7" animProjColor="smoke" animStep="-10" animPostStepPause="22" animSound="spell concussive crack" animStrikeSound="smash"
       fluff="Scoop up some ash or soot, and flood it with a charge of astra. If you get the technique down, it'll stay together for just long enough for it to be fired at an enemy." />
     <entry name="blinding flash" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" magic="1" blindedPercent="95" onePerBattle="1"
       animProjSprite="513" animProjScale="120" animProjSpeed="6" animProjColor="white" animStep="-5" animPostStepPause="22" animSound="spell electric crack" animStrikeSound="scream"
       fluff="Channel some astra into your ring, to make it glow as bright as the sun for a moment. This is faster than most spells, so it is good at surprising the enemy... the first time, at least." />
-    <entry name="mind wrench" astraCost="15" weaponAccuracy="100" scaling="level" usesSpecialPower="1" magic="1" spell="1" ranged="1" confusedPercent="95"
+    <entry name="mind wrench" astraCost="15" weaponAccuracy="100" scaling="level" usesSpecialPower="1" magic="1" charged="1" ranged="1" confusedPercent="95"
       animProjSprite="513" animProjScale="130" animProjSpeed="9" animProjColor="confusion" animStep="-15" animPostStepPause="33" animSound="spell electric crack" animStrikeSound="scream"
       fluff="Fill your ring with an uncomfortable amount of astra. The ring then releases it, as a wave of mind-warping energy." />
-    <entry name="sword wave" astraCost="10" weaponAccuracy="85" scaling="melee weapon" usesSpecialPower="1" spell="1" magic="1" ranged="1"
+    <entry name="sword wave" astraCost="10" weaponAccuracy="85" scaling="melee weapon" usesSpecialPower="1" charged="1" magic="1" ranged="1"
       animProjSprite="513" animProjScale="110" animProjSpeed="3" animProjColor="arcana" animProjGlows="1" animStep="10" animPostStepPause="22" animStrikeSound="spell strike"
       fluff="Build up astra in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." />
-    <entry name="enchanted blade" astraCost="10" weaponAccuracy="105" scaling="melee weapon" usesSpecialPower="1" spell="1"
+    <entry name="enchanted blade" astraCost="10" weaponAccuracy="105" scaling="melee weapon" usesSpecialPower="1" charged="1"
       animProjSpeed="-1" animProjColor="arcana" animProjGlows="1" animStep="10" animStrikeSound="spell strike"
       fluff="Build up astra in your weapon, draw a spell-channel to your enemy, and let the channel guide your weapon with great force and accuracy. A spell designed for mages, to help them when they are caught up in melee combat." />
-    <entry name="illusion fist" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
+    <entry name="illusion fist" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" charged="1" magic="1" ranged="1" shakenPercent="25"
       animProjSprite="515" animProjScale="30" animProjSpeed="11" animProjColor="arcana" animProjGlows="1" animStep="15" animPreStepPause="15" animSound="swing" animStrikeSound="spell strike"
       fluff="Build up some astra in your arm, and then pull it into your hand at the same time as you throw a punch, launching it as a fast-moving projectile. A magical martial arts move, meant to injure and stun." />
-    <entry name="spell barrage" astraCost="20" weaponAccuracy="90" weaponHitsToCrits="15" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" numHits="4"
+    <entry name="spell barrage" astraCost="20" weaponAccuracy="90" weaponHitsToCrits="15" scaling="level" usesSpecialPower="1" charged="1" magic="1" ranged="1" numHits="4"
       animProjSprite="514" animProjScale="90" animProjSpeed="9" animProjColor="arcana" animProjGlows="1" animProjDelay="18" animStep="-20" animPostStepPause="33" animSound="spell concussive crack" animStrikeSound="spell strike"
       fluff="Build up a large amount of astra and release it in a flurry of magical bolts. A powerful but unsubtle spell." />
-    <entry name="miasma bolt" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" poisonedPercent="50"
+    <entry name="miasma bolt" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" charged="1" magic="1" ranged="1" poisonedPercent="50"
       animProjSprite="514" animProjScale="90" animProjSpeed="7" animProjColor="poison" animProjGlows="1" animStep="-10" animPostStepPause="22" animSound="spell concussive crack" animStrikeSound="poison"
       fluff="Infuse your astra with a toxic quality, and fire it out as a deadly magical bolt." />
     <entry name="poison powder" astraCost="5" weaponAccuracy="100" scaling="level" usesSpecialPower="1" poisonedPercent="70" blindedPercent="30"
       animProjSprite="513" animProjScale="120" animProjSpeed="4" animProjColor="poison" animStep="10" animPreStepPause="15" animSound="swing" animStrikeSound="poison"
       fluff="Blow a handful of home-made poisonous powder into an opponent's face, poisoning and blinding them." />
-    <entry name="agony release" astraCost="10" lifeCostPercent="20" weaponAccuracy="100" weaponHitsToCrits="25" scaling="level" usesSpecialPower="1" spell="1" magic="1" ranged="1" shakenPercent="25"
+    <entry name="agony release" astraCost="10" lifeCostPercent="20" weaponAccuracy="100" weaponHitsToCrits="25" scaling="level" usesSpecialPower="1" charged="1" magic="1" ranged="1" shakenPercent="25"
       animProjSprite="514" animProjScale="70" animProjSpeed="8" animProjColor="blood" animProjGlows="1" animStep="-10" animPostStepPause="33" animSound="scream" animStrikeSound="spell strike"
       fluff="Stab yourself with a knife, and use the pain reflex to shape a wicked spell. An unusual but surprisingly effective form of magic." />
-    <entry name="mend" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" spell="1" heals="1" scaling="level" usesSpecialPower="1"
+    <entry name="mend" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" charged="1" heals="1" scaling="level" usesSpecialPower="1"
       animProjSprite="513" animProjScale="100" animProjSpeed="6" animProjColor="blood" animProjGlows="1" animStep="10" animPostStepPause="22" animSound="spell concussive crack" animStrikeSound="regen"
       fluff="Build up astra and pattern it with the will and instructions to heal others. An effective use of magic, but watch out for enemies attempting to intercept your spells!" />
     <entry name="sacrifice" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" heals="1" scaling="level" usesSpecialPower="1" lifeCostPercent="5" targetRingUser="wedding ring"
