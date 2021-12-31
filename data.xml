@@ -787,7 +787,7 @@
       <variety name="mace" tier="1" weaponAccuracy="85" armorPiercing="1"
         color="iron" slotFillers="weaponHand:607"
         fluff="A heavy iron mace, meant to smash armored enemies. Not the most subtle of weapons." />
-      <variety name="spiked mace" tier="2" weaponAccuracy="80" weaponHitsToCrits="10" armorPiercing="1"
+      <variety name="spiked mace" tier="2" weaponAccuracy="80" weaponHitsToCrits="10" armorPiercing="1" bleedingPercent="10"
         color="steel" slotFillers="weaponHand:608"
         fluff="A cruel mace that has been modified with metal spikes. It's a little intimidating, really." />
       <variety name="bronze orbital" tier="2" weaponAccuracy="70" armorPiercing="1" zones="1"
