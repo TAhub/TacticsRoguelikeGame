@@ -62,14 +62,22 @@ class Weapon extends Equipment {
         (this.weaponAccuracy - 100 +
          this.weaponHitsToCrits * mechHitsToCritsValue);
     }
+    if (this.baseWeapon) {
+      // Take on some of the bonus source value of your base weapon, but a
+      // reduced amount. More if the base weapon is a downside-weapon.
+      const bsv = this.baseWeapon.getBonusSourceValue();
+      effectiveBonusSourceValue += bsv * (bsv < 0 ? 0.75 : 0.5);
+    }
     // Longer range is useful, but it's less useful if this is a charging attack
     // since they'll just walk up to you while you are charging anyway.
     effectiveBonusSourceValue += this.weaponRangeBonus * (this.charged ? 6 : 9);
     // BSV has a slightly bigger effect on weapon damage, since high-BSV weapons
-    // have the advantage that you can use use a technique and ignore your
-    // weapon's actual base damage. So low-BSV weapons can get the gimmick of
-    // actually being good at basic attacks.
-    effectiveBonusSourceValue += this.getBonusSourceValue() * 1.2;
+    // have the advantage that you can use use a spell and ignore your weapon's
+    // actual base damage. So low-BSV weapons can get the gimmick of actually
+    // being good at basic attacks. This multiplier is lower for downsides,
+    // since downside-weapons are going to be better at weapon techs.
+    const bsv = this.getBonusSourceValue()
+    effectiveBonusSourceValue += bsv * (bsv < 0 ? 1 : 1.2);
     // A minor BSV refund for being a WEAPON that gives zoning attacks, since
     // otherwise the ideal way to get zoning attacks would be to just pick up
     // the skill, and non-spear weapons being the perfect weapons for zoning
