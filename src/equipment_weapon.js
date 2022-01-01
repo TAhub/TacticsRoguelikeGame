@@ -62,6 +62,9 @@ class Weapon extends Equipment {
         (this.weaponAccuracy - 100 +
          this.weaponHitsToCrits * mechHitsToCritsValue);
     }
+    // Longer range is useful, but it's less useful if this is a charging attack
+    // since they'll just walk up to you while you are charging anyway.
+    effectiveBonusSourceValue += this.weaponRangeBonus * (this.charged ? 6 : 9);
     // BSV has a slightly bigger effect on weapon damage, since high-BSV weapons
     // have the advantage that you can use use a technique and ignore your
     // weapon's actual base damage. So low-BSV weapons can get the gimmick of
@@ -179,9 +182,17 @@ class Weapon extends Equipment {
   }
 
   /** @return {number} */
+  get weaponRangeBonus() {
+    if (!this.ranged) return 0;
+    let weaponRangeBonus = this.getNumberValue('weaponRangeBonus');
+    if (this.baseWeapon) weaponRangeBonus += this.baseWeapon.weaponRangeBonus;
+    return weaponRangeBonus;
+  }
+
+  /** @return {number} */
   get maxRange() {
     if (this.selfTargeting) return 0;
-    return this.ranged ? 3 : 1;
+    return this.ranged ? (3 + this.weaponRangeBonus) : 1;
   }
 
   /** @return {boolean} */

@@ -268,7 +268,7 @@
       willpowerModifier="2" resistance="20" attackPower="5" specialPower="5" armorProfiencyLevel="1" proficiencies="dagger,spear,pistol,slam,arcana arrow,snipe,first aid"
       fluff="Survivors are made, not trained; they pick up a little bit of everything, in their attempts to learn how to live through dangerous situations." />
     <entry name="gunner" reqSpecies="karhun,firin,skuri"
-      agilityModifier="1" physiqueModifier="1" attackPower="15" accuracy="15" armorProfiencyLevel="1" proficiencies="pistol,snipe,inferno shot,brain rattler,spell barrage"
+      agilityModifier="1" physiqueModifier="1" attackPower="15" accuracy="15" armorProfiencyLevel="1" proficiencies="pistol,longbarrel,snipe,inferno shot,brain rattler,spell barrage"
       fluff="Gunners learn how to use the pistol, a powerful weapon for the new age. They aren't great at tying enemies down, but their offensive capability is no joke." />
 
     <!-- enemy-only jobs -->
@@ -411,17 +411,17 @@
     <entry name="walking bonsai" species="walking bonsai" jobs="tough monster" level="24" weapon="tackle:2" techniques="eye gouge" />
 
     <!-- tether assembly enemies (levels 31-36) -->
-    <entry name="tethered warrior" species="karhun" jobs="warrior,tethered" level="28" weapon="sword:2" armors="helmet:2,breastplate:2,greaves:2" techniques="blitz strike,typhoon slash" accessory="shield"
+    <entry name="tethered warrior" species="karhun" jobs="warrior,tethered" level="28" weapon0="sword:2" weapon1="spear:2" armors="helmet:2,breastplate:2,greaves:2" techniques="blitz strike,typhoon slash" accessory="shield"
       hairstyle="short,bald" />
-    <entry name="tethered rogue" species="skuri" jobs="rogue,tethered" level="28" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" techniques="crimson fangs,venom sting" accessory="wind bangles"
+    <entry name="tethered rogue" species="skuri" jobs="rogue,tethered" level="28" weapon0="dagger:2" weapon1="sword:2" armors="cap:2,jerkin:2,leggings:2" techniques="crimson fangs,venom sting" accessory="wind bangles"
       hairstyle="short,medium" />
-    <entry name="tethered mage" species="firin" jobs="mage,tethered" level="28" weapon="spear:2" armors0="hat:2,shirt:2,pants:2" armors1="hat:2,shirt:2,skirt:2" techniques="arcana arrow,phantom flames" accessory="third eye"
+    <entry name="tethered mage" species="firin" jobs="mage,tethered" level="28" weapon0="spear:2" weapon1="mace:2" armors0="hat:2,shirt:2,pants:2" armors1="hat:2,shirt:2,skirt:2" techniques="arcana arrow,phantom flames" accessory="third eye"
       hairstyle="medium,ponytail" />
     <entry name="tethered mechanist" species="skuri" jobs="mechanist,tethered" level="30" weapon="mace:2" armors="cap:2,jerkin:2,leggings:2" techniques="saw crawler,slam" accessory="lantern"
       hairstyle="medium,long" />
-    <entry name="tethered gunner" species="firin" jobs="gunner,tethered" level="30" weapon="pistol:2" armors="cap:2,jerkin:2,leggings:2" techniques="snipe,brain rattler" accessory="oilskin cloak"
+    <entry name="tethered gunner" species="firin" jobs="gunner,tethered" level="30" weapon0="longbarrel:1" weapon1="pistol:2" armors="cap:2,jerkin:2,leggings:2" techniques="snipe,brain rattler" accessory="oilskin cloak"
       hairstyle="short,ponytail" />
-    <entry name="tethered healer" species="karhun" jobs="healer,tethered" level="30" weapon="mace:2" armors="hat:2,shirt:2,pants:2" techniques="first aid,siphon" accessory="fur cloak"
+    <entry name="tethered healer" species="karhun" jobs="healer,tethered" level="30" weapon0="mace:2" weapon1="dagger:2" armors="hat:2,shirt:2,pants:2" techniques="first aid,siphon" accessory="fur cloak"
       hairstyle="short,ponytail" />
     <entry name="reinforced gun turret" species="turret" jobs="ranged monster,tough monster" level="31" weapon="automata gun:2" techniques="inferno shot" />
     <entry name="gold slime" species="slime" jobs="magic monster,tough monster" level="33" weapon="tackle:2" techniques="arcana arrow,spell barrage,gold splitling"
@@ -779,6 +779,16 @@
         color="gold" slotFillers="weaponHand:602"
         fluff="A beautiful pistol with a casing made of a gold alloy, enchanted to fire bullets that twist in midair to seek foes. Left behind by a Skuri noble who got tethered." />
     </entry> <!-- pistol -->
+    <entry name="longbarrel"
+      animProjSprite="515" animProjScale="20" animProjSpeed="10" animProjColor="bullet" animProjGlows="1" animStep="-20" animPostStepPause="60" animSound="gun" animStrikeSound="slash">
+      <!-- TODO: sprite -->
+      <variety name="unfinished longbarrel" tier="1" weaponAccuracy="85" ranged="1" weaponRangeBonus="1" moveDistance="-1" dodge="-5"
+        color="iron"
+        fluff="This long-barreled gun is unfinished, and it's long and unwieldly, but it's still an effective weapon, capable of striking at a distance." />
+      <variety name="longbarrel" tier="2" weaponAccuracy="90" ranged="1" weaponRangeBonus="2" moveDistance="-1" dodge="-10"
+        color="steel"
+        fluff="A well-machined gun, with a long and heavy barrel that allows for the user to take accurate shots at an unusually long range. Sadly, that same design makes it hard to run while holding." />
+    </entry> <!-- longbarrel -->
     <entry name="mace"
       animProjSprite="513" animProjScale="130" animProjSpeed="4" animStep="10" animPostStepPause="22" animSound="swing" animStrikeSound="smash">
       <variety name="antique mace" tier="0" weaponAccuracy="80" armorPiercing="1"
@@ -838,7 +848,7 @@
     <entry name="cheap shot" astraCost="5" weaponAccuracy="90" scaling="level" bleedingPercent="25" onePerBattle="1" weaponHitsToCrits="25"
       animProjSprite="515" animProjScale="30" animProjSpeed="6" animProjColor="bronze" animProjGlows="1" animStep="15" animSound="swing" animStrikeSound="slash"
       fluff="Slip your fingers into your brass knuckles and make a surprise swing at your opponent." />
-    <entry name="snipe" astraCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1" charged="1"
+    <entry name="snipe" astraCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1" charged="1" weaponRangeBonus="1"
       animProjSpeed="2" animPostStepPause="25"
       fluff="Carefully aim your pistol, and try to read your enemy's movements for as long as possible, then take a deadly shot." />
     <entry name="brain rattler" astraCost="10" weaponAccuracy="80" scaling="ranged weapon" ranged="1" shakenPercent="35"
@@ -1147,10 +1157,10 @@
     <!-- regionId 2 (t1): caverns -->
     <entry name="burrow" regionId="2" condition="key map branch"
       tileset="burrow" securityLevelTickets="2,3" enemyTemplates="gun turret,saw crawler,paranoid tunneler,paranoid rogue,paranoid mage" bossTemplate="Asrami"
-      loot="(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot,(W)coordinated attack,(H)1,(H)1,(I)4" />
+      loot="(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot,(W)coordinated attack,(H)1,(H)1,(I)4,(W)pistol:1" />
     <entry name="workshop" offshootFrom="burrow"
       tileset="workshop" enemyTemplates="gun turret,saw crawler,paranoid mechanist"
-      loot="(W)gun turret,(W)pistol:1" />
+      loot="(W)gun turret,(W)longbarrel:0" />
     <entry name="caverns entrance" regionId="2" condition="first map"
       tileset="stone tunnels" enemyTemplates="skull rat,giant turtle" npc="Ilretaami"
       loot="(A)jerkin:1,(C)shield,(W)brain rattler,(H)1" />
@@ -1175,7 +1185,7 @@
       loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade,(H)2,(H)2" />
     <entry name="groundkeepers hut" offshootFrom="hedge maze"
       tileset="house" npc="Gulas"
-      loot="(R)thorny band,(I)4,(I)1" />
+      loot="(R)thorny band,(I)4,(I)1,(W)longbarrel:1" />
     <entry name="twisted wasteland" regionId="4"
       tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar" bossTemplate="king boar"
       loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(H)2" />
