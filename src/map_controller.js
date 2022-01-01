@@ -606,10 +606,10 @@ class MapController {
   /**
    * @param {!THREE.Scene} scene
    * @param {!THREE.PerspectiveCamera} camera
+   * @param {number} cX
+   * @param {number} cY
    */
-  draw(scene, camera) {
-    const cX = this.active.cX;
-    const cY = this.active.cY;
+  draw(scene, camera, cX, cY) {
     const cZ = 0.25;
     const cameraDistance = 2.5;
     camera.position.set(

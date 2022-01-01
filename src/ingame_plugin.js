@@ -858,7 +858,29 @@ class IngamePlugin extends GamePlugin {
    * @param {!THREE.PerspectiveCamera} camera
    */
   draw3D(scene, camera) {
-    this.mapController.draw(scene, camera);
+    const mapC = this.mapController;
+    const active = mapC.active;
+    let cX = active.cX;
+    let cY = active.cY;
+
+    // When targeting an attack, center the camera on the targets.
+    if (this.selectedWeapon) {
+      let totalX = 0;
+      let totalY = 0;
+      let div = 0;
+      const attackInfos = active.getAttacks(mapC, this.selectedWeapon);
+      for (const attackInfo of attackInfos.values()) {
+        totalX += attackInfo.x;
+        totalY += attackInfo.y;
+        div += 1;
+      }
+      if (div > 0) {
+        cX = 0.5 + (totalX / div);
+        cY = 0.5 + (totalY / div);
+      }
+    }
+
+    mapC.draw(scene, camera, cX, cY);
   }
 
   /** @private */
