@@ -209,16 +209,16 @@ class IngamePlugin extends GamePlugin {
           {clickFn, tooltip, selected: this.techMode}));
     }
     if (!this.techMode) {
-      if (active.secondWeapon) {
+      if (active.secondWeapon && (active.hasMove || !mapC.inCombat)) {
         const clickFn = () => {
           [active.weapon, active.secondWeapon] =
               [active.secondWeapon, active.weapon];
           this.equipCleanUp_(active);
           this.menuController.clear();
-          active.hasMove = false;
+          if (mapC.inCombat) active.hasMove = false;
         };
         const tooltip = [
-          'Switch to ' + active.secondWeapon.name + ' by ending your move?',
+          'Switch to ' + active.secondWeapon.name + ' by using your move?',
         ].concat(active.secondWeapon.getDescription(active));
         specialActions.push(new MenuTile('Switch Weapons', {clickFn, tooltip}));
       }
