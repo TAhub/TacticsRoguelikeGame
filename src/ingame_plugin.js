@@ -191,6 +191,53 @@ class IngamePlugin extends GamePlugin {
       this.makeLevelUpUI_(topH);
     }
 
+    // Get the special actions, which are actions that show up after the attacks
+    // and techs in the bar, but before end-bar stuff like "undo".
+    /** @type {!Array.<!MenuTile>} */
+    const specialActions = [];
+    if (active.secondWeapon) {
+      const clickFn = () => {
+        [active.weapon, active.secondWeapon] =
+            [active.secondWeapon, active.weapon];
+        this.equipCleanUp_(active);
+        this.menuController.clear();
+        active.hasMove = false;
+      };
+      const tooltip = [
+        'Switch to ' + active.secondWeapon.name + ' by ending your move?',
+      ].concat(active.secondWeapon.getDescription(active));
+      specialActions.push(new MenuTile('Switch Weapons', {clickFn, tooltip}));
+    }
+    // Summon special actions.
+    const summon = active.currentSummon;
+    if (summon && !summon.dead) {
+      // Command summon.
+      const commandClickFn = () => {
+        summon.summonAwake = true;
+        active.hasAction = false;
+        active.hasMove = false;
+        this.menuController.clear();
+      };
+      const commandTooltip = [
+        'Give your summon a command, ' +
+        'letting it move and attack this round.',
+      ];
+      specialActions.push(new MenuTile('Command Summon',
+          {clickFn: commandClickFn, tooltip: commandTooltip}));
+
+      // Dismiss summon.
+      const dismissClickFn = () => {
+        summon.life = 0;
+        this.menuController.clear();
+      };
+      const dismissTooltip = [
+        'Deactivate your current summon, ' +
+        'if you want to summon something new.',
+      ];
+      specialActions.push(new MenuTile('Dismiss Summon',
+          {clickFn: dismissClickFn, tooltip: dismissTooltip}));
+    }
+
     // Make bottom bar.
     const bottomBarSlots = 10; // TODO: const?
     for (let i = 0; i < bottomBarSlots; i++) {
@@ -302,43 +349,8 @@ class IngamePlugin extends GamePlugin {
         } else {
           const usableWeapons = active.usableWeapons;
           const weapon = usableWeapons[i];
-          const specialActionI = i - usableWeapons.length;
-          if (specialActionI >= 0) {
-            let clickFn = () => {};
-            const tooltip = [];
-            let name = '';
-
-            // Summon special actions.
-            const summon = active.currentSummon;
-            if (summon && !summon.dead) {
-              switch (specialActionI) {
-                case 0:
-                  clickFn = () => {
-                    summon.summonAwake = true;
-                    active.hasAction = false;
-                    active.hasMove = false;
-                    this.menuController.clear();
-                  };
-                  tooltip.push('Give your summon a command, ' +
-                               'letting it move and attack this round.');
-                  name = 'Command Summon';
-                  break;
-                case 1:
-                  clickFn = () => {
-                    summon.life = 0;
-                    this.menuController.clear();
-                  };
-                  tooltip.push('Deactivate your current summon, ' +
-                               'if you want to summon something new.');
-                  name = 'Dismiss Summon';
-                  break;
-              }
-            }
-
-            if (name) {
-              slot.attachTile(new MenuTile(name, {clickFn, tooltip}));
-            }
-          }
+          const specialAction = specialActions[i - usableWeapons.length];
+          if (specialAction) slot.attachTile(specialAction);
           if (weapon && (mapC.inCombat || !weapon.helpful || weapon.heals)) {
             // Don't use non-healing helpful actions out of combat. E.g. don't
             // pre-buff before battle.
@@ -551,6 +563,18 @@ class IngamePlugin extends GamePlugin {
             creature.techTypes = creature.techTypes.filter((t) => t);
             this.menuController.clear();
             return true;
+          } else if (split[1] == 'sWeapon') {
+            if (!(item.contents instanceof Weapon)) return false;
+            if (item.contents.astraCost > 0) return false;
+            if (creature.secondWeapon) {
+              setFn(new Item(creature.secondWeapon));
+            } else {
+              setFn(null);
+            }
+            creature.secondWeapon = item.contents;
+            // No need to clean up, because the second weapon is hidden.
+            this.menuController.clear();
+            return true;
           } else if (split[1] == 'weapon') {
             if (!(item.contents instanceof Weapon)) return false;
             if (item.contents.astraCost > 0) return false;
@@ -653,9 +677,10 @@ class IngamePlugin extends GamePlugin {
     };
 
     // First column (gear).
-    addEquipmentSlot(creature.weapon, 'eqp-weapon', 'Weapon', (g) => {
-      creature.weapon = g;
-    });
+    addEquipmentSlot(creature.weapon, 'eqp-weapon', 'Weapon',
+        (g) => creature.weapon = g);
+    addEquipmentSlot(creature.secondWeapon, 'eqp-sWeapon', 'Backup Weapon',
+        (g) => creature.secondWeapon = g);
     for (const slot of Armor.allSlots) {
       const current = creature.armors.filter((a) => a.slot == slot)[0];
       const defaultText = capitalizeFirstLetterOfEachWord(slot) + ' Armor';
@@ -664,9 +689,8 @@ class IngamePlugin extends GamePlugin {
         if (g) creature.armors.push(g);
       });
     }
-    addEquipmentSlot(creature.accessory, 'eqp-accessory', 'Accessory', (g) => {
-      creature.accessory = g;
-    });
+    addEquipmentSlot(creature.accessory, 'eqp-accessory', 'Accessory',
+        (g) => creature.accessory = g);
 
     // Reset slot info for the second column.
     x += 1.5 * s;

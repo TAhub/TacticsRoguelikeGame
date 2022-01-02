@@ -89,6 +89,8 @@ class Creature {
     this.armors = [];
     /** @type {?Weapon} */
     this.weapon;
+    /** @type {?Weapon} */
+    this.secondWeapon;
     /** @type {?Accessory} */
     this.accessory;
     /** @type {?Ring} */
@@ -2315,6 +2317,9 @@ class Creature {
       if (save['weapon']) {
         creature.weapon = new Weapon(save['weapon']);
       }
+      if (save['secondWeapon']) {
+        creature.secondWeapon = new Weapon(save['secondWeapon']);
+      }
       if (save['accessory']) {
         creature.accessory = new Accessory(save['accessory']);
       }
@@ -2379,6 +2384,9 @@ class Creature {
       }
       if (this.weapon) {
         save['weapon'] = this.weapon.saveString;
+      }
+      if (this.secondWeapon) {
+        save['secondWeapon'] = this.secondWeapon.saveString;
       }
       if (this.accessory) {
         save['accessory'] = this.accessory.saveString;

@@ -76,7 +76,7 @@ class Weapon extends Equipment {
     // actual base damage. So low-BSV weapons can get the gimmick of actually
     // being good at basic attacks. This multiplier is lower for downsides,
     // since downside-weapons are going to be better at weapon techs.
-    const bsv = this.getBonusSourceValue()
+    const bsv = this.getBonusSourceValue();
     effectiveBonusSourceValue += bsv * (bsv < 0 ? 1 : 1.2);
     // A minor BSV refund for being a WEAPON that gives zoning attacks, since
     // otherwise the ideal way to get zoning attacks would be to just pick up
