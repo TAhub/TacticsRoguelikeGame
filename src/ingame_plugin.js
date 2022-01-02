@@ -30,6 +30,7 @@ class IngamePlugin extends GamePlugin {
     this.turnStartY = 0;
     /** @type {?number} */
     this.selectedWeaponI;
+    this.techMode = false;
 
     this.maybeTriggerEncounters_();
   }
@@ -81,6 +82,7 @@ class IngamePlugin extends GamePlugin {
   /** @private */
   endTurn_() {
     this.selectedWeaponI = null;
+    this.techMode = false;
 
     const mapController = this.mapController;
     this.checkBattleOver_();
@@ -163,6 +165,7 @@ class IngamePlugin extends GamePlugin {
         if (player.side != Creature.Side.Player) return;
         this.inventoryPlayer = this.inventoryPlayer == player ? null : player;
         this.selectedWeaponI = null;
+        this.techMode = false;
         this.menuController.clear();
       };
       const attachFn = mapC.inCombat ? undefined : (slot) => {
@@ -195,60 +198,70 @@ class IngamePlugin extends GamePlugin {
     // and techs in the bar, but before end-bar stuff like "undo".
     /** @type {!Array.<!MenuTile>} */
     const specialActions = [];
-    if (active.secondWeapon) {
+    if (active.techTypes.length > 0 || active.ring) {
       const clickFn = () => {
-        [active.weapon, active.secondWeapon] =
-            [active.secondWeapon, active.weapon];
-        this.equipCleanUp_(active);
+        this.techMode = !this.techMode;
+        this.selectedWeaponI = null;
         this.menuController.clear();
-        active.hasMove = false;
       };
-      const tooltip = [
-        'Switch to ' + active.secondWeapon.name + ' by ending your move?',
-      ].concat(active.secondWeapon.getDescription(active));
-      specialActions.push(new MenuTile('Switch Weapons', {clickFn, tooltip}));
+      const tooltip = ['Use techniques, or normal attacks?'];
+      specialActions.push(new MenuTile('Techniques',
+          {clickFn, tooltip, selected: this.techMode}));
     }
-    // Summon special actions.
-    const summon = active.currentSummon;
-    if (summon && !summon.dead) {
-      // Command summon.
-      const commandClickFn = () => {
-        summon.summonAwake = true;
-        active.hasAction = false;
-        active.hasMove = false;
-        this.menuController.clear();
-      };
-      const commandTooltip = [
-        'Give your summon a command, ' +
-        'letting it move and attack this round.',
-      ];
-      specialActions.push(new MenuTile('Command Summon',
-          {clickFn: commandClickFn, tooltip: commandTooltip}));
+    if (!this.techMode) {
+      if (active.secondWeapon) {
+        const clickFn = () => {
+          [active.weapon, active.secondWeapon] =
+              [active.secondWeapon, active.weapon];
+          this.equipCleanUp_(active);
+          this.menuController.clear();
+          active.hasMove = false;
+        };
+        const tooltip = [
+          'Switch to ' + active.secondWeapon.name + ' by ending your move?',
+        ].concat(active.secondWeapon.getDescription(active));
+        specialActions.push(new MenuTile('Switch Weapons', {clickFn, tooltip}));
+      }
+      const summon = active.currentSummon;
+      if (summon && !summon.dead) {
+        // Command summon.
+        const commandClickFn = () => {
+          summon.summonAwake = true;
+          active.hasAction = false;
+          active.hasMove = false;
+          this.menuController.clear();
+        };
+        const commandTooltip = [
+          'Give your summon a command, ' +
+          'letting it move and attack this round.',
+        ];
+        specialActions.push(new MenuTile('Command Summon',
+            {clickFn: commandClickFn, tooltip: commandTooltip}));
 
-      // Dismiss summon.
-      const dismissClickFn = () => {
-        summon.life = 0;
-        this.menuController.clear();
-      };
-      const dismissTooltip = [
-        'Deactivate your current summon, ' +
-        'if you want to summon something new.',
-      ];
-      specialActions.push(new MenuTile('Dismiss Summon',
-          {clickFn: dismissClickFn, tooltip: dismissTooltip}));
+        // Dismiss summon.
+        const dismissClickFn = () => {
+          summon.life = 0;
+          this.menuController.clear();
+        };
+        const dismissTooltip = [
+          'Deactivate your current summon, ' +
+          'if you want to summon something new.',
+        ];
+        specialActions.push(new MenuTile('Dismiss Summon',
+            {clickFn: dismissClickFn, tooltip: dismissTooltip}));
+      }
     }
 
     // Make bottom bar.
     const bottomBarSlots = 10; // TODO: const?
-    for (let i = 0; i < bottomBarSlots; i++) {
+    let displayI = 0;
+    for (let i = 0; displayI < bottomBarSlots; i++) {
       const s = gfxScreenWidth / bottomBarSlots;
-      const x = s * i;
+      const x = s * displayI;
       const y = gfxScreenHeight - s;
-      // TODO: maybe slots that represent items should be
-      // draggable...? how would that work?
       const slot = new MenuTileSlot(x, y, s, s, {});
       if (active.side == Creature.Side.Player) {
-        if (i == bottomBarSlots - 2) {
+        if (displayI == bottomBarSlots - 2) {
           // Undo move button.
           const x = this.turnStartX;
           const y = this.turnStartY;
@@ -256,6 +269,7 @@ class IngamePlugin extends GamePlugin {
             const clickFn = () => {
               if (mapC.animating) return;
               this.selectedWeaponI = null;
+              this.techMode = false;
               active.hasMove = true;
               const moves = active.getMoves(mapC);
               active.hasMove = false;
@@ -275,7 +289,7 @@ class IngamePlugin extends GamePlugin {
             };
             slot.attachTile(new MenuTile('Undo Move', {clickFn}));
           }
-        } else if (i == bottomBarSlots - 1) {
+        } else if (displayI == bottomBarSlots - 1) {
           const tile = mapC.tileAt(active.x, active.y);
           const item = tile ? tile.item : null;
           if (mapC.inCombat) {
@@ -350,10 +364,14 @@ class IngamePlugin extends GamePlugin {
           const usableWeapons = active.usableWeapons;
           const weapon = usableWeapons[i];
           const specialAction = specialActions[i - usableWeapons.length];
-          if (specialAction) slot.attachTile(specialAction);
-          if (weapon && (mapC.inCombat || !weapon.helpful || weapon.heals)) {
-            // Don't use non-healing helpful actions out of combat. E.g. don't
-            // pre-buff before battle.
+          if (specialAction) {
+            slot.attachTile(specialAction);
+          } else if (weapon) {
+            const isTech = weapon.astraCost > 0;
+            if (isTech != this.techMode) {
+              // Don't just not display the action; skip over it entirely.
+              continue;
+            }
             const selected = this.selectedWeaponI == i;
             const clickFn = () => {
               if (mapC.animating) return;
@@ -381,6 +399,7 @@ class IngamePlugin extends GamePlugin {
         }
       }
       this.menuController.slots.push(slot);
+      displayI += 1;
     }
   }
 
@@ -1077,6 +1096,7 @@ class IngamePlugin extends GamePlugin {
                 this.mapController.cleanCreatures();
               }
               this.selectedWeaponI = null;
+              this.techMode = false;
               this.menuController.clear();
             });
           }
