@@ -120,6 +120,7 @@ class IngamePlugin extends GamePlugin {
   makeUI_() {
     const mapC = this.mapController;
     const active = mapC.active;
+    if (active.animating) return;
 
     // Make top bar.
     let topBarCreatures = [];
