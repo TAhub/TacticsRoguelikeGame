@@ -826,42 +826,43 @@ class IngamePlugin extends GamePlugin {
       const weapon = this.selectedWeapon;
       const tile = mapC.tileAt(this.cursorX, this.cursorY);
       if (!tile) return;
-      const target = tile.creatures[0];
-      if (!target) return;
       const attacks = active.getAttacks(mapC, weapon);
       const attack = attacks.get(toI(this.cursorX, this.cursorY));
       if (!attack) return;
       willBreakEngagement = attack.willBreakEngagement;
-      const est = active.getAttackEstimate(
-          target, weapon, Creature.HitResult.Hit, Creature.AttackType.Normal);
+      const target = tile.creatures[0];
+      if (target) {
+        const est = active.getAttackEstimate(
+            target, weapon, Creature.HitResult.Hit, Creature.AttackType.Normal);
 
-      // Add the effects line.
-      const effects = [];
-      effects.push(Math.floor(est.mult * weapon.damage / 100) +
-                   ' ' + weapon.damageTerm);
-      for (const status of Weapon.allStatuses) {
-        const effect = weapon.getStatus(status);
-        if (!effect) continue;
-        effects.push(Math.floor(est.mult * effect / 100) + ' ' + status);
+        // Add the effects line.
+        const effects = [];
+        effects.push(Math.floor(est.mult * weapon.damage / 100) +
+                     ' ' + weapon.damageTerm);
+        for (const status of Weapon.allStatuses) {
+          const effect = weapon.getStatus(status);
+          if (!effect) continue;
+          effects.push(Math.floor(est.mult * effect / 100) + ' ' + status);
+        }
+        if (weapon.engagementMode) effects.push('engages');
+        tooltip.push(effects.join(', '));
+
+        // Add the chances line.
+        const chances = [];
+        /**
+         * @param {!Creature.HitResult} hitResult
+         * @param {string} suffix
+         */
+        const addChance = (hitResult, suffix) => {
+          const chance = est.chances.get(hitResult);
+          if (!chance) return;
+          chances.push(chance + suffix);
+        };
+        addChance(Creature.HitResult.Graze, '% graze');
+        addChance(Creature.HitResult.Hit, '% hit');
+        addChance(Creature.HitResult.Crit, '% crit');
+        tooltip.push(chances.join(', '));
       }
-      if (weapon.engagementMode) effects.push('engages');
-      tooltip.push(effects.join(', '));
-
-      // Add the chances line.
-      const chances = [];
-      /**
-       * @param {!Creature.HitResult} hitResult
-       * @param {string} suffix
-       */
-      const addChance = (hitResult, suffix) => {
-        const chance = est.chances.get(hitResult);
-        if (!chance) return;
-        chances.push(chance + suffix);
-      };
-      addChance(Creature.HitResult.Graze, '% graze');
-      addChance(Creature.HitResult.Hit, '% hit');
-      addChance(Creature.HitResult.Crit, '% crit');
-      tooltip.push(chances.join(', '));
     } else if (mapC.inCombat) {
       const moves = active.getMoves(mapC);
       const move = moves.get(toI(this.cursorX, this.cursorY));
@@ -869,7 +870,10 @@ class IngamePlugin extends GamePlugin {
       willBreakEngagement = move.willBreakEngagement;
       numZoningAttacks = move.zoningAttacks.size;
 
-      // TODO: any move tooltip info?
+      const tile = mapC.tileAt(this.cursorX, this.cursorY);
+      if (tile) {
+        tooltip.push('Elevation: ' + tile.th);
+      }
     }
     if (willBreakEngagement) {
       tooltip.push('WARNING: this will break your engagement, and give your ' +
