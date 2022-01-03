@@ -691,15 +691,16 @@ class Creature {
   makeAppearance() {
     const tallFrame = this.weapon && this.weapon.slotFillers.size > 0;
     // TODO: if you have a tall hat, turn on tallFrame also?
+    const widthMult = tallFrame ? 1.5 : 1;
     const heightMult = tallFrame ? 1.5 : 1;
     const buffer = gfx.makeBuffer();
-    buffer.width = gfxTileSize;
+    buffer.width = widthMult * gfxTileSize;
     buffer.height = heightMult * gfxTileSize;
     const ctx = gfx.getContext(buffer);
     this.draw(ctx);
     if (!this.spriteObject) this.spriteObject = new SpriteObject();
     const s = this.s * this.appearanceSizeMult;
-    this.spriteObject.setBuffer(buffer, s, heightMult * s);
+    this.spriteObject.setBuffer(buffer, widthMult * s, heightMult * s);
   }
 
   /**

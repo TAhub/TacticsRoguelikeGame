@@ -502,6 +502,7 @@
       <layer spriteM="300" spriteF="301" color="skinColor" showAllStatuses="1" /> <!-- body -->
       <layer spriteM="304" spriteF="305" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
       <layer spriteM="308" spriteF="309" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
+      <layer spriteM="314" spriteF="315" armorLayerId="bandit" showObjectStatuses="1" /> <!-- bandit armor layer -->
       <layer spriteM="310" spriteF="311" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (front) armor layer -->
       <layer spriteM="302" spriteF="303" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
       <layer spriteM="306" spriteF="307" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
@@ -526,6 +527,7 @@
       <layer spriteM="100" spriteF="101" color="skinColor" showAllStatuses="1" /> <!-- body -->
       <layer spriteM="105" spriteF="106" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
       <layer spriteM="109" spriteF="110" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
+      <layer spriteM="115" spriteF="116" armorLayerId="bandit" showObjectStatuses="1" /> <!-- bandit armor layer -->
       <layer spriteM="111" spriteF="112" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (front) armor layer -->
       <layer spriteM="103" spriteF="104" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
       <layer spriteM="107" spriteF="108" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
@@ -550,6 +552,7 @@
       <layer sprite="400" color="skinColor" showAllStatuses="1" /> <!-- body -->
       <layer sprite="403" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
       <layer sprite="405" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
+      <layer sprite="408" armorLayerId="bandit" showObjectStatuses="1" /> <!-- bandit armor layer -->
       <layer sprite="406" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (front) armor layer -->
       <layer sprite="402" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
       <layer sprite="404" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
@@ -781,12 +784,11 @@
     </entry> <!-- pistol -->
     <entry name="longbarrel"
       animProjSprite="515" animProjScale="20" animProjSpeed="10" animProjColor="bullet" animProjGlows="1" animStep="-20" animPostStepPause="60" animSound="gun" animStrikeSound="slash">
-      <!-- TODO: sprite -->
       <variety name="unfinished longbarrel" tier="1" weaponAccuracy="85" ranged="1" weaponRangeBonus="1" moveDistance="-1" dodge="-5"
-        color="iron"
+        color="iron" slotFillers="weaponHand:609"
         fluff="This long-barreled gun is unfinished, and it's long and unwieldly, but it's still an effective weapon, capable of striking at a distance." />
       <variety name="longbarrel" tier="2" weaponAccuracy="90" ranged="1" weaponRangeBonus="2" moveDistance="-1" dodge="-10"
-        color="steel"
+        color="steel" slotFillers="weaponHand:609"
         fluff="A well-machined gun, with a long and heavy barrel that allows for the user to take accurate shots at an unusually long range. Sadly, that same design makes it hard to run while holding." />
     </entry> <!-- longbarrel -->
     <entry name="mace"
@@ -1009,8 +1011,7 @@
         fluff="The leather this jerkin was made of has been treated with chemicals to be tougher, and the make is better. It's a fine jerkin, to be sure." />
     </entry> <!-- jerkin -->
     <entry name="bandit armor" slot="torso" armorProfiencyLevel="1"
-      armorLayerId="shirt">
-      <!-- TODO: appearance -->
+      armorLayerId="bandit">
       <variety name="bandit armor" tier="1" defense="15" dodge="5"
         color="iron"
         fluff="A crude piece of chest armor cobbled together from scraps. This kind of reckless armor is associated with bandits." />
