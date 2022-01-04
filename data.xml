@@ -176,7 +176,7 @@
       initiative="12"
       fluff="Learn a common rogue technique that infuses astra into your brain, letting you act just a little bit faster than others." />
     <entry name="flowing movement" prereq="celerity"
-      moveDistance="1" initiative="4"
+      moveDistance="1" initiative="7"
       fluff="Train moving while using the celerity technique. It's an acquired skill, but when your mind is moving that little bit faster you can effectively move in ways that would normally be reckless." />
     <entry name="rapid attacks" prereq="celerity"
       attackPower="6" initiative="6"
@@ -253,7 +253,7 @@
       willpowerModifier="2" specialPower="15" astra="20" life="15" proficiencies="dagger,mace,first aid,triage,siphon,venom sting,poison powder"
       fluff="Healers learn battlefield-tested Karhun first aid techniques, as well as a scattering of magic. They are perfect supports for a group of warriors." />
     <entry name="wanderer" reqSpecies="firin"
-      agilityModifier="2" accuracy="22" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash,blitz strike"
+      agilityModifier="2" accuracy="25" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash,blitz strike"
       fluff="Wanderers learn a traditional Firin fighting style that combines steel and spell. Once taught to noble scions, this style is now practiced by secretive nomads." />
     <entry name="lab rat" reqSpecies="skuri"
       senseModifier="1" physiqueModifier="1" astra="25" life="25" proficiencies="dagger,spear,agony release,miasma bolt,mend,crimson fangs"
@@ -443,15 +443,15 @@
     <entry name="crawler"
       physiqueModifier="7" cunningModifier="-7" defense="10" />
     <entry name="turret"
-      physiqueModifier="5" cunningModifier="-5" attackPower="10" moveDistance="-3" rangeBonus="2" />
+      physiqueModifier="5" cunningModifier="-5" attackPower="13" moveDistance="-3" rangeBonus="2" />
     <entry name="seed spitter"
-      agilityModifier="5" cunningModifier="-5" initiative="10" moveDistance="-3" rangeBonus="2" />
+      agilityModifier="5" cunningModifier="-5" initiative="13" moveDistance="-3" rangeBonus="2" />
     <entry name="walking topiary"
       physiqueModifier="6" agilityModifier="-3" senseModifier="-3" accuracy="-10" life="20" monstrous="1" />
     <entry name="walking bonsai"
       physiqueModifier="4" agilityModifier="-2" senseModifier="-2" accuracy="-10" life="20" />
     <entry name="scavenger"
-      physiqueModifier="1" agilityModifier="2" willpowerModifier="-2" cunningModifier="-1" moveDistance="1" attackPower="2" />
+      physiqueModifier="1" agilityModifier="2" willpowerModifier="-2" cunningModifier="-1" moveDistance="1" attackPower="5" />
     <entry name="frog"
       physiqueModifier="4" willpowerModifier="-2" agilityModifier="-2" life="10" />
     <entry name="bird"
@@ -463,7 +463,7 @@
     <entry name="turtle"
       physiqueModifier="5" agilityModifier="-3" cunningModifier="-2" defense="10" />
     <entry name="giant boar"
-      physiqueModifier="6" senseModifier="-2" cunningModifier="-4" moveDistance="1" attackPower="2" monstrous="1" />
+      physiqueModifier="6" senseModifier="-2" cunningModifier="-4" moveDistance="1" attackPower="5" monstrous="1" />
     <entry name="serpent"
       physiqueModifier="2" agilityModifier="2" senseModifier="-1" willpowerModifier="-3" resistance="10" monstrous="1" />
     <entry name="snake"
@@ -979,7 +979,7 @@
       fluff="A seemingly-magical pair of glasses, presumably left behind by someone long dead. Through these lenses, you can see where opponents plan to go, a split-second before they start moving." />
     <entry name="bloody thorn" powerVsUninjured="40" dodge="-15"
       fluff="A magical thorn, found safely locked away in a box. Impale the palm of your hand with this and you'll unlock a vengeful power... at the cost of distracting pain." />
-    <entry name="wind bangles" moveDistance="1" dodge="7"
+    <entry name="wind bangles" moveDistance="1" dodge="10"
       fluff="A set of tarnished golden bangles, with some sort of magic in them that speeds up the legs of the wearer." />
   </category> <!-- accessories -->
   <category name="armors">

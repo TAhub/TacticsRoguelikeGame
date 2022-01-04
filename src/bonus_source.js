@@ -187,8 +187,8 @@ class BonusSource {
     value += this.dodgeVsDisengage / 3;
     value += this.life;
     value += this.initiative;
-    value += this.moveDistance * 8;
-    value += this.rangeBonus * 12;
+    value += this.moveDistance * 5;
+    value += this.rangeBonus * 6;
     value += this.hitsToCrits * mechHitsToCritsValue;
     value += this.halveStatuses ? 15 : 0;
     value += this.astra;

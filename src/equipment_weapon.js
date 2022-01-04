@@ -70,7 +70,7 @@ class Weapon extends Equipment {
     }
     // Longer range is useful, but it's less useful if this is a charging attack
     // since they'll just walk up to you while you are charging anyway.
-    effectiveBonusSourceValue += this.weaponRangeBonus * (this.charged ? 6 : 9);
+    effectiveBonusSourceValue += this.weaponRangeBonus * (this.charged ? 3 : 5);
     // BSV has a slightly bigger effect on weapon damage, since high-BSV weapons
     // have the advantage that you can use use a spell and ignore your weapon's
     // actual base damage. So low-BSV weapons can get the gimmick of actually
