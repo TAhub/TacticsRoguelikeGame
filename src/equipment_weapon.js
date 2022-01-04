@@ -123,7 +123,7 @@ class Weapon extends Equipment {
     if (this.charged) damage *= 1.15; // To make up for it being inconvenient.
     if (this.magic && !this.charged) damage *= 0.9; // Possible, but non-ideal.
     if (this.selfTargeting) damage *= 1.15;
-    if (this.teleports) damage *= 0.8;
+    if (this.teleports) damage *= 0.9;
     if (this.commandsSummon) damage *= this.usesSpecialPower ? 0.45 : 0.65;
     if (this.summon) {
       // Summons that are unlimited should be stronger, since the summon
