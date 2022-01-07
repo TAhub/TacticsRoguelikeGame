@@ -74,6 +74,10 @@ class Item {
           sprite = 517;
           color = data.getColorByNameSafe('silver');
           break;
+        case Item.Code.FastTravel:
+          sprite = 517; // TODO: dream map
+          color = data.getColorByNameSafe('brown fabric');
+          break;
         case Item.Code.Healing:
           sprite = 516;
           let colorName = 'white';
@@ -138,6 +142,7 @@ class Item {
         case Item.Code.Key:
         case Item.Code.Respec:
         case Item.Code.Healing:
+        case Item.Code.FastTravel:
           return true;
       }
     }
@@ -154,6 +159,8 @@ class Item {
           return capitalizeFirstLetter(this.keyColorName || '') + ' Key';
         case Item.Code.Respec:
           return 'Brain Scrambler';
+        case Item.Code.FastTravel:
+          return 'Dream Map';
         case Item.Code.Healing:
           switch (this.tier) {
             case 0: return 'Herbal Poultice'; break;
@@ -178,6 +185,13 @@ class Item {
         case Item.Code.Key:
           return [
             'An old key made of ' + (this.keyColorName || '') + '.',
+            'Left click to use!',
+          ];
+        case Item.Code.FastTravel:
+          return [
+            'A once-common magical item meant to be used to tap into the ' +
+            'network of dream-tunnels laid around the lands of the old Empire.',
+            'Lets the user travel between two safe places they have slept at.',
             'Left click to use!',
           ];
         case Item.Code.Respec:
@@ -242,4 +256,5 @@ Item.Code = {
   Key: 2,
   Healing: 3,
   Respec: 4,
+  FastTravel: 5,
 };

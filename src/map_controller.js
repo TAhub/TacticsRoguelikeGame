@@ -6,6 +6,8 @@ class MapController {
     this.gameMaps = new Map();
     /** @type {!Set.<!GameMapTile>} */
     this.visibleTiles = new Set();
+    /** @type {!Set.<number>} */
+    this.restMapIs = new Set();
     this.staticMeshGroup = new THREE.Group();
     this.dynamicMeshGroup = new THREE.Group();
     this.lightGroup = new THREE.Group();
@@ -180,7 +182,7 @@ class MapController {
       const player = Creature.load(raw);
       this.players.push(player);
       if (player.dead) continue; // Don't bother adding to map...
-      this.loadGameMap(this.overworldIFor_(player.x, player.y));
+      this.loadGameMap(this.overworldIFor(player.x, player.y));
       this.addCreature(player);
     }
     this.active = this.players[0];
@@ -191,6 +193,10 @@ class MapController {
     if (save['rLedger']) {
       this.deathLedger =
           new Set(save['rLedger'].split(',').map((s) => parseInt(s, 10)));
+    }
+    if (save['rMapIs']) {
+      this.restMapIs =
+          new Set(save['rMapIs'].split(',').map((s) => parseInt(s, 10)));
     }
     for (let i = 0; i < this.inventory.length; i++) {
       const saveString = save['i' + i];
@@ -238,6 +244,7 @@ class MapController {
     }
     save['dLedger'] = Array.from(this.deathLedger).join(',');
     save['rLedger'] = Array.from(this.reviveLedger).join(',');
+    save['rMapIs'] = Array.from(this.restMapIs).join(',');
     for (let i = 0; i < this.inventory.length; i++) {
       const item = this.inventory[i];
       if (!item) continue;
@@ -547,16 +554,15 @@ class MapController {
    * @return {?GameMap}
    */
   gameMapAt(x, y) {
-    return this.gameMaps.get(this.overworldIFor_(x, y));
+    return this.gameMaps.get(this.overworldIFor(x, y));
   }
 
   /**
    * @param {number} x
    * @param {number} y
    * @return {number}
-   * @private
    */
-  overworldIFor_(x, y) {
+  overworldIFor(x, y) {
     const size = mapGameMapSize * mapTileUpscale * mapSecondTileUpscale;
     return toI(Math.floor(x / size), Math.floor(y / size));
   }
@@ -564,9 +570,12 @@ class MapController {
   /**
    * Makes sure that the map that corresponds to the player position and all
    * nearby maps, are all in memory. All other maps unload.
+   * @param {number=} optForceOverworldTileI
    */
-  reloadMaps() {
-    const overworldTileI = this.overworldIFor_(this.active.x, this.active.y);
+  reloadMaps(optForceOverworldTileI) {
+    const overworldTileI = optForceOverworldTileI != undefined ?
+        optForceOverworldTileI :
+        this.overworldIFor(this.active.x, this.active.y);
     const overworldTile = this.overworldMap.tiles.get(overworldTileI);
     if (!overworldTile) return; // Huh?
 
@@ -588,7 +597,7 @@ class MapController {
       this.gameMaps.delete(i);
       // Unload any creatures in this map.
       this.creatures = this.creatures.filter((creature) => {
-        if (this.overworldIFor_(creature.x, creature.y) == i) {
+        if (this.overworldIFor(creature.x, creature.y) == i) {
           creature.clear3DData();
           return false;
         }

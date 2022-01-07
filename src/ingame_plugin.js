@@ -326,11 +326,15 @@ class IngamePlugin extends GamePlugin {
             if (item && item.contents == Item.Code.Campfire) {
               // It's a rest button instead, out of combat, if over a campfire.
               const clickFn = () => {
+                const map = mapC.gameMapAt(tile.x, tile.y);
+                if (map) {
+                  mapC.restMapIs.add(toI(map.overworldX, map.overworldY));
+                }
                 mapC.rest();
                 this.inventoryPlayer = null;
-                this.mapController.revive();
+                mapC.revive();
                 this.menuController.clear();
-                this.mapController.save();
+                mapC.save();
               };
               slot.attachTile(new MenuTile('Rest', {clickFn}));
             } else if (item && item.canPickUp) {
@@ -497,25 +501,49 @@ class IngamePlugin extends GamePlugin {
     const makeEquipTile = (item, setFn) => {
       const spriteCanvas = item.get2DCanvas();
       const clickFn = () => {
-        if (item.contents == Item.Code.Healing) {
-          if (creature.life == creature.maxLife) return;
-          creature.receiveHealing(item.healingAmount);
-          audio.play('regen', 0, 1);
-          setFn(null);
-          this.inventoryPlayer = null;
-          this.menuController.clear();
-        } else if (item.contents == Item.Code.Respec) {
-          if (creature.jobs.length == 0 && creature.skills.length == 0) return;
-          setFn(null);
-          this.respec_(creature);
-          audio.play('spell charge', 0, 1);
-          this.inventoryPlayer = null;
-          this.menuController.clear();
-          this.openLevelUpUI_(creature);
-        } else if (item.contents == Item.Code.Key) {
-          const tile = mapC.tileAt(active.x, active.y);
-          if (tile) {
-            let used = false;
+        const tile = mapC.tileAt(active.x, active.y);
+        switch (item.contents) {
+          case Item.Code.Healing:
+            if (creature.life == creature.maxLife) break;
+            creature.receiveHealing(item.healingAmount);
+            audio.play('regen', 0, 1);
+            setFn(null);
+            this.inventoryPlayer = null;
+            this.menuController.clear();
+            break;
+          case Item.Code.Respec:
+            if (creature.jobs.length == 0 && creature.skills.length == 0) break;
+            setFn(null);
+            this.respec_(creature);
+            audio.play('spell charge', 0, 1);
+            this.inventoryPlayer = null;
+            this.menuController.clear();
+            this.openLevelUpUI_(creature);
+            break;
+          case Item.Code.FastTravel:
+            if (!tile) break;
+            if (!tile.item || tile.item.contents != Item.Code.Campfire) break;
+            const map = mapC.gameMapAt(tile.x, tile.y);
+            if (!map) break;
+            this.inventoryPlayer = null;
+            this.menuController.clear();
+            if (!mapC.restMapIs.has(toI(map.overworldX, map.overworldY))) {
+              creature.say('I think I need to rest here first.');
+              break;
+            }
+            // TODO: "open map" sound effect, maybe? I dunno...
+            const travelFn = (x, y) => {
+              if (map.overworldX != x || map.overworldY != y) {
+                this.fastTravelTo_(x, y);
+                // TODO: "fast travel" sound effect
+              }
+              this.switchToPlugin(this);
+            };
+            const fastTravelPlugin = new FastTravelPlugin(mapC, travelFn);
+            this.switchToPlugin(fastTravelPlugin);
+            break;
+          case Item.Code.Key:
+            if (!tile) break;
             for (const doorI of tile.doorIds.keys()) {
               const doorId = tile.doorIds.get(doorI);
               if (doorId != item.keyCode) continue;
@@ -530,22 +558,21 @@ class IngamePlugin extends GamePlugin {
               this.minimap.clearBuffer();
               audio.play('unlock', 0, 1);
               setFn(null);
-              used = true;
               this.inventoryPlayer = null;
               this.menuController.clear();
+              return; // Return early, so you don't make the "click" sound.
+            }
+            // Make a "click" sound if there WAS a door, but the wrong door.
+            for (const doorI of tile.doorIds.keys()) {
+              const doorId = tile.doorIds.get(doorI);
+              if (doorId == 0) continue;
+              audio.play('key click', 0, 1);
               break;
             }
-            if (!used) {
-              for (const doorI of tile.doorIds.keys()) {
-                const doorId = tile.doorIds.get(doorI);
-                if (doorId == 0) continue;
-                audio.play('key click', 0, 1);
-                break;
-              }
-            }
-          }
-        } else {
-          console.log('TODO: using misc item');
+            break;
+          default:
+            console.log('TODO: using misc item');
+            break;
         }
       };
       const attachFn = (slot) => {
@@ -729,6 +756,43 @@ class IngamePlugin extends GamePlugin {
       });
       if (!current) break;
     }
+  }
+
+  /**
+   * @param {number} overworldX
+   * @param {number} overworldY
+   * @private
+   */
+  fastTravelTo_(overworldX, overworldY) {
+    const mapC = this.mapController;
+
+    // Load the desired map(s).
+    const i = toI(overworldX, overworldY);
+    mapC.reloadMaps(i);
+    const gameMap = mapC.gameMaps.get(i);
+    if (!gameMap) {
+      // Uh-oh? Not sure how this happens, but... just in case!
+      mapC.reloadMaps();
+      return;
+    }
+
+    // Remove everyone from their tiles.
+    for (const player of mapC.players) {
+      if (player.dead) continue;
+      player.removeFromTiles(mapC);
+    }
+
+    // Move everyone as close to the campfire as possible.
+    for (const tile of gameMap.tiles.values()) {
+      if (!tile.item || tile.item.contents != Item.Code.Campfire) continue;
+      for (const player of mapC.players) {
+        if (player.dead) continue;
+        mapC.pickNewSpotFor(player, tile.x, tile.y);
+      }
+      break;
+    }
+    mapC.cleanCreatures();
+    mapC.save();
   }
 
   /**

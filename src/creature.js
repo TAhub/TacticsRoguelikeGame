@@ -2039,12 +2039,17 @@ class Creature {
     return moveInfos;
   }
 
+  /** @param {string} text */
+  say(text) {
+    this.addTextParticle_(text, -1);
+    // TODO: make talking sounds, based on the length of the line?
+  }
+
   talk() {
     if (!this.npcLines) return;
     const line = data.getValue('npc lines', this.npcLines, 's', this.npcLineOn);
     if (line) {
-      this.addTextParticle_(line, -1);
-      // TODO: make talking sounds?
+      this.say(line);
       this.npcLineOn += 1;
     } else if (this.npcLineOn > 0 && this.side != Creature.Side.Npc) {
       // Whoops, you've gone past the last line. Back up, and try again.
