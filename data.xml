@@ -342,6 +342,8 @@
       hairstyle="short,medium,bald,bald" />
     <entry name="undead soldier" species="firin" jobs="armored undead" level="6" weapon="spear:0" armors0="jerkin:0,leggings:0" armors1="jerkin:0,leggings:0,cap:0"
       hairstyle="short,bald" />
+    <entry name="undead hunter" species="firin" jobs="undead" level="6" weapon="bow:0" armors0="shirt:0,pants:0" armors1="shirt:0,pants:0,hat:0" armors2="shirt:0" armors3="pants:0"
+      hairstyle="short,bald" />
     <entry name="undead bridesmaid" species="firin" jobs="undead" level="4" weapon="deathly grasp:0" armors="shirt:0,skirt:0" techniques="arcana arrow"
       hairstyle="medium,long" gender="1" />
     <entry name="undead best man" species="firin" jobs="undead" level="4" weapon="sword:0" armors="hat:0,shirt:0,skirt:0"
@@ -1161,7 +1163,7 @@
       tileset="grasslands" enemyTemplates="scavenger"
       loot="(W)dagger:0,(H)0,(I)5,(H)0" />
     <entry name="catacombs" regionId="0" condition="key map branch"
-      tileset="catacombs" securityLevelTickets="1,2,2,3" enemyTemplates="undead noble,undead soldier"
+      tileset="catacombs" securityLevelTickets="1,2,2,3" enemyTemplates="undead noble,undead soldier,undead hunter"
       loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)silver spectacles,(A)breastplate:0,(H)0,(H)0,(H)0" />
     <entry name="tomb" offshootFrom="catacombs"
       tileset="catacombs" enemyTemplates="undead best man,undead bridesmaid"
@@ -1192,7 +1194,7 @@
       tileset="stone tunnels" enemyTemplates="skull rat,giant turtle" npc="Ilretaami"
       loot="(A)jerkin:1,(C)shield,(W)brain rattler,(H)1,(H)1" />
     <entry name="caverns" regionId="2"
-      tileset="stone tunnels" securityLevelTickets="1,1,1,1,2" enemyTemplates="skull rat,tunnel snake,blood slime,undead soldier" bossTemplate="Tunnel Guard Kaspikka"
+      tileset="stone tunnels" securityLevelTickets="1,1,1,1,2" enemyTemplates="skull rat,tunnel snake,blood slime,undead soldier,undead hunter" bossTemplate="Tunnel Guard Kaspikka"
       loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave,(R)sungold ring,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(W)bow:1" />
 
     <!-- regionId 3 (t1): bandit town -->
