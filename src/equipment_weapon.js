@@ -70,7 +70,9 @@ class Weapon extends Equipment {
     }
     // Longer range is useful, but it's less useful if this is a charging attack
     // since they'll just walk up to you while you are charging anyway.
-    effectiveBonusSourceValue += this.weaponRangeBonus * (this.charged ? 3 : 5);
+    let scaledWRB = this.weaponRangeBonus;
+    if (scaledWRB < 0) scaledWRB *= 1.5; // Reduced range is more impactful.
+    effectiveBonusSourceValue += scaledWRB * (this.charged ? 3 : 5);
     // BSV has a slightly bigger effect on weapon damage, since high-BSV weapons
     // have the advantage that you can use use a spell and ignore your weapon's
     // actual base damage. So low-BSV weapons can get the gimmick of actually
@@ -119,7 +121,7 @@ class Weapon extends Equipment {
   get baseDamage() {
     let damage = this.generationPointsDamage + this.lifeCost;
     if (this.armorPiercing) damage *= 0.87; // Vs heavy armor
-    if (this.armorBlunted) damage *= 1.3; // Vs light armor.
+    if (this.armorBlunted) damage *= 1.3 + this.tier * 0.05; // Vs light armor.
     if (this.charged) damage *= 1.15; // To make up for it being inconvenient.
     if (this.magic && !this.charged) damage *= 0.9; // Possible, but non-ideal.
     if (this.selfTargeting) damage *= 1.15;

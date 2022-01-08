@@ -252,23 +252,26 @@
     <entry name="healer" reqSpecies="karhun"
       willpowerModifier="2" specialPower="15" astra="20" life="15" proficiencies="dagger,mace,first aid,triage,siphon,venom sting,poison powder"
       fluff="Healers learn battlefield-tested Karhun first aid techniques, as well as a scattering of magic. They are perfect supports for a group of warriors." />
+    <entry name="ranger" reqSpecies="karhun"
+      agilityModifier="1" willpowerModifier="1" armorProfiencyLevel="1" zones="1" attackPower="10" life="10" proficiencies="dagger,bow,rapid fire,inferno shot,poison arrow,inner strength"
+      fluff="Rangers are representatives of an old Karhun tradition, now seen as obsolete due to firearms. They learn how to fight with bows, and be self-sufficient in the wilds." />
     <entry name="wanderer" reqSpecies="firin"
       agilityModifier="2" accuracy="25" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash,blitz strike"
       fluff="Wanderers learn a traditional Firin fighting style that combines steel and spell. Once taught to noble scions, this style is now practiced by secretive nomads." />
     <entry name="lab rat" reqSpecies="skuri"
       senseModifier="1" physiqueModifier="1" astra="25" life="25" proficiencies="dagger,spear,agony release,miasma bolt,mend,crimson fangs"
       fluff="Lab rats are those who act as test subjects for life-affecting spells, harmful and helpful both. Those who survive often learn the very magic that once tormented them so." />
-    <entry name="martial artist" reqSpecies="karhun"
-      willpowerModifier="1" physiqueModifier="1" dodge="20" attackPower="10" life="20" martialArts="1" proficiencies="eye gouge,inner strength,illusion fist,solar combo"
-      fluff="Martial artists train in various unarmed combat styles. They are almost always Karhun, who often find the hands-on approach more satisfying." />
     <entry name="sage" reqSpecies="firin"
       senseModifier="1" cunningModifier="1" resistance="30" astra="20" proficiencies="spear,sword,ashball,agony release,inner strength,siphon,unearth"
       fluff="Sages are the remnants of the old Firin masters of magic theory. They study a variety of specialist spells, and excel at the art of counter-magic." />
-    <entry name="survivor" reqSpecies="karhun,firin,skuri"
+    <entry name="martial artist" reqSpecies="karhun,firin"
+      willpowerModifier="1" physiqueModifier="1" dodge="20" attackPower="10" life="20" martialArts="1" proficiencies="eye gouge,inner strength,illusion fist,solar combo"
+      fluff="Martial artists train in various unarmed combat styles. Their punches are as deadly as any sword, and their martial arts techniques can even produce magic." />
+    <entry name="survivor" reqSpecies="karhun,skuri"
       willpowerModifier="2" resistance="20" attackPower="5" specialPower="5" armorProfiencyLevel="1" proficiencies="dagger,spear,pistol,slam,arcana arrow,snipe,first aid"
       fluff="Survivors are made, not trained; they pick up a little bit of everything, in their attempts to learn how to live through dangerous situations." />
-    <entry name="gunner" reqSpecies="karhun,firin,skuri"
-      agilityModifier="1" physiqueModifier="1" attackPower="15" accuracy="15" armorProfiencyLevel="1" proficiencies="pistol,longbarrel,snipe,inferno shot,brain rattler,spell barrage"
+    <entry name="gunner" reqSpecies="firin,skuri"
+      agilityModifier="1" physiqueModifier="1" resistance="15" accuracy="15" armorProfiencyLevel="1" proficiencies="pistol,longbarrel,snipe,inferno shot,brain rattler,spell barrage"
       fluff="Gunners learn how to use the pistol, a powerful weapon for the new age. They aren't great at tying enemies down, but their offensive capability is no joke." />
 
     <!-- enemy-only jobs -->
@@ -301,7 +304,7 @@
       gender="0" hairstyle="short" coloration="1" npcLines="roros" />
     <entry name="Ilretaami" species="skuri" jobs="rogue" level="14" weapon="dagger:1" armors="jerkin:1,leggings:1"
       gender="1" hairstyle="medium" coloration="0" npcLines="Ilretaami" />
-    <entry name="Joonert" species="karhun" jobs="survivor" level="17" weapon="dagger:1" armors="jerkin:1,leggings:1"
+    <entry name="Joonert" species="karhun" jobs="ranger" level="17" weapon="bow:1" armors="jerkin:1,leggings:1"
       gender="0" hairstyle="bald" coloration="1" npcLines="Joonert" />
     <entry name="Gulas" species="firin" jobs="sage,survivor" level="25" armors="hat:2,shirt:2,leggings:2" techniques="ashball,unearth"
       gender="0" hairstyle="short" coloration="0" npcLines="Gulas" />
@@ -387,6 +390,8 @@
       hairstyle="short,bald" />
     <entry name="bandit jack" species="karhun" jobs="survivor" level="18" weapon0="dagger:1" weapon1="spear:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="cap:1,bandit armor:0,pants:1" armors5="cap:1,bandit armor:1,leggings:1" techniques="arcana arrow"
       hairstyle="short,bald" />
+    <entry name="bandit archer" species="karhun" jobs="ranger" level="19" weapon="bow:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="cap:1,bandit armor:0,pants:1" armors5="cap:1,bandit armor:1,leggings:1" techniques="inferno shot"
+      hairstyle="short,bald" />
     <entry name="undead servant" species="firin" jobs="undead" level="18" weapon0="dagger:1" weapon1="mace:1" armors="shirt:1,pants:1" accessory="lantern" techniques="eye gouge"
       hairstyle="short" />
     <entry name="undead aristocrat" species="firin" jobs="undead" level="20" weapon="deathly grasp:1" armors="hat:1,shirt:1,pants:1" techniques="siphon" accessory="regal cloak"
@@ -406,7 +411,7 @@
       coloration="0" />
     <entry name="mossy cat" species="cat" jobs="magic monster,sneaky monster" level="25" weapon="claws:2" techniques="arcana arrow,siphon"
       coloration="1" />
-    <entry name="seed spitter" species="seed spitter" jobs="ranged monster" level="23" weapon="seed spit:2" techniques="poison bullet" />
+    <entry name="seed spitter" species="seed spitter" jobs="ranged monster" level="23" weapon="seed spit:2" techniques="poison arrow" />
     <entry name="walking topiary" species="walking topiary" jobs="tough monster,tough monster" level="26" weapon="tackle:2" />
     <entry name="walking bonsai" species="walking bonsai" jobs="tough monster" level="24" weapon="tackle:2" techniques="eye gouge" />
 
@@ -715,8 +720,6 @@
       <variety tier="1" />
       <variety tier="2" />
     </entry> <!-- seed spit -->
-    <entry name="poison bullet" astraCost="10" weaponAccuracy="90" poisonedPercent="40" scaling="ranged weapon" ranged="1"
-      animProjColor="poison" animPreStepPause="22" animStrikeSound="poison" />
     <entry name="blood splitling" astraCost="15" summonSpecies="baby slime" summonJobs="ranged monster,tough monster" summonWeapon="tackle" summonColoration="0" scaling="level" usesSpecialPower="1"
       animStrikeSound="spit" />
     <entry name="gold splitling" astraCost="20" summonSpecies="baby slime" summonJobs="sneaky monster,tough monster" summonWeapon="tackle" summonColoration="1" scaling="level" usesSpecialPower="1"
@@ -766,7 +769,7 @@
         fluff="A surprisingly dull sword with a powerful enchantment on it. The edge heats up whenever it is swung, to a painful degree." />
     </entry> <!-- sword -->
     <entry name="pistol"
-      animProjSprite="515" animProjScale="15" animProjSpeed="8" animProjColor="bullet" animProjGlows="1" animStep="-10" animPostStepPause="45" animSound="gun" animStrikeSound="slash">
+      animProjSprite="515" animProjScale="15" animProjSpeed="8" animProjColor="bullet" animProjGlows="1" animStep="-10" animPostStepPause="40" animSound="gun" animStrikeSound="slash">
       <variety name="corroded pistol" tier="0" weaponAccuracy="80" ranged="1"
         color="rusty" slotFillers="weaponHand:602"
         fluff="This pistol is in such rough shape, it's a wonder that it can fire at all." />
@@ -780,6 +783,23 @@
         color="gold" slotFillers="weaponHand:602"
         fluff="A beautiful pistol with a casing made of a gold alloy, enchanted to fire bullets that twist in midair to seek foes. Left behind by a Skuri noble who got tethered." />
     </entry> <!-- pistol -->
+    <entry name="bow"
+      animProjSprite="514" animProjScale="60" animProjSpeed="7" animStep="-10" animPostStepPause="50" animStrikeSound="slash">
+      <!-- TODO: sprite... hunting bow and razor wings should share a sprite, shortbow and longbow should both have unique sprites -->
+      <!-- TODO: bow fire sound -->
+      <variety name="hunting bow" tier="0" weaponAccuracy="90" ranged="1" armorBlunted="1"
+        color="rusty"
+        fluff="A low-powered bow meant for hunting wild animals, not for use in war." />
+      <variety name="shortbow" tier="1" weaponAccuracy="100" ranged="1" weaponRangeBonus="-1"
+        color="iron"
+        fluff="A small bow, easy to use but ineffective at the ordinary ranges you would expect of a bow." />
+      <variety name="longbow" tier="2" weaponAccuracy="80" ranged="1" weaponRangeBonus="1"
+        color="steel"
+        fluff="A large bow with a high draw weight. Requires a lot of training to use effectively, but it can hit hard, and at a longer range than a normal bow." />
+      <variety name="razor wings" tier="2" weaponAccuracy="90" ranged="1" armorBlunted="1" bleedingPercent="40"
+        color="silver" animProjSprite="513" animProjScale="50"
+        fluff="A well-made bow infused with strange magic, that breaks any arrow it fires into a spray of sharp-but-brittle shards in midair." />
+    </entry> <!-- bow -->
     <entry name="longbarrel"
       animProjSprite="515" animProjScale="20" animProjSpeed="10" animProjColor="bullet" animProjGlows="1" animStep="-20" animPostStepPause="60" animSound="gun" animStrikeSound="slash">
       <variety name="unfinished longbarrel" tier="1" weaponAccuracy="85" ranged="1" weaponRangeBonus="1" moveDistance="-1" dodge="-5"
@@ -848,6 +868,12 @@
     <entry name="cheap shot" astraCost="5" weaponAccuracy="90" scaling="level" bleedingPercent="25" onePerBattle="1" weaponHitsToCrits="25"
       animProjSprite="515" animProjScale="30" animProjSpeed="6" animProjColor="bronze" animProjGlows="1" animStep="15" animSound="swing" animStrikeSound="slash"
       fluff="Slip your fingers into your brass knuckles and make a surprise swing at your opponent." />
+    <entry name="rapid fire" astraCost="5" weaponAccuracy="75" scaling="ranged weapon" ranged="1" numHits="1"
+      animProjDelay="20" animProjSpeed="2"
+      fluff="Notch and fire two arrows with great rapidity, trading accuracy (and effort) for weight of fire." />
+    <entry name="poison arrow" astraCost="10" weaponAccuracy="90" poisonedPercent="40" scaling="ranged weapon" ranged="1"
+      animProjColor="poison" animPreStepPause="22" animStrikeSound="poison"
+      fluff="Dip an arrow in deadly poison, then fire it at the enemy." />
     <entry name="snipe" astraCost="5" weaponAccuracy="110" scaling="ranged weapon" ranged="1" charged="1" weaponRangeBonus="1"
       animProjSpeed="2" animPostStepPause="25"
       fluff="Carefully aim your pistol, and try to read your enemy's movements for as long as possible, then take a deadly shot." />
@@ -856,7 +882,7 @@
       fluff="Snap a quick pistol-shot at your opponent's head, attempting to leave them dazed and confused." />
     <entry name="inferno shot" astraCost="10" weaponAccuracy="90" burningPercent="35" scaling="ranged weapon" ranged="1"
       animProjColor="fire" animPostStepPause="22" animStrikeSound="explosion"
-      fluff="Fire a special bullet that has been coated in incendiary chemicals, meant to light the opponent on fire." />
+      fluff="Fire a special projectile that has been coated in incendiary chemicals, meant to light the opponent on fire." />
 
     <!-- spells/special techniques -->
     <entry name="wild spark" astraCost="5" weaponAccuracy="90" weaponHitsToCrits="50" scaling="level" usesSpecialPower="1" charged="1" magic="1" ranged="1" noProficiency="1"
@@ -1140,7 +1166,7 @@
       loot="(R)wedding ring,(C)fur cloak" />
     <entry name="grasslands" regionId="0"
       tileset="grasslands" enemyTemplates="scavenger,black cat,tortoise" bossTemplate="scavenger alpha"
-      loot="(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid,(R)wedding ring,(H)0,(H)0,(H)0,(H)0" />
+      loot="(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid,(R)wedding ring,(H)0,(H)0,(H)0,(H)0,(W)bow:0" />
 
     <!-- regionId 1 (t0): shore -->
     <entry name="shipwreck" regionId="1" condition="key map"
@@ -1148,7 +1174,7 @@
       loot="(C)intimidating mask,(W)pistol:0,(W)snipe,(H)0,(H)1" />
     <entry name="rocky shore" regionId="1" condition="key map branch"
       tileset="rocky beach" enemyTemplates="pirate brawler,pirate mage"
-      loot="(W)sword:0,(A)cap:0,(A)jerkin:0,(A)greaves:0,(A)hat:0,(W)ashball,(W)eye gouge,(R)brass knuckles,(H)0,(H)0" />
+      loot="(W)sword:0,(A)cap:0,(A)jerkin:0,(A)greaves:0,(A)hat:0,(W)ashball,(W)eye gouge,(R)brass knuckles,(H)0,(H)0,(W)rapid fire" />
     <entry name="shore" regionId="1"
       tileset="beach" enemyTemplates="shore hopper,sea bird,giant turtle" bossTemplate="beach slime"
       loot="(W)spear:0,(W)mace:0,(A)leggings:0,(A)hat:0,(A)skirt:0,(A)helmet:0,(A)greaves:0,(A)breastplate:0,(W)slam,(H)0,(H)0,(H)0" />
@@ -1165,23 +1191,23 @@
       loot="(A)jerkin:1,(C)shield,(W)brain rattler,(H)1" />
     <entry name="caverns" regionId="2"
       tileset="stone tunnels" securityLevelTickets="1,1,1,1,2" enemyTemplates="skull rat,tunnel snake,blood slime,undead soldier" bossTemplate="Tunnel Guard Kaspikka"
-      loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave,(R)sungold ring,(H)1,(H)1,(H)1" />
+      loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave,(R)sungold ring,(H)1,(H)1,(H)1,(W)bow:1" />
 
     <!-- regionId 3 (t1): bandit town -->
     <entry name="spooky manor" regionId="3" condition="boss map branch"
       tileset="spooky manor" securityLevelTickets="1,2" enemyTemplates="undead servant,undead butcher,undead aristocrat,black cat" bossTemplate="Lord Latos"
       loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)siphon,(C)lantern,(W)unearth,(H)1" />
     <entry name="bandit town" regionId="3"
-      tileset="village" securityLevelTickets="1,1,2" enemyTemplates="bandit,bandit sneak,bandit enforcer,bandit jack,black cat" bossTemplate="Boss Jyrku"
+      tileset="village" securityLevelTickets="1,1,2" enemyTemplates="bandit,bandit sneak,bandit enforcer,bandit jack,bandit archer,black cat" bossTemplate="Boss Jyrku"
       loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band,(W)triage,(H)1,(H)1,(H)1,(H)1" />
     <entry name="house" offshootFrom="bandit town"
       tileset="house" npc="Joonert"
-      loot="(A)hat:1,(H)2" />
+      loot="(A)hat:1,(H)2,(W)poison arrow" />
 
     <!-- regionId 4 (t2): twisted wasteland -->
     <entry name="hedge maze" regionId="4" condition="boss map branch"
       tileset="hedge maze" securityLevelTickets="2" enemyTemplates="mossy cat,seed spitter,walking topiary,walking bonsai,corpse picker" bossTemplate="Gatekeeper"
-      loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade,(H)2,(H)2" />
+      loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade,(H)2,(H)2,(W)bow:2" />
     <entry name="groundkeepers hut" offshootFrom="hedge maze"
       tileset="house" npc="Gulas"
       loot="(R)thorny band,(I)4,(I)1,(W)longbarrel:1" />
@@ -1195,7 +1221,7 @@
       loot="(C)bloody thorn,(A)helmet:2,(W)solar combo,(H)2,(I)4" />
     <entry name="animal pen" regionId="5" condition="random connecting maps"
       tileset="gateway" enemyTemplates="wasteland serpent,walking topiary,poison turtle,monster boar,gold slime,tethered healer,tethered rogue,tethered gunner"
-      loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3,(H)2,(H)2,(H)2,(H)2" />
+      loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3,(H)2,(H)2,(H)2,(H)2,(W)bow:3" />
     <entry name="tether assembly" regionId="5"
       tileset="tether assembly" securityLevelTickets="1,2,3" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanist,tethered gunner,tethered healer,reinforced gun turret" bossTemplate="Lord Rigus"
       loot="(C)third eye,(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3,(R)rusted focus,(H)2,(H)2,(I)4" />
