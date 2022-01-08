@@ -117,6 +117,7 @@ class Creature {
     this.finalBoss = false;
 
     // Temporary.
+    this.flyingEffectCycle = Math.random();
     this.th = 0;
     this.floorTh = 0;
     this.facing = 0;
@@ -785,6 +786,7 @@ class Creature {
 
   /** @param {number} elapsed */
   update(elapsed) {
+    this.flyingEffectCycle = (this.flyingEffectCycle + (elapsed / 2)) % 1;
     this.shakeEffect = Math.max(0, this.shakeEffect - elapsed);
     if (this.actions.length > 0) {
       if (this.actions[0](elapsed)) {
@@ -894,7 +896,13 @@ class Creature {
     if (!this.spriteObject) this.makeAppearance();
     const options = {facing: this.facing, rockAngle: this.rockAngle};
     if (this.immune) options.transparent = true;
-    this.spriteObject.addToGroup(group, camera, x, y, this.th, options);
+    let th = this.th;
+    if (this.flying) {
+      const sign = this.flyingEffectCycle < 0.5 ? -1 : 1;
+      const cycle = ((1 + this.flyingEffectCycle - 0.5) % 0.5) * 2;
+      th += sign * (cycle < 0.5 ? cycle : (1 - cycle)) * 0.5;
+    }
+    this.spriteObject.addToGroup(group, camera, x, y, th, options);
     if (!this.barSpriteObject) this.makeBar();
     this.barSpriteObject.addToGroup(
         group, camera, this.cX, this.cY, this.th, {drawBack: -0.05});
