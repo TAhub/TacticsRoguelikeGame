@@ -1049,11 +1049,20 @@ class GameMap {
    * @private
    */
   generateCreaturesOverall_(rng, overworldMapTile, encounters) {
+    let boss;
+    if (overworldMapTile.bossTemplate) {
+      boss = Creature.makeFromTemplate(
+          overworldMapTile.bossTemplate, generateSeed(rng));
+    }
+
     const level = overworldMapTile.level;
     const samplePlayer = Creature.makeSamplePlayerAtLevel(level);
     let generationPoints = samplePlayer.generationPoints * mechNumPlayers;
-    if (overworldMapTile.bossMap) generationPoints *= 1.5;
-    else if (overworldMapTile.keyId > 0) generationPoints *= 1.25;
+    if (overworldMapTile.bossMap) {
+      generationPoints *= (boss && boss.finalBoss) ? 1.9 : 1.6;
+    } else if (overworldMapTile.keyId > 0) {
+      generationPoints *= 1.25;
+    }
     generationPoints *= 1 + (encounters.length - 1) * 0.25;
     generationPoints *= Math.min(1, 0.6 + level * 0.15);
     if (overworldMapTile.isStart) generationPoints *= 0.6;
@@ -1069,15 +1078,11 @@ class GameMap {
 
     const creatures = [];
     if (overworldMapTile.shouldGenerateBoss) {
-      let template = overworldMapTile.bossTemplate;
-      if (!template) {
+      if (!boss) {
         console.log('WARNING: Sub-region #' + overworldMapTile.regionId +
                     ' has no boss template!');
-        template = 'sample player t0';
+        boss = Creature.makeSamplePlayerAtLevel(level);
       }
-      const boss = Creature.makeFromTemplate(template, generateSeed(rng));
-      boss.boss = true;
-      boss.refill();
       creatures.push(boss);
       generationPoints -= boss.generationPoints;
     }

@@ -312,25 +312,25 @@
       gender="1" hairstyle="ponytail" coloration="0" npcLines="Greeter" />
 
     <!-- bosses -->
-    <entry name="scavenger alpha" species="scavenger" jobs="sneaky monster" level="6" weapon="claws:0" techniques="crimson fangs" skills="flowing movement"
+    <entry name="scavenger alpha" species="scavenger" jobs="sneaky monster" level="6" weapon="claws:0" techniques="crimson fangs" skills="flowing movement" boss="1"
       gender="0" />
-    <entry name="Captain Linner" species="firin" jobs="gunner" level="12" weapon="pistol:1" armors="hat:0,jerkin:0,pants:0" techniques="snipe,inferno shot,brain rattler" skills="prey instincts"
+    <entry name="Captain Linner" species="firin" jobs="gunner" level="12" weapon="pistol:1" armors="hat:0,jerkin:0,pants:0" techniques="snipe,inferno shot,brain rattler" skills="prey instincts" boss="1"
       gender="0" hairstyle="ponytail" coloration="1" enemyLines="Linner" />
-    <entry name="beach slime" species="slime" jobs="tough monster" level="12" weapon="tackle:0" techniques="arcana arrow,gold splitling"
+    <entry name="beach slime" species="slime" jobs="tough monster" level="12" weapon="tackle:0" techniques="arcana arrow,gold splitling" boss="1"
       coloration="1" />
-    <entry name="Asrami" species="skuri" jobs="lab rat" level="17" weapon="dagger:1" armors="hat:1,shirt:1,skirt:1" techniques="agony release,miasma bolt,crimson fangs,mend" accessory="lantern"
+    <entry name="Asrami" species="skuri" jobs="lab rat" level="17" weapon="dagger:1" armors="hat:1,shirt:1,skirt:1" techniques="agony release,miasma bolt,crimson fangs,mend" accessory="lantern" boss="1"
       gender="1" hairstyle="long hair" coloration="1" enemyLines="Gatekeeper" />
-    <entry name="Tunnel Guard Kaspikka" species="karhun" jobs="warrior" level="19" weapon="spear:1" armors="helmet:1,breastplate:1,greaves:1" techniques="sword wave,slam,trained rat" accessory="shield" skills="skin hardening,organ hardening,zoning"
+    <entry name="Tunnel Guard Kaspikka" species="karhun" jobs="warrior" level="19" weapon="spear:1" armors="helmet:1,breastplate:1,greaves:1" techniques="sword wave,slam,trained rat" accessory="shield" skills="skin hardening,organ hardening,zoning" boss="1"
       gender="1" hairstyle="short hair" coloration="1" enemyLines="Kaspikka" />
-    <entry name="Boss Jyrku" species="karhun" jobs="warrior" level="24" weapon="sword:2" armors="helmet:1,breastplate:1,greaves:1" techniques="blitz strike,typhoon slash,bandit flunky" accessory="fur cloak"
+    <entry name="Boss Jyrku" species="karhun" jobs="warrior" level="24" weapon="sword:2" armors="helmet:1,breastplate:1,greaves:1" techniques="blitz strike,typhoon slash,bandit flunky" accessory="fur cloak" boss="1"
       gender="0" hairstyle="bald" coloration="0" enemyLines="Jyrku" />
-    <entry name="Lord Latos" species="firin" jobs="sage,undead" level="25" weapon="claws:1" armors="hat:2,shirt:2,pants:2" accessory="regal cloak" techniques="ashball,siphon,unearth" skills="flight"
+    <entry name="Lord Latos" species="firin" jobs="sage,undead" level="25" weapon="claws:1" armors="hat:2,shirt:2,pants:2" accessory="regal cloak" techniques="ashball,siphon,unearth" skills="flight" boss="1"
       gender="0" hairstyle="ponytail" coloration="1" enemyLines="Latos" />
-    <entry name="king boar" species="giant boar" jobs="tough monster,tough monster" level="28" weapon="tackle:2" techniques="slam,solar combo" skills="form,warrior spirit"
+    <entry name="king boar" species="giant boar" jobs="tough monster,tough monster" level="28" weapon="tackle:2" techniques="slam,solar combo" skills="form,warrior spirit" boss="1"
       gender="0" />
-    <entry name="Gatekeeper" species="karhun" jobs="rogue,tethered" level="30" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" accessory="intimidating mask" techniques="crimson fangs,venom sting" skills="form"
+    <entry name="Gatekeeper" species="karhun" jobs="rogue,tethered" level="30" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" accessory="intimidating mask" techniques="crimson fangs,venom sting" skills="form" boss="1"
       gender="0" hairstyle="short" coloration="1" enemyLines="Gatekeeper" />
-    <entry name="Lord Rigus" species="firin" jobs="mage,undead" level="36" weapon="mace:2" armors="shirt:2,pants:2" accessory="regal cloak" ring="rusted focus" techniques="arcana arrow,spell barrage,enchanted blade,court guard,court mage,court assassin" skills="prey instincts,zoning"
+    <entry name="Lord Rigus" species="firin" jobs="mage,undead" level="36" weapon="mace:2" armors="shirt:2,pants:2" accessory="regal cloak" ring="rusted focus" techniques="arcana arrow,spell barrage,enchanted blade,court guard,court mage,court assassin" skills="prey instincts,zoning" finalBoss="1"
       gender="0" hairstyle="medium" coloration="0" enemyLines="Rigus" />
 
     <!-- grasslands enemies (levels 1-6) -->

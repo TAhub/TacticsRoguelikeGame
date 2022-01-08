@@ -110,6 +110,7 @@ class Creature {
     this.exp = 0;
     this.npcLineOn = 0;
     this.boss = false;
+    this.finalBoss = false;
 
     // Temporary.
     this.th = 0;
@@ -229,8 +230,8 @@ class Creature {
 
   /** @return {number} */
   get miscAttackBonus() {
-    if (this.boss) return 20;
-    if (this.monstrous) return 15;
+    if (this.boss) return 15;
+    if (this.monstrous) return 10;
     return 0;
   }
 
@@ -365,6 +366,7 @@ class Creature {
   /** @return {number} */
   get baseMaxLife() {
     let life = mechBaseLife;
+    if (this.finalBoss) life *= 1.5;
     if (this.monstrous && this.boss) life *= 6;
     else if (this.monstrous) life *= 4;
     else if (this.boss) life *= 2;
@@ -2150,6 +2152,10 @@ class Creature {
       }
     }
 
+    // Bosses can be the FINAL BOSS.
+    creature.finalBoss = getV('finalBoss') == '1';
+    creature.boss = creature.finalBoss || (getV('boss') == '1');
+
     // Starting skills.
     const skills = getA('skills');
     if (skills.length > 0) {
@@ -2342,6 +2348,7 @@ class Creature {
     creature.y = saveManager.intFromSaveObj(save, 'y');
     creature.exp = saveManager.intFromSaveObj(save, 'xp');
     creature.boss = saveManager.boolFromSaveObj(save, 'boss');
+    creature.finalBoss = saveManager.boolFromSaveObj(save, 'fBoss');
     if (side == Creature.Side.Player) {
       creature.statPoints = saveManager.intFromSaveObj(save, 'stP');
       creature.skillPoints = saveManager.intFromSaveObj(save, 'skP');
@@ -2411,6 +2418,7 @@ class Creature {
     saveManager.intToSaveObj(save, 'xp', this.exp);
     saveManager.intToSaveObj(save, 'l', this.life);
     saveManager.boolToSaveObj(save, 'boss', this.boss);
+    saveManager.boolToSaveObj(save, 'fBoss', this.finalBoss);
     if (this.side == Creature.Side.Player) {
       saveManager.intToSaveObj(save, 'stP', this.statPoints);
       saveManager.intToSaveObj(save, 'skP', this.skillPoints);

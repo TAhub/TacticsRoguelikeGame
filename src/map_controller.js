@@ -497,6 +497,9 @@ class MapController {
       }
       creature.cachedParticles = [];
       if (creature.shouldDisposeOf) {
+        if (creature.finalBoss) {
+          // TODO: victory!!!
+        }
         creature.removeFromTiles(this);
         creatureDead = true;
         creature.clear3DData();
