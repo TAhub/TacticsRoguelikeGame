@@ -4,7 +4,7 @@ class MessagePlugin extends GamePlugin {
     super();
     this.menuController = new MenuController();
 
-    for (let y = 0; ; y++) {
+    for (let y = 0; y < 999; y++) {
       const line = data.getValue('messages', message, 's', y);
       if (!line) break;
       const slot = new MenuTileSlot(0, y, 5, 1);
