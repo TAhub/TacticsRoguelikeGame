@@ -253,7 +253,7 @@
       willpowerModifier="2" specialPower="15" astra="20" life="15" proficiencies="dagger,mace,first aid,triage,siphon,venom sting,poison powder"
       fluff="Healers learn battlefield-tested Karhun first aid techniques, as well as a scattering of magic. They are perfect supports for a group of warriors." />
     <entry name="ranger" reqSpecies="karhun"
-      agilityModifier="1" willpowerModifier="1" armorProfiencyLevel="1" zones="1" attackPower="10" life="10" proficiencies="dagger,bow,rapid fire,inferno shot,poison arrow,inner strength"
+      agilityModifier="1" willpowerModifier="1" armorProfiencyLevel="1" zones="1" attackPower="10" life="10" proficiencies="bow,dagger,rapid fire,inferno shot,poison arrow,inner strength"
       fluff="Rangers are representatives of an old Karhun tradition, now seen as obsolete due to firearms. They learn how to fight with bows, and be self-sufficient in the wilds." />
     <entry name="wanderer" reqSpecies="firin"
       agilityModifier="2" accuracy="25" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash,blitz strike"
@@ -518,6 +518,7 @@
       <layer color="hairColor" matchLastLayer="1" fillSlotId="hairFront" showObjectStatuses="1" /> <!-- hair -->
       <layer fillSlotId="hat" showObjectStatuses="1" matchLastLayer="1" /> <!-- hat -->
       <layer sprite="210" color="skinColor" matchLastLayer="1" showAllStatuses="1" /> <!-- ears -->
+      <layer xAdd="13" yAdd="-8" fillSlotId="offHand" /> <!-- off hand -->
     </entry> <!-- karhun -->
     <entry name="firin"
       appearanceSizeMult="95" headHeightPoint="75"
@@ -543,6 +544,7 @@
       <layer color="hairColor" matchLastLayer="1" fillSlotId="hairFront" showObjectStatuses="1" /> <!-- hair -->
       <layer fillSlotId="hat" showObjectStatuses="1" matchLastLayer="1" /> <!-- hat -->
       <layer sprite="208" color="skinColor" matchLastLayer="1" showAllStatuses="1" /> <!-- ears -->
+      <layer xAdd="-11" yAdd="8" fillSlotId="offHand" /> <!-- off hand -->
     </entry> <!-- firin -->
     <entry name="skuri"
       appearanceSizeMult="85" headHeightPoint="55"
@@ -567,6 +569,7 @@
       <layer color="hairColor" matchLastLayer="1" fillSlotId="hairFront" showObjectStatuses="1" /> <!-- hair -->
       <layer fillSlotId="hat" showObjectStatuses="1" matchLastLayer="1" /> <!-- hat -->
       <layer sprite="209" color="tailColor" matchLastLayer="1" showAllStatuses="1" /> <!-- ears -->
+      <layer xAdd="-13" yAdd="37" fillSlotId="offHand" /> <!-- off hand -->
     </entry> <!-- skuri -->
 
     <!-- monster species -->
@@ -785,19 +788,18 @@
     </entry> <!-- pistol -->
     <entry name="bow"
       animProjSprite="514" animProjScale="60" animProjSpeed="7" animStep="-10" animPostStepPause="50" animStrikeSound="slash">
-      <!-- TODO: sprite... hunting bow and razor wings should share a sprite, shortbow and longbow should both have unique sprites -->
       <!-- TODO: bow fire sound -->
       <variety name="hunting bow" tier="0" weaponAccuracy="90" ranged="1" armorBlunted="1"
-        color="rusty"
+        color="greenish brown fabric" slotFillers="weaponHand:610"
         fluff="A low-powered bow meant for hunting wild animals, not for use in war." />
       <variety name="shortbow" tier="1" weaponAccuracy="100" ranged="1" weaponRangeBonus="-1"
-        color="iron"
+        color="brown fabric" slotFillers="weaponHand:612"
         fluff="A small bow, easy to use but ineffective at the ordinary ranges you would expect of a bow." />
       <variety name="longbow" tier="2" weaponAccuracy="80" ranged="1" weaponRangeBonus="1"
-        color="steel"
+        color="sharp brown fabric" slotFillers="weaponHand:611"
         fluff="A large bow with a high draw weight. Requires a lot of training to use effectively, but it can hit hard, and at a longer range than a normal bow." />
       <variety name="razor wings" tier="2" weaponAccuracy="90" ranged="1" armorBlunted="1" bleedingPercent="40"
-        color="silver" animProjSprite="513" animProjScale="50"
+        color="silver" slotFillers="weaponHand:610" animProjSprite="513" animProjScale="50"
         fluff="A well-made bow infused with strange magic, that breaks any arrow it fires into a spray of sharp-but-brittle shards in midair." />
     </entry> <!-- bow -->
     <entry name="longbarrel"
@@ -995,11 +997,11 @@
       color="bone" slotFillers="face:216"
       fluff="A mask with a scary facial expression. If your opponents feel fear upon seeing it, you will soon prove their fear justified." />
     <entry name="shield" defense="15"
-      color="steel"
-      fluff="A simple shield, likely once held by a Karhun soldier. Shields are ineffective against magic, so they aren't all that popular nowadays." /> <!-- TODO: sprite (slot filler for an offhand slot?) -->
+      color="steel" slotFillers="offHand:614"
+      fluff="A simple shield, likely once held by a Karhun soldier. Shields are ineffective against magic, so they aren't all that popular nowadays." />
     <entry name="lantern" resistance="15"
-      color="rusty"
-      fluff="A rusty old lantern, that once was used to burn some odd oil. It is too foul to light up anymore, but the residue inside seems to dampen magic in some way." /> <!-- TODO: sprite (slot filler for an offhand slot?) -->
+      color="rusty" slotFillers="offHand:613"
+      fluff="A rusty old lantern, that once was used to burn some odd oil. It is too foul to light up anymore, but the residue inside seems to dampen magic in some way." />
     <entry name="silver spectacles" zones="1" specialAttackPower="10"
       color="silver" slotFillers="face:215"
       fluff="A seemingly-magical pair of glasses, presumably left behind by someone long dead. Through these lenses, you can see where opponents plan to go, a split-second before they start moving." />

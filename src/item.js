@@ -75,7 +75,7 @@ class Item {
           color = data.getColorByNameSafe('silver');
           break;
         case Item.Code.FastTravel:
-          sprite = 517; // TODO: dream map
+          sprite = 617;
           color = data.getColorByNameSafe('brown fabric');
           break;
         case Item.Code.Healing:
