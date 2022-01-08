@@ -345,31 +345,33 @@ class GameMapTile {
   }
 
   /**
-   * @param {!THREE.Group} group
+   * @param {!THREE.Group} staticMeshGroup
+   * @param {!THREE.Group} lightGroup
    * @param {!MapController} mapController
    * @param {!THREE.PerspectiveCamera} camera
    */
-  addToGroup(group, mapController, camera) {
+  addToGroup(staticMeshGroup, lightGroup, mapController, camera) {
     if (this.item) {
-      this.item.addToGroup(group, camera, this.x + 0.5, this.y + 0.5, this.th);
+      this.item.addToGroup(staticMeshGroup, lightGroup, camera,
+          this.x + 0.5, this.y + 0.5, this.th);
     }
     if (this.meshCache.length > 0) {
       // No need to make this stuff again!
       for (const mesh of this.meshCache) {
-        group.add(mesh);
+        staticMeshGroup.add(mesh);
       }
       return;
     }
     const rng = seededRNG(1 + toI(this.x, this.y));
-    this.addWallToGroup_(group, rng, -1, 0);
-    this.addWallToGroup_(group, rng, 1, 0);
-    this.addWallToGroup_(group, rng, 0, -1);
-    this.addWallToGroup_(group, rng, 0, 1);
-    this.addLedgeToGroup_(group, mapController, -1, 0);
-    this.addLedgeToGroup_(group, mapController, 1, 0);
-    this.addLedgeToGroup_(group, mapController, 0, -1);
-    this.addLedgeToGroup_(group, mapController, 0, 1);
-    this.addFloorToGroup_(group, rng);
+    this.addWallToGroup_(staticMeshGroup, rng, -1, 0);
+    this.addWallToGroup_(staticMeshGroup, rng, 1, 0);
+    this.addWallToGroup_(staticMeshGroup, rng, 0, -1);
+    this.addWallToGroup_(staticMeshGroup, rng, 0, 1);
+    this.addLedgeToGroup_(staticMeshGroup, mapController, -1, 0);
+    this.addLedgeToGroup_(staticMeshGroup, mapController, 1, 0);
+    this.addLedgeToGroup_(staticMeshGroup, mapController, 0, -1);
+    this.addLedgeToGroup_(staticMeshGroup, mapController, 0, 1);
+    this.addFloorToGroup_(staticMeshGroup, rng);
   }
 
   /** @param {number} elapsed */
@@ -491,6 +493,14 @@ class GameMap {
     if (overworldMapTile.hasCampfire) {
       this.placeObject_(rng, Item.Code.Campfire);
     }
+    if (overworldMapTile.lampColorName) {
+      const numLamps = Math.round(mapGameMapSize * mapGameMapSize *
+          (rng() * 0.75 + 0.5) *
+          mapTileUpscale * mapSecondTileUpscale / 30);
+      for (let i = 0; i < numLamps; i++) {
+        this.placeObject_(rng, Item.Code.Lamp, overworldMapTile.lampColorName);
+      }
+    }
     this.setTerrainHeights_();
   }
 
@@ -566,9 +576,10 @@ class GameMap {
   /**
    * @param {rng} rng
    * @param {!Item.Code} itemCode
+   * @param {string=} optColorName
    * @private
    */
-  placeObject_(rng, itemCode) {
+  placeObject_(rng, itemCode, optColorName) {
     const tickets = [];
     for (const tile of this.tiles.values()) {
       if (tile.item || tile.creatures.length > 0) continue;
@@ -601,6 +612,7 @@ class GameMap {
     } else {
       const tile = getRandomArrayEntry(tickets, rng);
       tile.item = new Item(itemCode);
+      if (optColorName) tile.item.colorName = optColorName;
     }
   }
 
@@ -925,7 +937,7 @@ class GameMap {
       if (metaMapTile.keyId) {
         tile.item = new Item(Item.Code.Key);
         tile.item.keyCode = metaMapTile.keyId;
-        tile.item.keyColorName = 'bronze';
+        tile.item.colorName = 'bronze';
       }
       tiles.set(toI(tile.x, tile.y), tile);
       if (toI(metaMapTile.x, metaMapTile.y) == this.centerI) {
@@ -939,7 +951,7 @@ class GameMap {
           }
           tile.item = new Item(Item.Code.Key);
           tile.item.keyCode = overworldMapTile.keyId;
-          tile.item.keyColorName = 'silver';
+          tile.item.colorName = 'silver';
         }
       }
     }

@@ -9,7 +9,7 @@ class Item {
     /** @type {?number} */
     this.keyCode;
     /** @type {?string} */
-    this.keyColorName;
+    this.colorName;
     /** @type {?number} */
     this.tier;
   }
@@ -68,7 +68,7 @@ class Item {
           break;
         case Item.Code.Key:
           sprite = 506;
-          color = data.getColorByNameSafe(this.keyColorName || '');
+          color = data.getColorByNameSafe(this.colorName || '');
           break;
         case Item.Code.Respec:
           sprite = 517;
@@ -77,6 +77,14 @@ class Item {
         case Item.Code.FastTravel:
           sprite = 617;
           color = data.getColorByNameSafe('brown fabric');
+          break;
+        case Item.Code.Lamp:
+          sprite = 417;
+          color = data.getColorByNameSafe('steel');
+          if (this.colorName) {
+            const blendColor = data.getColorByNameSafe(this.colorName);
+            color = colorLerp(color, blendColor, 0.3);
+          }
           break;
         case Item.Code.Healing:
           sprite = 516;
@@ -116,21 +124,40 @@ class Item {
   }
 
   /**
-   * @param {!THREE.Group} group
+   * @param {!THREE.Group} staticMeshGroup
+   * @param {!THREE.Group} lightGroup
    * @param {!THREE.PerspectiveCamera} camera
    * @param {number} x
    * @param {number} y
    * @param {number} th
    */
-  addToGroup(group, camera, x, y, th) {
+  addToGroup(staticMeshGroup, lightGroup, camera, x, y, th) {
     if (!this.spriteObject) {
       const {sprite, color, scale, h} = this.getSpriteDetails_();
       this.h = h;
       this.spriteObject = new SpriteObject();
       this.spriteObject.setAppearance(sprite, color, scale);
     }
+    if (this.contents == Item.Code.Lamp && this.colorName) {
+      const i = 0.5;
+      const d = 5;
+      const h = th + (this.h || 0.5) + 0.75;
+      const color = data.getColorByNameSafe(this.colorName);
+      lightGroup.add(gfx.makeLight(x, y, h, i, d, color));
+    }
     this.spriteObject.addToGroup(
-        group, camera, x, y, th, {h: this.h, drawBack: 0.05});
+        staticMeshGroup, camera, x, y, th, {h: this.h, drawBack: 0.05});
+  }
+
+  /** @return {boolean} */
+  get showOnMinimap() {
+    if (!(this.contents instanceof Equipment)) {
+      switch (this.contents) {
+        case Item.Code.Lamp:
+          return false;
+      }
+    }
+    return true;
   }
 
   /** @return {boolean} */
@@ -156,7 +183,7 @@ class Item {
     } else {
       switch (this.contents) {
         case Item.Code.Key:
-          return capitalizeFirstLetter(this.keyColorName || '') + ' Key';
+          return capitalizeFirstLetter(this.colorName || '') + ' Key';
         case Item.Code.Respec:
           return 'Brain Scrambler';
         case Item.Code.FastTravel:
@@ -184,7 +211,7 @@ class Item {
       switch (this.contents) {
         case Item.Code.Key:
           return [
-            'An old key made of ' + (this.keyColorName || '') + '.',
+            'An old key made of ' + (this.colorName || '') + '.',
             'Left click to use!',
           ];
         case Item.Code.FastTravel:
@@ -217,11 +244,16 @@ class Item {
    * @return {!Item}
    */
   static load(saveString) {
-    if (saveString.startsWith('(K)')) {
+    if (saveString.startsWith('(L)')) {
+      const split = saveString.split(')');
+      const item = new Item(Item.Code.Lamp);
+      item.colorName = split[1];
+      return item;
+    } else if (saveString.startsWith('(K)')) {
       const split = saveString.split(')')[1].split(':');
       const item = new Item(Item.Code.Key);
       item.keyCode = parseInt(split[0], 10);
-      item.keyColorName = split[1];
+      item.colorName = split[1];
       return item;
     } else if (saveString.startsWith('(H)')) {
       const split = saveString.split(')');
@@ -241,7 +273,9 @@ class Item {
     if (this.contents instanceof Equipment) {
       return this.contents.saveString;
     } else if (this.contents == Item.Code.Key) {
-      return '(K)' + this.keyCode + ':' + this.keyColorName;
+      return '(K)' + this.keyCode + ':' + this.colorName;
+    } else if (this.contents == Item.Code.Lamp) {
+      return '(L)' + this.colorName;
     } else if (this.contents == Item.Code.Healing) {
       return '(H)' + this.tier;
     } else {
@@ -257,4 +291,5 @@ Item.Code = {
   Healing: 3,
   Respec: 4,
   FastTravel: 5,
+  Lamp: 6,
 };

@@ -48,6 +48,11 @@ class OverworldMapTile {
   get enemyTemplates() {
     return data.getArrayValue('sub regions', this.type, 'enemyTemplates') || [];
   }
+
+  /** @return {?string} */
+  get lampColorName() {
+    return data.getValue('tilesets', this.tileset, 'lampColor');
+  }
 }
 
 class OverworldMap {

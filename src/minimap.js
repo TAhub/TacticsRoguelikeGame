@@ -70,8 +70,9 @@ class Minimap {
 
       // Draw the tiles.
       for (const tile of drawTiles) {
+        const hasItem = tile.item && tile.item.showOnMinimap;
         ctx.fillStyle = data.getColorByNameSafe(
-            tile.item ? 'tile selected' : 'tile');
+            hasItem ? 'tile selected' : 'tile');
         ctx.fillRect(tile.x * scale - 0.25, tile.y * scale - 0.25,
             scale + 0.5, scale + 0.5);
       }

@@ -1254,13 +1254,12 @@
       <!-- TODO: village-type furniture? -->
     <entry name="house"
       small="1"
-      lightingIntensity="70" lightingColor="white"
+      lightingIntensity="50" lightingColor="white" lampColor="pale red"
       ledgeColor="stone wall" baseTh="0"
       floorSprites="0,1,2,3" floorColor="wood floor"
       wallSprites="4,5,6,7" wallColor="wood wall"
       inheritJoinsFrom="ship" />
       <!-- TODO: wood plank wall sprites -->
-      <!-- TODO: lamps that glow "pale red" -->
       <!-- TODO: village-type furniture? -->
     <entry name="hedge maze"
       lightingIntensity="75" lightingColor="pale purple"
@@ -1314,23 +1313,21 @@
       wallSprites="10,11,12,13" wallColor="stone wall"
       inheritJoinsFrom="dirt tunnels" />
     <entry name="burrow"
-      lightingIntensity="25" lightingColor="gray"
+      lightingIntensity="10" lightingColor="gray" lampColor="pale red"
       ledgeColor="stone wall" baseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="10,11,12,13" wallColor="stone wall"
       inheritJoinsFrom="dirt tunnels" />
-      <!-- TODO: lamps that glow "pale red" -->
       <!-- TODO: village type furniture? -->
     <entry name="workshop"
-      lightingIntensity="30" lightingColor="gray"
+      lightingIntensity="20" lightingColor="gray" lampColor="pale red"
       ledgeColor="stone wall" baseTh="0" cellularTh="1" noiseTh="1"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="10,11,12,13" wallColor="stone wall"
       inheritJoinsFrom="ship" />
-      <!-- TODO: lamps that glow "pale red" -->
       <!-- TODO: workshop type furniture? -->
     <entry name="catacombs"
-      lightingIntensity="10" lightingColor="green"
+      lightingIntensity="5" lightingColor="green" lampColor="light green"
       ledgeColor="stone wall" baseTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="stone floor"
       wallSprites="4,5,6,7" wallColor="stone wall"
@@ -1339,9 +1336,8 @@
       replacersLJoins="narrow hallway turn,narrow hallway turn,narrow hallway turn concave,narrow hallway turn indirect"
       replacersTJoins="narrow hallway split"
       replacersHJoins="narrow hallway fourway,column room" />
-      <!-- TODO: lamps that glow "light green" -->
     <entry name="ship"
-      lightingIntensity="25" lightingColor="gray"
+      lightingIntensity="15" lightingColor="gray" lampColor="orange"
       ledgeColor="wood wall" baseTh="2" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="wood floor"
       wallSprites="4,5,6,7" wallColor="wood wall"
@@ -1352,16 +1348,14 @@
       replacersHJoins="null,column room" />
       <!-- TODO: wood plank floor sprites -->
       <!-- TODO: wood plank wall sprites -->
-      <!-- TODO: lamps that glow "orange" -->
     <entry name="spooky manor"
-      lightingIntensity="20" lightingColor="green"
+      lightingIntensity="15" lightingColor="green" lampColor="light green"
       ledgeColor="wood wall" baseTh="2" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="wood floor"
       wallSprites="4,5,6,7" wallColor="wood wall"
       inheritJoinsFrom="ship" />
       <!-- TODO: wood plank floor sprites -->
       <!-- TODO: wood plank wall sprites -->
-      <!-- TODO: lamps that glow "light green" -->
       <!-- TODO: village-type furniture? -->
     <entry name="gateway"
       lightingIntensity="65" lightingColor="pale purple"
@@ -1371,12 +1365,11 @@
       inheritJoinsFrom="ship" />
       <!-- TODO: fancier walls? I dunno -->
     <entry name="tether assembly"
-      lightingIntensity="60" lightingColor="sky blue"
+      lightingIntensity="45" lightingColor="sky blue" lampColor="blue"
       ledgeColor="stone wall" baseTh="1"
       floorSprites="0,1,2,3" floorColor="stone floor"
       wallSprites="4,5,6,7" wallColor="stone wall"
       inheritJoinsFrom="ship" />
-      <!-- TODO: lamps that glow "blue" -->
       <!-- TODO: fancier walls? I dunno -->
       <!-- TODO: magical furniture -->
   </category> <!-- tilesets -->

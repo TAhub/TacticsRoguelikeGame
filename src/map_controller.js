@@ -699,7 +699,7 @@ class MapController {
     // Add the visible tiles to the scene.
     this.staticMeshGroup.clear();
     for (const tile of this.visibleTiles) {
-      tile.addToGroup(this.staticMeshGroup, this, camera);
+      tile.addToGroup(this.staticMeshGroup, this.lightGroup, this, camera);
     }
   }
 }
