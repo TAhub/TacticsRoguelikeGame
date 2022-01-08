@@ -678,14 +678,6 @@
     </entry> <!-- bird -->
   </category> <!-- species appearances -->
   <category name="weapons">
-    <!-- TODO: animStrikeSound options
-      slash
-      smash
-      scream (for confusion?)
-      explosion
-      poison
-    -->
-
     <!-- special -->
     <entry name="unarmed" weaponAccuracy="100" numHits="2" armorBlunted="1"
       animProjSprite="515" animProjScale="30" animProjSpeed="5" animProjSkinColor="1" animProjDelay="30" animStep="20" animSound="swing" animStrikeSound="smash" />
@@ -942,7 +934,7 @@
       fluff="Build up astra and pattern it with the will and instructions to heal others. An effective use of magic, but watch out for enemies attempting to intercept your spells!" />
     <entry name="sacrifice" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" heals="1" scaling="level" usesSpecialPower="1" lifeCostPercent="5" targetRingUser="wedding ring"
       animProjSprite="515" animProjScale="30" animProjSpeed="8" animProjColor="blood" animProjGlows="1" animStep="10" animPostStepPause="22" animSound="charge" animStrikeSound="regen"
-      fluff="Prick yourself with a spike on the inside of your ring, and channel your astra through the bead of blood. The spell in the ring sends the charged blood off heal your beloved... or at least, to heal whomever is wearing the other ring." /> <!-- TODO: sounds -->
+      fluff="Prick yourself with a spike on the inside of your ring, and channel your astra through the bead of blood. The spell in the ring sends the charged blood off heal your beloved... or at least, to heal whomever is wearing the other ring." />
     <entry name="first aid" astraCost="5" weaponAccuracy="100" heals="1" scaling="level" usesSpecialPower="1" numHits="2"
       animProjSprite="513" animProjScale="100" animProjSpeed="4" animProjColor="blood" animProjDelay="50" animStep="20" animPostStepPause="22" animSound="swing" animStrikeSound="regen"
       fluff="Apply some basic first aid to an ally, patching up their wounds as best as you can." />
