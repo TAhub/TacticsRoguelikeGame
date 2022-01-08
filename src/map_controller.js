@@ -32,6 +32,8 @@ class MapController {
     }
     this.inCombat = false;
     this.cameraAngle = 0;
+    /** @type {?function(boolean)} */
+    this.gameOverFn;
   }
 
   /**
@@ -498,7 +500,9 @@ class MapController {
       creature.cachedParticles = [];
       if (creature.shouldDisposeOf) {
         if (creature.finalBoss) {
-          // TODO: victory!!!
+          if (this.gameOverFn) {
+            this.gameOverFn(true);
+          }
         }
         creature.removeFromTiles(this);
         creatureDead = true;
@@ -513,6 +517,9 @@ class MapController {
     }
     if (creatureDead) {
       this.creatures = this.creatures.filter((cr) => !cr.shouldDisposeOf);
+      if (this.players.every((p) => p.shouldDisposeOf) && this.gameOverFn) {
+        this.gameOverFn(false);
+      }
     }
 
     let particleDead = false;
@@ -570,6 +577,13 @@ class MapController {
     return toI(Math.floor(x / size), Math.floor(y / size));
   }
 
+  clear3DData() {
+    // Reload maps with a fake position so that everything will unload.
+    this.reloadMaps(toI(999, 99));
+    // Also unload all players.
+    for (const player of this.players) player.clear3DData();
+  }
+
   /**
    * Makes sure that the map that corresponds to the player position and all
    * nearby maps, are all in memory. All other maps unload.
@@ -580,12 +594,13 @@ class MapController {
         optForceOverworldTileI :
         this.overworldIFor(this.active.x, this.active.y);
     const overworldTile = this.overworldMap.tiles.get(overworldTileI);
-    if (!overworldTile) return; // Huh?
 
     const desiredMapIs = new Set();
-    desiredMapIs.add(toI(overworldTile.x, overworldTile.y));
-    for (const i of overworldTile.doorIds.keys()) {
-      desiredMapIs.add(i);
+    if (overworldTile) {
+      desiredMapIs.add(toI(overworldTile.x, overworldTile.y));
+      for (const i of overworldTile.doorIds.keys()) {
+        desiredMapIs.add(i);
+      }
     }
 
     // Unload any maps that are no longer necessary.
@@ -600,6 +615,7 @@ class MapController {
       this.gameMaps.delete(i);
       // Unload any creatures in this map.
       this.creatures = this.creatures.filter((creature) => {
+        if (creature.side == Creature.Side.Player) return true;
         if (this.overworldIFor(creature.x, creature.y) == i) {
           creature.clear3DData();
           return false;

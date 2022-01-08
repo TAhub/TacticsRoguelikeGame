@@ -1,4 +1,20 @@
 <data>
+  <category name="messages">
+    <entry name="victory">
+      <line s="With Lord Rigus dead, the magic that was drawing people to the old Empire ended." />
+      <line s="Nothing held the group there anymore, so they soon returned home." />
+      <line s="Perhaps some of them became life-long friends, rivals, or lovers." />
+      <line s="Or perhaps they all parted ways, happy to never think about this ordeal again." />
+      <line s="VICTORY!" />
+    </entry> <!-- victory -->
+    <entry name="defeat">
+      <line s="Sadly, the group were all knocked out and defeated." />
+      <line s="Without anyone awake to drag the others to safety, they perished." />
+      <line s="Will they be missed? Or will they be quietly forgotten?" />
+      <line s="Perhaps, if they had just done something differently..." />
+      <line s="GAME OVER!" />
+    </entry> <!-- defeat -->
+  </category> <!-- messages -->
   <category name="npc lines">
     <entry name="roros">
       <line s="Did you four sleepwalk here too?" />

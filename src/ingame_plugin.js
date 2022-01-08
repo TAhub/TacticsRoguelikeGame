@@ -12,6 +12,8 @@ class IngamePlugin extends GamePlugin {
     }
     this.mapController.reloadMaps();
 
+    this.mapController.gameOverFn = (victory) => this.gameOver_(victory);
+
     this.minimap = new Minimap();
     this.menuController = new MenuController();
 
@@ -33,6 +35,17 @@ class IngamePlugin extends GamePlugin {
     this.techMode = false;
 
     this.maybeTriggerEncounters_();
+  }
+
+  /**
+   * @param {boolean} victory
+   * @private
+   */
+  gameOver_(victory) {
+    this.switchToPlugin(new MessagePlugin(victory ? 'victory' : 'defeat'));
+
+    // Also, unload all 3D data.
+    this.mapController.clear3DData();
   }
 
   /**
