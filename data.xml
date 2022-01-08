@@ -126,12 +126,50 @@
       specialAttackPower="4" astra="2"
       fluff="Useful when forcing yourself to do things that are boring or painful." />
   </category> <!-- stats -->
+  <category name="fighting styles">
+    <!-- species-based styles -->
+    <entry name="bear style" reqSpecies="karhun"
+      attackPower="10" defense="15"
+      fluff="A fighting style pioneered by the Karhun. Focuses on keeping the opponent on the back foot through constant aggressive attacks." />
+    <entry name="rat style" reqSpecies="skuri"
+      attackPowerWhenDisengaged="20" dodge="15"
+      fluff="A fighting style first developed in secret for the Skuri to use against their Firin slave-masters. Focuses on hit-and-run attacks." />
+    <entry name="cat style" reqSpecies="firin"
+      accuracy="10" powerVsUninjured="20"
+      fluff="A fighting style traditionally practiced by Firin mages and warriors. Designed to make a decisive first strike and weaken a foe enough that they can be toyed with." />
+
+    <!-- job-based styles -->
+    <entry name="boar style" reqJobs="warrior,martial artist,wanderer"
+      attackPower="15" moveDistance="2"
+      fluff="An aggressive fighting style that focuses on getting in close, and striking with overwhelming power." />
+    <entry name="bird style" reqJobs="mage,sage,ranger"
+      flying="1" moveDistance="1"
+      fluff="A magical fighting style that strives to allow the user to fly like a bird. In truth, though, you're hovering more than flying." />
+    <entry name="snake style" reqJobs="rogue,gunner,healer"
+      resistance="15" initiative="10"
+      fluff="A sinister fighting style that stresses being calm and collected, while being ready to spring into action the moment you sense danger." />
+    <entry name="frog style" reqJobs="mechanist,lab rat,survivor"
+      specialPower="10" specialAttackPower="30"
+      fluff="A careful fighting style based on waiting and reacting. Named based on an old myth that frogs are careful planners." />
+
+    <!-- general styles -->
+    <entry name="monkey style"
+      accuracy="15" dodge="10"
+      fluff="A fluid style focusing on flexibility and skill over raw power. Surprisingly versatile, much like the rare animal it is named after." />
+    <entry name="slime style"
+      defense="20" resistance="20" dodge="-15"
+      fluff="A simple fighting style meant to imitate the placid yet hearty slime. Focuses on taking hits and surviving, instead of avoiding them." />
+    <entry name="star style"
+      specialPower="10" hitsToCrits="30"
+      fluff="An esoteric fighting style supposedly designed based on the movements of the stars. Helps the user bring overwhelming magical firepower to bear." />
+    <entry name="horse style"
+      moveDistance="5"
+      fluff="A fighting style focused on pure mobility, inspired by the spirit of the horse." />
+  </category> <!-- fighting styles -->
   <category name="skills">
     <!-- enemy-only skills -->
     <entry name="enemy"
       attackPower="2" specialPower="2" defense="2" accuracy="2" dodge="2" resistance="2" />
-    <entry name="flight"
-      flying="1" life="-4" defense="-4" />
 
     <!-- species-specific skills -->
     <entry name="warrior spirit" reqSpecies="karhun"
@@ -153,7 +191,7 @@
       fluff="Harness your inner fury, your primal desire to smash stuff. Sometimes, a good opportunity to smash just presents itself." />
     <entry name="combat style" prereq="form"
       accuracy="4" dodge="4" attackPower="4"
-      fluff="Learn a formal, polished weapon fighting style. Something bigger than just hitting correctly; something with techniques for things like parrying." />
+      fluff="Learn a formal weapon style. Something bigger than just hitting correctly; something with techniques for things like parrying." />
     <entry name="skin hardening" physiqueReq="13"
       defense="12"
       fluff="Learn a common warrior technique, training yourself to harden your skin on command by infusing it with astra. Useful, but very painful to learn." />
@@ -216,7 +254,7 @@
       fluff="Learn how to dissipate astra from a spell-channel to further disrupt it. Learning this skill also helps gather more astra from the environment." />
     <entry name="mage hunting" prereq="countermagic"
       attackPower="6" resistance="6"
-      fluff="Learn an advanced fighting style specifically meant for defeating mages in combat, which combines counter-spelling and dangerous weapon attacks." />
+      fluff="Learn an advanced set of combat tactics and drills specifically meant for defeating mages in combat, which combines counter-spelling and dangerous weapon attacks." />
     <entry name="meditation" willpowerReq="10"
       astra="12"
       fluff="Learn how to meditate, to help you more effectively absorb the astra of the stars during your downtime. A useful skill, especially for mages." />
@@ -257,7 +295,7 @@
       fluff="Rangers are representatives of an old Karhun tradition, now seen as obsolete due to firearms. They learn how to fight with bows, and be self-sufficient in the wilds." />
     <entry name="wanderer" reqSpecies="firin"
       agilityModifier="2" accuracy="25" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash,blitz strike"
-      fluff="Wanderers learn a traditional Firin fighting style that combines steel and spell. Once taught to noble scions, this style is now practiced by secretive nomads." />
+      fluff="Wanderers learn a traditional Firin combat art that combines steel and spell. Once taught to noble scions, this art is now practiced by secretive nomads." />
     <entry name="lab rat" reqSpecies="skuri"
       senseModifier="1" physiqueModifier="1" astra="25" life="25" proficiencies="dagger,spear,agony release,miasma bolt,mend,crimson fangs"
       fluff="Lab rats are those who act as test subjects for life-affecting spells, harmful and helpful both. Those who survive often learn the very magic that once tormented them so." />
@@ -296,8 +334,8 @@
   <category name="creature templates">
     <!-- special -->
     <entry name="sample player t0" species="karhun" jobs="warrior" weapon="mace:0" armors="helmet:0,breastplate:0,greaves:0" techniques="slam" />
-    <entry name="sample player t1" species="karhun" jobs="warrior" weapon="mace:1" armors="helmet:1,breastplate:1,greaves:1" accessory="regal cloak" techniques="slam" ring="brass knuckles" />
-    <entry name="sample player t2" species="karhun" jobs="warrior,survivor" weapon="mace:2" armors="helmet:2,breastplate:2,greaves:2" accessory="regal cloak" techniques="slam" ring="brass knuckles" />
+    <entry name="sample player t1" species="karhun" jobs="warrior" weapon="mace:1" armors="helmet:1,breastplate:1,greaves:1" accessory="regal cloak" techniques="slam" ring="brass knuckles" fightingStyle="bear style" />
+    <entry name="sample player t2" species="karhun" jobs="warrior,survivor" weapon="mace:2" armors="helmet:2,breastplate:2,greaves:2" accessory="regal cloak" techniques="slam" ring="brass knuckles" fightingStyle="bear style" />
 
     <!-- npcs -->
     <entry name="Roros" species="firin" jobs="survivor" level="1" armors="shirt:0,pants:0"
@@ -318,19 +356,19 @@
       gender="0" hairstyle="ponytail" coloration="1" enemyLines="Linner" />
     <entry name="beach slime" species="slime" jobs="tough monster" level="12" weapon="tackle:0" techniques="arcana arrow,gold splitling" boss="1"
       coloration="1" />
-    <entry name="Asrami" species="skuri" jobs="lab rat" level="17" weapon="dagger:1" armors="hat:1,shirt:1,skirt:1" techniques="agony release,miasma bolt,crimson fangs,mend" accessory="lantern" boss="1"
+    <entry name="Asrami" species="skuri" jobs="lab rat" level="17" weapon="dagger:1" armors="hat:1,shirt:1,skirt:1" techniques="agony release,miasma bolt,crimson fangs,mend" accessory="lantern" fightingStyle="rat style" boss="1"
       gender="1" hairstyle="long hair" coloration="1" enemyLines="Gatekeeper" />
     <entry name="Tunnel Guard Kaspikka" species="karhun" jobs="warrior" level="19" weapon="spear:1" armors="helmet:1,breastplate:1,greaves:1" techniques="sword wave,slam,trained rat" accessory="shield" skills="skin hardening,organ hardening,zoning" boss="1"
       gender="1" hairstyle="short hair" coloration="1" enemyLines="Kaspikka" />
-    <entry name="Boss Jyrku" species="karhun" jobs="warrior" level="24" weapon="sword:2" armors="helmet:1,breastplate:1,greaves:1" techniques="blitz strike,typhoon slash,bandit flunky" accessory="fur cloak" boss="1"
+    <entry name="Boss Jyrku" species="karhun" jobs="warrior" level="24" weapon="sword:2" armors="helmet:1,breastplate:1,greaves:1" techniques="blitz strike,typhoon slash,bandit flunky" accessory="fur cloak" fightingStyle="bear style" boss="1"
       gender="0" hairstyle="bald" coloration="0" enemyLines="Jyrku" />
-    <entry name="Lord Latos" species="firin" jobs="sage,undead" level="25" weapon="claws:1" armors="hat:2,shirt:2,pants:2" accessory="regal cloak" techniques="ashball,siphon,unearth" skills="flight" boss="1"
+    <entry name="Lord Latos" species="firin" jobs="sage,undead" level="25" weapon="claws:1" armors="hat:2,shirt:2,pants:2" accessory="regal cloak" techniques="ashball,siphon,unearth" fightingStyle="bird style" boss="1"
       gender="0" hairstyle="ponytail" coloration="1" enemyLines="Latos" />
     <entry name="king boar" species="giant boar" jobs="tough monster,tough monster" level="28" weapon="tackle:2" techniques="slam,solar combo" skills="form,warrior spirit" boss="1"
       gender="0" />
-    <entry name="Gatekeeper" species="karhun" jobs="rogue,tethered" level="30" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" accessory="intimidating mask" techniques="crimson fangs,venom sting" skills="form" boss="1"
+    <entry name="Gatekeeper" species="karhun" jobs="rogue,tethered" level="30" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" accessory="intimidating mask" techniques="crimson fangs,venom sting" skills="form" fightingStyle="boar style" boss="1"
       gender="0" hairstyle="short" coloration="1" enemyLines="Gatekeeper" />
-    <entry name="Lord Rigus" species="firin" jobs="mage,undead" level="36" weapon="mace:2" armors="shirt:2,pants:2" accessory="regal cloak" ring="rusted focus" techniques="arcana arrow,spell barrage,enchanted blade,court guard,court mage,court assassin" skills="prey instincts,zoning" finalBoss="1"
+    <entry name="Lord Rigus" species="firin" jobs="mage,undead" level="36" weapon="mace:2" armors="shirt:2,pants:2" accessory="regal cloak" ring="rusted focus" techniques="arcana arrow,spell barrage,enchanted blade,court guard,court mage,court assassin" skills="prey instincts,zoning" fightingStyle="frog style" finalBoss="1"
       gender="0" hairstyle="medium" coloration="0" enemyLines="Rigus" />
 
     <!-- grasslands enemies (levels 1-6) -->

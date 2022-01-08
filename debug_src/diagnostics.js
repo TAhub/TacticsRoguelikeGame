@@ -17,6 +17,8 @@ function checkBonusSourceValidity(bS) {
     category = 'species';
   } else if (bS instanceof Job) {
     category = 'jobs';
+  } else if (bS instanceof FightingStyle) {
+    category = 'fighting styles';
   } else {
     console.log('--WARNING: ' + bS.type + ' has invalid category');
     return;
@@ -47,6 +49,9 @@ function checkCreatureValidity(creature) {
   if (creature.accessory) checkBonusSourceValidity(creature.accessory);
   if (creature.ring) checkBonusSourceValidity(creature.ring);
   if (creature.weapon) checkBonusSourceValidity(creature.weapon);
+  if (creature.activeFightingStyle) {
+    checkBonusSourceValidity(creature.activeFightingStyle);
+  }
   checkBonusSourceValidity(creature.species);
   for (const job of creature.jobs) {
     checkBonusSourceValidity(job);
@@ -629,6 +634,7 @@ allDiagnostics.set('Bonus Source Diagnostic', () => {
   check('species', (type) => new Species(type), (bS) => 10, 0);
   check('jobs', (type) => new Job(type), (bS) => 50, 2);
   check('skills', (type) => new Skill(type), (bS) => 12);
+  check('fighting styles', (type) => new FightingStyle(type), (bS) => 25);
   check('armors', (type) => new Armor(type), (bS) => {
     if (!(bS instanceof Armor)) return 0;
     let value = 10;

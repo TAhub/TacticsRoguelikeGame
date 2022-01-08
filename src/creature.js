@@ -93,6 +93,10 @@ class Creature {
     this.secondWeapon;
     /** @type {?Accessory} */
     this.accessory;
+    /** @type {?FightingStyle} */
+    this.activeFightingStyle;
+    /** @type {!Array.<string>} */
+    this.knownFightingStyleTypes = [];
     /** @type {?Ring} */
     this.ring;
     /** @type {!Array.<string>} */
@@ -220,6 +224,7 @@ class Creature {
     if (this.accessory) total += fn(this.accessory);
     if (this.ring) total += fn(this.ring);
     if (this.weapon) total += fn(this.weapon);
+    if (this.activeFightingStyle) total += fn(this.activeFightingStyle);
     return total;
   }
 
@@ -411,6 +416,15 @@ class Creature {
   }
 
   /** @return {number} */
+  get desiredNumFightingStyleTypes() {
+    const tier = this.levelObj.tierSmth;
+    if (tier >= 2) return 3;
+    else if (tier >= 1.5) return 2;
+    else if (tier >= 1) return 1;
+    else return 0;
+  }
+
+  /** @return {number} */
   get generationPoints() {
     const zonesStacks = this.zonesStacks;
     const attackPower = this.attackPower;
@@ -476,7 +490,7 @@ class Creature {
 
     // Get final points.
     let generationPoints = this.maxLife / mechBaseLife;
-    generationPoints *= (mechBaseDamage + this.resistance + this.defense) / 100;
+    generationPoints *= (100 + this.resistance + this.defense) / 100;
     const totalDodge =
         this.dodge + (this.dodgeVsDisengage / 3) + (this.flying ? 15 : 0);
     generationPoints *= (100 + totalDodge) / 100;
@@ -2182,6 +2196,12 @@ class Creature {
       }
     }
 
+    // Give a fighting style, perhaps.
+    const fightingStyle = getV('fightingStyle');
+    if (fightingStyle) {
+      creature.activeFightingStyle = new FightingStyle(fightingStyle);
+    }
+
     // Give gear.
     const armors = getAVariants('armors');
     for (const type of armors) {
@@ -2358,6 +2378,14 @@ class Creature {
       if (save['techniques']) {
         creature.techTypes = save['techniques'].split(',');
       }
+      if (save['activeFightingStyle']) {
+        creature.activeFightingStyle =
+            new FightingStyle(save['activeFightingStyle']);
+      }
+      if (save['knownFightingStyles']) {
+        creature.knownFightingStyleTypes =
+            save['knownFightingStyles'].split(',');
+      }
     }
 
     // Variables.
@@ -2426,6 +2454,12 @@ class Creature {
       }
       if (this.techTypes.length > 0) {
         save['techniques'] = this.techTypes.join(',');
+      }
+      if (this.activeFightingStyle) {
+        save['activeFightingStyle'] = this.activeFightingStyle.type;
+      }
+      if (this.knownFightingStyleTypes.length > 0) {
+        save['knownFightingStyles'] = this.knownFightingStyleTypes.join(',');
       }
     }
 

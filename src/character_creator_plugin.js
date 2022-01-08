@@ -15,6 +15,8 @@ let CharacterCreatorGenericPickerOptions;
  *   skillPoints: number,
  *   stats: !Array.<!Stat>,
  *   skills: !Array.<!Skill>,
+ *   activeFightingStyle: ?FightingStyle,
+ *   knownFightingStyleTypes: !Array.<string>,
  * }}
  */
 let CharacterCreatorResetValues;
@@ -72,7 +74,7 @@ class CharacterCreatorPlugin extends GamePlugin {
         stat.number += job.getStatModifierFor(stat.type);
       }
     }
-    this.applyResetValuesFor_(creature, false, true);
+    this.applyResetValuesFor_(creature, false, true, false);
   }
 
   /** @private */
@@ -167,7 +169,7 @@ class CharacterCreatorPlugin extends GamePlugin {
         headerWrapper(statHeaderName, () => {
           startX = this.addStatPicker_(creature, startX, pSize + headerHeight);
         }, () => {
-          this.applyResetValuesFor_(creature, true, true);
+          this.applyResetValuesFor_(creature, true, true, false);
           this.remakeUI_();
         });
       } else {
@@ -186,6 +188,21 @@ class CharacterCreatorPlugin extends GamePlugin {
         });
       }
 
+      const numFS = creature.desiredNumFightingStyleTypes;
+      if (numFS > 0) {
+        let fsHeaderName = 'Fighting Styles';
+        if (creature.knownFightingStyleTypes.length < numFS) {
+          fsHeaderName += ' (pick a new style)';
+        }
+        headerWrapper(fsHeaderName, () => {
+          startX = this.addFightingStylePicker_(
+              creature, startX, pSize + headerHeight);
+        }, () => {
+          this.applyResetValuesFor_(creature, false, false, true);
+          this.remakeUI_();
+        });
+      }
+
       if (creature.skillPoints > 0 || creature.skills.length > 0) {
         let skillHeaderName = 'Skills';
         if (creature.skillPoints > 0) {
@@ -194,7 +211,7 @@ class CharacterCreatorPlugin extends GamePlugin {
         headerWrapper(skillHeaderName, () => {
           startX = this.addSkillPicker_(creature, startX, pSize + headerHeight);
         }, () => {
-          this.applyResetValuesFor_(creature, false, true);
+          this.applyResetValuesFor_(creature, false, true, false);
           this.remakeUI_();
         });
       }
@@ -479,6 +496,40 @@ class CharacterCreatorPlugin extends GamePlugin {
    * @return {number} startX
    * @private
    */
+  addFightingStylePicker_(creature, startX, startY) {
+    const sampleFn = (type) => {
+      const style = new FightingStyle(type);
+      if (style.reqJobs) {
+        const hasJob = style.reqJobs.some((type) => {
+          return creature.jobs.some((job) => job.type == type);
+        });
+        if (!hasJob) return null;
+      }
+      if (style.reqSpecies) {
+        if (style.reqSpecies != creature.species.type) return null;
+      }
+      return style;
+    };
+    const clickFn = (type) => {
+      if (creature.knownFightingStyleTypes.length >=
+          creature.desiredNumFightingStyleTypes) return;
+      if (creature.knownFightingStyleTypes.some((t) => t.type == type)) return;
+      creature.knownFightingStyleTypes.push(type);
+      creature.activeFightingStyle = new FightingStyle(type);
+      this.remakeUI_();
+    };
+    const selected = creature.knownFightingStyleTypes;
+    return this.addGenericPicker_(creature, startX, startY, 'fighting styles',
+        {sampleFn, clickFn, selected});
+  }
+
+  /**
+   * @param {!Creature} creature
+   * @param {number} startX
+   * @param {number} startY
+   * @return {number} startX
+   * @private
+   */
   addSkillPicker_(creature, startX, startY) {
     const sampleFn = (type) => {
       const skill = new Skill(type);
@@ -593,9 +644,10 @@ class CharacterCreatorPlugin extends GamePlugin {
    * @param {!Creature} creature
    * @param {boolean} forStats
    * @param {boolean} forSkills
+   * @param {boolean} forFightingStyles
    * @private
    */
-  applyResetValuesFor_(creature, forStats, forSkills) {
+  applyResetValuesFor_(creature, forStats, forSkills, forFightingStyles) {
     const idx = this.players.indexOf(this.selectedCreature);
     if (idx == -1) return;
     const resetValue = this.resetValues[idx];
@@ -605,6 +657,11 @@ class CharacterCreatorPlugin extends GamePlugin {
         return new Stat(
             stat.type, stat.number, creature.species, creature.jobs);
       });
+    }
+    if (forFightingStyles) {
+      creature.activeFightingStyle = resetValue.activeFightingStyle;
+      creature.knownFightingStyleTypes =
+          resetValue.knownFightingStyleTypes.slice();
     }
     if (forSkills) {
       creature.skillPoints = resetValue.skillPoints;
@@ -624,7 +681,10 @@ class CharacterCreatorPlugin extends GamePlugin {
       return new Stat(stat.type, stat.number, creature.species, creature.jobs);
     });
     const skills = creature.skills.slice();
-    return {statPoints, skillPoints, stats, skills};
+    const activeFightingStyle = creature.activeFightingStyle;
+    const knownFightingStyleTypes = creature.knownFightingStyleTypes.slice();
+    return {statPoints, skillPoints, stats, skills,
+      activeFightingStyle, knownFightingStyleTypes};
   }
 
   /**

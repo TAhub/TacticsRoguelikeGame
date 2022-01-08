@@ -236,6 +236,29 @@ class IngamePlugin extends GamePlugin {
         ].concat(active.secondWeapon.getDescription(active));
         specialActions.push(new MenuTile('Switch Weapons', {clickFn, tooltip}));
       }
+      if (active.hasMove || !mapC.inCombat) {
+        for (const type of active.knownFightingStyleTypes) {
+          const selected = !!active.activeFightingStyle &&
+                           active.activeFightingStyle.type == type;
+          const sample = new FightingStyle(type);
+          const clickFn = () => {
+            if (selected) return;
+            active.activeFightingStyle = sample;
+            active.say(sample.name + '!');
+            this.menuController.clear();
+            if (mapC.inCombat) active.hasMove = false;
+            // Toggle in and out of your tiles to reset th, since fighting
+            // styles can give you flying.
+            active.removeFromTiles(mapC);
+            active.addToTiles(mapC);
+          };
+          const tooltip = [
+            'Switch to ' + sample.name + ' by using your move?',
+          ].concat(sample.getDescription(active));
+          specialActions.push(new MenuTile(sample.name,
+              {clickFn, tooltip, selected}));
+        }
+      }
       const summon = active.currentSummon;
       if (summon && !summon.dead) {
         // Command summon.
@@ -437,6 +460,8 @@ class IngamePlugin extends GamePlugin {
     creature.jobs = [];
     creature.skillPoints += creature.skills.length;
     creature.skills = [];
+    creature.knownFightingStyleTypes = [];
+    creature.activeFightingStyle = null;
 
     // Un-equip all gear that requires a proficiency.
     const unequipped = [];
