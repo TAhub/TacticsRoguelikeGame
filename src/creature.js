@@ -412,59 +412,76 @@ class Creature {
 
   /** @return {number} */
   get generationPoints() {
+    const zonesStacks = this.zonesStacks;
+    const attackPower = this.attackPower;
+    const specialPower = this.specialPower;
+    const powerVsUninjured = this.powerVsUninjured;
+    const attackPowerWhenDisengaged = this.attackPowerWhenDisengaged;
+    const accuracy = this.accuracy;
+    const specialAttackPower = this.specialAttackPower;
+    const hitsToCrits = this.hitsToCrits;
+    const maxAstra = this.maxAstra;
+    const usableWeapons = this.usableWeapons;
+
     /**
      * @param {!Weapon} weapon
      * @return {number}
      */
     const weaponValue = (weapon) => {
       let mult = 0;
-      mult += this.powerVsUninjured * 0.4;
+      mult += powerVsUninjured * 0.4;
       if (weapon.usesSpecialPower) {
-        mult += this.specialPower;
+        mult += specialPower;
       } else {
-        mult += this.attackPower;
-        mult += this.attackPowerWhenDisengaged / 2;
-        mult += this.specialAttackPower / 4;
+        mult += attackPower;
+        mult += attackPowerWhenDisengaged / 2;
+        if (zonesStacks) {
+          mult += 10 + attackPowerWhenDisengaged / 5;
+          mult += (zonesStacks - 1) * mechRedundantZoningPower / 2;
+        }
+        mult += specialAttackPower / 4;
       }
       if (!weapon.helpful && !weapon.summon) {
-        const critChance = this.hitsToCrits + weapon.weaponHitsToCrits;
+        const critChance = hitsToCrits + weapon.weaponHitsToCrits;
         mult += critChance * mechHitsToCritsValue;
       }
       let value = weapon.generationPointsDamage / mechBaseDamage;
       value *= mult / 100;
       if (!weapon.helpful && !weapon.summon) {
-        value *= (100 + weapon.weaponAccuracy + this.accuracy) / 200;
+        value *= (50 + weapon.weaponAccuracy + accuracy) / 150;
       }
       return value;
     };
 
+    // Get attack value.
     let freeAttackValue = 0;
-    for (const weapon of this.usableWeapons) {
+    for (const weapon of usableWeapons) {
       const value = weaponValue(weapon);
       if (weapon.astraCost != 0) continue;
       freeAttackValue = Math.max(freeAttackValue, value);
     }
     let techAttackValue = 0;
     let techs = 0;
-    for (const weapon of this.usableWeapons) {
+    for (const weapon of usableWeapons) {
       if (weapon.astraCost == 0) continue;
       techs += 1;
       const value = weaponValue(weapon) - freeAttackValue;
       if (value <= 0) continue;
-      let uses = this.maxAstra / weapon.astraCost;
+      let uses = maxAstra / weapon.astraCost;
       if (this.side == Creature.Side.Player) uses /= mechPlayerAstraMult;
       else if (this.boss) uses /= 2;
-      techAttackValue += value * uses / 10;
+      techAttackValue += value * uses / 8;
     }
     if (techs > 0) techAttackValue /= techs;
 
+    // Get final points.
     let generationPoints = this.maxLife / mechBaseLife;
     generationPoints *= (mechBaseDamage + this.resistance + this.defense) / 100;
     const totalDodge =
         this.dodge + (this.dodgeVsDisengage / 3) + (this.flying ? 15 : 0);
     generationPoints *= (100 + totalDodge) / 100;
     generationPoints *= (200 + this.initiative) / 200;
-    generationPoints *= 0.3 + freeAttackValue + techAttackValue;
+    generationPoints *= 0.2 + freeAttackValue + techAttackValue;
     generationPoints *= (5 + this.moveDistance) / 8;
     if (this.monstrous) generationPoints *= 0.75; // Big monsters are unwieldly.
     return Math.floor(200 * generationPoints);
