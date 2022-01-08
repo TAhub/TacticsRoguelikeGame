@@ -516,8 +516,17 @@ class IngamePlugin extends GamePlugin {
       const clickFn = () => {
         const tile = mapC.tileAt(active.x, active.y);
         switch (item.contents) {
+          case Item.Code.Refresh:
+            if (creature.astra >= creature.maxAstra) break;
+            creature.astra = creature.maxAstra;
+            creature.makeBar();
+            audio.play('spell charge', 0, 1);
+            setFn(null);
+            this.inventoryPlayer = null;
+            this.menuController.clear();
+            break;
           case Item.Code.Healing:
-            if (creature.life == creature.maxLife) break;
+            if (creature.life >= creature.maxLife) break;
             creature.receiveHealing(item.healingAmount);
             audio.play('regen', 0, 1);
             setFn(null);

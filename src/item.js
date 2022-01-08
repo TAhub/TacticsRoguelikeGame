@@ -86,6 +86,10 @@ class Item {
             color = colorLerp(color, blendColor, 0.3);
           }
           break;
+        case Item.Code.Refresh:
+          sprite = 516;
+          color = data.getColorByNameSafe('arcana');
+          break;
         case Item.Code.Healing:
           sprite = 516;
           let colorName = 'white';
@@ -169,6 +173,7 @@ class Item {
         case Item.Code.Key:
         case Item.Code.Respec:
         case Item.Code.Healing:
+        case Item.Code.Refresh:
         case Item.Code.FastTravel:
           return true;
       }
@@ -188,6 +193,8 @@ class Item {
           return 'Brain Scrambler';
         case Item.Code.FastTravel:
           return 'Dream Map';
+        case Item.Code.Refresh:
+          return 'Star Powder';
         case Item.Code.Healing:
           switch (this.tier) {
             case 0: return 'Herbal Poultice'; break;
@@ -225,6 +232,14 @@ class Item {
           return [
             'A rare magical item, which causes amnesia then burns itself out.',
             'Allows the user to re-train their jobs and skills.',
+            'Left click to use!',
+          ];
+        case Item.Code.Refresh:
+          return [
+            'A powder made of crushed-up stone that has absorbed starlight ' +
+            'for a hundred years, which refills astra when used.',
+            'You are at ' + creature.astra + ' / ' + creature.maxAstra +
+            ' astra.',
             'Left click to use!',
           ];
         case Item.Code.Healing:
@@ -292,4 +307,5 @@ Item.Code = {
   Respec: 4,
   FastTravel: 5,
   Lamp: 6,
+  Refresh: 7,
 };
