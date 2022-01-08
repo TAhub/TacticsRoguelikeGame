@@ -1273,68 +1273,60 @@
       lightingIntensity="90" lightingColor="white"
       ledgeColor="sand wall" baseTh="0" cellularTh="1" noiseTh="1"
       floorSprites="0,1,2,3" floorColor="sand floor"
-      wallSprites="4,5,6,7" wallColor="sand wall"
+      wallSprites="10,11,12,13" wallColor="sand wall"
       replacersNJoins="wide dead end A,wide dead end B,wide dead end C,null"
       replacersIJoins="wide hallway A,wide hallway B,wide hallway C,null"
       replacersLJoins="wide hallway turn A,wide hallway turn B,wide hallway turn C,null"
       replacersTJoins="natural hallway split A,natural hallway split B,natural hallway split C,null"
       replacersHJoins="natural chamber A,natural chamber B,natural chamber C,null" />
-      <!-- TODO: cave wall sprites -->
       <!-- TODO: some water floors? -->
     <entry name="rocky beach"
       lightingIntensity="80" lightingColor="white"
       ledgeColor="sand wall" baseTh="0" cellularTh="1" noiseTh="2"
       floorSprites="0,1,2,3" floorColor="sand floor"
-      wallSprites="4,5,6,7" wallColor="stone wall"
+      wallSprites="10,11,12,13" wallColor="stone wall"
       inheritJoinsFrom="rocky beach" />
-      <!-- TODO: cave wall sprites -->
       <!-- TODO: some water floors? -->
     <entry name="grasslands"
       lightingIntensity="80" lightingColor="white"
       ledgeColor="dirt wall" baseTh="0" cellularTh="1" noiseTh="1"
       floorSprites="0,1,2,3" floorColor="grass floor"
-      wallSprites="4,5,6,7" wallColor="dirt wall"
+      wallSprites="10,11,12,13" wallColor="dirt wall"
       inheritJoinsFrom="beach" />
-      <!-- TODO: cave wall sprites -->
     <entry name="twisted wasteland"
       lightingIntensity="85" lightingColor="pale purple"
       ledgeColor="dirt wall" baseTh="1" cellularTh="2" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
-      wallSprites="4,5,6,7" wallColor="dirt wall"
+      wallSprites="10,11,12,13" wallColor="dirt wall"
       inheritJoinsFrom="beach" />
-      <!-- TODO: cave wall sprites -->
     <entry name="dirt tunnels"
       ledgeColor="dirt wall" baseTh="0" cellularTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
-      wallSprites="4,5,6,7" wallColor="dirt wall"
+      wallSprites="10,11,12,13" wallColor="dirt wall"
       replacersNJoins="natural hallway A,natural hallway B,natural hallway C,natural chamber A,natural chamber B,natural chamber C"
       replacersIJoins="natural hallway A,natural hallway B,natural hallway C"
       replacersLJoins="natural hallway turn A,natural hallway turn B,natural hallway turn C"
       replacersTJoins="natural hallway split A,natural hallway split B,natural hallway split C"
       replacersHJoins="natural chamber A,natural chamber B,natural chamber C" />
-      <!-- TODO: cave wall sprites -->
     <entry name="stone tunnels"
       ledgeColor="stone wall" baseTh="0" cellularTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="stone floor"
-      wallSprites="4,5,6,7" wallColor="stone wall"
+      wallSprites="10,11,12,13" wallColor="stone wall"
       inheritJoinsFrom="dirt tunnels" />
-      <!-- TODO: cave wall sprites -->
     <entry name="burrow"
       lightingIntensity="25" lightingColor="gray"
       ledgeColor="stone wall" baseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
-      wallSprites="4,5,6,7" wallColor="stone wall"
+      wallSprites="10,11,12,13" wallColor="stone wall"
       inheritJoinsFrom="dirt tunnels" />
-      <!-- TODO: cave wall sprites -->
       <!-- TODO: lamps that glow "pale red" -->
       <!-- TODO: village type furniture? -->
     <entry name="workshop"
       lightingIntensity="30" lightingColor="gray"
       ledgeColor="stone wall" baseTh="0" cellularTh="1" noiseTh="1"
       floorSprites="0,1,2,3" floorColor="dirt floor"
-      wallSprites="4,5,6,7" wallColor="stone wall"
+      wallSprites="10,11,12,13" wallColor="stone wall"
       inheritJoinsFrom="ship" />
-      <!-- TODO: cave wall sprites -->
       <!-- TODO: lamps that glow "pale red" -->
       <!-- TODO: workshop type furniture? -->
     <entry name="catacombs"
