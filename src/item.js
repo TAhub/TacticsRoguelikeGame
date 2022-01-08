@@ -190,7 +190,7 @@ class Item {
         case Item.Code.Key:
           return capitalizeFirstLetter(this.colorName || '') + ' Key';
         case Item.Code.Respec:
-          return 'Brain Scrambler';
+          return 'Mind Scrambler';
         case Item.Code.FastTravel:
           return 'Dream Map';
         case Item.Code.Refresh:
