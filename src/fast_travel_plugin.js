@@ -31,7 +31,9 @@ class FastTravelPlugin extends GamePlugin {
           const clickFn = () => travelFn(x, y);
           const selected =
               toI(x, y) == mapController.overworldIFor(active.x, active.y);
-          slot.attachTile(new MenuTile('', {clickFn, selected}));
+          const tooltip =
+              [capitalizeFirstLetterOfEachWord(overworldMapTile.type)];
+          slot.attachTile(new MenuTile('', {clickFn, selected, tooltip}));
         }
       }
       this.menuController.slots.push(slot);
