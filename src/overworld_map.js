@@ -30,6 +30,11 @@ class OverworldMapTile {
   }
 
   /** @return {?string} */
+  get bgm() {
+    return data.getValue('sub regions', this.type, 'bgm');
+  }
+
+  /** @return {?string} */
   get bossTemplate() {
     return data.getValue('sub regions', this.type, 'bossTemplate');
   }

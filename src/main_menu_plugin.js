@@ -16,6 +16,7 @@ class MainMenuPlugin extends GamePlugin {
     const beginSlot = new MenuTileSlot(0, 0, size, size);
     const clickFn = () => {
       this.makeMainView_();
+      audio.playMusic('menu bgm'); // TODO: temp
     };
     beginSlot.attachTile(new MenuTile('Begin', {clickFn}));
     this.menuController.slots.push(beginSlot);

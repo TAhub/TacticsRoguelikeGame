@@ -1191,85 +1191,109 @@
     <!-- regionId 0 (t0): grasslands -->
     <entry name="clearing" regionId="0" condition="first map"
       tileset="grasslands" npc="Roros"
-      loot="(W)rusty metal rod:0,(W)wild spark,(A)pants:0,(H)0,(H)0" />
+      loot="(W)rusty metal rod:0,(W)wild spark,(A)pants:0,(H)0,(H)0"
+      bgm="wild bgm" />
     <entry name="side grasslands" offshootFrom="clearing"
       tileset="grasslands" enemyTemplates="scavenger"
-      loot="(W)dagger:0,(H)0,(I)5,(H)0,(A)breastplate:0" uniqueKeyFor="clearing" />
+      loot="(W)dagger:0,(H)0,(I)5,(H)0,(A)breastplate:0" uniqueKeyFor="clearing"
+      bgm="wild bgm" />
     <entry name="catacombs" regionId="0" condition="key map branch"
       tileset="catacombs" securityLevelTickets="1,2,2,3" enemyTemplates="undead noble,undead soldier,undead hunter"
-      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)cerulean spectacles,(H)0,(H)0,(H)0,(I)7" />
+      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)cerulean spectacles,(H)0,(H)0,(H)0,(I)7"
+      bgm="catacombs bgm" />
     <entry name="tomb" offshootFrom="catacombs"
       tileset="catacombs" enemyTemplates="undead best man,undead bridesmaid"
-      loot="(R)wedding ring,(C)fur cloak,(H)0,(I)7" />
+      loot="(R)wedding ring,(C)fur cloak,(H)0,(I)7"
+      bgm="catacombs bgm" />
     <entry name="grasslands" regionId="0"
       tileset="grasslands" enemyTemplates="scavenger,black cat,tortoise" bossTemplate="scavenger alpha"
-      loot="(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid,(R)wedding ring,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(W)bow:0" />
+      loot="(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid,(R)wedding ring,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(W)bow:0"
+      bgm="wild bgm" />
 
     <!-- regionId 1 (t0): shore -->
     <entry name="shipwreck" regionId="1" condition="key map"
       tileset="ship" securityLevelTickets="3" enemyTemplates="pirate brawler,pirate crewmate,pirate mage,pirate boarder" bossTemplate="Captain Linner"
-      loot="(C)intimidating mask,(W)pistol:0,(W)snipe,(H)0,(H)0,(H)1,(H)1" />
+      loot="(C)intimidating mask,(W)pistol:0,(W)snipe,(H)0,(H)0,(H)1,(H)1"
+      bgm="beach bgm" />
     <entry name="rocky shore" regionId="1" condition="key map branch"
       tileset="rocky beach" enemyTemplates="pirate brawler,pirate mage"
-      loot="(W)sword:0,(A)cap:0,(A)jerkin:0,(A)greaves:0,(A)hat:0,(W)ashball,(W)eye gouge,(R)brass knuckles,(H)0,(H)0,(H)0,(H)0,(W)rapid fire" />
+      loot="(W)sword:0,(A)cap:0,(A)jerkin:0,(A)greaves:0,(A)hat:0,(W)ashball,(W)eye gouge,(R)brass knuckles,(H)0,(H)0,(H)0,(H)0,(W)rapid fire"
+      bgm="beach bgm" />
     <entry name="shore" regionId="1"
       tileset="beach" enemyTemplates="shore hopper,sea bird,giant turtle" bossTemplate="beach slime"
-      loot="(W)spear:0,(W)mace:0,(A)leggings:0,(A)hat:0,(A)skirt:0,(A)helmet:0,(A)greaves:0,(A)breastplate:0,(W)slam,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(I)7" />
+      loot="(W)spear:0,(W)mace:0,(A)leggings:0,(A)hat:0,(A)skirt:0,(A)helmet:0,(A)greaves:0,(A)breastplate:0,(W)slam,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(I)7"
+      bgm="beach bgm" />
 
     <!-- regionId 2 (t1): caverns -->
     <entry name="burrow" regionId="2" condition="key map branch"
       tileset="burrow" securityLevelTickets="2,3" enemyTemplates="gun turret,saw crawler,paranoid tunneler,paranoid rogue,paranoid mage" bossTemplate="Asrami"
-      loot="(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot,(W)coordinated attack,(H)1,(H)1,(H)1,(H)1,(I)4,(W)pistol:1,(I)7" />
+      loot="(A)cap:1,(A)greaves:1,(W)venom sting,(W)inferno shot,(W)coordinated attack,(H)1,(H)1,(H)1,(H)1,(I)4,(W)pistol:1,(I)7"
+      bgm="burrow bgm" />
     <entry name="workshop" offshootFrom="burrow"
       tileset="workshop" enemyTemplates="gun turret,saw crawler,paranoid mechanist"
-      loot="(W)gun turret,(W)longbarrel:0" />
+      loot="(W)gun turret,(W)longbarrel:0"
+      bgm="burrow bgm" />
     <entry name="caverns entrance" regionId="2" condition="first map"
       tileset="stone tunnels" enemyTemplates="skull rat,giant turtle" npc="Ilretaami"
-      loot="(A)jerkin:1,(C)shield,(W)brain rattler,(H)1,(H)1" />
+      loot="(A)jerkin:1,(C)shield,(W)brain rattler,(H)1,(H)1"
+      bgm="cave bgm" />
     <entry name="caverns" regionId="2"
       tileset="stone tunnels" securityLevelTickets="1,1,1,1,2" enemyTemplates="skull rat,tunnel snake,blood slime,undead soldier,undead hunter" bossTemplate="Tunnel Guard Kaspikka"
-      loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave,(R)sungold ring,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(W)bow:1,(I)7" />
+      loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave,(R)sungold ring,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(W)bow:1,(I)7"
+      bgm="cave bgm" />
 
     <!-- regionId 3 (t1): bandit town -->
     <entry name="spooky manor" regionId="3" condition="boss map branch"
       tileset="spooky manor" securityLevelTickets="1,2" enemyTemplates="undead servant,undead butcher,undead aristocrat,black cat" bossTemplate="Lord Latos"
-      loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)siphon,(C)lantern,(W)unearth,(H)1,(H)1,(I)7,(I)7" />
+      loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)siphon,(C)lantern,(W)unearth,(H)1,(H)1,(I)7,(I)7"
+      bgm="manor bgm" />
     <entry name="bandit town" regionId="3"
       tileset="village" securityLevelTickets="1,1,2" enemyTemplates="bandit,bandit sneak,bandit enforcer,bandit jack,bandit archer,black cat" bossTemplate="Boss Jyrku"
-      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band,(W)triage,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1" />
+      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band,(W)triage,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1"
+      bgm="town bgm" />
     <entry name="house" offshootFrom="bandit town"
       tileset="house" npc="Joonert"
-      loot="(A)hat:1,(H)2,(W)poison arrow" />
+      loot="(A)hat:1,(H)2,(W)poison arrow"
+      bgm="town bgm" />
 
     <!-- regionId 4 (t2): twisted wasteland -->
     <entry name="hedge maze" regionId="4" condition="boss map branch"
       tileset="hedge maze" securityLevelTickets="2" enemyTemplates="mossy cat,seed spitter,walking topiary,walking bonsai,corpse picker" bossTemplate="Gatekeeper"
-      loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade,(H)2,(H)2,(H)2,(H)2,(W)bow:2" />
+      loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade,(H)2,(H)2,(H)2,(H)2,(W)bow:2"
+      bgm="maze bgm" />
     <entry name="groundkeepers hut" offshootFrom="hedge maze"
       tileset="house" npc="Gulas"
-      loot="(R)thorny band,(I)4,(I)1,(W)longbarrel:1,(H)2,(H)2,(I)7" />
+      loot="(R)thorny band,(I)4,(I)1,(W)longbarrel:1,(H)2,(H)2,(I)7"
+      bgm="maze bgm" />
     <entry name="twisted wasteland" regionId="4"
       tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar" bossTemplate="king boar"
-      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(H)2,(I)7" />
+      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(H)2,(I)7"
+      bgm="wastes bgm" />
 
     <!-- regionId 5 (t2): tether assembly -->
     <entry name="gateway" regionId="5" condition="first map"
       tileset="gateway" npc="Greeter"
-      loot="(C)bloody thorn,(A)helmet:2,(W)solar combo,(H)2,(H)2,(I)4" />
+      loot="(C)bloody thorn,(A)helmet:2,(W)solar combo,(H)2,(H)2,(I)4"
+      bgm="tether bgm" />
     <entry name="animal pen" regionId="5" condition="random connecting maps"
       tileset="gateway" enemyTemplates="wasteland serpent,walking topiary,poison turtle,monster boar,gold slime,tethered healer,tethered rogue,tethered gunner"
-      loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3,(H)2,(H)2,(H)2,(H)2,(H)2,(H)2,(H)2,(H)2,(W)bow:3" />
+      loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3,(H)2,(H)2,(H)2,(H)2,(H)2,(H)2,(H)2,(H)2,(W)bow:3"
+      bgm="tether bgm" />
     <entry name="control room" regionId="5" condition="boss map"
-      tileset="tether assembly control room" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered healer" bossTemplate="Lord Rigus" />
+      tileset="tether assembly control room" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered healer" bossTemplate="Lord Rigus"
+      bgm="tether bgm" />
     <entry name="security room" regionId="5" condition="misc leaf map"
       tileset="tether assembly" securityLevelTickets="3" enemyTemplates="reinforced gun turret,tethered mage,tethered mechanist,tethered warrior"
-      loot="(C)third eye,(H)2" />
+      loot="(C)third eye,(H)2"
+      bgm="tether bgm" />
     <entry name="key room" offshootFrom="security room"
       tileset="tether assembly key room"
-      loot="(H)2,(I)7" uniqueKeyFor="control room" />
+      loot="(H)2,(I)7" uniqueKeyFor="control room"
+      bgm="tether bgm" />
     <entry name="tether assembly" regionId="5"
       tileset="tether assembly" securityLevelTickets="1,2,3" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanist,tethered gunner,tethered healer,reinforced gun turret"
-      loot="(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3,(R)rusted focus,(H)2,(H)2,(I)4,(I)7" />
+      loot="(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3,(R)rusted focus,(H)2,(H)2,(I)4,(I)7"
+      bgm="tether bgm" />
   </category> <!-- sub regions -->
   <category name="tilesets">
     <!-- a special tileset solely for the second upscale. Not used as an actual tileset (e.g. no colors, sprites, etc) -->
@@ -1554,20 +1578,28 @@
     <entry name="voice 3" filename="voice 3.wav" notAfter="voice 3,voice 4" />
     <entry name="voice 4" filename="voice 4.wav" notAfter="voice 3,voice 4" /> <!-- TODO: I don't like how this one sounds very much -->
 
-    <!-- TODO: old music -->
+    <!-- music -->
     <entry name="menu bgm" filename="arcadia-by-kevin-macleod-from-filmmusic-io.mp3" music="1"
-      credit="Arcadia by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3377-arcadia" />
+      credit="Arcadia by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3377-arcadia*NL*License: https://filmmusic.io/standard-license" />
     <entry name="wild bgm" filename="the-path-of-the-goblin-king-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
-      credit="The Path of the Goblin King by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4503-the-path-of-the-goblin-king" />
-    <entry name="seeker bgm" filename="hitman-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
-      credit="Hitman by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3880-hitman" />
-    <entry name="town bgm" filename="virtutes-instrumenti-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
-      credit="Virtutes Instrumenti by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4590-virtutes-instrumenti" />
-    <entry name="desert bgm" filename="desert-city-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
-      credit="Desert City by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3639-desert-city" />
-    <entry name="mountain bgm" filename="crossing-the-chasm-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
-      credit="Crossing the Chasm by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3562-crossing-the-chasm" />
-    <entry name="empty1"
-      credit="License: http://creativecommons.org/licenses/by/4.0/" />
+      credit="The Path of the Goblin King by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4503-the-path-of-the-goblin-king*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="beach bgm" filename="plaint-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Plaint by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4224-plaint*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="catacombs bgm" filename="welcome-to-horrorland-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Welcome To Horrorland by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/5016-welcome-to-horrorland*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="burrow bgm" filename="unnatural-situation-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Unnatural Situation by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4567-unnatural-situation*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="tether bgm" filename="scp-x3x-i-am-not-ok-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Scp X3x (I Am Not OK) by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/6733-scp-x3x-i-am-not-ok-*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="cave bgm" filename="movement-proposition-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Movement Proposition by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4088-movement-proposition*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="wastes bgm" filename="hitman-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Hitman by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3880-hitman*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="maze bgm" filename="virtutes-instrumenti-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Virtutes Instrumenti by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4590-virtutes-instrumenti*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="town bgm" filename="crossing-the-chasm-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Crossing the Chasm by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3562-crossing-the-chasm*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="manor bgm" filename="scp-x6x-hopes-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="SCP-x6x (Hopes) by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/6736-scp-x6x-hopes*NL*License: https://filmmusic.io/standard-license" />
   </category> <!-- sounds -->
 </data>

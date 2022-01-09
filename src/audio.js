@@ -14,18 +14,21 @@ class AudioController {
   }
 
   /** @param {string} type */
-  playMusic(type) {
+  async playMusic(type) {
+    // Switch to this new music, if necessary.
     if (this.musicPlaying == type) return;
     this.stopMusic();
-
     const volume = saveManager.getConfiguration('musicVolume');
     if (volume == 0) return;
-
     this.musicPlaying = type;
 
+    // Lazy-load the song.
+    data.lazyLoadSoundsRequested.add(type);
+    await data.fetchAppropriateSounds();
+
+    // Actually play it, now that it's loaded.
     const buffer = data.sounds.get(type);
     if (!buffer) return;
-
     const player = new Tone.Player(buffer);
     player.playbackRate = 1;
     player.volume.value = data.getNumberValue('sounds', type, 'volume') || 0;

@@ -34,6 +34,7 @@ class IngamePlugin extends GamePlugin {
     this.selectedWeaponI;
     this.techMode = false;
 
+    this.changeBGM_();
     this.maybeTriggerEncounters_();
   }
 
@@ -901,11 +902,27 @@ class IngamePlugin extends GamePlugin {
     this.menuController.slots.push(slot);
   }
 
+  /** @private */
+  changeBGM_() {
+    const active = this.mapController.active;
+    const overworldI = this.mapController.overworldIFor(active.x, active.y);
+    const overworldTile = this.mapController.overworldMap.tiles.get(overworldI);
+    if (!overworldTile) return;
+    const bgm = overworldTile.bgm;
+    if (!bgm) return;
+    audio.playMusic(bgm);
+  }
+
   /** @param {number} elapsed */
   update(elapsed) {
     const mapController = this.mapController;
 
     mapController.update(elapsed);
+
+    if (mapController.active.side == Creature.Side.Player &&
+        !mapController.inCombat) {
+      this.changeBGM_();
+    }
 
     // Update selected tiles.
     for (const gameMap of mapController.gameMaps.values()) {
