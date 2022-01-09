@@ -1237,8 +1237,13 @@ class Creature {
         });
       }
     } else {
-      const minRange = weapon.minRange;
-      const maxRange = weapon.maxRange + (weapon.ranged ? this.rangeBonus : 0);
+      let minRange = weapon.minRange;
+      let maxRange = weapon.maxRange + (weapon.ranged ? this.rangeBonus : 0);
+      if (!mapController.inCombat && weapon.helpful) {
+        // Healing abilities have super-long range out of combat.
+        minRange = 0;
+        maxRange = 5;
+      }
       this.tileCallback(mapController, this.x, this.y, (center) => {
         if (!center) return;
         for (let y = center.y - maxRange; y <= center.y + maxRange; y++) {
