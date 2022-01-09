@@ -145,26 +145,18 @@ class Data {
 
   /** @return {Promise} */
   async setup() {
-    let dataCategories;
-    let namesCategories;
-    const spritesPromise = this.fetchSprite_('sprites.png').then((image) => {
+    const promises = [];
+    promises.push(this.fetchSprite_('sprites.png').then((image) => {
       this.sprites = image;
-    });
-    const dataPromise = this.fetchData_('data.xml').then((categories) => {
-      dataCategories = categories;
-    });
-    const namesPromise = this.fetchData_('strings.xml').then((categories) => {
-      namesCategories = categories;
-    });
-    await Promise.all([dataPromise, namesPromise, spritesPromise]);
-
-    // Combine all downloaded text data into one object.
-    for (const key of dataCategories.keys()) {
-      this.categories.set(key, dataCategories.get(key));
+    }));
+    for (const filename of ['data.xml', 'strings.xml', 'sounds.xml']) {
+      promises.push(this.fetchData_(filename).then((categories) => {
+        for (const key of categories.keys()) {
+          this.categories.set(key, categories.get(key));
+        }
+      }));
     }
-    for (const key of namesCategories.keys()) {
-      this.categories.set(key, namesCategories.get(key));
-    }
+    await Promise.all(promises);
     if (DEBUG) {
       console.log(this.categories);
     }

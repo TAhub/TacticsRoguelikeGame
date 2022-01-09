@@ -1,0 +1,89 @@
+<data>
+  <category name="sounds">
+    <!-- sounds -->
+    <entry name="swing" filename="346373__denao270__throwing-whip-effect.wav"
+      credit="Throwing / Whip Effect by denao270 -- https://freesound.org/s/346373/ -- License: Creative Commons 0" />
+    <entry name="gun" filename="459116__mabdurrahman__gun-shot-1.wav" volume="-10"
+      credit="gun-shot-1.wav by MAbdurrahman | License: Creative Commons 0" />
+    <entry name="spit" filename="366947__jacdutoit__spit.wav"
+      credit="Spit.wav by Jacdutoit | License: Attribution Noncommercial" />
+    <entry name="spell concussive crack" filename="186957__readeonly__explosion6.wav"
+      credit="explosion6.wav by ReadeOnly | License: Creative Commons 0" />
+    <entry name="spell electric crack" filename="136542__joelaudio__electric-zap-001.wav"
+      credit="ELECTRIC_ZAP_001.wav by JoelAudio | License: Creative Commons 0" />
+    <entry name="slash" filename="420674__sypherzent__deep-cut-slash-gash.wav" volume="-12"
+      credit="Deep Cut / Slash / Gash by SypherZent -- https://freesound.org/s/420674/ -- License: Creative Commons 0" />
+    <entry name="smash" filename="470587__silverillusionist__heavy-impact.wav"
+      credit="Heavy Impact by SilverIllusionist -- https://freesound.org/s/470587/ -- License: Attribution" />
+    <entry name="scream" filename="61033__timtube__scream-3.wav"
+      credit="scream 3.wav by timtube | License: Attribution Noncommercial" />
+    <entry name="explosion" filename="349131__deganoth__impact-2-full.wav" volume="-4"
+      credit="Impact_2_full.wav by Deganoth | License: Attribution" />
+    <entry name="poison" filename="101799__robinhood76__01911-air-leak.wav" volume="4"
+      credit="01911 air leak.wav by Robinhood76 | License: Attribution Noncommercial" />
+    <entry name="regen" filename="524609__clearwavsound__bone-crunch.wav"
+      credit="Bone Crunch by Clearwavsound | License: Attribution" />
+    <entry name="spell charge" filename="376749__zenithinfinitivestudios__fantasy-ui-button-5.wav"
+      credit="Fantasy_ui_Button_5.wav by ZenithInfinitiveStudios | License: Creative Commons 0" />
+    <entry name="spell strike" filename="170635__swedger__fami-crash.wav"
+      credit="Fami crash.wav by Swedger | License: Creative Commons 0" />
+    <entry name="dodge" filename="92736__robinhood76__01522-swoosh-1.wav"
+      credit="01522 swoosh 1.wav by Robinhood76 -- https://freesound.org/s/92736/ -- License: Attribution Noncommercial" />
+    <entry name="saw" filename="62493__the-sacha-rush__saw-1.wav"
+      credit="saw_1.wav by The-Sacha-Rush | License: Creative Commons 0" />
+    <entry name="key click" filename="457036__breviceps__trigger-switch.wav"
+      credit="Trigger switch by Breviceps | License: Creative Commons 0" />
+    <entry name="unlock" filename="408001__judith136__20.wav"
+      credit="20.wav by JUDITH136 | License: Attribution" />
+    <entry name="deploy" filename="103628__benboncan__large-anvil-steel-hammer.wav"
+      credit="Large Anvil Steel Hammer .wav by Benboncan | License: Attribution" />
+
+    <!-- footsteps -->
+    <entry name="footstep gravel 1" filename="384889__ali-6868__knight-right-footstep-on-gravel-3-with-chainmail.wav" volume="-12"
+      credit="Knight Right Footstep on Gravel 3 (With Chainmail) by Ali_6868 | License: Creative Commons 0" />
+    <entry name="footstep gravel 2" filename="384888__ali-6868__knight-right-footstep-on-gravel-4-with-chainmail.wav" volume="-12"
+      credit="Knight Right Footstep on Gravel 4 (With Chainmail) by Ali_6868 | License: Creative Commons 0" />
+    <entry name="footstep gravel 3" filename="384890__ali-6868__knight-right-footstep-on-gravel-5-with-chainmail.wav" volume="-12"
+      credit="Knight Right Footstep on Gravel 5 (With Chainmail) by Ali_6868 | License: Creative Commons 0" />
+    <entry name="footstep gravel 4" filename="384887__ali-6868__knight-right-footstep-on-gravel-1-with-chainmail.wav" volume="-12"
+      credit="Knight Right Footstep on Gravel 1 (With Chainmail) by Ali_6868 | License: Creative Commons 0" />
+    <entry name="footstep stone 1" filename="197778__samulis__footstep-on-stone.wav" volume="4"
+      credit="Footstep on Stone by Samulis | License: Creative Commons 0" />
+    <entry name="footstep stone 2" filename="197781__samulis__footstep-on-stone-4.wav" volume="4"
+      credit="Footstep on Stone 4 by Samulis | License: Creative Commons 0" />
+    <entry name="footstep stone 3" filename="197780__samulis__footstep-on-stone-3.wav" volume="4"
+      credit="Footstep on Stone 3 by Samulis | License: Creative Commons 0" />
+    <entry name="footstep stone 4" filename="197779__samulis__footstep-on-stone-2.wav" volume="4"
+      credit="Footstep on Stone 2 by Samulis | License: Creative Commons 0" />
+
+    <!-- voice sounds -->
+    <entry name="voice 1" filename="voice 1.wav" notAfter="voice 2" />
+    <entry name="voice 2" filename="voice 2.wav" notAfter="voice 1" />
+    <entry name="voice 3" filename="voice 3.wav" notAfter="voice 3,voice 4" />
+    <entry name="voice 4" filename="voice 4.wav" notAfter="voice 3,voice 4" /> <!-- TODO: I don't like how this one sounds very much -->
+
+    <!-- music -->
+    <entry name="menu bgm" filename="arcadia-by-kevin-macleod-from-filmmusic-io.mp3" music="1"
+      credit="Arcadia by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3377-arcadia*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="wild bgm" filename="the-path-of-the-goblin-king-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="The Path of the Goblin King by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4503-the-path-of-the-goblin-king*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="beach bgm" filename="plaint-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Plaint by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4224-plaint*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="catacombs bgm" filename="welcome-to-horrorland-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Welcome To Horrorland by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/5016-welcome-to-horrorland*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="burrow bgm" filename="unnatural-situation-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Unnatural Situation by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4567-unnatural-situation*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="tether bgm" filename="scp-x3x-i-am-not-ok-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Scp X3x (I Am Not OK) by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/6733-scp-x3x-i-am-not-ok-*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="cave bgm" filename="movement-proposition-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Movement Proposition by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4088-movement-proposition*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="wastes bgm" filename="hitman-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Hitman by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3880-hitman*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="maze bgm" filename="virtutes-instrumenti-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Virtutes Instrumenti by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4590-virtutes-instrumenti*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="town bgm" filename="crossing-the-chasm-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Crossing the Chasm by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3562-crossing-the-chasm*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="manor bgm" filename="scp-x6x-hopes-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="SCP-x6x (Hopes) by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/6736-scp-x6x-hopes*NL*License: https://filmmusic.io/standard-license" />
+  </category> <!-- sounds -->
+</data>
