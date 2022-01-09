@@ -625,7 +625,13 @@ class IngamePlugin extends GamePlugin {
       const attachFn = (slot) => {
         if (!slot.attachData) return false;
         const split = slot.attachData.split('-');
-        if (split[0] == 'inv') {
+        if (split[0] == 'floor') {
+          const tile = mapC.tileAt(creature.x, creature.y);
+          setFn(tile.item);
+          tile.item = item;
+          this.menuController.clear();
+          return true;
+        } else if (split[0] == 'inv') {
           const j = parseInt(split[1], 10);
           const other = mapC.inventory[j];
           mapC.inventory[j] = item;
@@ -802,6 +808,23 @@ class IngamePlugin extends GamePlugin {
         creature.techTypes = creature.techTypes.filter((t) => t);
       });
       if (!current) break;
+    }
+
+
+    // Third column (floor).
+    const tile = mapC.tileAt(creature.x, creature.y);
+    if (tile && (!tile.item || tile.item.canPickUp)) {
+      x += 1.5 * s;
+      y = topH;
+      const attachData = 'floor';
+      const defaultText = 'Floor';
+      const slot = new MenuTileSlot(x, y, s, s, {attachData, defaultText});
+      if (tile.item) {
+        slot.attachTile(makeEquipTile(tile.item, (newItem) => {
+          tile.item = newItem;
+        }));
+      }
+      this.menuController.slots.push(slot);
     }
   }
 
