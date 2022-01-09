@@ -1194,10 +1194,10 @@
       loot="(W)rusty metal rod:0,(W)wild spark,(A)pants:0,(H)0,(H)0" />
     <entry name="side grasslands" offshootFrom="clearing"
       tileset="grasslands" enemyTemplates="scavenger"
-      loot="(W)dagger:0,(H)0,(I)5,(H)0" />
+      loot="(W)dagger:0,(H)0,(I)5,(H)0,(A)breastplate:0" />
     <entry name="catacombs" regionId="0" condition="key map branch"
       tileset="catacombs" securityLevelTickets="1,2,2,3" enemyTemplates="undead noble,undead soldier,undead hunter"
-      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)cerulean spectacles,(A)breastplate:0,(H)0,(H)0,(H)0,(I)7" />
+      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)cerulean spectacles,(H)0,(H)0,(H)0,(I)7" />
     <entry name="tomb" offshootFrom="catacombs"
       tileset="catacombs" enemyTemplates="undead best man,undead bridesmaid"
       loot="(R)wedding ring,(C)fur cloak,(H)0,(I)7" />
