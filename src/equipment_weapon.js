@@ -188,7 +188,9 @@ class Weapon extends Equipment {
   /** @return {number} */
   get minRange() {
     if (this.heals || this.selfTargeting) return 0;
-    return (this.ranged && !this.charged && this.usesSpecialPower) ? 2 : 1;
+    if (!this.ranged) return 1;
+    if (this.charged || this.usesSpecialPower) return 1;
+    return 2;
   }
 
   /** @return {number} */
