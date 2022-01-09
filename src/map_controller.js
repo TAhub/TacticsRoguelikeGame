@@ -8,6 +8,8 @@ class MapController {
     this.visibleTiles = new Set();
     /** @type {!Set.<number>} */
     this.restMapIs = new Set();
+    /** @type {!Set.<number>} */
+    this.visitedMapIs = new Set();
     this.staticMeshGroup = new THREE.Group();
     this.dynamicMeshGroup = new THREE.Group();
     this.lightGroup = new THREE.Group();
@@ -200,6 +202,10 @@ class MapController {
       this.restMapIs =
           new Set(save['rMapIs'].split(',').map((s) => parseInt(s, 10)));
     }
+    if (save['vMapIs']) {
+      this.visitedMapIs =
+          new Set(save['vMapIs'].split(',').map((s) => parseInt(s, 10)));
+    }
     for (let i = 0; i < this.inventory.length; i++) {
       const saveString = save['i' + i];
       if (!saveString) continue;
@@ -246,7 +252,12 @@ class MapController {
     }
     save['dLedger'] = Array.from(this.deathLedger).join(',');
     save['rLedger'] = Array.from(this.reviveLedger).join(',');
-    save['rMapIs'] = Array.from(this.restMapIs).join(',');
+    if (this.restMapIs.size > 0) {
+      save['rMapIs'] = Array.from(this.restMapIs).join(',');
+    }
+    if (this.visitedMapIs.size > 0) {
+      save['vMapIs'] = Array.from(this.visitedMapIs).join(',');
+    }
     for (let i = 0; i < this.inventory.length; i++) {
       const item = this.inventory[i];
       if (!item) continue;
@@ -629,6 +640,9 @@ class MapController {
       if (this.gameMaps.has(i)) continue;
       this.loadGameMap(i);
     }
+
+    // Mark the central map as visited.
+    this.visitedMapIs.add(overworldTileI);
   }
 
   /**

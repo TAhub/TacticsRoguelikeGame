@@ -10,21 +10,41 @@ class FastTravelPlugin extends GamePlugin {
     const active = mapController.active;
 
     // Set up the menu controller.
+    const slotsToDelete = new Set();
     for (const overworldMapTile of mapController.overworldMap.tiles.values()) {
       const x = overworldMapTile.x;
       const y = overworldMapTile.y;
-      const slot = new MenuTileSlot(x, y, 1, 1);
-      // The slot should be empty, unless you can fast-travel there.
-      if (mapController.restMapIs.has(toI(x, y))) {
-        const clickFn = () => travelFn(x, y);
-        const selected =
-            toI(x, y) == mapController.overworldIFor(active.x, active.y);
-        slot.attachTile(new MenuTile('', {clickFn, selected}));
+      const disabled = !mapController.visitedMapIs.has(toI(x, y));
+      const slot = new MenuTileSlot(x, y, 1, 1, {disabled});
+      if (disabled) {
+        // Disabled maps should be deleted unless they are next to
+        // a visited map. This makes the fast-travel map "fill out"
+        // as you explore.
+        const doorIs = Array.from(overworldMapTile.doorIds.keys());
+        const nextToVisitedMap = doorIs.some((i) => {
+          return mapController.visitedMapIs.has(i);
+        });
+        if (!nextToVisitedMap) slotsToDelete.add(slot);
+      } else {
+        // The slot should be empty, unless you can fast-travel there.
+        if (mapController.restMapIs.has(toI(x, y))) {
+          const clickFn = () => travelFn(x, y);
+          const selected =
+              toI(x, y) == mapController.overworldIFor(active.x, active.y);
+          slot.attachTile(new MenuTile('', {clickFn, selected}));
+        }
       }
       this.menuController.slots.push(slot);
     }
     this.menuController.resizeToFit(gfxScreenWidth, gfxScreenHeight);
     this.menuController.recenter(gfxScreenWidth, gfxScreenHeight);
+
+    // Retroactively remove all slots that correspond to.
+    // Add them first, so that the map doesn't resize when you discover
+    // more maps.
+    this.menuController.slots = this.menuController.slots.filter((slot) => {
+      return !slotsToDelete.has(slot);
+    });
   }
 
   /** @param {!CanvasRenderingContext2D} ctx */
