@@ -208,6 +208,23 @@ class OverworldMap {
       tile.doorIds.set(toI(spot.from.x, spot.from.y), 0);
       spot.from.doorIds.set(toI(spot.x, spot.y), 0);
       this.tiles.set(toI(spot.x, spot.y), tile);
+
+      // Some offshoots can have "uniqueKeyFor".
+      const uniqueKeyFor = data.getValue('sub regions', type, 'uniqueKeyFor');
+      if (!uniqueKeyFor) continue;
+      tile.keyId = MetaMap.generateGlobalDoorId();
+      for (const otherTile of this.tiles.values()) {
+        if (otherTile.type != uniqueKeyFor) continue;
+        for (const linkI of otherTile.doorIds.keys()) {
+          if (linkI == toI(tile.x, tile.y)) continue;
+          if (otherTile.doorIds.get(linkI) > 0) continue;
+          otherTile.doorIds.set(linkI, tile.keyId);
+          const linkTile = this.tiles.get(linkI);
+          linkTile.doorIds.set(toI(otherTile.x, otherTile.y), tile.keyId);
+          break;
+        }
+        break;
+      }
     }
     return true;
   }
@@ -348,6 +365,10 @@ class OverworldMap {
               break;
             case 'key map branch':
               conditionMet = keyMapBranchTiles.has(tile);
+              break;
+            case 'misc leaf map':
+              conditionMet =
+                  tile.keyId == 0 && !tile.bossMap && tile.doorIds.size < 2;
               break;
             case 'key map':
               conditionMet = tile.keyId != 0;

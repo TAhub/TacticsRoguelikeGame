@@ -1194,7 +1194,7 @@
       loot="(W)rusty metal rod:0,(W)wild spark,(A)pants:0,(H)0,(H)0" />
     <entry name="side grasslands" offshootFrom="clearing"
       tileset="grasslands" enemyTemplates="scavenger"
-      loot="(W)dagger:0,(H)0,(I)5,(H)0,(A)breastplate:0" />
+      loot="(W)dagger:0,(H)0,(I)5,(H)0,(A)breastplate:0" uniqueKeyFor="clearing" />
     <entry name="catacombs" regionId="0" condition="key map branch"
       tileset="catacombs" securityLevelTickets="1,2,2,3" enemyTemplates="undead noble,undead soldier,undead hunter"
       loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)cerulean spectacles,(H)0,(H)0,(H)0,(I)7" />
@@ -1259,9 +1259,17 @@
     <entry name="animal pen" regionId="5" condition="random connecting maps"
       tileset="gateway" enemyTemplates="wasteland serpent,walking topiary,poison turtle,monster boar,gold slime,tethered healer,tethered rogue,tethered gunner"
       loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3,(H)2,(H)2,(H)2,(H)2,(H)2,(H)2,(H)2,(H)2,(W)bow:3" />
+    <entry name="control room" regionId="5" condition="boss map"
+      tileset="tether assembly control room" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered healer" bossTemplate="Lord Rigus" />
+    <entry name="security room" regionId="5" condition="misc leaf map"
+      tileset="tether assembly" securityLevelTickets="3" enemyTemplates="reinforced gun turret,tethered mage,tethered mechanist,tethered warrior"
+      loot="(C)third eye,(H)2" />
+    <entry name="key room" offshootFrom="security room"
+      tileset="tether assembly key room"
+      loot="(H)2,(I)7" uniqueKeyFor="control room" />
     <entry name="tether assembly" regionId="5"
-      tileset="tether assembly" securityLevelTickets="1,2,3" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanist,tethered gunner,tethered healer,reinforced gun turret" bossTemplate="Lord Rigus"
-      loot="(C)third eye,(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3,(R)rusted focus,(H)2,(H)2,(H)2,(H)2,(I)4,(I)7,(I)7" />
+      tileset="tether assembly" securityLevelTickets="1,2,3" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered mechanist,tethered gunner,tethered healer,reinforced gun turret"
+      loot="(A)bandit armor:1,(A)skirt:2,(A)cap:2,(A)greaves:2,(W)dagger:3,(W)sword:3,(W)mace:3,(R)rusted focus,(H)2,(H)2,(I)4,(I)7" />
   </category> <!-- sub regions -->
   <category name="tilesets">
     <!-- a special tileset solely for the second upscale. Not used as an actual tileset (e.g. no colors, sprites, etc) -->
@@ -1405,6 +1413,22 @@
       inheritJoinsFrom="ship" />
       <!-- TODO: fancier walls? I dunno -->
       <!-- TODO: magical furniture -->
+    <entry name="tether assembly key room"
+      small="1"
+      lightingIntensity="45" lightingColor="sky blue"
+      ledgeColor="stone wall" baseTh="1"
+      floorSprites="0,1,2,3" floorColor="stone floor"
+      wallSprites="4,5,6,7" wallColor="stone wall"
+      inheritJoinsFrom="ship" />
+      <!-- TODO: fancier walls? I dunno -->
+    <entry name="tether assembly control room"
+      lightingIntensity="65" lightingColor="sky blue" lampColor="blue"
+      ledgeColor="stone wall" baseTh="1"
+      floorSprites="0,1,2,3" floorColor="stone floor"
+      wallSprites="4,5,6,7" wallColor="stone wall"
+      inheritJoinsFrom="ship" />
+      <!-- TODO: fancier walls? I dunno -->
+      <!-- TODO: magical furniture... but more than the tether assembly? I dunno... -->
   </category> <!-- tilesets -->
   <category name="tile replacers">
     <entry name="null" l0="OOO" l1="OOO" l2="OOO" />

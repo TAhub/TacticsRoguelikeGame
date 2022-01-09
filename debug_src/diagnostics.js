@@ -434,7 +434,7 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
     // Draw map levels.
     for (const overworldTile of overworldMap.tiles.values()) {
       ctx.fillStyle = data.getColorByNameSafe('tile text');
-      gfx.setFont(ctx, 10);
+      gfx.setFont(ctx, 6);
       const x = scale * mapSize * (0.5 + overworldTile.x - startX / mapSize);
       const y = scale * mapSize * (overworldTile.y - startY / mapSize);
       let text = 'lv' + overworldTile.level + ' (' + overworldTile.type + ')';
