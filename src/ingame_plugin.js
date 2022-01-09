@@ -837,6 +837,14 @@ class IngamePlugin extends GamePlugin {
   fastTravelTo_(overworldX, overworldY) {
     const mapC = this.mapController;
 
+    // Remove everyone from their tiles.
+    for (const player of mapC.players) {
+      if (player.dead) continue;
+      player.removeFromTiles(mapC);
+    }
+    mapC.creatures =
+        mapC.creatures.filter((c) => c.side != Creature.Side.Player);
+
     // Load the desired map(s).
     const i = toI(overworldX, overworldY);
     mapC.reloadMaps(i);
@@ -845,12 +853,6 @@ class IngamePlugin extends GamePlugin {
       // Uh-oh? Not sure how this happens, but... just in case!
       mapC.reloadMaps();
       return;
-    }
-
-    // Remove everyone from their tiles.
-    for (const player of mapC.players) {
-      if (player.dead) continue;
-      player.removeFromTiles(mapC);
     }
 
     // Move everyone as close to the campfire as possible.
