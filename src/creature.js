@@ -1053,7 +1053,9 @@ class Creature {
     return true;
   }
 
-  turnStart() {
+  /** @param {function():boolean} queryBattleOverFn */
+  turnStart(queryBattleOverFn) {
+    // Set off any charging spells.
     if (this.chargingTarget && this.chargingWeapon &&
         !this.chargingTarget.dead) {
       this.effectAction(() => {
@@ -1063,6 +1065,15 @@ class Creature {
       this.attack_(this.chargingTarget, this.chargingWeapon,
           Creature.AttackType.Charged);
     }
+
+    // Once your charged spell is over, the battle might be over too. Try it!
+    this.effectAction(() => {
+      if (!queryBattleOverFn()) return;
+      // If the battle is over, cancel any further actions.
+      this.actions = [];
+    });
+
+    // Maybe lose your turn from confusion... or from being a sleeping summon.
     if (this.summonAwake) {
       this.effectAction(() => {
         // Do you lose your turn to confusion?
@@ -1082,9 +1093,12 @@ class Creature {
         }
       });
     }
+
     // Bosses talk on the start of each turn.
     if (this.side != Creature.Side.Npc && this.npcLines) {
-      this.talk();
+      this.effectAction(() => {
+        this.talk();
+      });
     }
   }
 

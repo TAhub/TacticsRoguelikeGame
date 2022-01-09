@@ -123,7 +123,10 @@ class IngamePlugin extends GamePlugin {
       if (mapController.active) break;
       mapController.turnTaken = new Set();
     }
-    mapController.active.turnStart();
+    mapController.active.turnStart(() => {
+      this.checkBattleOver_();
+      return !mapController.inCombat;
+    });
     this.turnStartX = mapController.active.x;
     this.turnStartY = mapController.active.y;
     this.menuController.clear();
