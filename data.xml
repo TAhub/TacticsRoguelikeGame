@@ -59,7 +59,8 @@
     <entry name="tooltip text" color="#BAAFAB" />
     <!-- material colors -->
     <entry name="black fabric" color="#5C5857" />
-    <entry name="red fabric" color="#AE6B6B" />
+    <entry name="red fabric" color="#C65353" />
+    <entry name="blue fabric" color="#5355C6" />
     <entry name="sharp brown fabric" color="#B98B74" />
     <entry name="brown fabric" color="#A47E6A" />
     <entry name="greenish brown fabric" color="#959A7E" />
@@ -346,7 +347,7 @@
       gender="0" hairstyle="bald" coloration="1" npcLines="Joonert" />
     <entry name="Gulas" species="firin" jobs="sage,survivor" level="25" armors="hat:2,shirt:2,leggings:2" techniques="ashball,unearth"
       gender="0" hairstyle="short" coloration="0" npcLines="Gulas" />
-    <entry name="Greeter" species="firin" jobs="mage,tethered" level="30" armors="shirt:2,skirt:2" accessory="silver spectacles" techniques="arcana arrow,phantom flames"
+    <entry name="Greeter" species="firin" jobs="mage,tethered" level="30" armors="shirt:2,skirt:2" accessory="cerulean spectacles" techniques="arcana arrow,phantom flames"
       gender="1" hairstyle="ponytail" coloration="0" npcLines="Greeter" />
 
     <!-- bosses -->
@@ -552,6 +553,7 @@
       <layer spriteM="302" spriteF="303" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
       <layer spriteM="306" spriteF="307" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
       <layer sprite="200" color="skinColor" xAdd="1" yAdd="-49" showAllStatuses="1" /> <!-- head -->
+      <layer sprite="416" color="skinColor" matchLastLayer="1" /> <!-- snout -->
       <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
       <layer sprite="204" color="pupilColor" matchLastLayer="1" /> <!-- pupil -->
       <layer fillSlotId="face" showObjectStatuses="1" matchLastLayer="1" /> <!-- face -->
@@ -578,6 +580,7 @@
       <layer spriteM="103" spriteF="104" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
       <layer spriteM="107" spriteF="108" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
       <layer sprite="200" color="skinColor" xAdd="1" yAdd="-36" showAllStatuses="1" /> <!-- head -->
+      <layer sprite="414" color="skinColor" matchLastLayer="1" /> <!-- snout -->
       <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
       <layer sprite="203" color="pupilColor" matchLastLayer="1" /> <!-- pupil -->
       <layer fillSlotId="face" showObjectStatuses="1" matchLastLayer="1" /> <!-- face -->
@@ -588,9 +591,9 @@
     </entry> <!-- firin -->
     <entry name="skuri"
       appearanceSizeMult="85" headHeightPoint="55"
-      coloration0="Field" colorationTickets0="3" skinColor0="tan fur" hairColor0="brown fur" eyeColor0="black" tailColor0="flesh" bloodColor0="blood"
+      coloration0="Field" colorationTickets0="3" skinColor0="tan fur" hairColor0="brown fur" eyeColor0="gray" pupilColor0="black" tailColor0="flesh" bloodColor0="blood"
       colorationFluff0="Despite the name, field Skuri rarely actually live outside in fields. Rather, they were once used by the Firin empire as slaves, working the fields."
-      coloration1="Albino" colorationTickets1="1" skinColor1="white fur" hairColor1="white" eyeColor1="blood" tailColor1="flesh" bloodColor1="blood"
+      coloration1="Albino" colorationTickets1="1" skinColor1="white fur" hairColor1="white" eyeColor1="gray" pupilColor1="blood" tailColor1="flesh" bloodColor1="blood"
       colorationFluff1="Albinism is much more common in Skuri than it is in other species.">
       <layer sprite="407" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (back) armor layer -->
       <layer color="hairColor" xAdd="4" yAdd="-9" scale="90" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
@@ -604,7 +607,9 @@
       <layer sprite="402" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
       <layer sprite="404" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
       <layer sprite="200" color="skinColor" xAdd="4" yAdd="-9" scale="90" showAllStatuses="1" /> <!-- head -->
+      <layer sprite="415" color="skinColor" matchLastLayer="1" /> <!-- snout -->
       <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
+      <layer sprite="413" color="pupilColor" matchLastLayer="1" /> <!-- pupil -->
       <layer fillSlotId="face" showObjectStatuses="1" matchLastLayer="1" /> <!-- face -->
       <layer color="hairColor" matchLastLayer="1" fillSlotId="hairFront" showObjectStatuses="1" /> <!-- hair -->
       <layer fillSlotId="hat" showObjectStatuses="1" matchLastLayer="1" /> <!-- hat -->
@@ -616,12 +621,12 @@
     <entry name="crawler"
       appearanceSizeMult="95" headHeightPoint="25"
       colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
-      <layer sprite="711" color="skinColor" showAllStatuses="1" />
+      <layer sprite="711" color="skinColor" showObjectStatuses="1" />
     </entry> <!-- crawler -->
     <entry name="turret"
       appearanceSizeMult="125" headHeightPoint="30"
       colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
-      <layer sprite="710" color="skinColor" showAllStatuses="1" />
+      <layer sprite="710" color="skinColor" showObjectStatuses="1" />
     </entry> <!-- turret -->
     <entry name="rat"
       appearanceSizeMult="65" headHeightPoint="25"
@@ -641,11 +646,9 @@
       <layer sprite="704" color="skinColor" showAllStatuses="1" />
     </entry> <!-- baby slime -->
     <entry name="seed spitter"
-      appearanceSizeMult="85"
+      appearanceSizeMult="85" headHeightPoint="80"
       colorationTickets0="1" skinColor0="green scales" bloodColor0="green scales">
-      <!-- TODO: actual appearance (make a new sprite, looks like a killer plant) -->
-      <!-- TODO: headHeightPoint (for spell lines) -->
-      <layer sprite="701" color="skinColor" showAllStatuses="1" />
+      <layer sprite="712" color="skinColor" showAllStatuses="1" />
     </entry> <!-- seed spitter -->
     <entry name="walking topiary"
       appearanceSizeMult="85" headHeightPoint="50"
@@ -1034,8 +1037,8 @@
     <entry name="lantern" resistance="15"
       color="rusty" slotFillers="offHand:613"
       fluff="A rusty old lantern, that once was used to burn some odd oil. It is too foul to light up anymore, but the residue inside seems to dampen magic in some way." />
-    <entry name="silver spectacles" zones="1" specialAttackPower="10"
-      color="silver" slotFillers="face:215"
+    <entry name="cerulean spectacles" zones="1" specialAttackPower="10"
+      color="blue fabric" slotFillers="face:215"
       fluff="A seemingly-magical pair of glasses, presumably left behind by someone long dead. Through these lenses, you can see where opponents plan to go, a split-second before they start moving." />
     <entry name="bloody thorn" powerVsUninjured="40" dodge="-15"
       fluff="A magical thorn, found safely locked away in a box. Impale the palm of your hand with this and you'll unlock a vengeful power... at the cost of distracting pain." />
@@ -1194,7 +1197,7 @@
       loot="(W)dagger:0,(H)0,(I)5,(H)0" />
     <entry name="catacombs" regionId="0" condition="key map branch"
       tileset="catacombs" securityLevelTickets="1,2,2,3" enemyTemplates="undead noble,undead soldier,undead hunter"
-      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)silver spectacles,(A)breastplate:0,(H)0,(H)0,(H)0,(I)7" />
+      loot="(W)crimson fangs,(W)rusty metal rod:0,(A)shirt:0,(A)helmet:0,(W)mend,(A)leggings:0,(C)cerulean spectacles,(A)breastplate:0,(H)0,(H)0,(H)0,(I)7" />
     <entry name="tomb" offshootFrom="catacombs"
       tileset="catacombs" enemyTemplates="undead best man,undead bridesmaid"
       loot="(R)wedding ring,(C)fur cloak,(H)0,(I)7" />

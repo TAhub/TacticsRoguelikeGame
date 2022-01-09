@@ -88,7 +88,7 @@ class Item {
           break;
         case Item.Code.Refresh:
           sprite = 516;
-          color = data.getColorByNameSafe('arcana');
+          color = data.getColorByNameSafe('blue fabric');
           break;
         case Item.Code.Healing:
           sprite = 516;
