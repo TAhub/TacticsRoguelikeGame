@@ -244,7 +244,7 @@ class Creature {
   /** @return {number} */
   get maxAstra() {
     const mult = 100 + this.tallyBonusSources_((bS) => bS.astra);
-    let astra = 50 * mult / 100;
+    let astra = 30 * mult / 100;
     if (this.side == Creature.Side.Player) astra *= mechPlayerAstraMult;
     if (this.boss) astra *= 2;
     return Math.floor(astra);
@@ -485,7 +485,7 @@ class Creature {
       let uses = maxAstra / weapon.astraCost;
       if (this.side == Creature.Side.Player) uses /= mechPlayerAstraMult;
       else if (this.boss) uses /= 2;
-      techAttackValue += value * uses / 8;
+      techAttackValue += value * uses / 4;
     }
     if (techs > 0) techAttackValue /= techs;
 
