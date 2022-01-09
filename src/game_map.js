@@ -1254,14 +1254,23 @@ class GameMap {
     // Pre-filter tiles, to get rid of tiles that wouldn't make good encounters.
     const validTiles = new Set();
     for (const tile of this.tiles.values()) {
-      // TODO: filter if this is too close to an exit...
       if (this.startI) {
         const fromStart = Math.abs(toX(this.startI) - tile.x) +
                           Math.abs(toY(this.startI) - tile.y);
         if (fromStart < 10) continue; // Too close to the start!
       }
+
       const territory = this.getEncounterTerritory_(tile);
       if (territory.length < 7) continue; // Too cramped!
+
+      let nearCampfire = false;
+      for (const tile of territory) {
+        if (!tile.item || tile.item.contents != Item.Code.Campfire) continue;
+        nearCampfire = true;
+        break;
+      }
+      if (nearCampfire) continue; // Too close to a campfire!
+
       validTiles.add(tile);
     }
 
