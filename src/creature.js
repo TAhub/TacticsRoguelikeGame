@@ -651,7 +651,7 @@ class Creature {
     const setLifeFont = () => gfx.setFont(ctx, lH);
 
     // Get astra number size.
-    const astraText = ' ' + this.astra + '/' + this.maxAstra;
+    const astraText = ' ' + this.astra + ' ';
     setAstraFont();
     const lW = w - gfx.measureText(ctx, astraText);
 
