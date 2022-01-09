@@ -14,6 +14,11 @@ class FightingStyle extends BonusSource {
     return this.getArrayValue('reqJobs');
   }
 
+  /** @return {string} */
+  get color() {
+    return this.getColorValue('color') || '#FFFFFF';
+  }
+
   /**
    * @param {!Creature} creature
    * @param {boolean=} optNoFluff

@@ -6,6 +6,8 @@
  *   renderOrder: (number|undefined),
  *   rockAngle: (number|undefined),
  *   transparent: (boolean|undefined),
+ *   blendColor: (string|undefined),
+ *   blendColorAmount: (number|undefined),
  * }}
  */
 let SpriteObjectOptions;
@@ -111,6 +113,19 @@ class SpriteObject {
     this.material.opacity = 1;
     if (optOptions && optOptions.transparent) {
       this.material.opacity = 0.75;
+    }
+
+    if (optOptions && optOptions.blendColor && optOptions.blendColorAmount) {
+      const rgb = getRGB(optOptions.blendColor);
+      const p = optOptions.blendColorAmount / 100;
+      const translateColor = (c) => Math.floor(256 * (1 - p) + c * p) / 256;
+      this.material.color.r = translateColor(rgb.r);
+      this.material.color.g = translateColor(rgb.g);
+      this.material.color.b = translateColor(rgb.b);
+    } else {
+      this.material.color.r = 1;
+      this.material.color.g = 1;
+      this.material.color.b = 1;
     }
 
     // If configured, the object will move back slightly, so that it doesn't

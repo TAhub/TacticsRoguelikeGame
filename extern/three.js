@@ -3,6 +3,22 @@
 /** @const */
 const THREE = {};
 
+THREE.Color = class {
+  /**
+   * @param {number} r
+   * @param {number} g
+   * @param {number} b
+   */
+  constructor(r, g, b) {
+    /** @type {number} */
+    this.r;
+    /** @type {number} */
+    this.g;
+    /** @type {number} */
+    this.b;
+  }
+}
+
 THREE.Vector3 = class {
   /**
    * @param {number} x
@@ -124,6 +140,8 @@ THREE.Material = class {
   constructor() {
     /** @type {number} */
     this.opacity;
+    /** @type {!THREE.Color} */
+    this.color;
   }
 
   dispose() {};

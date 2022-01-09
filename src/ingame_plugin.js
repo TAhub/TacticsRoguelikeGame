@@ -249,6 +249,7 @@ class IngamePlugin extends GamePlugin {
             if (selected) return;
             active.activeFightingStyle = sample;
             active.say(sample.name + '!');
+            active.startColorPulse(sample.color);
             this.menuController.clear();
             if (mapC.inCombat) active.hasMove = false;
             // Toggle in and out of your tiles to reset th, since fighting

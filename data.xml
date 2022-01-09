@@ -129,41 +129,41 @@
   </category> <!-- stats -->
   <category name="fighting styles">
     <!-- species-based styles -->
-    <entry name="bear style" reqSpecies="karhun"
+    <entry name="bear style" reqSpecies="karhun" color="brown"
       attackPower="10" defense="15"
       fluff="A fighting style pioneered by the Karhun. Focuses on keeping the opponent on the back foot through constant aggressive attacks." />
-    <entry name="rat style" reqSpecies="skuri"
+    <entry name="rat style" reqSpecies="skuri" color="black"
       attackPowerWhenDisengaged="20" dodge="15"
       fluff="A fighting style first developed in secret for the Skuri to use against their Firin slave-masters. Focuses on hit-and-run attacks." />
-    <entry name="cat style" reqSpecies="firin"
+    <entry name="cat style" reqSpecies="firin" color="orange"
       accuracy="10" powerVsUninjured="20"
       fluff="A fighting style traditionally practiced by Firin mages and warriors. Designed to make a decisive first strike and weaken a foe enough that they can be toyed with." />
 
     <!-- job-based styles -->
-    <entry name="boar style" reqJobs="warrior,martial artist,wanderer"
+    <entry name="boar style" reqJobs="warrior,martial artist,wanderer" color="red"
       attackPower="15" moveDistance="2"
       fluff="An aggressive fighting style that focuses on getting in close, and striking with overwhelming power." />
-    <entry name="bird style" reqJobs="mage,sage,ranger"
+    <entry name="bird style" reqJobs="mage,sage,ranger" color="sky blue"
       flying="1" moveDistance="1"
       fluff="A magical fighting style that strives to allow the user to fly like a bird. In truth, though, you're hovering more than flying." />
-    <entry name="snake style" reqJobs="rogue,gunner,healer"
+    <entry name="snake style" reqJobs="rogue,gunner,healer" color="green"
       resistance="15" initiative="10"
       fluff="A sinister fighting style that stresses being calm and collected, while being ready to spring into action the moment you sense danger." />
-    <entry name="frog style" reqJobs="mechanist,lab rat,survivor"
+    <entry name="frog style" reqJobs="mechanist,lab rat,survivor" color="light green"
       specialPower="10" specialAttackPower="30"
       fluff="A careful fighting style based on waiting and reacting. Named based on an old myth that frogs are careful planners." />
 
     <!-- general styles -->
-    <entry name="monkey style"
+    <entry name="monkey style" color="pale red"
       accuracy="15" dodge="10"
       fluff="A fluid style focusing on flexibility and skill over raw power. Surprisingly versatile, much like the rare animal it is named after." />
-    <entry name="slime style"
+    <entry name="slime style" color="teal"
       defense="20" resistance="20" dodge="-15"
       fluff="A simple fighting style meant to imitate the placid yet hearty slime. Focuses on taking hits and surviving, instead of avoiding them." />
-    <entry name="star style"
+    <entry name="star style" color="pale purple"
       specialPower="10" hitsToCrits="30"
       fluff="An esoteric fighting style supposedly designed based on the movements of the stars. Helps the user bring overwhelming magical firepower to bear." />
-    <entry name="horse style"
+    <entry name="horse style" color="yellow"
       moveDistance="5"
       fluff="A fighting style focused on pure mobility, inspired by the spirit of the horse." />
   </category> <!-- fighting styles -->

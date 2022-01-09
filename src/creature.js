@@ -117,6 +117,8 @@ class Creature {
     this.finalBoss = false;
 
     // Temporary.
+    this.pulseColor = '';
+    this.pulseCycle = -1;
     this.flyingEffectCycle = Math.random();
     this.th = 0;
     this.floorTh = 0;
@@ -786,6 +788,11 @@ class Creature {
 
   /** @param {number} elapsed */
   update(elapsed) {
+    if (this.pulseCycle >= 0 && this.pulseCycle < 1) {
+      this.pulseCycle = Math.min(1, this.pulseCycle + elapsed * 2);
+    } else {
+      this.pulseCycle = -1;
+    }
     this.flyingEffectCycle = (this.flyingEffectCycle + (elapsed / 2)) % 1;
     this.shakeEffect = Math.max(0, this.shakeEffect - elapsed);
     if (this.actions.length > 0) {
@@ -901,6 +908,14 @@ class Creature {
       const sign = this.flyingEffectCycle < 0.5 ? -1 : 1;
       const cycle = ((1 + this.flyingEffectCycle - 0.5) % 0.5) * 2;
       th += sign * (cycle < 0.5 ? cycle : (1 - cycle)) * 0.5;
+    }
+    if (this.pulseCycle > 0 && this.pulseColor) {
+      options.blendColor = this.pulseColor;
+      if (this.pulseCycle < 0.5) {
+        options.blendColorAmount = lerp(0, 100, this.pulseCycle * 2);
+      } else {
+        options.blendColorAmount = lerp(100, 0, (this.pulseCycle * 2) - 1);
+      }
     }
     this.spriteObject.addToGroup(group, camera, x, y, th, options);
     if (!this.barSpriteObject) this.makeBar();
@@ -2018,6 +2033,12 @@ class Creature {
       this.rockAngle = (0.5 - Math.abs(progress - 0.5)) * 0.075 * rockDir;
       return progress == 1;
     });
+  }
+
+  /** @param {string} color */
+  startColorPulse(color) {
+    this.pulseCycle = 0;
+    this.pulseColor = color;
   }
 
   /**
