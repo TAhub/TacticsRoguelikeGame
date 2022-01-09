@@ -60,9 +60,7 @@ class MainMenuPlugin extends GamePlugin {
 
     // Credits button.
     const creditsSlot = new MenuTileSlot(1, 0, 1, 1);
-    const creditsClickFn = () => {
-      // TODO: switch to credits menu
-    };
+    const creditsClickFn = () => this.makeCreditsView_();
     creditsSlot.attachTile(new MenuTile('Credits', {clickFn: creditsClickFn}));
     this.menuController.slots.push(creditsSlot);
 
@@ -126,7 +124,54 @@ class MainMenuPlugin extends GamePlugin {
       }
     }
 
-    this.menuController.resizeToFit(gfxScreenWidth, gfxScreenHeight);
+    this.menuController.resizeToFit(gfxScreenWidth, gfxScreenHeight, true);
+    this.menuController.recenter(gfxScreenWidth, gfxScreenHeight);
+  }
+
+  /**
+   * @param {number=} optPage
+   * @private
+   */
+  makeCreditsView_(optPage) {
+    this.menuController.clear();
+
+    // Entries.
+    const allSounds = data.getCategoryEntriesArray('sounds') || [];
+    let pageProgress = 0;
+    let y = 0;
+    const page = optPage || 0;
+    for (const sound of allSounds) {
+      if (Math.floor(pageProgress) == page) {
+        const text = (data.getValue('sounds', sound, 'credit') || '')
+            .split('*NL*').join('\n');
+        if (text) {
+          const slot = new MenuTileSlot(0, y, 2, 1);
+          slot.attachTile(new MenuTile(text));
+          this.menuController.slots.push(slot);
+          y += 1;
+        }
+      }
+      pageProgress += 0.1;
+    }
+    if (y == 0) {
+      // Nothing was drawn, so loop back to the start.
+      this.makeCreditsView_();
+      return;
+    }
+
+    // Back button.
+    const backSlot = new MenuTileSlot(0, y, 1, 1);
+    backSlot.attachTile(new MenuTile(
+        'Return', {clickFn: () => this.makeMainView_()}));
+    this.menuController.slots.push(backSlot);
+
+    // Navigation button.
+    const navSlot = new MenuTileSlot(1, y, 1, 1);
+    navSlot.attachTile(new MenuTile(
+        'Next', {clickFn: () => this.makeCreditsView_(page + 1)}));
+    this.menuController.slots.push(navSlot);
+
+    this.menuController.resizeToFit(gfxScreenWidth, gfxScreenHeight, false);
     this.menuController.recenter(gfxScreenWidth, gfxScreenHeight);
   }
 

@@ -38,7 +38,7 @@ class FastTravelPlugin extends GamePlugin {
       }
       this.menuController.slots.push(slot);
     }
-    this.menuController.resizeToFit(gfxScreenWidth, gfxScreenHeight);
+    this.menuController.resizeToFit(gfxScreenWidth, gfxScreenHeight, true);
     this.menuController.recenter(gfxScreenWidth, gfxScreenHeight);
 
     // Retroactively remove all slots that correspond to.

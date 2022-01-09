@@ -275,20 +275,27 @@ class MenuController {
   /**
    * @param {number} desiredWidth
    * @param {number} desiredHeight
+   * @param {boolean} honorAspectRatio
    */
-  resizeToFit(desiredWidth, desiredHeight) {
+  resizeToFit(desiredWidth, desiredHeight, honorAspectRatio) {
     let width = 0;
     let height = 0;
     for (const slot of this.slots) {
       width = Math.max(width, slot.x + slot.w);
       height = Math.max(height, slot.y + slot.h);
     }
-    const mult = Math.min(desiredWidth / width, desiredHeight / height);
+    let wMult = desiredWidth / width;
+    let hMult = desiredHeight / height;
+    if (honorAspectRatio) {
+      const mult = Math.min(wMult, hMult);
+      hMult = mult;
+      wMult = mult;
+    }
     for (const slot of this.slots) {
-      slot.x *= mult;
-      slot.y *= mult;
-      slot.w *= mult;
-      slot.h *= mult;
+      slot.x *= wMult;
+      slot.y *= hMult;
+      slot.w *= wMult;
+      slot.h *= hMult;
       if (slot.tile) slot.attachTile(slot.tile);
     }
   }

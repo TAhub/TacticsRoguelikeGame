@@ -233,7 +233,7 @@ class CharacterCreatorPlugin extends GamePlugin {
       }
     }
 
-    this.menuController.resizeToFit(gfxScreenWidth, gfxScreenHeight);
+    this.menuController.resizeToFit(gfxScreenWidth, gfxScreenHeight, true);
     this.menuController.recenter(gfxScreenWidth, gfxScreenHeight);
   }
 

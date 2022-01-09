@@ -7,12 +7,12 @@ class MessagePlugin extends GamePlugin {
     for (let y = 0; y < 999; y++) {
       const line = data.getValue('messages', message, 's', y);
       if (!line) break;
-      const slot = new MenuTileSlot(0, y, 5, 1);
+      const slot = new MenuTileSlot(0, y, 1, 1);
       const clickFn = () => this.switchToPlugin(new MainMenuPlugin());
       slot.attachTile(new MenuTile(line, {clickFn}));
       this.menuController.slots.push(slot);
     }
-    this.menuController.resizeToFit(gfxScreenWidth, gfxScreenHeight);
+    this.menuController.resizeToFit(gfxScreenWidth, gfxScreenHeight, false);
     this.menuController.recenter(gfxScreenWidth, gfxScreenHeight);
   }
 
