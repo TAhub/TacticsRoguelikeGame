@@ -629,6 +629,7 @@ class IngamePlugin extends GamePlugin {
           const tile = mapC.tileAt(creature.x, creature.y);
           setFn(tile.item);
           tile.item = item;
+          this.equipCleanUp_(creature); // In case you un-equipped something.
           this.menuController.clear();
           return true;
         } else if (split[0] == 'inv') {
