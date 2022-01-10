@@ -208,9 +208,9 @@
     <entry name="reflexes" prereq="evasion"
       dodge="4" resistance="8"
       fluff="All attacks can be dodged, even spells. If you are quick enough, you can react to the spell-channel solidifying, and juke away before the spell touches you." />
-    <entry name="combat instincts" prereq="evasion"
-      dodge="6" hitsToCrits="12"
-      fluff="Sharpen your fighting instincts, so that you can not just dodge attacks, but also better react to tiny openings you can exploit for massive damage." />
+    <entry name="skirmishing" prereq="evasion"
+      moveDistance="1" attackPowerWhenDisengaged="14"
+      fluff="Learn how to fight effectively on the move, moving in and out of combat quickly, making devastating attacks as you do." />
     <entry name="celerity" agilityReq="13"
       initiative="12"
       fluff="Learn a common rogue technique that infuses astra into your brain, letting you act just a little bit faster than others." />
