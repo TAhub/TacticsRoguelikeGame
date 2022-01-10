@@ -547,6 +547,7 @@
       <layer xAdd="50" yAdd="-22" fillSlotId="weaponHand" /> <!-- weapon hand -->
       <layer spriteM="300" spriteF="301" color="skinColor" showAllStatuses="1" /> <!-- body -->
       <layer spriteM="304" spriteF="305" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
+      <layer spriteM="316" spriteF="317" armorLayerId="jerkin" showObjectStatuses="1" /> <!-- jerkin armor layer -->
       <layer spriteM="308" spriteF="309" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
       <layer spriteM="314" spriteF="315" armorLayerId="bandit" showObjectStatuses="1" /> <!-- bandit armor layer -->
       <layer spriteM="310" spriteF="311" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (front) armor layer -->
@@ -574,6 +575,7 @@
       <layer xAdd="39" yAdd="-9" fillSlotId="weaponHand" /> <!-- weapon hand -->
       <layer spriteM="100" spriteF="101" color="skinColor" showAllStatuses="1" /> <!-- body -->
       <layer spriteM="105" spriteF="106" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
+      <layer spriteM="615" spriteF="616" armorLayerId="jerkin" showObjectStatuses="1" /> <!-- jerkin armor layer -->
       <layer spriteM="109" spriteF="110" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
       <layer spriteM="115" spriteF="116" armorLayerId="bandit" showObjectStatuses="1" /> <!-- bandit armor layer -->
       <layer spriteM="111" spriteF="112" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (front) armor layer -->
@@ -601,6 +603,7 @@
       <layer xAdd="23" yAdd="30" fillSlotId="weaponHand" /> <!-- weapon hand -->
       <layer sprite="400" color="skinColor" showAllStatuses="1" /> <!-- body -->
       <layer sprite="403" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
+      <layer sprite="409" armorLayerId="jerkin" showObjectStatuses="1" /> <!-- jerkin armor layer -->
       <layer sprite="405" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
       <layer sprite="408" armorLayerId="bandit" showObjectStatuses="1" /> <!-- bandit armor layer -->
       <layer sprite="406" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (front) armor layer -->
@@ -1060,7 +1063,7 @@
         fluff="A well-made shirt with fine decorations. Shockingly tough, to protect the bodies of the rich from assassins." />
     </entry> <!-- shirt -->
     <entry name="jerkin" slot="torso" armorProfiencyLevel="1"
-      armorLayerId="shirt">
+      armorLayerId="jerkin">
       <variety name="rotten jerkin" tier="0" defense="15"
         color="greenish brown fabric"
         fluff="This leather jerkin was probably nice once, but now it has begun to dry rot." />
