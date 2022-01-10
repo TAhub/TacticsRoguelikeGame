@@ -493,25 +493,7 @@ class IngamePlugin extends GamePlugin {
       if (mapC.inventory[i]) continue;
       mapC.inventory[i] = new Item(unequipped.pop());
     }
-    let r = 0;
-    while (unequipped.length > 0) {
-      const validTiles = [];
-      for (let y = creature.y - r; y <= creature.y + r; y++) {
-        for (let x = creature.x - r; x <= creature.x + r; x++) {
-          const tile = mapC.tileAt(x, y);
-          if (!tile || tile.item) continue;
-          const distance = Math.abs(x - creature.x) + Math.abs(y - creature.y);
-          if (distance != r) continue;
-          validTiles.push(tile);
-        }
-      }
-      shuffleArray(validTiles);
-      for (const tile of validTiles) {
-        tile.item = new Item(unequipped.pop());
-        if (unequipped.length == 0) break;
-      }
-      r += 1;
-    }
+    mapC.dropItemsOnFloor(unequipped.map((e) => new Item(e)), creature);
   }
 
   /**

@@ -560,6 +560,36 @@ class MapController {
   }
 
   /**
+   * @param {!Array.<Item>} items
+   * @param {!Creature} nearCreature
+   */
+  dropItemsOnFloor(items, nearCreature) {
+    let r = 0;
+    while (items.length > 0) {
+      const validTiles = [];
+      for (let y = nearCreature.y - r; y <= nearCreature.y + r; y++) {
+        for (let x = nearCreature.x - r; x <= nearCreature.x + r; x++) {
+          const tile = this.tileAt(x, y);
+          if (!tile || tile.item) continue;
+          const hasNpc =
+              tile.creatures.some((c) => c.side == Creature.Side.Npc);
+          if (hasNpc) continue;
+          const distance =
+              Math.abs(x - nearCreature.x) + Math.abs(y - nearCreature.y);
+          if (distance != r) continue;
+          validTiles.push(tile);
+        }
+      }
+      shuffleArray(validTiles);
+      for (const tile of validTiles) {
+        tile.item = items.pop();
+        if (items.length == 0) break;
+      }
+      r += 1;
+    }
+  }
+
+  /**
    * @param {number} x
    * @param {number} y
    * @return {?GameMapTile}
