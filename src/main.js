@@ -146,7 +146,7 @@ class Game {
 const game = new Game();
 /** Sets up the game. */
 async function setup() {
-  await Promise.resolve();
+  await tinyWait();
   await data.setup();
   game.setup();
 }

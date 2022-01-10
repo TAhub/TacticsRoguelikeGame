@@ -35,7 +35,10 @@ class MainMenuPlugin extends GamePlugin {
     // Load game button.
     if (hasSave) {
       const loadGameSlot = new MenuTileSlot(0, 1, 1, 1);
-      const clickFn = () => this.switchToPlugin(new IngamePlugin());
+      const clickFn = () => {
+        const ip = new IngamePlugin();
+        this.switchToPlugin(new LoadingPlugin(ip.generate()));
+      };
       loadGameSlot.attachTile(new MenuTile('Load Game', {clickFn}));
       this.menuController.slots.push(loadGameSlot);
     }
@@ -46,7 +49,8 @@ class MainMenuPlugin extends GamePlugin {
       const makeFn = () => {
         saveManager.clear(/* tempOnly= */ false);
         this.switchToPlugin(new CharacterCreatorPlugin((players) => {
-          return new IngamePlugin(players);
+          const ip = new IngamePlugin();
+          return new LoadingPlugin(ip.generate(players));
         }));
       };
       if (hasSave) {
@@ -200,9 +204,8 @@ class MainMenuPlugin extends GamePlugin {
    */
   loadSounds_() {
     if (data.soundsToFetch.length == 0) return Promise.resolve();
-    let complete = false;
-    const promise = data.fetchAppropriateSounds().then(() => complete = true);
-    this.switchToPlugin(new LoadingPlugin(() => complete ? this : null));
+    const promise = data.fetchAppropriateSounds().then(() => this);
+    this.switchToPlugin(new LoadingPlugin(promise));
     return promise;
   }
 

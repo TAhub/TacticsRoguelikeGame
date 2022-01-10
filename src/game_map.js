@@ -1116,10 +1116,11 @@ class GameMap {
    * @param {!Array.<!Creature>} creatures
    * @param {!Array.<!Encounter>} encounters
    * @param {!OverworldMapTile} overworldMapTile
-   * @return {!Map.<!Encounter, !Array.<!Creature>>}
+   * @return {!Promise.<!Map.<!Encounter, !Array.<!Creature>>>}
    * @private
    */
-  splitCreaturesForEncounters_(rng, creatures, encounters, overworldMapTile) {
+  async splitCreaturesForEncounters_(
+      rng, creatures, encounters, overworldMapTile) {
     const combination = new Map();
 
     /**
@@ -1179,6 +1180,7 @@ class GameMap {
         addCreatureToEncounter(creature, encounter);
       }
       if (creaturesLengthBefore == creatures.length) break; // Done!
+      await tinyWait();
     }
 
     // Sort by points remaining, highest to lowest, so that the
@@ -1243,10 +1245,10 @@ class GameMap {
    * @param {!OverworldMapTile} overworldMapTile
    * @param {rng} rng
    * @param {number} encounterTally
-   * @return {?Array.<!Creature>} encounterTally
+   * @return {!Promise.<?Array.<!Creature>>} encounterTally
    * @private
    */
-  generateEncountersInner_(overworldMapTile, rng, encounterTally) {
+  async generateEncountersInner_(overworldMapTile, rng, encounterTally) {
     if (overworldMapTile.enemyTemplates.length == 0) return [];
     const numEncounters = overworldMapTile.bossMap ? 3 : 4;
     const encounters = [];
@@ -1330,7 +1332,7 @@ class GameMap {
         rng, overworldMapTile, encounters);
 
     // Split more-or-less evenly.
-    const splitCreatures = this.splitCreaturesForEncounters_(
+    const splitCreatures = await this.splitCreaturesForEncounters_(
         rng, allCreatures, encounters, overworldMapTile);
 
     // Pick enemies for each encounter.
@@ -1376,6 +1378,7 @@ class GameMap {
           enemy.y = tile.y;
           enemies.push(enemy);
           success = true;
+          await tinyWait();
         }
       }
     }
@@ -1387,10 +1390,10 @@ class GameMap {
    * @param {!OverworldMapTile} overworldMapTile
    * @param {rng} rng
    * @param {number} encounterTally
-   * @return {?Array.<!Creature>} encounterTally
+   * @return {!Promise.<?Array.<!Creature>>} encounterTally
    */
-  generateEncounters(overworldMapTile, rng, encounterTally) {
-    let enemies = this.generateEncountersInner_(
+  async generateEncounters(overworldMapTile, rng, encounterTally) {
+    let enemies = await this.generateEncountersInner_(
         overworldMapTile, rng, encounterTally);
 
     // After all of the enemies have been added, add the NPC (if any).

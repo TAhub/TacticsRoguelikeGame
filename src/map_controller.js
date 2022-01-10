@@ -43,20 +43,20 @@ class MapController {
    * @param {!Array.<!Creature>} players
    * @param {number=} optGenLimit
    */
-  generateNew(players, optGenLimit) {
+  async generateNew(players, optGenLimit) {
     /**
-     * @param {function((function(string))=):T} genFn
+     * @param {function((function(string))=):Promise.<T>} genFn
      * @param {string} identifier
-     * @return {T}
+     * @return {!Promise.<T>}
      * @template T
      */
-    const generateWrapper = (genFn, identifier) => {
+    const generateWrapper = async (genFn, identifier) => {
       if (optGenLimit) {
         const errors = new Map();
         const logFn = (error) => {
           errors.set(error, (errors.get(error) || 0) + 1);
         };
-        const value = genFn(logFn);
+        const value = await genFn(logFn);
         if (value.tiles.size == 0) {
           console.log('--WARNING: Failed to generate ' + identifier + ':');
           for (const error of errors.keys()) {
@@ -70,17 +70,20 @@ class MapController {
     };
 
     // Generate the overworld.
-    this.overworldMap = generateWrapper((logFn) => {
-      return new OverworldMap(generateSeed(), optGenLimit, logFn);
+    this.overworldMap = await generateWrapper((logFn) => {
+      const om = new OverworldMap(generateSeed());
+      return om.generate(optGenLimit, logFn).then(() => om);
     }, 'overworld map');
 
     // Generate all of the maps, as a first pass-through.
     this.gameMaps.clear();
     for (const i of this.overworldMap.tiles.keys()) {
-      this.gameMaps.set(i, generateWrapper((logFn) => {
+      const gm = await generateWrapper((logFn) => {
         const tile = this.overworldMap.tiles.get(i);
-        return new GameMap(tile, optGenLimit, logFn);
-      }, 'game map #' + i));
+        const gm = new GameMap(tile, optGenLimit, logFn);
+        return Promise.resolve(gm);
+      }, 'game map #' + i);
+      this.gameMaps.set(i, gm);
     }
 
     // Move the player to the start position.
@@ -100,6 +103,7 @@ class MapController {
       const gameMap = this.gameMaps.get(i);
       const tile = this.overworldMap.tiles.get(i);
       gameMap.distributeLoot(tile, defaultRNG());
+      await tinyWait();
     }
 
     // Generate all encounters.
@@ -111,10 +115,10 @@ class MapController {
       for (let j = 0; ; j++) {
         if (j >= 100) {
           // Too many failures... start over from the start!
-          this.generateNew(players, optGenLimit);
+          await this.generateNew(players, optGenLimit);
           return;
         }
-        const enemies = gameMap.generateEncounters(
+        const enemies = await gameMap.generateEncounters(
             tile, defaultRNG(), encounterTally);
         if (enemies) {
           for (const enemy of enemies) {
@@ -142,6 +146,7 @@ class MapController {
           }
           break;
         }
+        await tinyWait();
       }
     }
 
@@ -171,14 +176,16 @@ class MapController {
     }
   }
 
-  load() {
+  async load() {
     // Pull the last "true save".
     saveManager.pullSave();
 
-    const save = saveManager.loadSaveObj('game');
-    if (!save) return;
+    const save = /** @type {!Object.<string, string>} */ (
+      saveManager.loadSaveObj('game'));
+
     const seed = saveManager.intFromSaveObj(save, 'seed');
     this.overworldMap = new OverworldMap(seed);
+    await this.overworldMap.generate();
     // Does not load the game maps yet. They will be loaded in the first
     // "reloadMaps" call. EXCEPT for the map the players are in, of course.
     for (let i = 0; ; i++) {

@@ -1,18 +1,9 @@
 class IngamePlugin extends GamePlugin {
-  /** @param {Array.<!Creature>=} optPlayers */
-  constructor(optPlayers) {
+  constructor() {
     super();
 
-    this.mapController = new MapController();
-    if (saveManager.loadTrue('game')) {
-      this.mapController.load();
-    } else {
-      this.mapController.generateNew(optPlayers || []);
-      this.mapController.save();
-    }
-    this.mapController.reloadMaps();
-
-    this.mapController.gameOverFn = (victory) => this.gameOver_(victory);
+    /** @type {MapController} */
+    this.mapController;
 
     this.minimap = new Minimap();
     this.menuController = new MenuController();
@@ -33,9 +24,27 @@ class IngamePlugin extends GamePlugin {
     /** @type {?number} */
     this.selectedWeaponI;
     this.techMode = false;
+  }
+
+  /**
+   * @param {Array.<!Creature>=} optPlayers
+   * @return {!Promise.<!GamePlugin>}
+   */
+  async generate(optPlayers) {
+    this.mapController = new MapController();
+    if (saveManager.loadTrue('game')) {
+      await this.mapController.load();
+    } else {
+      await this.mapController.generateNew(optPlayers || []);
+      this.mapController.save();
+    }
+    this.mapController.reloadMaps();
+    this.mapController.gameOverFn = (victory) => this.gameOver_(victory);
 
     this.changeBGM_();
     this.maybeTriggerEncounters_();
+
+    return this;
   }
 
   /**
@@ -904,6 +913,7 @@ class IngamePlugin extends GamePlugin {
   /** @param {number} elapsed */
   update(elapsed) {
     const mapController = this.mapController;
+    if (!mapController) return;
 
     mapController.update(elapsed);
 
@@ -940,7 +950,7 @@ class IngamePlugin extends GamePlugin {
       for (const cr of this.highlighted) {
         const colorName = 'tile over' + cr.colorSuffix;
         const color = data.getColorByNameSafe(colorName);
-        cr.tileCallback(this.mapController, cr.x, cr.y, (tile) => {
+        cr.tileCallback(mapController, cr.x, cr.y, (tile) => {
           if (tile) tile.setCursorColor(color);
         });
       }
@@ -951,7 +961,7 @@ class IngamePlugin extends GamePlugin {
       if (active && ((!active.hasAction && !active.hasMove) || active.dead)) {
         if (!mapController.animating) this.endTurn_();
       } else if (active && active.side == Creature.Side.Enemy) {
-        if (!mapController.animating) AI.aiDecision(this.mapController);
+        if (!mapController.animating) AI.aiDecision(mapController);
       }
     }
   }

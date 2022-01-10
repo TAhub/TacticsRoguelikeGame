@@ -91,35 +91,41 @@ function checkCreatureValidity(creature) {
 
 /** @suppress {checkVars} */
 class MapPreviewDiagnosticPlugin extends GamePlugin {
-  /** @param {boolean} loadMode */
-  constructor(loadMode) {
+  constructor() {
     super();
+    /** @type {MapController} */
+    this.mapController;
+    this.cursorX = 0;
+    this.cursorY = 0;
+    /** @type {!Set.<number>} */
+    this.errorTileIs = new Set();
+    /** @type {!Set.<number>} */
+    this.inaccessibleTileIs = new Set();
+    this.ranTests = false;
+  }
+
+  /**
+   * @param {boolean} loadMode
+   * @return {!Promise.<!GamePlugin>}
+   */
+  async generate(loadMode) {
     this.mapController = new MapController();
     const player = new Creature(Creature.Side.Player, 'firin', ['warrior']);
     if (loadMode) {
-      this.mapController.load();
+      await this.mapController.load();
       for (const tile of this.mapController.overworldMap.tiles.values()) {
         const i = toI(tile.x, tile.y);
         if (this.mapController.gameMaps.has(i)) continue;
         this.mapController.loadGameMap(i);
       }
     } else {
-      this.mapController.generateNew([player], 10000);
+      await this.mapController.generateNew([player], 10000);
     }
+
     this.cursorX = this.mapController.players[0].x;
     this.cursorY = this.mapController.players[0].y;
-    /** @type {!Set.<number>} */
-    this.errorTileIs = new Set();
-    /** @type {!Set.<number>} */
-    this.inaccessibleTileIs = new Set();
 
-    this.validityText_();
-    this.tileAccessibilityTest_();
-    for (const creature of this.mapController.creatures) {
-      checkCreatureValidity(creature);
-    }
-    this.lootTest_();
-    this.templateBreakdown_();
+    return this;
   }
 
   /** @private */
@@ -312,13 +318,15 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
   }
 
   /**
+   * @param {number} cursorX
+   * @param {number} cursorY
    * @param {Set.<number>=} optKeys
    * @private
    */
-  tileAccessibilityTest_(optKeys) {
+  tileAccessibilityTest_(cursorX, cursorY, optKeys) {
     const accessibleTiles = new Set();
     const toExplore = new Set();
-    const cursorI = toI(this.cursorX, this.cursorY);
+    const cursorI = toI(cursorX, cursorY);
     toExplore.add(cursorI);
     accessibleTiles.add(cursorI);
     while (toExplore.size > 0) {
@@ -350,7 +358,7 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
           if (!optKeys) optKeys = new Set();
           if (!optKeys.has(otherTile.item.keyCode)) {
             optKeys.add(otherTile.item.keyCode);
-            this.tileAccessibilityTest_(optKeys);
+            this.tileAccessibilityTest_(cursorX, cursorY, optKeys);
             return;
           }
         }
@@ -373,7 +381,28 @@ class MapPreviewDiagnosticPlugin extends GamePlugin {
   }
 
   /** @param {number} elapsed */
-  update(elapsed) {}
+  update(elapsed) {
+    if (this.ranTests) return;
+    this.ranTests = true;
+    // Do the tests async.
+    this.runTests_();
+  }
+
+  async runTests_() {
+    const [cursorX, cursorY] = [this.cursorX, this.cursorY];
+    await tinyWait();
+    this.validityText_();
+    await tinyWait();
+    this.tileAccessibilityTest_(cursorX, cursorY);
+    await tinyWait();
+    for (const creature of this.mapController.creatures) {
+      checkCreatureValidity(creature);
+    }
+    await tinyWait();
+    this.lootTest_();
+    await tinyWait();
+    this.templateBreakdown_();
+  }
 
   /** @param {!CanvasRenderingContext2D} ctx */
   draw2D(ctx) {
@@ -502,11 +531,13 @@ allDiagnostics.set('Name Picker', () => {
 });
 
 allDiagnostics.set('Random Map Preview', () => {
-  game.plugin.switchToPlugin(new MapPreviewDiagnosticPlugin(false));
+  const dp = new MapPreviewDiagnosticPlugin();
+  game.plugin.switchToPlugin(new LoadingPlugin(dp.generate(false)));
 });
 
 allDiagnostics.set('Last Map Viewer', () => {
-  game.plugin.switchToPlugin(new MapPreviewDiagnosticPlugin(true));
+  const dp = new MapPreviewDiagnosticPlugin();
+  game.plugin.switchToPlugin(new LoadingPlugin(dp.generate(true)));
 });
 
 allDiagnostics.set('Generation Points Diagnostic', () => {

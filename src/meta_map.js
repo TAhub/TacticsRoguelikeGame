@@ -55,13 +55,43 @@ class MetaMap {
 
     for (let gen = 0; ; gen++) {
       if (optGenLimit && gen > optGenLimit) return seed;
-      const rng = seededRNG(seed);
-      if (this.generateOne_(rng, optLogFn)) break;
-      this.tiles.clear();
-      seed += 1;
-      if (seed > mechMaxSeed) seed = 1;
-      MetaMap.restoreGlobalDoorId();
+      seed = this.generateTry_(seed, optLogFn);
+      if (this.tiles.size > 0) return seed;
     }
+  }
+
+  /**
+   * @param {number} seed
+   * @param {number=} optGenLimit
+   * @param {(function(string))=} optLogFn
+   * @return {!Promise.<number>} seed
+   */
+  async generateAsync(seed, optGenLimit, optLogFn) {
+    // Use door id checkpoints to ensure that the door ids don't change when
+    // reloading the map (since that changes the number of generation attempts).
+    MetaMap.checkpointGlobalDoorId();
+
+    for (let gen = 0; ; gen++) {
+      if (optGenLimit && gen > optGenLimit) return seed;
+      seed = this.generateTry_(seed, optLogFn);
+      if (this.tiles.size > 0) return seed;
+      await tinyWait();
+    }
+  }
+
+  /**
+   * @param {number} seed
+   * @param {(function(string))=} optLogFn
+   * @return {number}
+   * @private
+   */
+  generateTry_(seed, optLogFn) {
+    const rng = seededRNG(seed);
+    if (this.generateOne_(rng, optLogFn)) return seed;
+    this.tiles.clear();
+    seed += 1;
+    if (seed > mechMaxSeed) seed = 1;
+    MetaMap.restoreGlobalDoorId();
     return seed;
   }
 

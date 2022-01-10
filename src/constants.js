@@ -138,6 +138,11 @@ function generateSeed(optRng) {
   return Math.floor(1 + rng() * mechMaxSeed);
 }
 
+/** @return {!Promise} */
+function tinyWait() {
+  return new Promise((res, rej) => setTimeout(res, 1));
+}
+
 /**
  * Shuffles an array in place.
  * @param {Array} array

@@ -61,19 +61,22 @@ class OverworldMapTile {
 }
 
 class OverworldMap {
-  /**
-   * @param {number} seed
-   * @param {number=} optGenLimit
-   * @param {(function(string))=} optLogFn
-   */
-  constructor(seed, optGenLimit, optLogFn) {
+  /** @param {number} seed */
+  constructor(seed) {
     this.seed = seed;
     /** @type {!Map.<number, !OverworldMapTile>} */
     this.tiles = new Map();
+  }
 
+  /**
+   * @param {number=} optGenLimit
+   * @param {(function(string))=} optLogFn
+   */
+  async generate(optGenLimit, optLogFn) {
     while (true) {
       MetaMap.resetGlobalDoorId();
-      if (this.tryGenerate_(optGenLimit, optLogFn)) return;
+      const success = await this.tryGenerate_(optGenLimit, optLogFn);
+      if (success) return;
       this.tiles.clear();
       this.seed += 1;
       if (this.seed > mechMaxSeed) this.seed = 1;
@@ -83,10 +86,10 @@ class OverworldMap {
   /**
    * @param {number=} optGenLimit
    * @param {(function(string))=} optLogFn
-   * @return {boolean}
+   * @return {!Promise.<boolean>}
    * @private
    */
-  tryGenerate_(optGenLimit, optLogFn) {
+  async tryGenerate_(optGenLimit, optLogFn) {
     const size = mapOverworldMapSize;
     const goalIs = [
       toI(0, 0),
@@ -100,14 +103,19 @@ class OverworldMap {
     const metaMap = new MetaMap(
         size, size, goalIs, numSecurityLevels, tilesPerSecurityLevel,
         branchLimitPerSecurityLevel, directness, branchChance);
-    this.seed = metaMap.generate(this.seed, optGenLimit, optLogFn);
+    this.seed = await metaMap.generateAsync(this.seed, optGenLimit, optLogFn);
     const rng = seededRNG(this.seed);
 
+    await tinyWait();
+
     this.translateMetaMapTiles_(metaMap, rng);
+
+    await tinyWait();
 
     // Format and populate the individual regions of the overworld.
     for (let regionId = 0; regionId < numSecurityLevels; regionId++) {
       if (!this.finishRegion_(regionId, goalIs, metaMap, rng)) return false;
+      await tinyWait();
     }
     if (!this.makeOffshoots_(rng)) return false;
     return true;
