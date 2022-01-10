@@ -374,6 +374,11 @@ class Weapon extends Equipment {
     return this.getBooleanValue('animProjSkinColor');
   }
 
+  /** @return {?string} */
+  get animProjStrikePulseColor() {
+    return this.getColorValue('animProjStrikePulseColor');
+  }
+
   /** @return {boolean} */
   get animProjGlows() {
     if (this.baseWeapon && this.baseWeapon.animProjGlows) return true;

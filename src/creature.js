@@ -1860,6 +1860,11 @@ class Creature {
     const mult = this.getAttackEstimate(
         target, weapon, hitResult, attackType, true).mult / weapon.numHits;
 
+    if (mult > 0) {
+      const pulseColor = weapon.animProjStrikePulseColor;
+      if (pulseColor) target.startColorPulse(pulseColor);
+    }
+
     // Status effects.
     if (mult > 0) {
       for (const statusType of Weapon.allStatuses) {
