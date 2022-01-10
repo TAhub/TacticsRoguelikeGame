@@ -57,24 +57,40 @@ class Minimap {
 
       // Get which tiles should be drawn.
       const drawTiles = new Set();
+      const faintDrawTiles = new Set();
       for (const gameMap of mapController.gameMaps.values()) {
         for (const tile of gameMap.tiles.values()) {
           const i = toI(tile.x, tile.y);
-          if (!gameMap.discoveredTileIs.has(i)) continue;
           const distance = scale * calcDistance(
               tile.x + 0.5 - active.cX, tile.y + 0.5 - active.cY);
           if (distance > compassRadius * 1.25) continue;
-          drawTiles.add(tile);
+          if (gameMap.discoveredTileIs.has(i)) {
+            drawTiles.add(tile);
+          } else {
+            // If you haven't discovered the tile, but it's next to a tile you
+            // have, draw it faintly.
+            for (const doorI of tile.doorIds.keys()) {
+              if (!gameMap.discoveredTileIs.has(doorI)) continue;
+              faintDrawTiles.add(tile);
+              break;
+            }
+          }
         }
       }
 
       // Draw the tiles.
-      for (const tile of drawTiles) {
-        const hasItem = tile.item && tile.item.showOnMinimap;
-        ctx.fillStyle = data.getColorByNameSafe(
-            hasItem ? 'tile selected' : 'tile');
-        ctx.fillRect(tile.x * scale - 0.25, tile.y * scale - 0.25,
-            scale + 0.5, scale + 0.5);
+      for (const set of [faintDrawTiles, drawTiles]) {
+        for (const tile of set) {
+          const hasItem = tile.item && tile.item.showOnMinimap;
+          ctx.fillStyle = data.getColorByNameSafe(
+              (hasItem && set == drawTiles) ? 'tile selected' : 'tile');
+          if (set == faintDrawTiles) {
+            ctx.fillStyle = colorLerp(
+                ctx.fillStyle, data.getColorByNameSafe('tile slot back'), 0.5);
+          }
+          ctx.fillRect(tile.x * scale - 0.25, tile.y * scale - 0.25,
+              scale + 0.5, scale + 0.5);
+        }
       }
 
       // Draw walls and doors.
