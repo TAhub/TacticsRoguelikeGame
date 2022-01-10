@@ -1922,7 +1922,10 @@ class Creature {
     } else {
       target.takeDamage(damage, hitResult);
     }
-    if (weapon.drains && damage) this.receiveHealing(damage);
+    if (weapon.drains && damage) {
+      this.receiveHealing(damage);
+      this.startColorPulse(this.species.getColor('bloodColor', this.jobs));
+    }
   }
 
   /**
