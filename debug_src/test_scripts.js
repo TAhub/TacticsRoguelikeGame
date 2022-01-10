@@ -30,8 +30,11 @@ function debugFastStart(level) {
       }
 
       // Harvest all pick-up-able items.
-      if (tile.item && tile.item.canPickUp) {
-        const item = tile.item;
+      // Some of these "harvested" items might vanish before the step
+      // that drops them near the player, if they are obsolete.
+      // That's fine, this is a rough estimate.
+      const item = tile.item;
+      if (item && item.canPickUp) {
         tile.item = null;
 
         if (item.contents == Item.Code.Key) {
