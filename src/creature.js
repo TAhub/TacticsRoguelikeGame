@@ -1669,7 +1669,8 @@ class Creature {
       mult += this.specialPower;
     } else {
       mult += this.attackPower;
-      if (!this.engaged && attackType == Creature.AttackType.Normal) {
+      if (!this.engaged && attackType == Creature.AttackType.Normal &&
+          !weapon.engagementMode) {
         mult += this.attackPowerWhenDisengaged;
       }
       if (isSpecialAttack) mult += this.specialAttackPower;
