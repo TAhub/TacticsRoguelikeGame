@@ -919,7 +919,7 @@
       fluff="Carefully aim your pistol, and try to read your enemy's movements for as long as possible, then take a deadly shot." />
     <entry name="brain rattler" astraCost="10" weaponAccuracy="80" scaling="ranged weapon" ranged="1" shakenPercent="35"
       animProjSpeed="2" animPostStepPause="-22"
-      fluff="Snap a quick pistol-shot at your opponent's head, attempting to leave them dazed and confused." />
+      fluff="Snap a quick pistol-shot at your opponent's head, attempting to leave them dazed." />
     <entry name="inferno shot" astraCost="10" weaponAccuracy="90" burningPercent="35" scaling="ranged weapon" ranged="1"
       animProjColor="fire" animPostStepPause="22" animStrikeSound="explosion" animProjStrikePulseColor="fire"
       fluff="Fire a special projectile that has been coated in incendiary chemicals, meant to light the opponent on fire." />
