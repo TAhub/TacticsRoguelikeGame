@@ -1,3 +1,37 @@
+/** Creates a key for the door you are standing by. */
+function debugMakeKey() {
+  if (!(game.plugin instanceof IngamePlugin)) return;
+  const mapC = game.plugin.mapController;
+  const active = mapC.active;
+  const tile = mapC.tileAt(active.x, active.y);
+  if (!tile) return;
+
+  for (const doorI of tile.doorIds.keys()) {
+    const keyCode = tile.doorIds.get(doorI);
+    if (keyCode == 0) continue;
+    for (let i = 0; i < mapC.inventory.length; i++) {
+      if (mapC.inventory[i]) continue;
+      const key = new Item(Item.Code.Key);
+      key.keyCode = keyCode;
+      key.colorName = 'blue'; // So you know it's fake.
+      mapC.inventory[i] = key;
+      break;
+    }
+    break;
+  }
+}
+
+/** Defeats all enemies in the current encounter. */
+function debugDefeatEnemies() {
+  if (!(game.plugin instanceof IngamePlugin)) return;
+  const mapC = game.plugin.mapController;
+  for (const creature of mapC.creatures) {
+    if (creature.side != Creature.Side.Enemy) continue;
+    if (creature.encounterId > 0) continue;
+    creature.takeDamage(creature.life, Creature.HitResult.Crit);
+  }
+}
+
 /**
  * Advance the game-state to where it would be if you had just reached the
  * specified level, in a normal playthrough.
@@ -26,6 +60,7 @@ function debugFastStart(level) {
       // Kill all enemies in this map, so that you get their EXP.
       for (const creature of tile.creatures) {
         if (creature.side != Creature.Side.Enemy) continue;
+        if (creature.finalBoss) continue; // Don't kill the last boss!
         creature.life = 0;
       }
 
@@ -56,18 +91,20 @@ function debugFastStart(level) {
     }
   }
 
-  // Use the learned keyCodes to unlock all key doors
-  const usedKeyCodes = new Set();
+  // Use the learned keyCodes to unlock key doors.
   for (const gameMap of mapC.gameMaps.values()) {
     for (const tile of gameMap.tiles.values()) {
       for (const doorI of tile.doorIds.keys()) {
         const keyCode = tile.doorIds.get(doorI);
         if (!keyCodes.has(keyCode)) continue;
-        usedKeyCodes.add(keyCode);
         tile.doorIds.set(doorI, 0);
+        tile.doorFrameIs.add(doorI);
+        tile.clear3DData();
       }
     }
   }
+  // TODO: This key-using script seems to be bugged somehow...
+  // It leaves a LOT of doors locked!
 
   // Filter out all equipments that are "obsolete", to make the floor-pile a bit
   // more manageable.
@@ -90,15 +127,6 @@ function debugFastStart(level) {
     }
   }
   itemsToDrop = itemsToDrop.filter((i) => !obsoleteItems.has(i));
-
-  // Keys that WEREN'T used yet do drop on the floor.
-  for (const keyCode of keyCodes) {
-    if (usedKeyCodes.has(keyCode)) continue;
-    const key = new Item(Item.Code.Key);
-    key.keyCode = keyCode;
-    key.colorName = 'silver';
-    itemsToDrop.push(key);
-  }
 
   // Drop all of the items that should be dropped.
   mapC.dropItemsOnFloor(itemsToDrop, mapC.active || mapC.creatures[0]);

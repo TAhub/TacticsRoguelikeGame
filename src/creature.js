@@ -994,9 +994,8 @@ class Creature {
   /**
    * @param {number} damage
    * @param {!Creature.HitResult} hitResult
-   * @private
    */
-  takeDamage_(damage, hitResult) {
+  takeDamage(damage, hitResult) {
     this.life = Math.max(0, this.life - damage);
     this.makeBar();
     this.shakeEffect += 0.15 + 0.3 * damage / this.maxLife;
@@ -1141,7 +1140,7 @@ class Creature {
     if (dotDamage > 0) {
       // Bleeding goes away after doing damage.
       this.statuses.delete(Weapon.Status.Bleeding);
-      this.takeDamage_(dotDamage, Creature.HitResult.Graze);
+      this.takeDamage(dotDamage, Creature.HitResult.Graze);
     }
     if (this.summonOwner) this.summonAwake = false;
   }
@@ -1546,7 +1545,7 @@ class Creature {
     // Pay costs.
     this.effectAction(() => {
       if (weapon.lifeCost > 0) {
-        this.takeDamage_(weapon.lifeCost, Creature.HitResult.Graze);
+        this.takeDamage(weapon.lifeCost, Creature.HitResult.Graze);
       }
       if (weapon.astraCost > 0) {
         this.astra -= weapon.astraCost;
@@ -1916,7 +1915,7 @@ class Creature {
     if (weapon.heals) {
       target.receiveHealing(damage);
     } else {
-      target.takeDamage_(damage, hitResult);
+      target.takeDamage(damage, hitResult);
     }
     if (weapon.drains && damage) this.receiveHealing(damage);
   }
