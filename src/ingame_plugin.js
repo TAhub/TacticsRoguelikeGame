@@ -877,7 +877,12 @@ class IngamePlugin extends GamePlugin {
     const w = gfxTileSize;
     const h = w / 2;
     const name = this.mapController.players.some((pl) => {
-      return pl.statPoints > 0 || pl.skillPoints > 0;
+      if (pl.statPoints > 0) return true;
+      if (pl.skillPoints > 0) return true;
+      if (pl.desiredNumFightingStyleTypes >
+          pl.knownFightingStyleTypes.length) return true;
+      if (pl.desiredNumJobs > pl.jobs.length) return true;
+      return false;
     }) ? 'Level Up' : 'Stats';
     const clickFn = () => this.openLevelUpUI_();
     const slot = new MenuTileSlot(gfxScreenWidth - w, topH, w, h);

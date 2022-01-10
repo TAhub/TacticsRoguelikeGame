@@ -126,7 +126,6 @@ class CharacterCreatorPlugin extends GamePlugin {
      * @param {(function())=} optClickFn
      */
     const headerWrapper = (header, wrappedFn, optClickFn) => {
-      // TODO: header appearance modifier?
       const startXBefore = startX;
       wrappedFn();
       const slot = new MenuTileSlot(
@@ -189,7 +188,7 @@ class CharacterCreatorPlugin extends GamePlugin {
       }
 
       const numFS = creature.desiredNumFightingStyleTypes;
-      if (numFS > 0) {
+      if (numFS > 0 && creature.jobs.length >= creature.desiredNumJobs) {
         let fsHeaderName = 'Fighting Styles';
         if (creature.knownFightingStyleTypes.length < numFS) {
           fsHeaderName += ' (pick a new style)';
