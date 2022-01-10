@@ -16,7 +16,6 @@ class MainMenuPlugin extends GamePlugin {
     const beginSlot = new MenuTileSlot(0, 0, size, size);
     const clickFn = () => {
       this.makeMainView_();
-      audio.playMusic('menu bgm'); // TODO: temp
     };
     beginSlot.attachTile(new MenuTile('Begin', {clickFn}));
     this.menuController.slots.push(beginSlot);
@@ -25,6 +24,7 @@ class MainMenuPlugin extends GamePlugin {
 
   /** @private */
   makeMainView_() {
+    audio.playMusic('menu bgm');
     this.menuController.clear();
 
     // Clear any temp saves.
@@ -80,19 +80,20 @@ class MainMenuPlugin extends GamePlugin {
       name += ': ' + value + '%';
       const clickFn = () => {
         changeFn(key, value);
-        this.makeMainView_();
+        this.loadSounds_().then(() => {
+          this.makeMainView_();
+        });
       };
       slot.attachTile(new MenuTile(name, {clickFn}));
       this.menuController.slots.push(slot);
       configOn += 1;
     };
     addConfig('Sound Volume', 'soundVolume', (key, value) => {
-      saveManager.setConfiguration(key, (value + 25) % 100);
-      // TODO: load sounds?
+      saveManager.setConfiguration(key, value >= 100 ? 0 : value + 25);
     });
     addConfig('Music Volume', 'musicVolume', (key, value) => {
-      saveManager.setConfiguration(key, (value + 25) % 100);
-      // TODO: load music?
+      saveManager.setConfiguration(key, value >= 100 ? 0 : value + 25);
+      audio.stopMusic();
     });
     if (DEBUG) {
       if (saveManager.getConfiguration('performanceTracker')) {
