@@ -66,15 +66,6 @@ function debugFastStart(level) {
     }
   }
 
-  // Keys that WEREN'T used yet do drop on the floor.
-  for (const keyCode of keyCodes) {
-    if (usedKeyCodes.has(keyCode)) continue;
-    const key = new Item(Item.Code.Key);
-    key.keyCode = keyCode;
-    key.colorName = 'silver';
-    itemsToDrop.push(key);
-  }
-
   // Filter out all equipments that are "obsolete", to make the floor-pile a bit
   // more manageable.
   const obsoleteItems = new Set();
@@ -97,6 +88,15 @@ function debugFastStart(level) {
   }
   itemsToDrop = itemsToDrop.filter((i) => !obsoleteItems.has(i));
 
+  // Keys that WEREN'T used yet do drop on the floor.
+  for (const keyCode of keyCodes) {
+    if (usedKeyCodes.has(keyCode)) continue;
+    const key = new Item(Item.Code.Key);
+    key.keyCode = keyCode;
+    key.colorName = 'silver';
+    itemsToDrop.push(key);
+  }
+
   // Drop all of the items that should be dropped.
   mapC.dropItemsOnFloor(itemsToDrop, mapC.active || mapC.creatures[0]);
 
@@ -112,4 +112,5 @@ function debugFastStart(level) {
 
   // Reload the map controller, so that those maps don't stay in memory.
   mapC.reloadMaps();
+  mapC.save();
 }
