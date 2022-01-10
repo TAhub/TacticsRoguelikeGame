@@ -178,9 +178,7 @@ class Particle {
 
     if (this.lightColor && this.lightIntensity) {
       const i = this.lightIntensity;
-      const d = 3 + i;
-      lightController.add(
-          this.x, this.y, this.h, i, d, this.lightColor, true);
+      lightController.add(this.x, this.y, this.h, i, this.lightColor, true);
     }
 
     if (this.xD != 0 || this.yD != 0 || this.hD != 0) {

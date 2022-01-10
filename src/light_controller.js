@@ -4,7 +4,6 @@
  *   y: number,
  *   h: number,
  *   i: number,
- *   d: number,
  *   c: string,
  * }}
  */
@@ -54,7 +53,7 @@ class LightController {
       if (data) {
         light.position.set(data.x, data.h, data.y);
         light.intensity = data.i;
-        light.distance = data.d;
+        light.distance = 3 + 2 * data.i;
         const rgb = getRGB(data.c);
         light.color.r = rgb.r / 256;
         light.color.g = rgb.g / 256;
@@ -74,13 +73,12 @@ class LightController {
    * @param {number} y
    * @param {number} h
    * @param {number} i
-   * @param {number} d
    * @param {string} c
    * @param {boolean=} optLowPriority
    */
-  add(x, y, h, i, d, c, optLowPriority) {
+  add(x, y, h, i, c, optLowPriority) {
     const array = optLowPriority ?
         this.lowPriorityLightDatas : this.highPriorityLightDatas;
-    array.push({x, y, h, i, d, c});
+    array.push({x, y, h, i, c});
   }
 }

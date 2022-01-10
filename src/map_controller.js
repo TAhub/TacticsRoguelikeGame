@@ -704,7 +704,7 @@ class MapController {
       // Personal light.
       const i = 0.75 - centerTile.lightingIntensity;
       if (i > 0) {
-        this.lightController.add(cX, cY, cZ, i, 5, '#FFFFFF');
+        this.lightController.add(cX, cY, cZ, i, '#FFFFFF');
       }
     }
     for (const gameMap of this.gameMaps.values()) {

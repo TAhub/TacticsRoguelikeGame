@@ -144,16 +144,14 @@ class Item {
     }
     if (this.contents == Item.Code.Lamp && this.colorName) {
       const i = 0.5;
-      const d = 5;
       const h = th + (this.h || 0.5) + 0.75;
       const c = data.getColorByNameSafe(this.colorName);
-      lightController.add(x, y, h, i, d, c);
+      lightController.add(x, y, h, i, c);
     } else if (this.contents == Item.Code.Campfire) {
       const i = 0.35;
-      const d = 3;
       const h = th + 0.25;
       const c = data.getColorByNameSafe('fire');
-      lightController.add(x, y, h, i, d, c);
+      lightController.add(x, y, h, i, c);
     }
     this.spriteObject.addToGroup(
         staticMeshGroup, camera, x, y, th, {h: this.h, drawBack: 0.05});
