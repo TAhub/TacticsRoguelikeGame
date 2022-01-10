@@ -13,6 +13,7 @@ class MapController {
     this.staticMeshGroup = new THREE.Group();
     this.dynamicMeshGroup = new THREE.Group();
     this.lightGroup = new THREE.Group();
+    this.lightController = new LightController();
     /** @type {!Array.<!Particle>} */
     this.particles = [];
     /** @type {!Array.<!Creature>} */
@@ -696,10 +697,15 @@ class MapController {
 
     // Add light sources in the camera position.
     this.lightGroup.clear();
+    this.lightController.addToGroup(this.lightGroup);
     const centerTile = this.tileAt(
         Math.floor(this.active.cX), Math.floor(this.active.cY));
-    if (centerTile && centerTile.lightingIntensity < 0.6) {
-      this.lightGroup.add(gfx.makeLight(cX, cY, cZ, 1, 5)); // Personal.
+    if (centerTile) {
+      // Personal light.
+      const i = 0.75 - centerTile.lightingIntensity;
+      if (i > 0) {
+        this.lightController.add(cX, cY, cZ, i, 5, '#FFFFFF');
+      }
     }
     for (const gameMap of this.gameMaps.values()) {
       gameMap.addAmbientLight(this.lightGroup);
@@ -730,7 +736,7 @@ class MapController {
 
     // Add particles to the mesh group.
     for (const particle of this.particles) {
-      particle.addToGroup(this.dynamicMeshGroup, this.lightGroup, camera);
+      particle.addToGroup(this.dynamicMeshGroup, this.lightController, camera);
     }
 
     // Discover all visible tiles.
@@ -743,7 +749,10 @@ class MapController {
     // Add the visible tiles to the scene.
     this.staticMeshGroup.clear();
     for (const tile of this.visibleTiles) {
-      tile.addToGroup(this.staticMeshGroup, this.lightGroup, this, camera);
+      tile.addToGroup(this.staticMeshGroup, this.lightController, this, camera);
     }
+
+    // Finalize the lights, so that they aren't over-assigned.
+    this.lightController.finalize();
   }
 }

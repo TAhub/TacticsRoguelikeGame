@@ -129,13 +129,13 @@ class Item {
 
   /**
    * @param {!THREE.Group} staticMeshGroup
-   * @param {!THREE.Group} lightGroup
+   * @param {!LightController} lightController
    * @param {!THREE.PerspectiveCamera} camera
    * @param {number} x
    * @param {number} y
    * @param {number} th
    */
-  addToGroup(staticMeshGroup, lightGroup, camera, x, y, th) {
+  addToGroup(staticMeshGroup, lightController, camera, x, y, th) {
     if (!this.spriteObject) {
       const {sprite, color, scale, h} = this.getSpriteDetails_();
       this.h = h;
@@ -146,8 +146,14 @@ class Item {
       const i = 0.5;
       const d = 5;
       const h = th + (this.h || 0.5) + 0.75;
-      const color = data.getColorByNameSafe(this.colorName);
-      lightGroup.add(gfx.makeLight(x, y, h, i, d, color));
+      const c = data.getColorByNameSafe(this.colorName);
+      lightController.add(x, y, h, i, d, c);
+    } else if (this.contents == Item.Code.Campfire) {
+      const i = 0.35;
+      const d = 3;
+      const h = th + 0.25;
+      const c = data.getColorByNameSafe('fire');
+      lightController.add(x, y, h, i, d, c);
     }
     this.spriteObject.addToGroup(
         staticMeshGroup, camera, x, y, th, {h: this.h, drawBack: 0.05});

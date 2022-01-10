@@ -8,6 +8,7 @@ const gfxFarPlane = 15;
 const gfxMinimapSize = gfxScreenHeight * 3 / 8;
 const gfxStatusParticleTimerInterval = 0.3;
 const gfxThScale = 0.1;
+const gfxNumLights = 32;
 
 // Map-generation constants.
 const mapOverworldMapSize = 16;

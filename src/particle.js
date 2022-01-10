@@ -170,17 +170,17 @@ class Particle {
 
   /**
    * @param {!THREE.Group} dynamicMeshGroup
-   * @param {!THREE.Group} lightGroup
+   * @param {!LightController} lightController
    * @param {!THREE.PerspectiveCamera} camera
    */
-  addToGroup(dynamicMeshGroup, lightGroup, camera) {
+  addToGroup(dynamicMeshGroup, lightController, camera) {
     if (this.delay > 0) return;
 
     if (this.lightColor && this.lightIntensity) {
       const i = this.lightIntensity;
       const d = 3 + i;
-      lightGroup.add(gfx.makeLight(
-          this.x, this.y, this.h, i, d, this.lightColor));
+      lightController.add(
+          this.x, this.y, this.h, i, d, this.lightColor, true);
     }
 
     if (this.xD != 0 || this.yD != 0 || this.hD != 0) {

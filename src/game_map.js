@@ -346,13 +346,13 @@ class GameMapTile {
 
   /**
    * @param {!THREE.Group} staticMeshGroup
-   * @param {!THREE.Group} lightGroup
+   * @param {!LightController} lightController
    * @param {!MapController} mapController
    * @param {!THREE.PerspectiveCamera} camera
    */
-  addToGroup(staticMeshGroup, lightGroup, mapController, camera) {
+  addToGroup(staticMeshGroup, lightController, mapController, camera) {
     if (this.item) {
-      this.item.addToGroup(staticMeshGroup, lightGroup, camera,
+      this.item.addToGroup(staticMeshGroup, lightController, camera,
           this.x + 0.5, this.y + 0.5, this.th);
     }
     if (this.meshCache.length > 0) {
