@@ -28,6 +28,7 @@ class MapController {
     this.inventory = [];
     /** @type {!Set.<number>} */
     this.deathLedger = new Set();
+    this.sleepFadeEffect = 0;
     /** @type {!Set.<number>} */
     this.reviveLedger = new Set();
     for (let i = 0; i < mechInventoryWidth * mechInventoryHeight; i++) {
@@ -442,14 +443,88 @@ class MapController {
     return true;
   }
 
-  rest() {
-    for (const player of this.players) {
-      if (player.dead) {
-        this.pickNewSpotFor(player, this.active.x, this.active.y);
+  /** @param {function()} extraEffectsFn */
+  rest(extraEffectsFn) {
+    /**
+     * @type {!Array.<{
+     *   line: string,
+     *   speaker: !Creature,
+     *   trigger: string,
+     * }>}
+     */
+    const lines = [];
+
+    // Determine which line should play.
+    const shouldPlaySleepLines = this.players.some((player) => {
+      return player.life < player.maxLife || player.astra < player.maxAstra;
+    });
+    if (shouldPlaySleepLines) {
+      for (const trigger of ['pre-sleep', 'post-sleep']) {
+        for (const player of this.players) {
+          if (player.dead) continue;
+          for (const line of player.getLinesForTrigger(trigger, this)) {
+            lines.push({
+              line,
+              speaker: player,
+              trigger,
+            });
+          }
+        }
       }
-      player.refill();
     }
-    this.cleanCreatures();
+    const line = lines.length > 0 ? getRandomArrayEntry(lines) : null;
+
+    // Determine which creature's action-line should be responsible for the
+    // sleep animation.
+    const sleeper = line ? line.speaker : this.players[0];
+    const waitForBlockingParticles = () => {
+      sleeper.actions.push((elapsed) => {
+        for (const particle of this.particles) {
+          if (particle.blocking) return false;
+        }
+        return true;
+      });
+    };
+
+    // Perform the sleep effect.
+    sleeper.effectAction(() => {
+      if (line && line.trigger == 'pre-sleep') {
+        line.speaker.say(line.line);
+      }
+    });
+    waitForBlockingParticles();
+    sleeper.effectAction(() => {
+      // TODO: "sleep" sound effect
+    });
+    sleeper.actions.push((elapsed) => {
+      this.sleepFadeEffect += elapsed;
+      if (this.sleepFadeEffect < 1) return false;
+      this.sleepFadeEffect = 1;
+      return true;
+    });
+    sleeper.effectAction(() => {
+      for (const player of this.players) {
+        if (player.dead) {
+          this.pickNewSpotFor(player, this.active.x, this.active.y);
+        }
+        player.refill();
+      }
+      this.revive();
+      this.save();
+      extraEffectsFn();
+    });
+    sleeper.actions.push((elapsed) => {
+      this.sleepFadeEffect -= elapsed;
+      if (this.sleepFadeEffect > 0) return false;
+      this.sleepFadeEffect = 0;
+      return true;
+    });
+    sleeper.effectAction(() => {
+      if (line && line.trigger == 'post-sleep') {
+        line.speaker.say(line.line);
+      }
+    });
+    waitForBlockingParticles();
   }
 
   /** Remove status effects from all creatures, etc. */

@@ -2134,6 +2134,43 @@ class Creature {
     // TODO: make talking sounds, based on the length of the line?
   }
 
+  /**
+   * @param {string} trigger
+   * @param {!MapController} mapController
+   * @return {!Array.<string>}
+   */
+  getLinesForTrigger(trigger, mapController) {
+    const gameMap = mapController.gameMapAt(this.x, this.y);
+    const overworldMapTile = mapController.overworldMap.tileAt(
+        gameMap.overworldX, gameMap.overworldY);
+    let terrainCategory = '';
+    if (overworldMapTile) terrainCategory = overworldMapTile.terrainCategory;
+
+    const lines = [];
+    const species = this.species.type;
+    for (let i = 0; ; i++) {
+      const line = data.getValue('player lines', species, 's', i);
+      if (!line) break;
+      const reqTrigger = data.getValue('player lines', species, 'trigger', i);
+      if (reqTrigger != trigger) continue;
+      const reqTerrainCategory =
+          data.getValue('player lines', species, 'terrainCategory', i);
+      if (reqTerrainCategory) {
+        if (reqTerrainCategory != terrainCategory) continue;
+      }
+      const reqJob = data.getValue('player lines', species, 'reqJob', i);
+      if (reqJob) {
+        if (this.jobs.length == 0 || this.jobs[0].type != reqJob) continue;
+      }
+      const bannedJob = data.getValue('player lines', species, 'bannedJob', i);
+      if (bannedJob) {
+        if (this.jobs.length > 0 && this.jobs[0].type == bannedJob) continue;
+      }
+      lines.push(line);
+    }
+    return lines;
+  }
+
   talk() {
     if (!this.npcLines) return;
     const line = data.getValue('npc lines', this.npcLines, 's', this.npcLineOn);

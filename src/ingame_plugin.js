@@ -380,11 +380,10 @@ class IngamePlugin extends GamePlugin {
                 if (map) {
                   mapC.restMapIs.add(toI(map.overworldX, map.overworldY));
                 }
-                mapC.rest();
-                this.inventoryPlayer = null;
-                mapC.revive();
-                this.menuController.clear();
-                mapC.save();
+                mapC.rest(() => {
+                  this.inventoryPlayer = null;
+                  this.menuController.clear();
+                });
               };
               slot.attachTile(new MenuTile('Rest', {clickFn}));
             } else if (item && item.canPickUp) {
@@ -1047,13 +1046,20 @@ class IngamePlugin extends GamePlugin {
 
   /** @param {!CanvasRenderingContext2D} ctx */
   draw2D(ctx) {
-    if (!this.mapController.inCombat) {
-      this.minimap.draw(ctx, this.mapController,
-          0, 0, gfxMinimapSize, gfxMinimapSize);
+    if (this.mapController.sleepFadeEffect > 0) {
+      ctx.fillStyle = '#000000';
+      ctx.globalAlpha = this.mapController.sleepFadeEffect;
+      ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      ctx.globalAlpha = 1;
+    } else {
+      if (!this.mapController.inCombat) {
+        this.minimap.draw(ctx, this.mapController,
+            0, 0, gfxMinimapSize, gfxMinimapSize);
+      }
+      if (this.menuController.slots.length == 0) this.makeUI_();
+      this.menuController.draw2D(ctx);
+      this.drawCombatTooltip_(ctx);
     }
-    if (this.menuController.slots.length == 0) this.makeUI_();
-    this.menuController.draw2D(ctx);
-    this.drawCombatTooltip_(ctx);
   }
 
   /**

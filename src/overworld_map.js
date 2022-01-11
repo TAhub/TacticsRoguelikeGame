@@ -30,6 +30,11 @@ class OverworldMapTile {
     return this.keyId > 0 && !!this.bossTemplate;
   }
 
+  /** @return {string} */
+  get terrainCategory() {
+    return data.getValue('tilesets', this.tileset, 'terrainCategory') || '';
+  }
+
   /** @return {?string} */
   get bgm() {
     return data.getValue('sub regions', this.type, 'bgm');

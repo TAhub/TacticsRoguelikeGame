@@ -1344,7 +1344,7 @@
       replacersHJoins="natural chamber A,natural chamber B,natural chamber C,narrow hallway fourway,null,null,column room" />
       <!-- TODO: wood plank wall sprites -->
       <!-- TODO: village-type furniture? -->
-    <entry name="house"
+    <entry name="house" terrainCategory="indoors"
       small="1"
       lightingIntensity="50" lightingColor="white" lampColor="pale red"
       ledgeColor="stone wall" baseTh="0"
@@ -1353,14 +1353,14 @@
       inheritJoinsFrom="ship" />
       <!-- TODO: wood plank wall sprites -->
       <!-- TODO: village-type furniture? -->
-    <entry name="hedge maze"
+    <entry name="hedge maze" terrainCategory="outdoors"
       lightingIntensity="75" lightingColor="pale purple"
       ledgeColor="dirt wall" baseTh="1" cellularTh="0" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="4,5,6,7" wallColor="grass wall"
       inheritJoinsFrom="village" />
       <!-- TODO: wood plank wall sprites -->
-    <entry name="beach"
+    <entry name="beach" terrainCategory="outdoors"
       lightingIntensity="90" lightingColor="white"
       ledgeColor="sand wall" baseTh="0" cellularTh="1" noiseTh="1"
       floorSprites="0,1,2,3" floorColor="sand floor"
@@ -1371,26 +1371,26 @@
       replacersTJoins="natural hallway split A,natural hallway split B,natural hallway split C,null"
       replacersHJoins="natural chamber A,natural chamber B,natural chamber C,null" />
       <!-- TODO: some water floors? -->
-    <entry name="rocky beach"
+    <entry name="rocky beach" terrainCategory="outdoors"
       lightingIntensity="80" lightingColor="white"
       ledgeColor="sand wall" baseTh="0" cellularTh="1" noiseTh="2"
       floorSprites="0,1,2,3" floorColor="sand floor"
       wallSprites="10,11,12,13" wallColor="stone wall"
       inheritJoinsFrom="rocky beach" />
       <!-- TODO: some water floors? -->
-    <entry name="grasslands"
+    <entry name="grasslands" terrainCategory="outdoors"
       lightingIntensity="80" lightingColor="white"
       ledgeColor="dirt wall" baseTh="0" cellularTh="1" noiseTh="1"
       floorSprites="0,1,2,3" floorColor="grass floor"
       wallSprites="10,11,12,13" wallColor="dirt wall"
       inheritJoinsFrom="beach" />
-    <entry name="twisted wasteland"
+    <entry name="twisted wasteland" terrainCategory="outdoors"
       lightingIntensity="85" lightingColor="pale purple"
       ledgeColor="dirt wall" baseTh="1" cellularTh="2" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="10,11,12,13" wallColor="dirt wall"
       inheritJoinsFrom="beach" />
-    <entry name="dirt tunnels"
+    <entry name="dirt tunnels" terrainCategory="underground"
       ledgeColor="dirt wall" baseTh="0" cellularTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="10,11,12,13" wallColor="dirt wall"
@@ -1399,32 +1399,32 @@
       replacersLJoins="natural hallway turn A,natural hallway turn B,natural hallway turn C"
       replacersTJoins="natural hallway split A,natural hallway split B,natural hallway split C"
       replacersHJoins="natural chamber A,natural chamber B,natural chamber C" />
-    <entry name="stone tunnels"
+    <entry name="stone tunnels" terrainCategory="underground"
       ledgeColor="stone wall" baseTh="0" cellularTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="stone floor"
       wallSprites="10,11,12,13" wallColor="stone wall"
       inheritJoinsFrom="dirt tunnels" />
-    <entry name="twisted stone tunnels"
+    <entry name="twisted stone tunnels" terrainCategory="underground"
       lightingIntensity="15" lightingColor="pale purple"
       ledgeColor="stone wall" baseTh="0" cellularTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="stone floor"
       wallSprites="10,11,12,13" wallColor="stone wall"
       inheritJoinsFrom="dirt tunnels" />
-    <entry name="burrow"
+    <entry name="burrow" terrainCategory="underground"
       lightingIntensity="10" lightingColor="gray" lampColor="pale red"
       ledgeColor="stone wall" baseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="10,11,12,13" wallColor="stone wall"
       inheritJoinsFrom="dirt tunnels" />
       <!-- TODO: village type furniture? -->
-    <entry name="workshop"
+    <entry name="workshop" terrainCategory="underground"
       lightingIntensity="20" lightingColor="gray" lampColor="pale red"
       ledgeColor="stone wall" baseTh="0" cellularTh="1" noiseTh="1"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="10,11,12,13" wallColor="stone wall"
       inheritJoinsFrom="ship" />
       <!-- TODO: workshop type furniture? -->
-    <entry name="catacombs"
+    <entry name="catacombs" terrainCategory="underground"
       lightingIntensity="5" lightingColor="green" lampColor="light green"
       ledgeColor="stone wall" baseTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="stone floor"
@@ -1434,7 +1434,7 @@
       replacersLJoins="narrow hallway turn,narrow hallway turn,narrow hallway turn concave,narrow hallway turn indirect"
       replacersTJoins="narrow hallway split"
       replacersHJoins="narrow hallway fourway,column room" />
-    <entry name="ship"
+    <entry name="ship" terrainCategory="indoors"
       lightingIntensity="15" lightingColor="gray" lampColor="orange"
       ledgeColor="wood wall" baseTh="2" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="wood floor"
@@ -1446,7 +1446,7 @@
       replacersHJoins="null,column room" />
       <!-- TODO: wood plank floor sprites -->
       <!-- TODO: wood plank wall sprites -->
-    <entry name="spooky manor"
+    <entry name="spooky manor" terrainCategory="indoors"
       lightingIntensity="15" lightingColor="green" lampColor="light green"
       ledgeColor="wood wall" baseTh="2" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="wood floor"
@@ -1455,14 +1455,14 @@
       <!-- TODO: wood plank floor sprites -->
       <!-- TODO: wood plank wall sprites -->
       <!-- TODO: village-type furniture? -->
-    <entry name="gateway"
+    <entry name="gateway" terrainCategory="outdoors"
       lightingIntensity="65" lightingColor="pale purple"
       ledgeColor="dirt wall" baseTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="dirt floor"
       wallSprites="4,5,6,7" wallColor="stone wall"
       inheritJoinsFrom="ship" />
       <!-- TODO: fancier walls? I dunno -->
-    <entry name="tether assembly"
+    <entry name="tether assembly" terrainCategory="indoors"
       lightingIntensity="45" lightingColor="sky blue" lampColor="blue"
       ledgeColor="stone wall" baseTh="1"
       floorSprites="0,1,2,3" floorColor="stone floor"
@@ -1470,7 +1470,7 @@
       inheritJoinsFrom="ship" />
       <!-- TODO: fancier walls? I dunno -->
       <!-- TODO: magical furniture -->
-    <entry name="tether assembly key room"
+    <entry name="tether assembly key room" terrainCategory="indoors"
       small="1"
       lightingIntensity="45" lightingColor="sky blue"
       ledgeColor="stone wall" baseTh="1"
@@ -1478,7 +1478,7 @@
       wallSprites="4,5,6,7" wallColor="stone wall"
       inheritJoinsFrom="ship" />
       <!-- TODO: fancier walls? I dunno -->
-    <entry name="tether assembly control room"
+    <entry name="tether assembly control room" terrainCategory="indoors"
       lightingIntensity="65" lightingColor="sky blue" lampColor="blue"
       ledgeColor="stone wall" baseTh="1"
       floorSprites="0,1,2,3" floorColor="stone floor"

@@ -15,6 +15,121 @@
       <line s="GAME OVER!" />
     </entry> <!-- defeat -->
   </category> <!-- messages -->
+  <category name="player lines">
+    <entry name="karhun">
+      <!-- sleep -->
+      <line trigger="post-sleep"
+        s="I nearly hibernated!" />
+      <line trigger="post-sleep"
+        s="Ready and full of energy." />
+      <line trigger="post-sleep"
+        s="I'm hungry. Do we have time to hunt?" />
+      <line trigger="pre-sleep"
+        s="Everyone ready to rest?" />
+      <line trigger="post-sleep"
+        s="I had a strange dream. I felt the need to walk somewhere, but... oh, I forget." />
+      <line trigger="post-sleep"
+        s="May we make more progress today." />
+      <line trigger="pre-sleep" reqJob="warrior"
+        s="We fought well, today." />
+      <line trigger="pre-sleep" reqJob="healer"
+        s="Anyone needs a look-over before bed?" />
+      <line trigger="pre-sleep" reqJob="ranger"
+        s="I'll tend to the campfire." />
+      <line trigger="pre-sleep" terrainCategory="underground"
+        s="These underground places give me the creeps, but I'll manage." />
+      <line trigger="post-sleep" terrainCategory="underground"
+        s="The air down here is so stagnant. I could barely rest." />
+      <line trigger="post-sleep" terrainCategory="underground"
+        s="It's so cramped down here." />
+      <line trigger="post-sleep" terrainCategory="underground"
+        s="A nice surface-level cave is one thing, but tunnels are creepy." />
+      <line trigger="pre-sleep" terrainCategory="outdoors"
+        s="Nothing beats resting under the open sky!" />
+      <line trigger="post-sleep" terrainCategory="outdoors"
+        s="The morning air is so sweet!" />
+      <line trigger="post-sleep" terrainCategory="outdoors" reqJob="healer"
+        s="I wonder if there are any medicinal herbs out here." />
+      <line trigger="pre-sleep" terrainCategory="outdoors" bannedJob="ranger"
+        s="Campfire camping out in the wilds... just like when I was little." /> <!-- rangers wouldn't think back to when they "were little" when camping outdoors -->
+      <line trigger="pre-sleep" terrainCategory="indoors"
+        s="Keeping a campfire indoors has got to be a fire hazard." />
+    </entry> <!-- karhun -->
+    <entry name="skuri">
+      <!-- sleep -->
+      <line trigger="post-sleep"
+        s="Is everyone up?" />
+      <line trigger="post-sleep"
+        s="Come on. Let's get moving, before they see us." />
+      <line trigger="pre-sleep"
+        s="I'll take first watch. I'm still wired." />
+      <line trigger="post-sleep"
+        s="I had a real nightmare... I'd rather not talk about it." />
+      <line trigger="post-sleep"
+        s="I had a great dream! I had this delicious cheese and fruit spread, and... oh, nevermind." />
+      <line trigger="post-sleep"
+        s="Maybe I'll have good luck today? That'd be nice." />
+      <line trigger="pre-sleep" reqJob="rogue"
+        s="Keep the fire low. We don't want to attract the wrong kind of attention." />
+      <line trigger="post-sleep" reqJob="lab rat"
+        s="I had the jitters all night. Could barely sleep." />
+      <line trigger="pre-sleep" terrainCategory="underground"
+        s="It's nice down here. No far-off sky." />
+      <line trigger="post-sleep" terrainCategory="underground"
+        s="These caves are comforting." />
+      <line trigger="pre-sleep" terrainCategory="underground"
+        s="It's so snug down here." />
+      <line trigger="pre-sleep" reqJob="mechanist"
+        s="I have some maintenance to do, anyway." />
+      <line trigger="post-sleep" terrainCategory="outdoors"
+        s="Nothing ate me in my sleep, at least." />
+      <line trigger="pre-sleep" terrainCategory="outdoors"
+        s="I do not feel safe out here..." />
+      <line trigger="pre-sleep" terrainCategory="outdoors"
+        s="So many angles of attack..." />
+      <line trigger="post-sleep" terrainCategory="outdoors" reqJob="survivor"
+        s="I'm kind of getting used to being out here. Still don't like it, though." />
+      <line trigger="pre-sleep" terrainCategory="outdoors"
+        s="Staying outdoors for too long is kind of unlucky. I don't like it." />
+      <line trigger="post-sleep" terrainCategory="indoors" reqJob="mechanist"
+        s="That was more comfortable than the dorms at the mechanist academy, at least." />
+      <line trigger="pre-sleep" terrainCategory="indoors"
+        s="Should we be resting in some strange building like this? If you're sure..." />
+    </entry> <!-- skuri -->
+    <entry name="firin">
+      <!-- sleep -->
+      <line trigger="post-sleep"
+        s="Wake up, wake up, everyone." />
+      <line trigger="pre-sleep"
+        s="If any of you start snoring, I swear I will claw you." />
+      <line trigger="post-sleep"
+        s="I have gathered my fill of astra." />
+      <line trigger="post-sleep"
+        s="I feel a pull in my dreams, sometimes. Could it be the same magic that called us all here?" />
+      <line trigger="post-sleep"
+        s="I dreamt of blood and death... let it be a premonition for our enemies." />
+      <line trigger="pre-sleep" reqJob="martial artist"
+        s="I'll try to meditate." />
+      <line trigger="pre-sleep" terrainCategory="indoors"
+        s="At least I don't have to sleep in the dirt." />
+      <line trigger="pre-sleep" terrainCategory="indoors" bannedJob="wanderer"
+        s="Amazing. A civilized place to sleep, for once." />
+      <line trigger="post-sleep" terrainCategory="indoors"
+        s="A bed would have been nice. Oh well." />
+      <line trigger="pre-sleep" terrainCategory="outdoors" reqJob="wanderer"
+        s="I've slept in worse places." />
+      <line trigger="pre-sleep" terrainCategory="outdoors" reqJob="wanderer"
+        s="I wish I had my bedroll." />
+      <line trigger="pre-sleep" terrainCategory="outdoors" reqJob="gunner"
+        s="If anything tries to jump me in the night I will blast it away. Do not test me, nature!" />
+      <line trigger="pre-sleep" terrainCategory="outdoors" bannedJob="wanderer"
+        s="We're going to sleep in the dirt like savages? Fine." />
+      <line trigger="pre-sleep" terrainCategory="underground"
+        s="Really? We're resting in some rat-hole? Whatever." />
+      <line trigger="post-sleep" terrainCategory="underground"
+        s="Ugh. I'll smell like mildew for days." />
+    </entry> <!-- firin -->
+  </category> <!-- player lines -->
   <category name="npc lines">
     <entry name="roros">
       <line s="Did you four sleepwalk here too?" />
