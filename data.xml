@@ -363,8 +363,12 @@
       gender="1" hairstyle="short hair" coloration="1" enemyLines="Kaspikka" />
     <entry name="Boss Jyrku" species="karhun" jobs="warrior" level="24" weapon="sword:2" armors="helmet:1,breastplate:1,greaves:1" techniques="blitz strike,typhoon slash,bandit flunky" accessory="fur cloak" fightingStyle="bear style" boss="1"
       gender="0" hairstyle="bald" coloration="0" enemyLines="Jyrku" />
+    <entry name="The Cannibal" species="firin" jobs="rogue,undead" level="25" weapon="dagger:1" armors="jerkin:2,leggings:2" techniques="crimson fangs" ring="thorny band" fightingStyle="monkey style" boss="1"
+      gender="1" hairstyle="short" coloration="0" enemyLines="Cannibal" />
     <entry name="Lord Latos" species="firin" jobs="sage,undead" level="25" weapon="claws:1" armors="hat:2,shirt:2,pants:2" accessory="regal cloak" techniques="ashball,siphon,unearth" fightingStyle="bird style" boss="1"
       gender="0" hairstyle="ponytail" coloration="1" enemyLines="Latos" />
+    <entry name="prime automata" species="prime automata" jobs="tough monster,tough monster" level="27" weapon="tackle:2" techniques="sentry turret,autocannon,slam" boss="1"
+      gender="0" enemyLines="prime automata" />
     <entry name="king boar" species="giant boar" jobs="tough monster,tough monster" level="28" weapon="tackle:2" techniques="slam,solar combo" skills="form,warrior spirit" boss="1"
       gender="0" />
     <entry name="Gatekeeper" species="karhun" jobs="rogue,tethered" level="30" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" accessory="intimidating mask" techniques="crimson fangs,venom sting" skills="form" fightingStyle="boar style" boss="1"
@@ -490,6 +494,8 @@
       physiqueModifier="7" cunningModifier="-7" defense="10" />
     <entry name="turret"
       physiqueModifier="5" cunningModifier="-5" attackPower="13" moveDistance="-3" rangeBonus="2" />
+    <entry name="prime automata"
+      physiqueModifier="10" senseModifier="-7" agilityModifier="-3" defense="10" monstrous="1" />
     <entry name="seed spitter"
       agilityModifier="5" cunningModifier="-5" initiative="13" moveDistance="-3" rangeBonus="2" />
     <entry name="walking topiary"
@@ -631,6 +637,12 @@
       colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
       <layer sprite="710" color="skinColor" showObjectStatuses="1" />
     </entry> <!-- turret -->
+    <entry name="prime automata"
+      appearanceSizeMult="85" headHeightPoint="50"
+      colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
+      <!-- TODO: sprite (based on topiary golem sprite) -->
+      <layer sprite="709" color="skinColor" showAllStatuses="1" />
+    </entry> <!-- prime automata -->
     <entry name="rat"
       appearanceSizeMult="65" headHeightPoint="25"
       colorationTickets0="1" skinColor0="bone" bloodColor0="blood">
@@ -771,6 +783,10 @@
     <entry name="court guard" astraCost="20" summonSpecies="karhun" summonJobs="warrior,tethered" summonWeapon="spear" summonArmors="helmet,breastplate,greaves" scaling="level" usesSpecialPower="1" />
     <entry name="court mage" astraCost="20" summonSpecies="firin" summonJobs="mage,tethered" summonWeapon="mace" summonArmors="hat,shirt,pants" scaling="level" usesSpecialPower="1" />
     <entry name="court assassin" astraCost="20" summonSpecies="skuri" summonJobs="rogue,tethered" summonWeapon="dagger" summonArmors="cap,jerkin,leggings" scaling="level" usesSpecialPower="1" />
+    <entry name="sentry turret" astraCost="20" summonSpecies="turret" summonJobs="ranger,tough monster" summonWeapon="automata gun" scaling="level" usesSpecialPower="1"
+      animStrikeSound="deploy" />
+    <entry name="autocannon" astraCost="5" weaponAccuracy="60" ranged="1" numHits="4"
+      animProjSprite="515" animProjScale="17" animProjSpeed="8" animProjColor="bullet" animProjGlows="1" animProjDelay="15" animPostStepPause="45" animSound="gun" animStrikeSound="slash" />
 
     <!-- weapons -->
     <entry name="rusty metal rod" noProficiency="1"
@@ -1248,11 +1264,15 @@
     <!-- regionId 3 (t1): bandit town -->
     <entry name="spooky manor" regionId="3" condition="boss map branch"
       tileset="spooky manor" securityLevelTickets="1,2" enemyTemplates="undead servant,undead butcher,undead aristocrat,black cat" bossTemplate="Lord Latos"
-      loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)siphon,(C)lantern,(W)unearth,(H)1,(H)1,(I)7,(I)7"
+      loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)unearth,(H)1,(H)1,(I)7,(I)7"
+      bgm="manor bgm" />
+    <entry name="locked wing" regionId="3" offshootFrom="spooky manor"
+      tileset="spooky manor" securityLevelTickets="2" enemyTemplates="undead butcher" offshootBossTemplate="The Cannibal"
+      loot="(W)siphon,(H)1,(C)lantern"
       bgm="manor bgm" />
     <entry name="bandit town" regionId="3"
       tileset="village" securityLevelTickets="1,1,2" enemyTemplates="bandit,bandit sneak,bandit enforcer,bandit jack,bandit archer,black cat" bossTemplate="Boss Jyrku"
-      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band,(W)triage,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1"
+      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band,(W)triage,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1"
       bgm="town bgm" />
     <entry name="house" offshootFrom="bandit town"
       tileset="house" npc="Joonert"
@@ -1266,12 +1286,16 @@
       bgm="maze bgm" />
     <entry name="groundkeepers hut" offshootFrom="hedge maze"
       tileset="house" npc="Gulas"
-      loot="(R)thorny band,(I)4,(I)1,(W)longbarrel:1,(H)2,(H)2,(I)7"
+      loot="(R)thorny band,(I)4,(I)1,(H)2,(H)2,(I)7"
       bgm="maze bgm" />
     <entry name="twisted wasteland" regionId="4"
       tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar" bossTemplate="king boar"
-      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)helmet:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(H)2,(I)7"
+      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(I)7"
       bgm="wastes bgm" />
+    <entry name="twisted cave" regionId="4" offshootFrom="twisted wasteland"
+      tileset="twisted stone tunnels" enemyTemplates="paranoid mage,paranoid mechanist,paranoid rogue" offshootBossTemplate="prime automata"
+      loot="(W)longbarrel:1,(A)helmet:2,(H)2"
+      bgm="burrow bgm" />
 
     <!-- regionId 5 (t2): tether assembly -->
     <entry name="gateway" regionId="5" condition="first map"
@@ -1376,6 +1400,12 @@
       replacersTJoins="natural hallway split A,natural hallway split B,natural hallway split C"
       replacersHJoins="natural chamber A,natural chamber B,natural chamber C" />
     <entry name="stone tunnels"
+      ledgeColor="stone wall" baseTh="0" cellularTh="1" noiseTh="0"
+      floorSprites="0,1,2,3" floorColor="stone floor"
+      wallSprites="10,11,12,13" wallColor="stone wall"
+      inheritJoinsFrom="dirt tunnels" />
+    <entry name="twisted stone tunnels"
+      lightingIntensity="15" lightingColor="pale purple"
       ledgeColor="stone wall" baseTh="0" cellularTh="1" noiseTh="0"
       floorSprites="0,1,2,3" floorColor="stone floor"
       wallSprites="10,11,12,13" wallColor="stone wall"

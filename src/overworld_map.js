@@ -25,6 +25,7 @@ class OverworldMapTile {
 
   /** @return {boolean} */
   get shouldGenerateBoss() {
+    if (this.offshootBossTemplate) return true;
     if (this.bossMap) return true;
     return this.keyId > 0 && !!this.bossTemplate;
   }
@@ -36,7 +37,13 @@ class OverworldMapTile {
 
   /** @return {?string} */
   get bossTemplate() {
+    if (this.offshootBossTemplate) return this.offshootBossTemplate;
     return data.getValue('sub regions', this.type, 'bossTemplate');
+  }
+
+  /** @return {?string} */
+  get offshootBossTemplate() {
+    return data.getValue('sub regions', this.type, 'offshootBossTemplate');
   }
 
   /** @return {string} */

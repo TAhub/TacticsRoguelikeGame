@@ -446,7 +446,7 @@ class GameMap {
     }
     if (!overworldMapTile.isStart &&
         (overworldMapTile.doorIds.size == 1 ||
-         overworldMapTile.keyId || overworldMapTile.bossMap)) {
+         overworldMapTile.shouldGenerateBoss)) {
       // Add a non-start center room.
       // For example a boss room, or a center room to give a leaf-map shape.
       goalIs.push(this.centerI);
@@ -1072,7 +1072,8 @@ class GameMap {
     let generationPoints = samplePlayer.generationPoints * mechNumPlayers;
     if (overworldMapTile.bossMap) {
       generationPoints *= (boss && boss.finalBoss) ? 1.9 : 1.6;
-    } else if (overworldMapTile.keyId > 0) {
+    } else if (overworldMapTile.keyId > 0 ||
+               overworldMapTile.offshootBossTemplate) {
       generationPoints *= 1.25;
     }
     generationPoints *= 1 + (encounters.length - 1) * 0.25;

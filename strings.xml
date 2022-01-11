@@ -78,6 +78,15 @@
       <line s="I won't let you disrespect us." />
       <line s="I'll enjoy grinding you to dust." />
     </entry> <!-- Jyrku -->
+    <entry name="Cannibal">
+      <line s="Meat!" />
+      <line s="Meat meat meat!" />
+      <line s="Blood! I... smell!" />
+      <line s="Ahahaha!" />
+    </entry> <!-- Cannibal -->
+    <entry name="prime automata">
+      <line s="INTRUDER DETECTED" />
+    </entry> <!-- prime automata -->
     <entry name="Latos">
       <line s="Have you enjoyed my manor?" />
       <line s="I'm far more hospitable than prissy old Rigus." />
