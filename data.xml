@@ -544,6 +544,7 @@
     <!-- playable species -->
     <entry name="karhun"
       appearanceSizeMult="115" headHeightPoint="85"
+      voicePitch="-250" voiceRate="100"
       coloration0="Forest" colorationTickets0="3" skinColor0="brown fur" hairColor0="vaguely green fur" eyeColor0="light orange" pupilColor0="black" bloodColor0="blood"
       colorationFluff0="Forest Karhun prefer to live in scattered enclaves in the forests, living off the land."
       coloration1="River" colorationTickets1="2" skinColor1="orange fur" hairColor1="vaguely blue fur" eyeColor1="light orange" pupilColor1="black" bloodColor1="blood"
@@ -571,6 +572,7 @@
     </entry> <!-- karhun -->
     <entry name="firin"
       appearanceSizeMult="95" headHeightPoint="75"
+      voicePitch="0" voiceRate="80"
       coloration0="Tabby" colorationTickets0="3" skinColor0="orange fur" hairColor0="yellow fur" eyeColor0="orange" pupilColor0="black" bloodColor0="blood"
       colorationFluff0="The tabby Firin might not have any actual noble heritage, but they still have the bearing of a noble."
       coloration1="Ginger" colorationTickets1="2" skinColor1="red scales" hairColor1="orange fur" eyeColor1="orange" pupilColor1="black" bloodColor1="blood"
@@ -599,6 +601,7 @@
     </entry> <!-- firin -->
     <entry name="skuri"
       appearanceSizeMult="85" headHeightPoint="55"
+      voicePitch="400" voiceRate="125"
       coloration0="Field" colorationTickets0="3" skinColor0="tan fur" hairColor0="brown fur" eyeColor0="gray" pupilColor0="black" tailColor0="flesh" bloodColor0="blood"
       colorationFluff0="Despite the name, field Skuri rarely actually live outside in fields. Rather, they were once used by the Firin empire as slaves, working the fields."
       coloration1="Albino" colorationTickets1="1" skinColor1="white fur" hairColor1="white" eyeColor1="gray" pupilColor1="blood" tailColor1="flesh" bloodColor1="blood"
@@ -639,6 +642,7 @@
     </entry> <!-- turret -->
     <entry name="prime automata"
       appearanceSizeMult="85" headHeightPoint="50"
+      voicePitch="-400" voiceRate="75"
       colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
       <!-- TODO: sprite (based on topiary golem sprite) -->
       <layer sprite="709" color="skinColor" showAllStatuses="1" />

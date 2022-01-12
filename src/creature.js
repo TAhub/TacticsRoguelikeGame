@@ -1796,9 +1796,19 @@ class Creature {
   /**
    * @param {string} text
    * @param {number} boldness
+   * @param {boolean=} optIsVoice
    */
-  addTextParticle_(text, boldness) {
-    const particle = Particle.makeTextParticle(text, boldness);
+  addTextParticle_(text, boldness, optIsVoice) {
+    let soundPitch = 0;
+    let voiceRate = 1;
+    if (optIsVoice) {
+      soundPitch = this.species.voicePitch;
+      if (this.species.gender) soundPitch += 250;
+      if (this.boss) soundPitch -= 100;
+      voiceRate = this.species.voiceRate;
+    }
+    const particle = Particle.makeTextParticle(
+        text, boldness, optIsVoice || false, soundPitch, voiceRate);
     particle.x = this.cX;
     particle.y = this.cY;
     particle.h = this.s + (this.th * gfxThScale);
@@ -2166,8 +2176,7 @@ class Creature {
 
   /** @param {string} text */
   say(text) {
-    this.addTextParticle_(text, -1);
-    // TODO: make talking sounds, based on the length of the line?
+    this.addTextParticle_(text, -1, true);
   }
 
   /**

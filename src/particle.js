@@ -23,6 +23,9 @@ class Particle {
     this.delay = 0;
     /** @type {?string} */
     this.creationSound;
+    /** @type {?string} */
+    this.voiceLast;
+    this.voiceRate = 1;
     this.soundPitch = 0;
     /** @type {?string} */
     this.lightColor;
@@ -79,18 +82,24 @@ class Particle {
   /**
    * @param {string} text
    * @param {number} boldness
+   * @param {boolean} isVoice
+   * @param {number} soundPitch
+   * @param {number} voiceRate
    * @return {!Particle}
    */
-  static makeTextParticle(text, boldness) {
+  static makeTextParticle(text, boldness, isVoice, soundPitch, voiceRate) {
     const particle = new Particle();
     particle.text = text;
     particle.boldness = boldness;
-    const durationMult = 1 + (text.length / 30);
+    const durationMult = (1 + (text.length / 30)) / voiceRate;
     particle.lifetime = 0.75 * durationMult;
     particle.hSpeed = 0.4 / durationMult;
     particle.color = data.getColorByNameSafe('tile text');
     particle.scale = 1.5;
     particle.blocking = true;
+    if (isVoice) particle.voiceLast = '';
+    particle.soundPitch = soundPitch;
+    particle.voiceRate = voiceRate;
     return particle;
   }
 
@@ -146,6 +155,21 @@ class Particle {
       if (this.creationSound) {
         audio.play(this.creationSound, this.soundPitch, 1);
         this.creationSound = null;
+      }
+      if (this.voiceLast != null) {
+        const voices = ['voice 1', 'voice 2', 'voice 3', 'voice 4'];
+        const possibilites = voices.filter((type) => {
+          if (!this.voiceLast) return true;
+          const notAfter = data.getArrayValue('sounds', type, 'notAfter');
+          if (notAfter && notAfter.includes(this.voiceLast)) return false;
+          return true;
+        });
+        const particle = getRandomArrayEntry(possibilites);
+        this.voiceLast = null;
+        audio.play(particle, this.soundPitch, this.voiceRate).then(() => {
+          // Wait for a moment before going on.
+          setTimeout(() => this.voiceLast = particle, 150 / this.voiceRate);
+        });
       }
       this.lifetime -= elapsed;
       this.x += this.xSpeed * elapsed;

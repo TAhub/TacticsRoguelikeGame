@@ -38,6 +38,18 @@ class Species extends BonusSource {
   // Appearance.
 
   /** @return {number} */
+  get voicePitch() {
+    const category = 'species appearances';
+    return data.getNumberValue(category, this.type, 'voicePitch') || 0;
+  }
+
+  /** @return {number} */
+  get voiceRate() {
+    const category = 'species appearances';
+    return (data.getNumberValue(category, this.type, 'voiceRate') || 100) / 100;
+  }
+
+  /** @return {number} */
   get headHeightPoint() {
     const category = 'species appearances';
     return (data.getNumberValue(
