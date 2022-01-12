@@ -32,13 +32,21 @@
         s="Ugh..." />
       <line trigger="death"
         s="I hope I get a cool scar!" />
+      <line trigger="death"
+        s="They got me!" />
+      <line trigger="death" reqJob="warrior"
+        s="I regret nothing!" />
+      <line trigger="death" reqJob="rogue"
+        s="I'll get you next time!" />
+      <line trigger="death" reqJob="healer"
+        s="Healer down!" />
 
       <!-- sleep -->
       <line trigger="post-sleep"
         s="I nearly hibernated!" />
       <line trigger="post-sleep"
         s="Ready and full of energy." />
-      <line trigger="post-sleep"
+      <line trigger="post-sleep" bannedJob="ranger"
         s="I'm hungry. Do we have time to hunt?" />
       <line trigger="pre-sleep"
         s="Everyone ready to rest?" />
@@ -50,8 +58,12 @@
         s="We fought well, today." />
       <line trigger="pre-sleep" reqJob="healer"
         s="Anyone needs a look-over before bed?" />
+      <line trigger="pre-sleep" reqJob="martial artist"
+        s="I must remember to stay calm. It's a fundamental." />
       <line trigger="pre-sleep" reqJob="ranger"
         s="I'll tend to the campfire." />
+      <line trigger="pre-sleep" reqJob="ranger" terrainCategory="outdoors"
+        s="I'll do some hunting before we sleep. We shouldn't run out of food!" />
       <line trigger="pre-sleep" terrainCategory="underground"
         s="These underground places give me the creeps, but I'll manage." />
       <line trigger="post-sleep" terrainCategory="underground"
@@ -73,13 +85,13 @@
     </entry> <!-- karhun -->
     <entry name="skuri">
       <!-- death -->
-      <line trigger="death"
+      <line trigger="death" bannedJob="lab rat"
         s="No!" />
-      <line trigger="death"
+      <line trigger="death" bannedJob="lab rat"
         s="Please! Mercy!" />
       <line trigger="death"
         s="Aaagh!" />
-      <line trigger="death"
+      <line trigger="death" bannedJob="lab rat"
         s="No! No!" />
       <line trigger="death"
         s="I don't want to-" />
@@ -87,6 +99,24 @@
         s="Escape! Escape!" />
       <line trigger="death"
         s="Aiee!" />
+      <line trigger="death" bannedJob="lab rat"
+        s="This sucks!" />
+      <line trigger="death" reqJob="rogue"
+        s="I messed up..." />
+      <line trigger="death" reqJob="mage"
+        s="Not the face!" />
+      <line trigger="death" reqJob="lab rat"
+        s="I've felt this pain before!" />
+      <line trigger="death" reqJob="lab rat"
+        s="It hurts so sweet!" />
+      <line trigger="death" reqJob="lab rat"
+        s="Ahahaha!" />
+      <line trigger="death" reqJob="lab rat"
+        s="Ha ha ha!" />
+      <line trigger="death" reqJob="lab rat"
+        s="How horrible!" />
+      <line trigger="death" reqJob="lab rat"
+        s="It burn! Hahaha!" />
 
       <!-- sleep -->
       <line trigger="post-sleep"
@@ -95,10 +125,16 @@
         s="Come on. Let's get moving, before they see us." />
       <line trigger="pre-sleep"
         s="I'll take first watch. I'm still wired." />
+      <line trigger="pre-sleep"
+        s="I guess we have to rest..." />
+      <line trigger="post-sleep" reqJob="gunner"
+        s="Ok, I'm done cleaning my gun." />
       <line trigger="post-sleep"
         s="I had a real nightmare... I'd rather not talk about it." />
       <line trigger="post-sleep"
         s="I had a great dream! I had this delicious cheese and fruit spread, and... oh, nevermind." />
+      <line trigger="post-sleep"
+        s="I had a dream where I was in a maze, and I couldn't find my way out. Strange." />
       <line trigger="post-sleep"
         s="Maybe I'll have good luck today? That'd be nice." />
       <line trigger="pre-sleep" reqJob="rogue"
@@ -144,14 +180,26 @@
         s="Ugh." />
       <line trigger="death"
         s="If only I had-" />
+      <line trigger="death"
+        s="You insolent-" />
+      <line trigger="death" reqJob="warrior"
+        s="I've been bested!" />
+      <line trigger="death" reqJob="mage"
+        s="My magic was not enough!" />
+      <line trigger="death" reqJob="sage"
+        s="May my life go on eternal!" />
 
       <!-- sleep -->
       <line trigger="post-sleep"
         s="Wake up, wake up, everyone." />
+      <line trigger="post-sleep" reqJob="sage"
+        s="What a curious dream. Perhaps it held an omen?" />
       <line trigger="pre-sleep"
         s="If any of you start snoring, I swear I will claw you." />
       <line trigger="post-sleep"
         s="I have gathered my fill of astra." />
+      <line trigger="pre-sleep"
+        s="Now I have some time to relax. Excellent!" />
       <line trigger="post-sleep"
         s="I feel a pull in my dreams, sometimes. Could it be the same magic that called us all here?" />
       <line trigger="post-sleep"
