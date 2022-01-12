@@ -543,7 +543,7 @@
   <category name="species appearances">
     <!-- playable species -->
     <entry name="karhun"
-      appearanceSizeMult="115" headHeightPoint="85"
+      appearanceSizeMult="115" headHeightPoint="85" weaponHeightPoint="70"
       voicePitch="-250" voiceRate="100"
       coloration0="Forest" colorationTickets0="3" skinColor0="brown fur" hairColor0="vaguely green fur" eyeColor0="light orange" pupilColor0="black" bloodColor0="blood"
       colorationFluff0="Forest Karhun prefer to live in scattered enclaves in the forests, living off the land."
@@ -571,7 +571,7 @@
       <layer xAdd="13" yAdd="-8" fillSlotId="offHand" /> <!-- off hand -->
     </entry> <!-- karhun -->
     <entry name="firin"
-      appearanceSizeMult="95" headHeightPoint="75"
+      appearanceSizeMult="95" headHeightPoint="75" weaponHeightPoint="60"
       voicePitch="0" voiceRate="80"
       coloration0="Tabby" colorationTickets0="3" skinColor0="orange fur" hairColor0="yellow fur" eyeColor0="orange" pupilColor0="black" bloodColor0="blood"
       colorationFluff0="The tabby Firin might not have any actual noble heritage, but they still have the bearing of a noble."
@@ -600,7 +600,7 @@
       <layer xAdd="-11" yAdd="8" fillSlotId="offHand" /> <!-- off hand -->
     </entry> <!-- firin -->
     <entry name="skuri"
-      appearanceSizeMult="85" headHeightPoint="55"
+      appearanceSizeMult="85" headHeightPoint="55" weaponHeightPoint="30"
       voicePitch="400" voiceRate="125"
       coloration0="Field" colorationTickets0="3" skinColor0="tan fur" hairColor0="brown fur" eyeColor0="gray" pupilColor0="black" tailColor0="flesh" bloodColor0="blood"
       colorationFluff0="Despite the name, field Skuri rarely actually live outside in fields. Rather, they were once used by the Firin empire as slaves, working the fields."
@@ -631,91 +631,91 @@
 
     <!-- monster species -->
     <entry name="crawler"
-      appearanceSizeMult="95" headHeightPoint="25"
+      appearanceSizeMult="95" headHeightPoint="35" weaponHeightPoint="40"
       colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
       <layer sprite="711" color="skinColor" showObjectStatuses="1" />
     </entry> <!-- crawler -->
     <entry name="turret"
-      appearanceSizeMult="125" headHeightPoint="30"
+      appearanceSizeMult="125" headHeightPoint="45"
       colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
       <layer sprite="710" color="skinColor" showObjectStatuses="1" />
     </entry> <!-- turret -->
     <entry name="prime automata"
-      appearanceSizeMult="90" headHeightPoint="50"
+      appearanceSizeMult="90" headHeightPoint="60" weaponHeightPoint="45"
       voicePitch="-400" voiceRate="75"
       colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
       <layer sprite="713" color="skinColor" showAllStatuses="1" />
     </entry> <!-- prime automata -->
     <entry name="rat"
-      appearanceSizeMult="65" headHeightPoint="25"
+      appearanceSizeMult="65" headHeightPoint="35" weaponHeightPoint="25"
       colorationTickets0="1" skinColor0="bone" bloodColor0="blood">
       <layer sprite="703" color="skinColor" showAllStatuses="1" />
     </entry> <!-- rat -->
     <entry name="slime"
-      appearanceSizeMult="85" headHeightPoint="65"
+      appearanceSizeMult="85" headHeightPoint="50"
       colorationTickets0="1" skinColor0="blood" bloodColor0="blood"
       colorationTickets1="1" skinColor1="gold" bloodColor1="gold">
       <layer sprite="704" color="skinColor" showAllStatuses="1" />
     </entry> <!-- slime -->
     <entry name="baby slime"
-      appearanceSizeMult="75" headHeightPoint="65"
+      appearanceSizeMult="75" headHeightPoint="50"
       colorationTickets0="1" skinColor0="blood" bloodColor0="blood"
       colorationTickets1="1" skinColor1="gold" bloodColor1="gold">
       <layer sprite="704" color="skinColor" showAllStatuses="1" />
     </entry> <!-- baby slime -->
     <entry name="seed spitter"
-      appearanceSizeMult="85" headHeightPoint="80"
+      appearanceSizeMult="85" headHeightPoint="70"
       colorationTickets0="1" skinColor0="green scales" bloodColor0="green scales">
       <layer sprite="712" color="skinColor" showAllStatuses="1" />
     </entry> <!-- seed spitter -->
     <entry name="walking topiary"
-      appearanceSizeMult="85" headHeightPoint="50"
+      appearanceSizeMult="85" headHeightPoint="55" weaponHeightPoint="35"
       colorationTickets0="1" skinColor0="grass wall" bloodColor0="grass wall">
       <layer sprite="709" color="skinColor" showAllStatuses="1" />
     </entry> <!-- walking topiary -->
     <entry name="walking bonsai"
-      appearanceSizeMult="90" headHeightPoint="50"
+      appearanceSizeMult="90" headHeightPoint="55" weaponHeightPoint="35"
       colorationTickets0="1" skinColor0="grass wall" bloodColor0="grass wall">
       <layer sprite="709" color="skinColor" showAllStatuses="1" />
     </entry> <!-- walking bonsai -->
     <entry name="cat"
-      appearanceSizeMult="75" headHeightPoint="50"
+      appearanceSizeMult="75" headHeightPoint="50" weaponHeightPoint="25"
       colorationTickets0="1" skinColor0="black fur" bloodColor0="blood"
       colorationTickets1="1" skinColor1="green plumage" bloodColor1="blood">
       <layer sprite="701" color="skinColor" showAllStatuses="1" />
     </entry> <!-- cat -->
     <entry name="serpent"
-      appearanceSizeMult="95" headHeightPoint="85"
+      appearanceSizeMult="95" headHeightPoint="85" weaponHeightPoint="75"
       colorationTickets0="1" skinColor0="green scales" bloodColor0="blood"
       colorationTickets1="1" skinColor1="yellow scales" bloodColor1="blood">
       <layer sprite="700" color="skinColor" showAllStatuses="1" />
     </entry> <!-- serpent -->
     <entry name="snake"
-      appearanceSizeMult="105" headHeightPoint="85"
+      appearanceSizeMult="105" headHeightPoint="85" weaponHeightPoint="75"
       colorationTickets0="1" skinColor0="brown fur" bloodColor0="blood">
       <layer sprite="700" color="skinColor" showAllStatuses="1" />
     </entry> <!-- snake -->
     <entry name="giant turtle"
-      appearanceSizeMult="95" headHeightPoint="45"
+      appearanceSizeMult="95" headHeightPoint="45" weaponHeightPoint="40"
       colorationTickets0="1" skinColor0="green scales" bloodColor0="blood"
       colorationTickets1="1" skinColor1="yellow scales" bloodColor1="blood">
       <layer sprite="705" color="skinColor" showAllStatuses="1" />
     </entry> <!-- giant turtle -->
     <entry name="turtle"
-      appearanceSizeMult="105" headHeightPoint="45"
+      appearanceSizeMult="105" headHeightPoint="45" weaponHeightPoint="40"
       colorationTickets0="1" skinColor0="green scales" bloodColor0="blood"
       colorationTickets1="1" skinColor1="yellow scales" bloodColor1="blood">
       <layer sprite="705" color="skinColor" showAllStatuses="1" />
     </entry> <!-- turtle -->
     <entry name="giant boar"
-      appearanceSizeMult="115" headHeightPoint="45"
+      appearanceSizeMult="115" headHeightPoint="40" weaponHeightPoint="30"
       colorationTickets0="1" skinColor0="brown fur" bloodColor0="blood"
       colorationTickets1="1" skinColor1="brown fabric" bloodColor1="blood"
       colorationTickets2="1" skinColor2="dull brown fabric" bloodColor2="blood">
       <layer sprite="702" color="skinColor" showAllStatuses="1" />
     </entry> <!-- giant boar -->
     <entry name="scavenger"
-      appearanceSizeMult="100" headHeightPoint="55"
+      appearanceSizeMult="100" headHeightPoint="55" weaponHeightPoint="35"
       colorationTickets0="1" skinColor0="brown fur" bloodColor0="blood"
       colorationTickets1="1" skinColor1="tan fur" bloodColor1="blood"
       colorationTickets2="1" skinColor2="dull brown fur" bloodColor2="blood"
@@ -723,13 +723,13 @@
       <layer sprite="706" color="skinColor" showAllStatuses="1" />
     </entry> <!-- scavenger -->
     <entry name="frog"
-      appearanceSizeMult="90" headHeightPoint="55"
+      appearanceSizeMult="90" headHeightPoint="55" weaponHeightPoint="40"
       colorationTickets0="1" skinColor0="green scales" bloodColor0="blood"
       colorationTickets1="1" skinColor1="yellow scales" bloodColor1="blood">
       <layer sprite="707" color="skinColor" showAllStatuses="1" />
     </entry> <!-- frog -->
     <entry name="bird"
-      appearanceSizeMult="90" headHeightPoint="20"
+      appearanceSizeMult="90" headHeightPoint="25" weaponHeightPoint="15"
       colorationTickets0="1" skinColor0="white fur" bloodColor0="blood"
       colorationTickets1="1" skinColor1="vaguely blue fur" bloodColor1="blood"
       colorationTickets2="1" skinColor2="black fur" bloodColor2="blood">

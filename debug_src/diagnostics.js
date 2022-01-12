@@ -89,6 +89,59 @@ function checkCreatureValidity(creature) {
   }
 }
 
+class SpeciesAppearanceViewerPlugin extends GamePlugin {
+  constructor() {
+    super();
+    this.page = 0;
+  }
+
+  /** @param {!CanvasRenderingContext2D} ctx */
+  draw2D(ctx) {
+    const allSpecies = data.getCategoryEntriesArray('species') || [];
+    const r = 5;
+    const drawDot = (xA, mult) => {
+      const x = gfxTileSize - r + xA;
+      const y = ctx.canvas.height - mult * gfxTileSize - r;
+      const s = 2 * r;
+      ctx.fillRect(x, y, s, s);
+    };
+    let y = 0;
+    let i = 0;
+    for (const species of allSpecies) {
+      const creature = new Creature(Creature.Side.Player, species, []);
+      if (Math.floor(i) == this.page) {
+        y += gfxTileSize;
+        ctx.save();
+        ctx.translate(0, -ctx.canvas.height + y);
+
+        // Sprite.
+        creature.draw(ctx);
+
+        // Head
+        ctx.fillStyle = data.getColorByNameSafe('arcana');
+        drawDot(0, creature.headHeightPoint);
+
+        // Weapon
+        ctx.fillStyle = data.getColorByNameSafe('blood');
+        drawDot(3 * r, creature.weaponHeightPoint);
+
+        ctx.restore();
+      }
+      i += 0.2;
+    }
+  }
+
+  /** @param {!Controls} controls */
+  input(controls) {
+    let yA = 0;
+    if (controls.keyPressed(Controls.Key.UP)) {
+      this.page -= 1;
+    } else if (controls.keyPressed(Controls.Key.DOWN)) {
+      this.page += 1;
+    }
+  }
+}
+
 /** @suppress {checkVars} */
 class MapPreviewDiagnosticPlugin extends GamePlugin {
   constructor() {
@@ -538,6 +591,10 @@ allDiagnostics.set('Random Map Preview', () => {
 allDiagnostics.set('Last Map Viewer', () => {
   const dp = new MapPreviewDiagnosticPlugin();
   game.plugin.switchToPlugin(new LoadingPlugin(dp.generate(true)));
+});
+
+allDiagnostics.set('Species Appearance Viewer', () => {
+  game.plugin.switchToPlugin(new SpeciesAppearanceViewerPlugin());
 });
 
 allDiagnostics.set('Generation Points Diagnostic', () => {

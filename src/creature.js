@@ -706,6 +706,11 @@ class Creature {
     return this.species.headHeightPoint;
   }
 
+  /** @return {number} */
+  get weaponHeightPoint() {
+    return this.species.weaponHeightPoint;
+  }
+
   /** @private */
   makeFloorShape_() {
     const buffer = gfx.makeBuffer();
@@ -1531,7 +1536,7 @@ class Creature {
        * @return {!Array.<number>}
        */
       const getPosition = (from) => {
-        const h = from.headHeightPoint * from.appearanceSizeMult * 0.75 +
+        const h = from.weaponHeightPoint * from.appearanceSizeMult * this.s +
                   from.th * gfxThScale;
         return [from.cX, from.cY, h];
       };

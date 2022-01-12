@@ -56,6 +56,14 @@ class Species extends BonusSource {
         category, this.type, 'headHeightPoint') || 50) / 100;
   }
 
+  /** @return {number} */
+  get weaponHeightPoint() {
+    const category = 'species appearances';
+    const raw = data.getNumberValue(category, this.type, 'weaponHeightPoint');
+    if (raw) return raw / 100;
+    return this.headHeightPoint;
+  }
+
   /**
    * @param {string} colorName
    * @param {!Array.<!Job>} jobs
