@@ -120,6 +120,8 @@ class Creature {
     this.pulseColor = '';
     this.pulseCycle = -1;
     this.deathAnim = -1;
+    this.dodgeAnim = 0;
+    this.dodgeAngle = 0;
     this.flyingEffectCycle = Math.random();
     this.th = 0;
     this.floorTh = 0;
@@ -802,6 +804,7 @@ class Creature {
       }
       this.deathAnim = Math.min(1, this.deathAnim);
     }
+    this.dodgeAnim = Math.max(0, this.dodgeAnim - elapsed * 2.5);
     if (this.pulseCycle >= 0 && this.pulseCycle < 1) {
       this.pulseCycle = Math.min(1, this.pulseCycle + elapsed * 2);
     } else {
@@ -926,6 +929,8 @@ class Creature {
         y -= Math.sin(this.facing) * distance;
       }
     }
+    x += Math.cos(this.dodgeAngle) * this.dodgeAnim;
+    y += Math.sin(this.dodgeAngle) * this.dodgeAnim;
     let th = this.th;
     if (this.flying) {
       const sign = this.flyingEffectCycle < 0.5 ? -1 : 1;
@@ -1867,22 +1872,26 @@ class Creature {
     let hitResult = Creature.HitResult.Hit;
     if (!weapon.helpful && !weapon.summon) {
       hitResult = this.getHitResult_(target, weapon, attackType);
+      let dodgeAmount = 0;
       switch (hitResult) {
         case Creature.HitResult.Miss:
-          // TODO: dodge visual/audio effects on target?
+          dodgeAmount = 0.6;
           target.addTextParticle_('DODGE', -1);
           break;
         case Creature.HitResult.Graze:
-          // TODO: graze visual/audio effects on target?
+          dodgeAmount = 0.15;
           target.addTextParticle_('GRAZE', -1);
           break;
         case Creature.HitResult.Hit:
           target.addTextParticle_('HIT', 0);
           break;
         case Creature.HitResult.Crit:
-          // TODO: crit visual/audio effects on target?
           target.addTextParticle_('CRIT', 1);
           break;
+      }
+      if (dodgeAmount > target.dodgeAnim) {
+        target.dodgeAnim = dodgeAmount;
+        target.dodgeAngle = calcAngle(target.cX - this.cX, target.cY - this.cY);
       }
     }
 
