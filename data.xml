@@ -641,11 +641,10 @@
       <layer sprite="710" color="skinColor" showObjectStatuses="1" />
     </entry> <!-- turret -->
     <entry name="prime automata"
-      appearanceSizeMult="85" headHeightPoint="50"
+      appearanceSizeMult="90" headHeightPoint="50"
       voicePitch="-400" voiceRate="75"
       colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
-      <!-- TODO: sprite (based on topiary golem sprite) -->
-      <layer sprite="709" color="skinColor" showAllStatuses="1" />
+      <layer sprite="713" color="skinColor" showAllStatuses="1" />
     </entry> <!-- prime automata -->
     <entry name="rat"
       appearanceSizeMult="65" headHeightPoint="25"
