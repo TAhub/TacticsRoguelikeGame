@@ -29,7 +29,7 @@ for (let i = 0; ; i++) {
 
 // Mechanical constants.
 const mechMaxSeed = 1000000;
-const mechBaseDamage = 50;
+const mechBaseDamage = 45;
 const mechBaseLife = 100;
 const mechLevelsPerSkill = 3;
 const mechLevelsPerTier = mechLevelsPerSkill * 4;
