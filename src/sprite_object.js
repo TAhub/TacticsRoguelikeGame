@@ -5,7 +5,7 @@
  *   drawBack: (number|undefined),
  *   renderOrder: (number|undefined),
  *   rockAngle: (number|undefined),
- *   transparent: (boolean|undefined),
+ *   opacity: (number|undefined),
  *   blendColor: (string|undefined),
  *   blendColorAmount: (number|undefined),
  * }}
@@ -111,8 +111,8 @@ class SpriteObject {
     }
 
     this.material.opacity = 1;
-    if (optOptions && optOptions.transparent) {
-      this.material.opacity = 0.75;
+    if (optOptions && optOptions.opacity != undefined) {
+      this.material.opacity = optOptions.opacity / 100;
     }
 
     if (optOptions && optOptions.blendColor && optOptions.blendColorAmount) {

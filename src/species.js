@@ -92,9 +92,10 @@ class Species extends BonusSource {
    * @param {?Accessory} accessory
    * @param {!Set.<!Weapon.Status>} statusTypes
    * @param {!Array.<!Job>} jobs
+   * @param {boolean} dying
    * @return {!Array.<!SpeciesSpriteLayer>}
    */
-  getSpriteLayers(armors, weapon, accessory, statusTypes, jobs) {
+  getSpriteLayers(armors, weapon, accessory, statusTypes, jobs, dying) {
     /** @type {!Array.<!Equipment>} */
     const equips = armors.concat(
         [weapon, accessory, this.hairstyle]).filter((e) => e);
@@ -157,25 +158,32 @@ class Species extends BonusSource {
       }
 
       // If set, apply the color changes for ALL status effects!
+      let finalColor = color;
       const showAllStatuses = data.getBooleanValue(
           category, type, 'showAllStatuses', i);
+      if (dying) {
+        const hsv = getHSV(finalColor);
+        hsv.s *= 0.5;
+        finalColor = constructColorHSV(hsv);
+      }
+      if (statusTypes.has(Weapon.Status.Poisoned) && showAllStatuses) {
+        const poison = data.getColorByNameSafe('poison');
+        finalColor = colorLerp(finalColor, poison, 0.3);
+      }
       // If SPECIFICALLY set, apply the color changes only for statuses that
       // also apply to objects (e.g. fire but not poison).
       const showObjectStatuses = showAllStatuses || data.getBooleanValue(
           category, type, 'showObjectStatuses', i);
-      if (statusTypes.has(Weapon.Status.Poisoned) && showAllStatuses) {
-        const poison = data.getColorByNameSafe('poison');
-        color = colorLerp(color, poison, 0.3);
-      }
       if (statusTypes.has(Weapon.Status.Burning) && showObjectStatuses) {
-        const hsv = getHSV(color);
+        const hsv = getHSV(finalColor);
         hsv.s *= 0.75;
         hsv.v *= 0.5;
-        color = constructColorHSV(hsv);
+        finalColor = constructColorHSV(hsv);
       }
 
       // Draw it!
-      spriteLayers.push(new SpeciesSpriteLayer(x, y, sprite, color, scale));
+      spriteLayers.push(new SpeciesSpriteLayer(
+          x, y, sprite, finalColor, scale));
     }
     return spriteLayers;
   }

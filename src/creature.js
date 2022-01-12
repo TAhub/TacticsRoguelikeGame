@@ -119,6 +119,7 @@ class Creature {
     // Temporary.
     this.pulseColor = '';
     this.pulseCycle = -1;
+    this.deathAnim = -1;
     this.flyingEffectCycle = Math.random();
     this.th = 0;
     this.floorTh = 0;
@@ -200,6 +201,7 @@ class Creature {
 
   /** @return {boolean} */
   get animating() {
+    if (this.deathAnim >= 0 && this.deathAnim < 1) return true;
     return this.actions.length > 0 || this.delayedCachedParticles.length > 0;
   }
 
@@ -557,7 +559,8 @@ class Creature {
   draw(ctx) {
     const statusTypes = new Set(this.statuses.keys());
     const spriteLayers = this.species.getSpriteLayers(
-        this.armors, this.weapon, this.accessory, statusTypes, this.jobs);
+        this.armors, this.weapon, this.accessory, statusTypes, this.jobs,
+        this.deathAnim >= 0);
     for (const layer of spriteLayers) {
       const x = layer.x + gfxTileSize / 2;
       const y = layer.y + ctx.canvas.height - gfxTileSize / 2;
@@ -788,6 +791,17 @@ class Creature {
 
   /** @param {number} elapsed */
   update(elapsed) {
+    if (this.deathAnim >= 0 && this.shakeEffect == 0) {
+      if (this.deathAnim == 0) this.makeAppearance();
+      if (this.side == Creature.Side.Player) {
+        this.deathAnim += elapsed;
+      } else if (this.boss) {
+        this.deathAnim += elapsed * 0.75;
+      } else {
+        this.deathAnim += elapsed * 1.5;
+      }
+      this.deathAnim = Math.min(1, this.deathAnim);
+    }
     if (this.pulseCycle >= 0 && this.pulseCycle < 1) {
       this.pulseCycle = Math.min(1, this.pulseCycle + elapsed * 2);
     } else {
@@ -823,7 +837,7 @@ class Creature {
     this.statusParticleTimer += elapsed;
     if (this.statusParticleTimer > gfxStatusParticleTimerInterval) {
       this.statusParticleTimer = 0;
-      this.makeStatusParticles_();
+      if (!this.dead) this.makeStatusParticles_();
     }
   }
 
@@ -902,7 +916,16 @@ class Creature {
     // Draw.
     if (!this.spriteObject) this.makeAppearance();
     const options = {facing: this.facing, rockAngle: this.rockAngle};
-    if (this.immune) options.transparent = true;
+    if (this.immune) options.opacity = 75;
+    if (this.deathAnim > 0) {
+      options.opacity = 100 - 100 * this.deathAnim;
+      if (this.side == Creature.Side.Enemy && !this.summonOwner && !this.boss) {
+        // Normal enemies run away when they "die".
+        const distance = this.deathAnim * 2;
+        x -= Math.cos(this.facing) * distance;
+        y -= Math.sin(this.facing) * distance;
+      }
+    }
     let th = this.th;
     if (this.flying) {
       const sign = this.flyingEffectCycle < 0.5 ? -1 : 1;
@@ -1011,6 +1034,19 @@ class Creature {
       this.engaged.makeFloorShape_();
       this.engaged = null;
       this.makeFloorShape_();
+    }
+    if (this.dead && this.deathAnim == -1) {
+      // Start the various death effects.
+      if (this.side == Creature.Side.Player) {
+        // Disable all remaining delayed cached particles. Who cares how much
+        // damage the attack does, if it kills you?
+        this.delayedCachedParticles = [];
+
+        const lines = this.getLinesForTrigger('death', null);
+        if (lines.length > 0) this.say(getRandomArrayEntry(lines));
+      }
+      this.deathAnim = 0;
+      this.shakeEffect += 0.05;
     }
   }
 
@@ -2136,15 +2172,17 @@ class Creature {
 
   /**
    * @param {string} trigger
-   * @param {!MapController} mapController
+   * @param {?MapController} mapController
    * @return {!Array.<string>}
    */
   getLinesForTrigger(trigger, mapController) {
-    const gameMap = mapController.gameMapAt(this.x, this.y);
-    const overworldMapTile = mapController.overworldMap.tileAt(
-        gameMap.overworldX, gameMap.overworldY);
     let terrainCategory = '';
-    if (overworldMapTile) terrainCategory = overworldMapTile.terrainCategory;
+    if (mapController) {
+      const gameMap = mapController.gameMapAt(this.x, this.y);
+      const overworldMapTile = mapController.overworldMap.tileAt(
+          gameMap.overworldX, gameMap.overworldY);
+      if (overworldMapTile) terrainCategory = overworldMapTile.terrainCategory;
+    }
 
     const lines = [];
     const species = this.species.type;

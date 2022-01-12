@@ -17,6 +17,22 @@
   </category> <!-- messages -->
   <category name="player lines">
     <entry name="karhun">
+      <!-- death -->
+      <line trigger="death"
+        s="Agh! You got me!" />
+      <line trigger="death"
+        s="Don't stop!" />
+      <line trigger="death"
+        s="Win for me!" />
+      <line trigger="death"
+        s="This is bad..." />
+      <line trigger="death"
+        s="Oof..." />
+      <line trigger="death"
+        s="Ugh..." />
+      <line trigger="death"
+        s="I hope I get a cool scar!" />
+
       <!-- sleep -->
       <line trigger="post-sleep"
         s="I nearly hibernated!" />
@@ -56,6 +72,22 @@
         s="Keeping a campfire indoors has got to be a fire hazard." />
     </entry> <!-- karhun -->
     <entry name="skuri">
+      <!-- death -->
+      <line trigger="death"
+        s="No!" />
+      <line trigger="death"
+        s="Please! Mercy!" />
+      <line trigger="death"
+        s="Aaagh!" />
+      <line trigger="death"
+        s="No! No!" />
+      <line trigger="death"
+        s="I don't want to-" />
+      <line trigger="death"
+        s="Escape! Escape!" />
+      <line trigger="death"
+        s="Aiee!" />
+
       <!-- sleep -->
       <line trigger="post-sleep"
         s="Is everyone up?" />
@@ -97,6 +129,22 @@
         s="Should we be resting in some strange building like this? If you're sure..." />
     </entry> <!-- skuri -->
     <entry name="firin">
+      <!-- death -->
+      <line trigger="death"
+        s="How dare you!" />
+      <line trigger="death"
+        s="I will get my revenge!" />
+      <line trigger="death"
+        s="Tch!" />
+      <line trigger="death"
+        s="No fair!" />
+      <line trigger="death"
+        s="Curse you!" />
+      <line trigger="death"
+        s="Ugh." />
+      <line trigger="death"
+        s="If only I had-" />
+
       <!-- sleep -->
       <line trigger="post-sleep"
         s="Wake up, wake up, everyone." />
