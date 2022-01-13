@@ -47,6 +47,11 @@ class AI {
               value -= 0.65 * AI.oneAttackValue_(
                   target.engaged, target, target.engaged.disengageWeapon,
                   Creature.AttackType.Disengage);
+            } else {
+              // Also, engaging someone who is disengaged and wants to stay that
+              // way is valuable.
+              value +=
+                  target.attackPowerWhenDisengaged * target.baseMaxLife / 100;
             }
             // Making a NEW engagement (e.g. not just re-upping an old
             // engagement with someone else) will MAYBE give you a melee attack
