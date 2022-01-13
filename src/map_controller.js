@@ -510,6 +510,15 @@ class MapController {
         player.refill();
       }
       this.revive();
+
+      // Clean all creatures, but keep the action intact as you do.
+      const oldSleeperIdx = this.players.indexOf(sleeper);
+      const oldSleeperActions = sleeper.actions;
+      this.cleanCreatures();
+      const newSleeper = this.players[oldSleeperIdx];
+      newSleeper.actions = oldSleeperActions;
+      if (line) line.speaker = newSleeper;
+
       this.save();
       extraEffectsFn();
     });
