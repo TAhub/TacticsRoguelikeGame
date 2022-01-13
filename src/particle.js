@@ -250,7 +250,10 @@ class Particle {
         }
       }
       const options = {h: this.h, renderOrder: 1};
-      if (this.facing != null) options.facing = this.facing;
+      if (this.facing != null) {
+        options.facing = this.facing;
+        options.facingCanRotate = true;
+      }
       this.spriteObject.addToGroup(
           dynamicMeshGroup, camera, this.x, this.y, 0, options);
     }

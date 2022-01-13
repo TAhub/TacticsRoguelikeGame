@@ -1,6 +1,7 @@
 /**
  * @typedef {{
  *   facing: (number|undefined),
+ *   facingCanRotate: (boolean|undefined),
  *   h: (number|undefined),
  *   drawBack: (number|undefined),
  *   renderOrder: (number|undefined),
@@ -146,15 +147,44 @@ class SpriteObject {
             this.mesh.position.x - angleX, this.mesh.position.z - angleY);
       };
 
-      // If moving x=-1 makes you CLOSER to the "facing" direction, you should
-      // be flipped!
-      this.mesh.scale.x = 1;
-      const oldDistance = getDistance();
-      this.mesh.translateX(-0.5);
-      const newDistance = getDistance();
-      this.mesh.translateX(0.5);
-      if (oldDistance > newDistance) {
-        this.mesh.scale.x = -1;
+      if (optOptions.facingCanRotate) {
+        this.mesh.translateX(-0.5);
+        const minusXDistance = getDistance();
+        this.mesh.translateX(1);
+        const plusXDistance = getDistance();
+        this.mesh.translateX(-0.5);
+        this.mesh.translateZ(-0.5);
+        const minusYDistance = getDistance();
+        this.mesh.translateZ(1);
+        const plusYDistance = getDistance();
+        this.mesh.translateZ(-0.5);
+
+        const lowestDistance = Math.min(
+            minusXDistance, plusXDistance,
+            minusYDistance, plusYDistance);
+        this.mesh.scale.x = 1;
+        if (minusXDistance == lowestDistance) {
+          this.mesh.rotateZ(0);
+          this.mesh.scale.x = -1;
+        } else if (plusXDistance == lowestDistance) {
+          this.mesh.rotateZ(0);
+        } else if (minusYDistance == lowestDistance) {
+          this.mesh.rotateZ(Math.PI / 2);
+        } else if (plusYDistance == lowestDistance) {
+          this.mesh.rotateZ(Math.PI / 2);
+          this.mesh.scale.x = -1;
+        }
+      } else {
+        // If moving x=-1 makes you CLOSER to the "facing" direction, you should
+        // be flipped!
+        this.mesh.scale.x = 1;
+        const oldDistance = getDistance();
+        this.mesh.translateX(-0.5);
+        const newDistance = getDistance();
+        this.mesh.translateX(0.5);
+        if (oldDistance > newDistance) {
+          this.mesh.scale.x = -1;
+        }
       }
     }
 
