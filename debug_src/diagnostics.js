@@ -133,7 +133,6 @@ class SpeciesAppearanceViewerPlugin extends GamePlugin {
 
   /** @param {!Controls} controls */
   input(controls) {
-    let yA = 0;
     if (controls.keyPressed(Controls.Key.UP)) {
       this.page -= 1;
     } else if (controls.keyPressed(Controls.Key.DOWN)) {
