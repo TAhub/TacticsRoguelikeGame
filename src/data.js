@@ -143,12 +143,25 @@ class Data {
     return spritesPromise;
   }
 
+  /**
+   * @param {string} name
+   * @param {string} url
+   * @return {Promise}
+   * @private
+   */
+  async fetchFont_(name, url) {
+    const font = new FontFace(name, 'url(' + url + ')');
+    await font.load();
+  }
+
   /** @return {Promise} */
   async setup() {
     const promises = [];
     promises.push(this.fetchSprite_('sprites.png').then((image) => {
       this.sprites = image;
     }));
+    promises.push(this.fetchFont_(
+        'RobotoSlab', 'Roboto_Slab/RobotoSlab-VariableFont_wght.ttf'));
     for (const filename of ['data.xml', 'strings.xml', 'sounds.xml']) {
       promises.push(this.fetchData_(filename).then((categories) => {
         for (const key of categories.keys()) {

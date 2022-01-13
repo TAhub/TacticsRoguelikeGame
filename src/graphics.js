@@ -33,7 +33,7 @@ class Graphics {
    */
   setFont(ctx, size, optBold, optItalic) {
     ctx.font = (optBold ? 'bold ' : '') + (optItalic ? 'italic ' : '') + size +
-               'px Trebuchet';
+               'px RobotoSlab';
   }
 
   /**
