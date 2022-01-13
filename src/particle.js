@@ -91,9 +91,8 @@ class Particle {
     const particle = new Particle();
     particle.text = text;
     particle.boldness = boldness;
-    const durationMult = (1 + (text.length / 30)) / voiceRate;
-    particle.lifetime = 0.75 * durationMult;
-    particle.hSpeed = 0.4 / durationMult;
+    particle.lifetime = (0.5 + (text.length / 30)) / voiceRate;
+    particle.hSpeed = 0.3 / particle.lifetime;
     particle.color = data.getColorByNameSafe('tile text');
     particle.scale = 1.5;
     particle.blocking = true;
