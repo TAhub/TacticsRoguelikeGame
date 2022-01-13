@@ -5,6 +5,11 @@ if [ ! -d "./node_modules" ] ; then
   npm install
 fi
 
+# Also make the out directory if needed.
+if [ ! -d "./out" ] ; then
+	mkdir out
+fi
+
 # Get the output name.
 OUTPUTNAME="out/build.js"
 
@@ -39,7 +44,9 @@ if [ "$1" = "check" ] ; then
   eslint src/* debug_src/* --fix
 elif [ "$1" = "uncompiled" ] ; then
   echo "Copying into $OUTPUTNAME in uncompiled mode..."
-  rm $OUTPUTNAME
+  if [ -f $OUTPUTNAME ] ; then
+	rm $OUTPUTNAME
+  fi
   cat releaseFlags.js >> $OUTPUTNAME;
   cat src/main.js >> $OUTPUTNAME;
   for file in src/*js; do
@@ -49,7 +56,9 @@ elif [ "$1" = "uncompiled" ] ; then
   done
 elif [ "$1" = "debug" ] ; then
   echo "Copying into $OUTPUTNAME in uncompiled mode with debug..."
-  rm $OUTPUTNAME
+  if [ -f $OUTPUTNAME ] ; then
+	rm $OUTPUTNAME
+  fi
   cat debugFlags.js >> $OUTPUTNAME;
   cat src/main.js >> $OUTPUTNAME;
   for file in src/*js; do
