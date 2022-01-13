@@ -342,7 +342,7 @@
     <entry name="Roros" species="firin" jobs="survivor" level="1" armors="shirt:0,pants:0"
       gender="0" hairstyle="short" coloration="1" npcLines="roros" />
     <entry name="Ilretaami" species="skuri" jobs="rogue" level="14" weapon="dagger:1" armors="jerkin:1,leggings:1"
-      gender="1" hairstyle="medium" coloration="0" npcLines="Ilretaami" />
+      gender="1" hairstyle="ponytail" coloration="0" npcLines="Ilretaami" />
     <entry name="Joonert" species="karhun" jobs="ranger" level="17" weapon="bow:1" armors="jerkin:1,leggings:1"
       gender="0" hairstyle="bald" coloration="1" npcLines="Joonert" />
     <entry name="Gulas" species="firin" jobs="sage,survivor" level="25" armors="hat:2,shirt:2,leggings:2" techniques="ashball,unearth"
@@ -418,13 +418,13 @@
     <entry name="gun turret" species="turret" jobs="ranged monster" level="17" weapon="automata gun:1" />
     <entry name="saw crawler" species="crawler" jobs="tough monster" level="16" weapon="automata saw:1" />
     <entry name="paranoid tunneler" species="skuri" jobs="survivor" level="14" weapon0="dagger:1" weapon1="spear:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1"
-      hairstyle="short,medium,long" />
+      hairstyle="medium,medium,ponytail,ponytail,long" />
     <entry name="paranoid rogue" species="skuri" jobs="rogue" level="15" weapon0="dagger:1" weapon1="pistol:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1" techniques="crimson fangs,brain rattler"
-      hairstyle="short,medium" />
+      hairstyle="medium,ponytail" />
     <entry name="paranoid mage" species="skuri" jobs="mage" level="15" weapon0="spear:1" weapon1="mace:1" armors0="shirt:1,pants:1" armors1="hat:1,shirt:1,pants:1" techniques="arcana arrow,phantom flames"
-      hairstyle="medium,long" />
+      hairstyle="ponytail,long,long" />
     <entry name="paranoid mechanist" species="skuri" jobs="mechanist" level="16" weapon0="mace:1" weapon1="pistol:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1" techniques="saw crawler"
-      hairstyle="medium,long" />
+      hairstyle="ponytail,long" />
 
     <!-- bandit town enemies (levels 19-24) -->
     <entry name="bandit" species="karhun" jobs="survivor" level="16" weapon0="dagger:1" weapon1="spear:1" weapon2="pistol:1" armors0="hat:1,shirt:1,pants:1" armors1="jerkin:1,pants:1" armors2="jerkin:1,leggings:1" armors3="cap:1,jerkin:1,leggings:1" armors4="cap:1,bandit armor:0,pants:1" armors5="bandit armor:0,leggings:1" armors6="cap:1,bandit armor:1,leggings:1"
@@ -468,7 +468,7 @@
     <entry name="tethered mage" species="firin" jobs="mage,tethered" level="28" weapon0="spear:2" weapon1="mace:2" armors0="hat:2,shirt:2,pants:2" armors1="hat:2,shirt:2,skirt:2" techniques="arcana arrow,phantom flames" accessory="third eye"
       hairstyle="medium,ponytail" />
     <entry name="tethered mechanist" species="skuri" jobs="mechanist,tethered" level="30" weapon="mace:2" armors="cap:2,jerkin:2,leggings:2" techniques="saw crawler,slam" accessory="lantern"
-      hairstyle="medium,long" />
+      hairstyle="medium,ponytail,long" />
     <entry name="tethered gunner" species="firin" jobs="gunner,tethered" level="30" weapon0="longbarrel:1" weapon1="pistol:2" armors="cap:2,jerkin:2,leggings:2" techniques="snipe,brain rattler" accessory="oilskin cloak"
       hairstyle="short,ponytail" />
     <entry name="tethered healer" species="karhun" jobs="healer,tethered" level="30" weapon0="mace:2" weapon1="dagger:2" armors="hat:2,shirt:2,pants:2" techniques="first aid,siphon" accessory="fur cloak"
@@ -538,7 +538,7 @@
     <entry name="long" slotFillers="hairFront:205,hairBack:206"
       fluff="A common Skuri superstition is that cutting your hair is bad luck. Many Skuri wear their hair long, based on that belief." />
     <entry name="ponytail" slotFillers="hairFront:202,hairBack:214"
-      fluff="Wearing one's hair in a ponytail is popular with sailors, as it lets you keep your hair out of your eyes even if it has been months since your last trim." />
+      fluff="Wearing one's hair in a ponytail is popular with sailors or lower-class Skuri, as it lets you keep your untrimmed hair out of your eyes." />
   </category> <!-- hairstyles -->
   <category name="species appearances">
     <!-- playable species -->
