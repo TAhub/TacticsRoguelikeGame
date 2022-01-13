@@ -152,6 +152,7 @@ class Data {
   async fetchFont_(name, url) {
     const font = new FontFace(name, 'url(' + url + ')');
     await font.load();
+    document.fonts.add(font);
   }
 
   /** @return {Promise} */

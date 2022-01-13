@@ -94,7 +94,7 @@ class Particle {
     particle.lifetime = (0.5 + (text.length / 30)) / voiceRate;
     particle.hSpeed = 0.3 / particle.lifetime;
     particle.color = data.getColorByNameSafe('tile text');
-    particle.scale = 1.5;
+    particle.scale = 5 + boldness - (text.length / 50);
     particle.blocking = true;
     if (isVoice) particle.voiceLast = '';
     particle.soundPitch = soundPitch;
@@ -233,7 +233,7 @@ class Particle {
 
           const bold = this.boldness > 0;
           const italic = this.boldness < 0;
-          gfx.setFont(ctx, 75 + this.boldness * 15, bold, italic);
+          gfx.setFont(ctx, 32, bold, italic);
           const width = gfx.measureText(ctx, this.text);
           buffer.width = width + 4;
           buffer.height = buffer.width;
