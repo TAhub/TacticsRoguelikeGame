@@ -277,7 +277,7 @@
   </category> <!-- skills -->
   <category name="jobs">
     <entry name="warrior" reqSpecies="karhun,firin"
-      physiqueModifier="2" accuracy="10" armorProfiencyLevel="2" proficiencies="sword,mace,spear,slam,typhoon slash,sword wave,blitz strike"
+      physiqueModifier="2" accuracy="10" armorProfiencyLevel="2" proficiencies="sword,mace,spear,slam,typhoon slash,inner strength,blitz strike"
       fluff="Warriors are those who focus on conventional close-range combat. They learn how to use various weapons and techniques, and how to fight in heavy armor." />
     <entry name="rogue" reqSpecies="karhun,skuri"
       agilityModifier="2" resistance="10" attackPowerWhenDisengaged="40" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,brain rattler,crimson fangs,venom sting,miasma bolt,poison powder"
@@ -292,7 +292,7 @@
       willpowerModifier="2" specialPower="15" astra="20" life="15" proficiencies="dagger,mace,first aid,triage,siphon,venom sting,poison powder"
       fluff="Healers learn battlefield-tested Karhun first aid techniques, as well as a scattering of magic. They are perfect supports for a group of warriors." />
     <entry name="ranger" reqSpecies="karhun"
-      agilityModifier="1" willpowerModifier="1" armorProfiencyLevel="1" zones="1" attackPower="10" life="10" proficiencies="bow,dagger,rapid fire,inferno shot,poison arrow,inner strength"
+      agilityModifier="1" willpowerModifier="1" armorProfiencyLevel="1" zones="1" attackPower="10" life="10" proficiencies="bow,dagger,rapid fire,inferno shot,poison arrow,inner strength,poison powder"
       fluff="Rangers are representatives of an old Karhun tradition, now seen as obsolete due to firearms. They learn how to fight with bows, and be self-sufficient in the wilds." />
     <entry name="wanderer" reqSpecies="firin"
       agilityModifier="2" accuracy="25" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash,blitz strike"
@@ -301,7 +301,7 @@
       senseModifier="1" physiqueModifier="1" astra="25" life="25" proficiencies="dagger,spear,agony release,miasma bolt,mend,crimson fangs"
       fluff="Lab rats are those who act as test subjects for life-affecting spells, harmful and helpful both. Those who survive often learn the very magic that once tormented them so." />
     <entry name="sage" reqSpecies="firin"
-      senseModifier="1" cunningModifier="1" resistance="30" astra="20" proficiencies="spear,sword,ashball,agony release,inner strength,siphon,unearth"
+      senseModifier="1" cunningModifier="1" resistance="30" astra="20" proficiencies="spear,sword,ashball,agony release,miasma bolt,siphon,unearth"
       fluff="Sages are the remnants of the old Firin masters of magic theory. They study a variety of specialist spells, and excel at the art of counter-magic." />
     <entry name="martial artist" reqSpecies="karhun,firin"
       willpowerModifier="1" physiqueModifier="1" dodge="20" attackPower="10" life="20" martialArts="1" proficiencies="eye gouge,inner strength,illusion fist,solar combo"
@@ -359,7 +359,7 @@
       coloration="1" />
     <entry name="Asrami" species="skuri" jobs="lab rat" level="17" weapon="dagger:1" armors="hat:1,shirt:1,skirt:1" techniques="agony release,miasma bolt,crimson fangs,mend" accessory="lantern" fightingStyle="rat style" boss="1"
       gender="1" hairstyle="long hair" coloration="1" enemyLines="Gatekeeper" />
-    <entry name="Tunnel Guard Kaspikka" species="karhun" jobs="warrior" level="19" weapon="spear:1" armors="helmet:1,breastplate:1,greaves:1" techniques="sword wave,slam,trained rat" accessory="shield" skills="skin hardening,organ hardening,zoning" boss="1"
+    <entry name="Tunnel Guard Kaspikka" species="karhun" jobs="warrior" level="19" weapon="spear:1" armors="helmet:1,breastplate:1,greaves:1" techniques="wild spark,slam,trained rat" accessory="shield" skills="skin hardening,organ hardening,zoning" boss="1"
       gender="1" hairstyle="short hair" coloration="1" enemyLines="Kaspikka" />
     <entry name="Boss Jyrku" species="karhun" jobs="warrior" level="24" weapon="sword:2" armors="helmet:1,breastplate:1,greaves:1" techniques="blitz strike,typhoon slash,bandit flunky" accessory="fur cloak" fightingStyle="bear style" boss="1"
       gender="0" hairstyle="bald" coloration="0" enemyLines="Jyrku" />
@@ -971,9 +971,6 @@
     <entry name="mind wrench" astraCost="15" weaponAccuracy="100" scaling="level" usesSpecialPower="1" magic="1" charged="1" ranged="1" confusedPercent="95"
       animProjSprite="513" animProjScale="130" animProjSpeed="9" animProjColor="confusion" animStep="-15" animPostStepPause="33" animSound="spell electric crack" animStrikeSound="scream" animProjStrikePulseColor="confusion"
       fluff="Fill your ring with an uncomfortable amount of astra. The ring then releases it, as a wave of mind-warping energy." />
-    <entry name="sword wave" astraCost="10" weaponAccuracy="85" scaling="melee weapon" usesSpecialPower="1" charged="1" magic="1" ranged="1"
-      animProjSprite="513" animProjScale="110" animProjSpeed="3" animProjColor="arcana" animProjGlows="1" animStep="10" animPostStepPause="22" animStrikeSound="spell strike"
-      fluff="Build up astra in your weapon, then release it with a swing. A spell meant to be easy for people who are very used to weapon combat." />
     <entry name="enchanted blade" astraCost="10" weaponAccuracy="105" scaling="melee weapon" usesSpecialPower="1" charged="1"
       animProjSpeed="-1" animProjColor="arcana" animProjGlows="1" animStep="10" animStrikeSound="spell strike"
       fluff="Build up astra in your weapon, draw a spell-channel to your enemy, and let the channel guide your weapon with great force and accuracy. A spell designed for mages, to help them when they are caught up in melee combat." />
@@ -1229,7 +1226,7 @@
       bgm="catacombs bgm" />
     <entry name="grasslands" regionId="0"
       tileset="grasslands" enemyTemplates="scavenger,black cat,tortoise" bossTemplate="scavenger alpha"
-      loot="(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid,(R)wedding ring,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(W)bow:0"
+      loot="(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid,(R)wedding ring,(W)inner strength,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(W)bow:0"
       bgm="wild bgm" />
 
     <!-- regionId 1 (t0): shore -->
@@ -1261,13 +1258,13 @@
       bgm="cave bgm" />
     <entry name="caverns" regionId="2"
       tileset="stone tunnels" securityLevelTickets="1,1,1,1,2" enemyTemplates="skull rat,tunnel snake,blood slime,undead soldier,undead hunter" bossTemplate="Tunnel Guard Kaspikka"
-      loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(W)sword wave,(R)sungold ring,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(W)bow:1,(I)7"
+      loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(R)sungold ring,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(W)bow:1,(I)7"
       bgm="cave bgm" />
 
     <!-- regionId 3 (t1): bandit town -->
     <entry name="spooky manor" regionId="3" condition="boss map branch"
       tileset="spooky manor" securityLevelTickets="1,2" enemyTemplates="undead servant,undead butcher,undead aristocrat,black cat" bossTemplate="Lord Latos"
-      loot="(W)inner strength,(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)unearth,(H)1,(H)1,(I)7,(I)7"
+      loot="(W)miasma bolt,(A)helmet:1,(A)breastplate:1,(A)skirt:1,(W)unearth,(H)1,(H)1,(I)7,(I)7"
       bgm="manor bgm" />
     <entry name="locked wing" regionId="3" offshootFrom="spooky manor"
       tileset="spooky manor" securityLevelTickets="2" enemyTemplates="undead butcher" offshootBossTemplate="The Cannibal"
