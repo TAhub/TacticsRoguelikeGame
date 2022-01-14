@@ -280,8 +280,8 @@
       physiqueModifier="2" accuracy="10" armorProfiencyLevel="2" proficiencies="sword,mace,spear,slam,typhoon slash,inner strength,blitz strike"
       fluff="Warriors are those who focus on conventional close-range combat. They learn how to use various weapons and techniques, and how to fight in heavy armor." />
     <entry name="rogue" reqSpecies="karhun,skuri"
-      agilityModifier="2" resistance="10" attackPowerWhenDisengaged="40" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,brain rattler,crimson fangs,venom sting,miasma bolt,poison powder"
-      fluff="Rogues train in how to fight with a mobile, offensive style. They are strongest when fighting distracted enemies, especially mages." />
+      agilityModifier="2" moveDistance="1" resistance="5" attackPowerWhenDisengaged="40" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,brain rattler,crimson fangs,venom sting,miasma bolt,poison powder"
+      fluff="Rogues train in how to fight with a mobile, offensive style. They are strongest when fighting distracted enemies, especially lightly armored foes like mages." />
     <entry name="mage" reqSpecies="firin,skuri"
       senseModifier="2" specialPower="15" astra="20" life="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage,enchanted blade"
       fluff="Mages practice a standardized set of combat magic spells, focusing on sheer magical firepower. They excel at taking down armored foes, who usually lack resistance to magic." />
@@ -295,7 +295,7 @@
       agilityModifier="1" willpowerModifier="1" armorProfiencyLevel="1" zones="1" attackPower="10" life="10" proficiencies="bow,dagger,rapid fire,inferno shot,poison arrow,inner strength,poison powder"
       fluff="Rangers are representatives of an old Karhun tradition, now seen as obsolete due to firearms. They learn how to fight with bows, and be self-sufficient in the wilds." />
     <entry name="wanderer" reqSpecies="firin"
-      agilityModifier="2" accuracy="25" moveDistance="1" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash,blitz strike"
+      agilityModifier="2" accuracy="20" moveDistance="2" armorProfiencyLevel="1" proficiencies="sword,pistol,phantom flames,ashball,typhoon slash,blitz strike"
       fluff="Wanderers learn a traditional Firin combat art that combines steel and spell. Once taught to noble scions, this art is now practiced by secretive nomads." />
     <entry name="lab rat" reqSpecies="skuri"
       senseModifier="1" physiqueModifier="1" astra="25" life="25" proficiencies="dagger,spear,agony release,miasma bolt,mend,crimson fangs"
