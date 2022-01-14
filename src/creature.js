@@ -117,6 +117,7 @@ class Creature {
     this.finalBoss = false;
 
     // Temporary.
+    this.lifeToRecover = 0;
     this.pulseColor = '';
     this.pulseCycle = -1;
     this.deathAnim = -1;
@@ -511,6 +512,16 @@ class Creature {
   /** @return {number} */
   get rangeBonus() {
     return this.tallyBonusSources_((bS) => bS.rangeBonus);
+  }
+
+  /** @return {number} */
+  get stealthMod() {
+    return this.tallyBonusSources_((bS) => bS.stealthMod);
+  }
+
+  /** @return {number} */
+  get lifeRecovery() {
+    return this.tallyBonusSources_((bS) => bS.lifeRecovery);
   }
 
   /** @return {number} */
@@ -1030,6 +1041,7 @@ class Creature {
    * @param {!Creature.HitResult} hitResult
    */
   takeDamage(damage, hitResult) {
+    this.lifeToRecover += Math.floor(damage * this.lifeRecovery / 100);
     this.life = Math.max(0, this.life - damage);
     this.makeBar();
     this.shakeEffect += 0.15 + 0.3 * damage / this.maxLife;

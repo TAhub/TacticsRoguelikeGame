@@ -176,12 +176,21 @@
     <entry name="warrior spirit" reqSpecies="karhun"
       defense="8" initiative="4"
       fluff="The Karhun have a long cultural tradition of being warriors. Honorable warriors, perhaps not? But they value the bravery required to get into the thick of things, and the tenacity to stay there." />
+    <entry name="endurance" reqSpecies="karhun"
+      life="6" lifeRecovery="12"
+      fluff="The Karhun are big and tough, that's obvious to the eye. Even then, though, it can be surprising just how hard one of them is to put down." />
     <entry name="superstition" reqSpecies="skuri"
       resistance="8" life="4"
       fluff="The Skuri are fearful and imaginative, which often leads to them seeing imaginary dangers. Superstitious habits are a common result... and shockingly, some of them actually do ward off bad luck!" />
+    <entry name="stealth" reqSpecies="skuri"
+      stealthMod="2" dodge="6"
+      fluff="The Skuri are small and quick, and many of them learn to exploit that for stealt. A Karhun or Firin might turn their nose at such a cheap trick, but getting a sneak attack in can be a big advantage." />
     <entry name="pride" reqSpecies="firin"
       astra="8" accuracy="4"
       fluff="The Firin tend to have a high opinion of themselves, standards to uphold. Even those not of noble blood. They don't let themselves give up, or make embarrassing mistakes." />
+    <entry name="visionary" reqSpecies="firin"
+      rangeBonus="1" accuracy="6"
+      fluff="The Firin are often looking towards the future. For a brilliant new idea, or for their next meal... well, it varies. Still, they are excellent when it comes to far-reaching consequences." />
 
     <!-- general skills -->
     <entry name="form" physiqueReq="10"

@@ -66,6 +66,8 @@ class IngamePlugin extends GamePlugin {
     const mapC = this.mapController;
     if (mapC.active.side != Creature.Side.Player) return new Set(); // No need.
 
+    const stealthMod = mapC.active.stealthMod;
+
     const toWake = new Set();
     for (const creature of mapC.creatures) {
       if (toWake.has(creature.encounterId)) continue;
@@ -74,9 +76,15 @@ class IngamePlugin extends GamePlugin {
       // Don't bother triggering already-awake creatures, if in combat already.
       if (mapC.inCombat && !creature.encounterId) continue;
 
+      // How far can this creature see?
+      let aggroRange = 4 - stealthMod;
+      if (creature.boss) aggroRange += 3;
+      if (creature.monstrous) aggroRange += 1;
+
+      // Can they see you?
       const distance = Math.abs(mapC.active.cX - creature.cX) +
                        Math.abs(mapC.active.cY - creature.cY);
-      if (distance > 4) continue;
+      if (distance > aggroRange) continue;
 
       if (!creature.hasLOS(mapC.active.cX, mapC.active.cY, mapC)) continue;
 
@@ -1106,6 +1114,11 @@ class IngamePlugin extends GamePlugin {
     });
     if (!enemiesAlive) {
       // Combat over!
+      for (const player of mapController.players) {
+        if (player.dead) continue;
+        player.life += player.lifeToRecover;
+        player.life = Math.min(player.life, player.maxLife);
+      }
       mapController.inCombat = false;
       mapController.cleanCreatures();
       mapController.active = mapController.players[0];

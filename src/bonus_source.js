@@ -128,6 +128,11 @@ class BonusSource {
   }
 
   /** @return {number} */
+  get lifeRecovery() {
+    return this.getNumberValue('lifeRecovery');
+  }
+
+  /** @return {number} */
   get astra() {
     return this.getNumberValue('astra');
   }
@@ -145,6 +150,11 @@ class BonusSource {
   /** @return {number} */
   get rangeBonus() {
     return this.getNumberValue('rangeBonus');
+  }
+
+  /** @return {number} */
+  get stealthMod() {
+    return this.getNumberValue('stealthMod');
   }
 
   /** @return {boolean} */
@@ -186,9 +196,11 @@ class BonusSource {
     value += this.dodge;
     value += this.dodgeVsDisengage / 3;
     value += this.life;
+    value += this.lifeRecovery / 2;
     value += this.initiative;
     value += this.moveDistance * 5;
     value += this.rangeBonus * 6;
+    value += this.stealthMod * 3;
     value += this.hitsToCrits * mechHitsToCritsValue;
     value += this.halveStatuses ? 15 : 0;
     value += this.astra;
@@ -256,10 +268,12 @@ class BonusSource {
     addFn(this.dodgeVsDisengage, '% bonus dodge vs disengage attacks');
     addFn(this.hitsToCrits, '% hits to crits');
     addFn(this.life, '% life');
+    addFn(this.lifeRecovery, '% damage regained as life at end of battle');
     addFn(this.astra, '% astra');
     addFn(this.initiative, ' initiative');
     addFn(this.moveDistance, ' move distance');
-    addFn(this.rangeBonus, ' bonus range');
+    addFn(this.rangeBonus, ' bonus range for ranged attacks');
+    addFn(-this.stealthMod, ' aggro range when leading party');
 
     const lines = [];
     if (this.fluff && !optNoFluff) {
