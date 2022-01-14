@@ -927,7 +927,8 @@ class Creature {
     if (this.immune) options.opacity = 75;
     if (this.deathAnim > 0) {
       options.opacity = 100 - 100 * this.deathAnim;
-      if (this.side == Creature.Side.Enemy && !this.summonOwner && !this.boss) {
+      if (this.side == Creature.Side.Enemy && !this.summonOwner && !this.boss &&
+          this.moveDistance > 0) {
         // Normal enemies run away when they "die".
         const distance = this.deathAnim * 2;
         x -= Math.cos(this.facing) * distance;
