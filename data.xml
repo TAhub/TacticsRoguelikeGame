@@ -324,7 +324,7 @@
 
     <!-- enemy-only jobs -->
     <entry name="tough monster"
-      physiqueModifier="2" defense="35" life="15" unarmoredDefense="1" />
+      physiqueModifier="2" defense="35" life="25" resistance="-10" unarmoredDefense="1" />
     <entry name="ranged monster"
       physiqueModifier="1" agilityModifier="1" attackPower="40" life="10" unarmoredDefense="1" />
     <entry name="sneaky monster"
