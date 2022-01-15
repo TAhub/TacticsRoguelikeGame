@@ -84,14 +84,24 @@ class IngamePlugin extends GamePlugin {
   /** @private */
   maybeTriggerEncounters_() {
     const idsToWake = this.getEncounterIdsToWake_();
+    this.wakeEncounterIds_(idsToWake);
+  }
+
+  /**
+   * @param {!Set.<number>} idsToWake
+   * @private
+   */
+  wakeEncounterIds_(idsToWake) {
     if (idsToWake.size > 0) {
+      let wokeSomething = false;
       for (const creature of this.mapController.creatures) {
         if (!idsToWake.has(creature.encounterId)) continue;
         if (creature.side != Creature.Side.Enemy) continue;
         creature.encounterId = 0;
         if (creature.boss) this.mapController.combatBosses.add(creature);
+        wokeSomething = true;
       }
-      if (!this.mapController.inCombat) {
+      if (!this.mapController.inCombat && wokeSomething) {
         this.mapController.inCombat = true;
         this.mapController.active = null;
         this.endTurn_();
@@ -1265,11 +1275,22 @@ class IngamePlugin extends GamePlugin {
               this.mapController, this.selectedWeapon);
           const attackInfo = attackInfos.get(toI(this.cursorX, this.cursorY));
           if (attackInfo) {
+            const target = tileOver.creatures[0];
             attackInfo.fn();
             active.effectAction(() => {
               if (!this.mapController.inCombat) {
-                // Clean the players.
-                this.mapController.cleanCreatures();
+                if (target) {
+                  // If you shot an enemy, and that enemy was asleep,
+                  // then wake up that creature's encounter... even if
+                  // you killed them!
+                  const id = target.encounterId;
+                  if (id > 0) this.wakeEncounterIds_(new Set([id]));
+                }
+                if (!this.mapController.inCombat) {
+                // Clean the players... if you didn't just trigger an
+                // encounter. If you did, status effects shouldn't go away.
+                  this.mapController.cleanCreatures();
+                }
               }
               this.selectedWeaponI = null;
               this.techMode = false;
