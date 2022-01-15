@@ -920,11 +920,11 @@ class IngamePlugin extends GamePlugin {
   update(elapsed) {
     const mapController = this.mapController;
     if (!mapController) return;
+    const active = mapController.active;
 
     mapController.update(elapsed);
 
-    if (mapController.active.side == Creature.Side.Player &&
-        !mapController.inCombat) {
+    if (active.side == Creature.Side.Player && !mapController.inCombat) {
       this.changeBGM_();
     }
 
@@ -934,15 +934,13 @@ class IngamePlugin extends GamePlugin {
         tile.setCursorColor(null);
       }
     }
-    if (mapController.active.side == Creature.Side.Player &&
-        !mapController.animating) {
+    if (active.side == Creature.Side.Player && !mapController.animating) {
       if (mapController.inCombat || this.selectedWeapon) {
         let actions;
         if (this.selectedWeapon) {
-          actions = mapController.active.getAttacks(
-              mapController, this.selectedWeapon);
+          actions = active.getAttacks(mapController, this.selectedWeapon);
         } else {
-          actions = mapController.active.getMoves(mapController);
+          actions = active.getMoves(mapController);
         }
         for (const action of actions.values()) {
           const tile = mapController.tileAt(action.x, action.y);
@@ -951,7 +949,17 @@ class IngamePlugin extends GamePlugin {
       }
       const tileOver = mapController.tileAt(this.cursorX, this.cursorY);
       if (tileOver) {
-        tileOver.setCursorColor(data.getColorByNameSafe('tile over'));
+        let colorName = 'tile over';
+        if (!this.selectedWeapon && !mapController.inCombat) {
+          // If moving here will trigger an encounter, change the color.
+          const [oldX, oldY] = [active.x, active.y];
+          [active.x, active.y] = [tileOver.x, tileOver.y];
+          if (this.getEncounterIdsToWake_().size > 0) {
+            colorName = 'tile selected over';
+          }
+          [active.x, active.y] = [oldX, oldY];
+        }
+        tileOver.setCursorColor(data.getColorByNameSafe(colorName));
       }
       for (const cr of this.highlighted) {
         const colorName = 'tile over' + cr.colorSuffix;
@@ -963,7 +971,6 @@ class IngamePlugin extends GamePlugin {
     }
 
     if (mapController.inCombat) {
-      const active = mapController.active;
       if (active && ((!active.hasAction && !active.hasMove) || active.dead)) {
         if (!mapController.animating) this.endTurn_();
       } else if (active && active.side == Creature.Side.Enemy) {
