@@ -35,9 +35,9 @@ class MapController {
       this.inventory.push(null);
     }
     this.inCombat = false;
+    /** @type {!Set.<!Creature>} */
+    this.combatBosses = new Set();
     this.cameraAngle = 0;
-    /** @type {?function(boolean)} */
-    this.gameOverFn;
   }
 
   /**
@@ -602,11 +602,6 @@ class MapController {
       }
       creature.cachedParticles = [];
       if (creature.shouldDisposeOf) {
-        if (creature.finalBoss) {
-          if (this.gameOverFn) {
-            this.gameOverFn(true);
-          }
-        }
         creature.removeFromTiles(this);
         creatureDead = true;
         creature.clear3DData();
@@ -620,9 +615,6 @@ class MapController {
     }
     if (creatureDead) {
       this.creatures = this.creatures.filter((cr) => !cr.shouldDisposeOf);
-      if (this.players.every((p) => p.shouldDisposeOf) && this.gameOverFn) {
-        this.gameOverFn(false);
-      }
     }
 
     let particleDead = false;

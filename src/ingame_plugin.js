@@ -39,23 +39,11 @@ class IngamePlugin extends GamePlugin {
       this.mapController.save();
     }
     this.mapController.reloadMaps();
-    this.mapController.gameOverFn = (victory) => this.gameOver_(victory);
 
     this.changeBGM_();
     this.maybeTriggerEncounters_();
 
     return this;
-  }
-
-  /**
-   * @param {boolean} victory
-   * @private
-   */
-  gameOver_(victory) {
-    this.switchToPlugin(new MessagePlugin(victory ? 'victory' : 'defeat'));
-
-    // Also, unload all 3D data.
-    this.mapController.clear3DData();
   }
 
   /**
@@ -101,6 +89,7 @@ class IngamePlugin extends GamePlugin {
         if (!idsToWake.has(creature.encounterId)) continue;
         if (creature.side != Creature.Side.Enemy) continue;
         creature.encounterId = 0;
+        if (creature.boss) this.mapController.combatBosses.add(creature);
       }
       if (!this.mapController.inCombat) {
         this.mapController.inCombat = true;
@@ -1105,7 +1094,8 @@ class IngamePlugin extends GamePlugin {
     const mapController = this.mapController;
     const playersAlive = mapController.players.some((cr) => !cr.dead);
     if (!playersAlive) {
-      // TODO: navigate to a game-over screen
+      this.switchToPlugin(new MessagePlugin('defeat'));
+      this.mapController.clear3DData();
       return;
     }
     if (!mapController.inCombat) return;
@@ -1119,6 +1109,13 @@ class IngamePlugin extends GamePlugin {
         player.life += player.lifeToRecover;
         player.life = Math.min(player.life, player.maxLife);
       }
+      for (const boss of mapController.combatBosses) {
+        if (!boss.finalBoss) continue;
+        this.switchToPlugin(new MessagePlugin('victory'));
+        this.mapController.clear3DData();
+        return;
+      }
+      mapController.combatBosses.clear();
       mapController.inCombat = false;
       mapController.cleanCreatures();
       mapController.active = mapController.players[0];
