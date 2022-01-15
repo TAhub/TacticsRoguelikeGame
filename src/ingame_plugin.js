@@ -1287,8 +1287,8 @@ class IngamePlugin extends GamePlugin {
                   if (id > 0) this.wakeEncounterIds_(new Set([id]));
                 }
                 if (!this.mapController.inCombat) {
-                // Clean the players... if you didn't just trigger an
-                // encounter. If you did, status effects shouldn't go away.
+                  // Clean the players... if you didn't just trigger an
+                  // encounter. If you did, status effects shouldn't go away.
                   this.mapController.cleanCreatures();
                 }
               }
