@@ -133,7 +133,7 @@
       attackPower="10" defense="15"
       fluff="A fighting style pioneered by the Karhun. Focuses on keeping the opponent on the back foot through constant aggressive attacks." />
     <entry name="rat style" reqSpecies="skuri" color="black"
-      attackPowerWhenDisengaged="20" dodge="10" moveDistance="1"
+      attackPowerWhenDisengaged="20" dodge="10" moveDistance="1" martialArts="1"
       fluff="A fighting style first developed in secret for the Skuri to use against their Firin slave-masters. Focuses on hit-and-run attacks." />
     <entry name="cat style" reqSpecies="firin" color="orange"
       accuracy="10" powerVsUninjured="20"
