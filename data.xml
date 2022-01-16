@@ -313,7 +313,7 @@
       senseModifier="1" cunningModifier="1" resistance="30" astra="20" proficiencies="spear,sword,ashball,agony release,miasma bolt,siphon,unearth"
       fluff="Sages are the remnants of the old Firin masters of magic theory. They study a variety of specialist spells, and excel at the art of counter-magic." />
     <entry name="martial artist" reqSpecies="karhun,firin"
-      willpowerModifier="1" physiqueModifier="1" dodge="20" attackPower="10" life="20" martialArts="1" proficiencies="eye gouge,inner strength,illusion fist,solar combo"
+      willpowerModifier="1" physiqueModifier="1" dodge="20" attackPower="10" astra="10" martialArts="1" rapidStyles="1" proficiencies="eye gouge,inner strength,illusion fist,solar combo"
       fluff="Martial artists train in various unarmed combat styles. Their punches are as deadly as any sword, and their martial arts techniques can even produce magic." />
     <entry name="survivor" reqSpecies="karhun,skuri"
       willpowerModifier="2" resistance="20" attackPower="5" specialPower="5" armorProfiencyLevel="1" proficiencies="dagger,spear,pistol,slam,arcana arrow,snipe,first aid"

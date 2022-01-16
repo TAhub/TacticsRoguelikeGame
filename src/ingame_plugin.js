@@ -151,7 +151,7 @@ class IngamePlugin extends GamePlugin {
 
   /** @private */
   makeUI_() {
-    const mapC = this.mapController;
+    const mapC = /** @type {!MapController} */ (this.mapController);
     const active = mapC.active;
     if (active.animating) return;
 
@@ -244,19 +244,23 @@ class IngamePlugin extends GamePlugin {
     }
     if (!this.techMode) {
       if (active.secondWeapon && (active.hasMove || !mapC.inCombat)) {
+        const willCostMove = mapC.inCombat;
         const clickFn = () => {
           [active.weapon, active.secondWeapon] =
               [active.secondWeapon, active.weapon];
           this.equipCleanUp_(active);
           this.menuController.clear();
-          if (mapC.inCombat) active.hasMove = false;
+          if (willCostMove) active.hasMove = false;
         };
         const tooltip = [
-          'Switch to ' + active.secondWeapon.name + ' by using your move?',
+          willCostMove ?
+          'Switch to ' + active.secondWeapon.name + ' by using your move?' :
+          'Switch to ' + active.secondWeapon.name + '?',
         ].concat(active.secondWeapon.getDescription(active));
         specialActions.push(new MenuTile('Switch Weapons', {clickFn, tooltip}));
       }
       if (active.hasMove || !mapC.inCombat) {
+        const willCostMove = mapC.inCombat && !active.rapidStyles;
         for (const type of active.knownFightingStyleTypes) {
           const selected = !!active.activeFightingStyle &&
                            active.activeFightingStyle.type == type;
@@ -267,14 +271,16 @@ class IngamePlugin extends GamePlugin {
             active.say(sample.name + '!');
             active.startColorPulse(sample.color);
             this.menuController.clear();
-            if (mapC.inCombat) active.hasMove = false;
+            if (willCostMove) active.hasMove = false;
             // Toggle in and out of your tiles to reset th, since fighting
             // styles can give you flying.
             active.removeFromTiles(mapC);
             active.addToTiles(mapC);
           };
           const tooltip = [
-            'Switch to ' + sample.name + ' by using your move?',
+            willCostMove ?
+            'Switch to ' + sample.name + ' by using your move?' :
+            'Switch to ' + sample.name + '?',
           ].concat(sample.getDescription(active));
           specialActions.push(new MenuTile(sample.name,
               {clickFn, tooltip, selected}));

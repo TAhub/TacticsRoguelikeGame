@@ -178,6 +178,11 @@ class BonusSource {
   }
 
   /** @return {boolean} */
+  get rapidStyles() {
+    return this.getBooleanValue('rapidStyles');
+  }
+
+  /** @return {boolean} */
   get unarmoredDefense() {
     return this.getBooleanValue('unarmoredDefense');
   }
@@ -206,6 +211,7 @@ class BonusSource {
     value += this.astra;
     value += this.zones ? 10 : 0;
     value += this.flying ? 20 : 0;
+    value += this.rapidStyles ? 10 : 0;
     return value;
   }
 
@@ -236,6 +242,9 @@ class BonusSource {
     if (this.martialArts) {
       effects.push(
           'makes unarmed attacks stronger and lets you use them like a weapon');
+    }
+    if (this.rapidStyles) {
+      effects.push('can switch fighting style without consuming move action');
     }
     if (this.halveStatuses) effects.push('halve effect of status effects');
     if (this.zones) {

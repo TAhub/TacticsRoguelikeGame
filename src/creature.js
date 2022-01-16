@@ -552,6 +552,11 @@ class Creature {
   }
 
   /** @return {boolean} */
+  get rapidStyles() {
+    return this.tallyBonusSources_((bS) => bS.rapidStyles ? 1 : 0) > 0;
+  }
+
+  /** @return {boolean} */
   get unarmoredDefense() {
     if (this.armors.length > 0) return false;
     return this.tallyBonusSources_((bS) => bS.unarmoredDefense ? 1 : 0) > 0;
