@@ -85,5 +85,9 @@
       credit="Crossing the Chasm by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/3562-crossing-the-chasm*NL*License: https://filmmusic.io/standard-license" />
     <entry name="manor bgm" filename="scp-x6x-hopes-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
       credit="SCP-x6x (Hopes) by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/6736-scp-x6x-hopes*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="boss bgm" filename="strength-of-the-titans-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Strength Of The Titans by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/5744-strength-of-the-titans*NL*License: https://filmmusic.io/standard-license" />
+    <entry name="final boss bgm" filename="unlight-by-kevin-macleod-from-filmmusic-io.mp3" music="1" lazyLoad="1"
+      credit="Unlight by Kevin MacLeod*NL*Link: https://incompetech.filmmusic.io/song/4566-unlight*NL*License: https://filmmusic.io/standard-license" />
   </category> <!-- sounds -->
 </data>

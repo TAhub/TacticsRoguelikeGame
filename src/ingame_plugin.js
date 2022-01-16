@@ -105,6 +105,15 @@ class IngamePlugin extends GamePlugin {
         this.mapController.inCombat = true;
         this.mapController.active = null;
         this.endTurn_();
+        if (this.mapController.combatBosses.size > 0) {
+          let hasFinalBoss = false;
+          for (const boss of this.mapController.combatBosses) {
+            if (!boss.finalBoss) continue;
+            hasFinalBoss = true;
+            break;
+          }
+          audio.playMusic(hasFinalBoss ? 'final boss bgm' : 'boss bgm');
+        }
       }
     }
   }
@@ -1143,6 +1152,7 @@ class IngamePlugin extends GamePlugin {
       mapController.cleanCreatures();
       mapController.active = mapController.players[0];
       this.menuController.clear();
+      this.changeBGM_(); // If the bgm changed, change back.
     }
   }
 
