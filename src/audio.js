@@ -15,7 +15,7 @@ class AudioController {
 
   /** @param {string} type */
   async playMusic(type) {
-    // Switch to this new music, if necessary.
+    // Don't switch if the song is already playing, or if music is off.
     if (this.musicPlaying == type) return;
     this.stopMusic();
     const volume = saveManager.getConfiguration('musicVolume');
@@ -25,6 +25,10 @@ class AudioController {
     // Lazy-load the song.
     data.lazyLoadSoundsRequested.add(type);
     await data.fetchAppropriateSounds();
+
+    // During that await, another song could have started.
+    // Check to see if this should still be played.
+    if (this.musicPlaying != type) return;
 
     // Actually play it, now that it's loaded.
     const buffer = data.sounds.get(type);
