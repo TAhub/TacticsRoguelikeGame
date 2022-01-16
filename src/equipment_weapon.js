@@ -40,8 +40,14 @@ class Weapon extends Equipment {
     return this.getBooleanValue('usesSpecialPower');
   }
 
+  /** @return {boolean} */
+  get reliable() {
+    return this.getBooleanValue('reliable');
+  }
+
   /** @return {number} */
   get weaponAccuracy() {
+    if (this.reliable) return 120;
     return (this.baseWeapon ? (this.baseWeapon.weaponAccuracy - 90) : 0) +
            this.getNumberValue('weaponAccuracy');
   }
@@ -459,7 +465,11 @@ class Weapon extends Equipment {
       effects.push(this.minRange + '-' + this.maxRange + ' range');
     }
     if (!this.helpful && !this.summon) {
-      effects.push(this.weaponAccuracy + '% accuracy');
+      if (this.reliable) {
+        effects.push('cannot get natural misses grazes or crits');
+      } else {
+        effects.push(this.weaponAccuracy + '% accuracy');
+      }
       if (this.weaponHitsToCrits > 0) {
         effects.push(this.weaponHitsToCrits + '% hits to crits');
       }

@@ -286,7 +286,7 @@
   </category> <!-- skills -->
   <category name="jobs">
     <entry name="warrior" reqSpecies="karhun,firin"
-      physiqueModifier="2" accuracy="10" armorProfiencyLevel="2" proficiencies="sword,mace,spear,slam,typhoon slash,inner strength,blitz strike"
+      physiqueModifier="2" accuracy="10" armorProfiencyLevel="2" proficiencies="sword,mace,spear,slam,measured blow,typhoon slash,inner strength,blitz strike"
       fluff="Warriors are those who focus on conventional close-range combat. They learn how to use various weapons and techniques, and how to fight in heavy armor." />
     <entry name="rogue" reqSpecies="karhun,skuri"
       agilityModifier="2" moveDistance="1" resistance="5" attackPowerWhenDisengaged="40" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,brain rattler,crimson fangs,venom sting,miasma bolt,poison powder"
@@ -918,6 +918,9 @@
     <entry name="slam" astraCost="5" weaponAccuracy="75" scaling="melee weapon" shakenPercent="30"
       animProjSpeed="1" animProjColor="lightning" animPostStepPause="15" animStrikeSound="smash"
       fluff="Swing your weapon with more force but less finesse, hitting enemies hard enough to leave them shaken." />
+    <entry name="measured blow" astraCost="5" reliable="1" scaling="melee weapon"
+      animPostStepPause="40"
+      fluff="Put extra care into your attack, and make a disciplined attack that will hit reliably, at the cost of giving up on scoring an amazing hit." />
     <entry name="coordinated attack" astraCost="5" weaponAccuracy="80" scaling="melee weapon" commandsSummon="1"
       animProjSpeed="-1" animProjColor="steel" animProjGlows="1" animPreStepPause="33"
       fluff="Make a quick attack while simultaneously giving an order to your summon, aiming to overwhelm your enemy." />
@@ -1235,7 +1238,7 @@
       bgm="catacombs bgm" />
     <entry name="grasslands" regionId="0"
       tileset="grasslands" enemyTemplates="scavenger,black cat,tortoise" bossTemplate="scavenger alpha"
-      loot="(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid,(R)wedding ring,(W)inner strength,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(W)bow:0"
+      loot="(W)rusty metal rod:0,(A)jerkin:0,(A)shirt:0,(A)cap:0,(W)saw crawler,(W)arcana arrow,(W)first aid,(R)wedding ring,(W)inner strength,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(H)0,(W)bow:0,(W)measured blow"
       bgm="wild bgm" />
 
     <!-- regionId 1 (t0): shore -->

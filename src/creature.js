@@ -22,28 +22,34 @@ class AttackEstimate {
    * @param {number} mult
    * @param {number} hitChance
    * @param {number} hitsToCrits
+   * @param {boolean=} optReliable
    */
-  constructor(mult, hitChance, hitsToCrits) {
+  constructor(mult, hitChance, hitsToCrits, optReliable) {
     this.mult = mult;
     this.hitChance = hitChance;
     this.hitsToCrits = hitsToCrits;
+    this.reliable = optReliable || false;
   }
 
   /** @return {!Map.<!Creature.HitResult, number>} */
   get chances() {
     const chances = new Map();
-    for (let roll = this.hitChance - 100; roll < this.hitChance; roll++) {
-      let hitResult = Creature.HitResult.Crit;
-      if (roll < -40) {
-        hitResult = Creature.HitResult.Miss;
-      } else if (roll < 0) {
-        hitResult = Creature.HitResult.Graze;
-      } else if (roll < 110) {
-        hitResult = Creature.HitResult.Hit;
+    if (this.reliable) {
+      chances.set(Creature.HitResult.Hit, 100);
+    } else {
+      for (let roll = this.hitChance - 100; roll < this.hitChance; roll++) {
+        let hitResult = Creature.HitResult.Crit;
+        if (roll < -40) {
+          hitResult = Creature.HitResult.Miss;
+        } else if (roll < 0) {
+          hitResult = Creature.HitResult.Graze;
+        } else if (roll < 110) {
+          hitResult = Creature.HitResult.Hit;
+        }
+        let chance = chances.get(hitResult) || 0;
+        chance += 1;
+        chances.set(hitResult, chance);
       }
-      let chance = chances.get(hitResult) || 0;
-      chance += 1;
-      chances.set(hitResult, chance);
     }
     if (this.hitsToCrits > 0) {
       const hitChance = chances.get(Creature.HitResult.Hit) || 0;
@@ -1796,7 +1802,7 @@ class Creature {
       }
     }
     mult = Math.max(0, mult);
-    return new AttackEstimate(mult, hitChance, hitsToCrits);
+    return new AttackEstimate(mult, hitChance, hitsToCrits, weapon.reliable);
   }
 
   /**
