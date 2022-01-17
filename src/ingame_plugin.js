@@ -285,6 +285,9 @@ class IngamePlugin extends GamePlugin {
             // styles can give you flying.
             active.removeFromTiles(mapC);
             active.addToTiles(mapC);
+            // Also check to see if changing fighting styles starts combat,
+            // since fighting styles can give stealthMod.
+            this.maybeTriggerEncounters_();
           };
           const tooltip = [
             willCostMove ?
