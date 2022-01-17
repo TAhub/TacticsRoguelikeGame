@@ -150,7 +150,16 @@ class MainMenuPlugin extends GamePlugin {
         const text = (data.getValue('sounds', sound, 'credit') || '');
         if (text) {
           const slot = new MenuTileSlot(0, y, 2, 1);
-          slot.attachTile(new MenuTile(text));
+          const clickFn = () => {
+            const regex = /https:[\S]+/;
+            for (const line of text.split('*NL*')) {
+              const result = regex.exec(line);
+              if (!result || result.length == 0) continue;
+              window.location.href = result[0];
+              return;
+            }
+          };
+          slot.attachTile(new MenuTile(text, {clickFn}));
           this.menuController.slots.push(slot);
           y += 1;
         }
