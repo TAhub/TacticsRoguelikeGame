@@ -115,7 +115,7 @@ class MenuTile {
     this.colorSuffix = (optOptions ? optOptions.colorSuffix : null) || null;
     this.textBackground = !!optOptions && optOptions.textBackground;
     this.over = false;
-    this.text = text;
+    this.text = text ? text.split('*NL*') : [];
     this.x = 0;
     this.y = 0;
     this.w = 0;
@@ -157,12 +157,18 @@ class MenuTile {
     }
 
     // Determine text size.
-    if (this.text && this.w > 0 && this.textSize == 0) {
+    if (this.text.length > 0 && this.w > 0 && this.textSize == 0) {
       this.textSize = Math.min(this.h - 2 * this.b, this.w / 2);
       while (true) {
         gfx.setFont(ctx, this.textSize);
-        const width = gfx.measureText(ctx, this.text);
-        if (width < this.w - this.b * 2) break;
+        const fits = this.text.every((line) => {
+          const height = this.textSize * this.text.length;
+          if (height > this.h - this.b * 2) return false;
+          const width = gfx.measureText(ctx, line);
+          if (width > this.w - this.b * 2) return false;
+          return true;
+        });
+        if (fits) break;
         this.textSize -= 2;
       }
     }
@@ -178,22 +184,30 @@ class MenuTile {
       ctx.drawImage(this.spriteCanvas, dX, dY);
     }
 
-    if (this.text && this.w > 0) {
+    if (this.text.length > 0 && this.w > 0) {
       gfx.setFont(ctx, this.textSize);
+      const h = this.textSize * this.text.length;
       if (this.textBackground) {
         // Make a background.
         ctx.fillStyle = data.getColorByNameSafe('tile' + suffix);
-        const w = gfx.measureText(ctx, this.text);
-        ctx.fillRect(x + (this.w - w) / 2, y + this.h - this.textSize,
-            w, this.textSize);
+        let w = 0;
+        for (const line of this.text) {
+          w = Math.max(w, gfx.measureText(ctx, line));
+        }
+        ctx.fillRect(x + (this.w - w) / 2, y + this.h - h, w, h);
       }
       ctx.fillStyle = data.getColorByNameSafe('tile text' + suffix);
-      if (this.spriteCanvas) {
-        gfx.drawText(ctx, x + this.w / 2, y + this.h, this.text,
-            Graphics.TextAlign.Center, Graphics.TextBaseline.Bottom);
-      } else {
-        gfx.drawText(ctx, x + this.w / 2, y + this.h / 2, this.text,
-            Graphics.TextAlign.Center, Graphics.TextBaseline.Middle);
+      for (let i = 0; i < this.text.length; i++) {
+        const line = this.text[i];
+        let dY = y;
+        dY += (i + (this.spriteCanvas ? 1 : 0.5)) * this.h / this.text.length;
+        if (this.spriteCanvas) {
+          gfx.drawText(ctx, x + this.w / 2, dY, line,
+              Graphics.TextAlign.Center, Graphics.TextBaseline.Bottom);
+        } else {
+          gfx.drawText(ctx, x + this.w / 2, dY, line,
+              Graphics.TextAlign.Center, Graphics.TextBaseline.Middle);
+        }
       }
     }
 

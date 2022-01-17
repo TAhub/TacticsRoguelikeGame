@@ -147,8 +147,7 @@ class MainMenuPlugin extends GamePlugin {
     const page = optPage || 0;
     for (const sound of allSounds) {
       if (Math.floor(pageProgress) == page) {
-        const text = (data.getValue('sounds', sound, 'credit') || '')
-            .split('*NL*').join('\n');
+        const text = (data.getValue('sounds', sound, 'credit') || '');
         if (text) {
           const slot = new MenuTileSlot(0, y, 2, 1);
           slot.attachTile(new MenuTile(text));
