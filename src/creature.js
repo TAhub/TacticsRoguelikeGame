@@ -1073,7 +1073,7 @@ class Creature {
     this.lifeToRecover += Math.floor(damage * this.lifeRecovery / 100);
     this.life = Math.max(0, this.life - damage);
     this.makeBar();
-    this.shakeEffect += 0.15 + 0.3 * damage / this.maxLife;
+    this.shakeEffect += 0.15 + 0.3 * Math.min(1, damage / this.maxLife);
     const boldness = hitResult - Creature.HitResult.Hit;
     this.addTextParticle_('-' + damage, boldness);
     const numBlood = Math.floor(50 * damage / this.maxLife);
