@@ -1077,7 +1077,7 @@ class Creature {
     this.shakeEffect += 0.15 + 0.3 * damageShowPercent;
     const boldness = hitResult - Creature.HitResult.Hit;
     this.addTextParticle_('-' + damage, boldness);
-    const numBlood = Math.floor(50 * damageShowPercent);
+    const numBlood = Math.floor((this.monstrous ? 75 : 50) * damageShowPercent);
     for (let i = 0; i < numBlood; i++) {
       this.addBloodParticle_();
     }
