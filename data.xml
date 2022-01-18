@@ -172,7 +172,7 @@
     <entry name="enemy"
       attackPower="2" specialPower="2" defense="2" accuracy="2" dodge="2" resistance="2" />
     <entry name="overflowing astra"
-      overflowingAstra="1" accuracy="-8" />
+      overflowingAstra="1" accuracy="-3" />
 
     <!-- species-specific skills -->
     <entry name="warrior spirit" reqSpecies="karhun"

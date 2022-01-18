@@ -502,7 +502,7 @@ class Creature {
       techAttackValue += value * uses / 4;
     }
     if (techs > 0) techAttackValue /= techs;
-    const oaValue = this.overflowingAstraDamage * specialPower / 1500;
+    const oaValue = this.overflowingAstraDamage * specialPower / 2000;
 
     // Get final points.
     let generationPoints = this.maxLife / mechBaseLife;
@@ -1162,6 +1162,8 @@ class Creature {
    */
   getOverflowingAstraTiles(mapController) {
     const radius = new Set();
+    if (this.astra == 0) return radius;
+    if (this.overflowingAstraDamage == 0) return radius;
     const r = this.moveDistance > 0 ? 1 : 2;
     this.tileCallback(mapController, this.x, this.y, (tile) => {
       if (!tile) return;
@@ -1198,10 +1200,31 @@ class Creature {
     // Activate your overflowing astra, if you have it.
     const overflowingAstraDamage = this.overflowingAstraDamage;
     if (overflowingAstraDamage > 0) {
+      // Determine which creatures to hit, and use astra.
       const tiles = this.getOverflowingAstraTiles(mapController);
+      const creatures = new Set();
+      let stacks = 0;
+      this.effectAction(() => {
+        for (const tile of tiles) {
+          for (const creature of tile.creatures) {
+            if (creature.side == this.side) continue;
+            if (creature.side == Creature.Side.Npc) continue;
+            creatures.add(creature);
+          }
+        }
+        if (creatures.size == 0) return;
+        const astraPerStack = 3;
+        stacks = Math.min(
+            this.overflowingAstraStacks,
+            Math.max(1, Math.floor(this.astra / astraPerStack)));
+        this.astra = Math.max(0, this.astra - stacks * astraPerStack);
+        this.makeBar();
+      });
+
+      // Make the visual effect.
       const particles = [];
       this.effectAction(() => {
-        const stacks = this.overflowingAstraStacks;
+        if (stacks == 0) return;
         const numParticles = 8 + 4 * stacks;
         const color = data.getColorByNameSafe('arcana');
         const sprites = [502, 503, 504];
@@ -1219,23 +1242,22 @@ class Creature {
           }
         }
       });
+
+      // Wait for the visual effect, before having gameplay effects.
       this.actions.push((elapsed) => {
         for (const particle of particles) {
           if (particle.delay > 0) return false;
         }
         return true;
       });
+
+      // Apply damage.
       this.effectAction(() => {
-        const creatures = new Set();
-        for (const tile of tiles) {
-          for (const creature of tile.creatures) {
-            if (creature.side == this.side) continue;
-            if (creature.side == Creature.Side.Npc) continue;
-            creatures.add(creature);
-          }
-        }
+        if (stacks == 0) return;
+        const maxStacks = this.overflowingAstraStacks;
         for (const creature of creatures) {
-          let finalDamage = overflowingAstraDamage;
+          // If you didn't get ALL of your stacks, only do partial damage.
+          let finalDamage = overflowingAstraDamage * stacks / maxStacks;
           const rand = (Math.random() * 2 - 1) * mechCritBonus / 3;
           finalDamage *= this.specialPower - creature.resistance + rand;
           finalDamage /= 100;
