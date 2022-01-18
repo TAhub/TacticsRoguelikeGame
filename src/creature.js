@@ -350,6 +350,7 @@ class Creature {
     for (const job of this.jobs) {
       pierced += job.defense / 2;
     }
+    pierced += this.species.defense / 2;
     pierced += this.defenseFromExcessArmorProfiencyLevel / 2;
     return pierced;
   }
@@ -501,6 +502,7 @@ class Creature {
       techAttackValue += value * uses / 4;
     }
     if (techs > 0) techAttackValue /= techs;
+    const oaValue = this.overflowingAstraDamage * specialPower / 1500;
 
     // Get final points.
     let generationPoints = this.maxLife / mechBaseLife;
@@ -509,7 +511,7 @@ class Creature {
         this.dodge + (this.dodgeVsDisengage / 3) + (this.flying ? 15 : 0);
     generationPoints *= (100 + totalDodge) / 100;
     generationPoints *= (200 + this.initiative) / 200;
-    generationPoints *= 0.2 + freeAttackValue + techAttackValue;
+    generationPoints *= 0.2 + freeAttackValue + techAttackValue + oaValue;
     generationPoints *= (5 + this.moveDistance) / 8;
     if (this.monstrous) generationPoints *= 0.75; // Big monsters are unwieldly.
     return Math.floor(200 * generationPoints);
@@ -540,6 +542,18 @@ class Creature {
   /** @return {number} */
   get zonesStacks() {
     return this.tallyBonusSources_((bS) => bS.zones ? 1 : 0);
+  }
+
+  /** @return {number} */
+  get overflowingAstraStacks() {
+    return this.tallyBonusSources_((bS) => bS.overflowingAstra ? 1 : 0);
+  }
+
+  /** @return {number} */
+  get overflowingAstraDamage() {
+    const stacks = this.overflowingAstraStacks;
+    if (stacks <= 0) return 0;
+    return stacks * multForTier(this.levelObj.tier) * mechBaseDamage / 4;
   }
 
   /** @return {boolean} */
@@ -943,6 +957,8 @@ class Creature {
       y += Math.sin(angle) * distance;
     }
 
+    const hideUI = !inCombat && this.species.hideUIOutOfBattle;
+
     // Draw.
     if (!this.spriteObject) this.makeAppearance();
     const options = {facing: this.facing, rockAngle: this.rockAngle};
@@ -974,9 +990,11 @@ class Creature {
       }
     }
     this.spriteObject.addToGroup(group, camera, x, y, th, options);
-    if (!this.barSpriteObject) this.makeBar();
-    this.barSpriteObject.addToGroup(
-        group, camera, this.cX, this.cY, this.th, {drawBack: -0.05});
+    if (!hideUI) {
+      if (!this.barSpriteObject) this.makeBar();
+      this.barSpriteObject.addToGroup(
+          group, camera, this.cX, this.cY, this.th, {drawBack: -0.05});
+    }
     if (inCombat) {
       if (!this.floorShapeObject) this.makeFloorShape_();
       this.floorShapeObject.addToGroup(group, this.cX, this.cY, this.floorTh);
@@ -1137,8 +1155,34 @@ class Creature {
     return true;
   }
 
-  /** @param {function():boolean} queryBattleOverFn */
-  turnStart(queryBattleOverFn) {
+  /**
+   * @param {!MapController} mapController
+   * @return {!Set.<!GameMapTile>}
+   */
+  getOverflowingAstraTiles(mapController) {
+    const radius = new Set();
+    const r = this.moveDistance > 0 ? 1 : 2;
+    this.tileCallback(mapController, this.x, this.y, (tile) => {
+      if (!tile) return;
+      for (let y = tile.y - r; y <= tile.y + r; y++) {
+        for (let x = tile.x - r; x <= tile.x + r; x++) {
+          const d = Math.abs(x - tile.x) + Math.abs(y - tile.y);
+          if (d > r) continue;
+          const tileAt = mapController.tileAt(x, y);
+          if (!tileAt) continue;
+          if (tileAt.creatures[0] == this) continue;
+          radius.add(tileAt);
+        }
+      }
+    });
+    return radius;
+  }
+
+  /**
+   * @param {!MapController} mapController
+   * @param {function():boolean} queryBattleOverFn
+   */
+  turnStart(mapController, queryBattleOverFn) {
     // Set off any charging spells.
     if (this.chargingTarget && this.chargingWeapon &&
         !this.chargingTarget.dead) {
@@ -1148,6 +1192,58 @@ class Creature {
       });
       this.attack_(this.chargingTarget, this.chargingWeapon,
           Creature.AttackType.Charged);
+    }
+
+    // Activate your overflowing astra, if you have it.
+    const overflowingAstraDamage = this.overflowingAstraDamage;
+    if (overflowingAstraDamage > 0) {
+      const tiles = this.getOverflowingAstraTiles(mapController);
+      const particles = [];
+      this.effectAction(() => {
+        const stacks = this.overflowingAstraStacks;
+        const numParticles = 8 + 4 * stacks;
+        const color = data.getColorByNameSafe('arcana');
+        const sprites = [502, 503, 504];
+        this.startColorPulse(color);
+        audio.play('scream', stacks * 250, 1);
+        for (const tile of tiles) {
+          for (let i = 0; i < numParticles; i++) {
+            const p = Particle.makePuffParticle(sprites, 1, color, 0.15);
+            p.x = tile.x + Math.random();
+            p.y = tile.y + Math.random();
+            p.h = tile.th * gfxThScale;
+            p.delay = calcDistance(p.x - this.cX, p.y - this.cY) * 0.15;
+            particles.push(p);
+            this.cachedParticles.push(p);
+          }
+        }
+      });
+      this.actions.push((elapsed) => {
+        for (const particle of particles) {
+          if (particle.delay > 0) return false;
+        }
+        return true;
+      });
+      this.effectAction(() => {
+        const creatures = new Set();
+        for (const tile of tiles) {
+          for (const creature of tile.creatures) {
+            if (creature.side == this.side) continue;
+            if (creature.side == Creature.Side.Npc) continue;
+            creatures.add(creature);
+          }
+        }
+        for (const creature of creatures) {
+          let finalDamage = overflowingAstraDamage;
+          const rand = (Math.random() * 2 - 1) * mechCritBonus / 3;
+          finalDamage *= this.specialPower - creature.resistance + rand;
+          finalDamage /= 100;
+          finalDamage = Math.floor(finalDamage);
+          if (finalDamage > 0) {
+            creature.takeDamage(finalDamage, Creature.HitResult.Hit);
+          }
+        }
+      });
     }
 
     // Once your charged spell is over, the battle might be over too. Try it!

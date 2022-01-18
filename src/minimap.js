@@ -175,6 +175,7 @@ class Minimap {
             creature.cX - active.cX, creature.cY - active.cY);
         if (distance > maxDistance) continue;
       }
+      if (creature.species.hideUIOutOfBattle) continue;
       if (creature.side != Creature.Side.Player) {
         const x = Math.round(creature.x);
         const y = Math.round(creature.y);

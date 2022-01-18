@@ -173,6 +173,11 @@ class BonusSource {
   }
 
   /** @return {boolean} */
+  get overflowingAstra() {
+    return this.getBooleanValue('overflowingAstra');
+  }
+
+  /** @return {boolean} */
   get martialArts() {
     return this.getBooleanValue('martialArts');
   }
@@ -207,6 +212,7 @@ class BonusSource {
     value += this.rangeBonus * 6;
     value += this.stealthMod * 3;
     value += this.hitsToCrits * mechHitsToCritsValue;
+    value += this.overflowingAstra ? 20 : 0;
     value += this.halveStatuses ? 15 : 0;
     value += this.astra;
     value += this.zones ? 10 : 0;

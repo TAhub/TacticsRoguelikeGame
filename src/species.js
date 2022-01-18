@@ -37,6 +37,12 @@ class Species extends BonusSource {
 
   // Appearance.
 
+  /** @return {boolean} */
+  get hideUIOutOfBattle() {
+    const category = 'species appearances';
+    return data.getBooleanValue(category, this.type, 'hideUIOutOfBattle');
+  }
+
   /** @return {number} */
   get voicePitch() {
     const category = 'species appearances';

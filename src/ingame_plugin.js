@@ -149,7 +149,7 @@ class IngamePlugin extends GamePlugin {
       if (mapController.active) break;
       mapController.turnTaken = new Set();
     }
-    mapController.active.turnStart(() => {
+    mapController.active.turnStart(mapController, () => {
       this.checkBattleOver_();
       return !mapController.inCombat;
     });
@@ -1059,6 +1059,14 @@ class IngamePlugin extends GamePlugin {
       const tile = mapC.tileAt(this.cursorX, this.cursorY);
       if (tile) {
         tooltip.push('Elevation: ' + tile.th);
+        for (const creature of mapC.creatures) {
+          if (creature.encounterId > 0) continue;
+          const tiles = creature.getOverflowingAstraTiles(mapC);
+          if (tiles.has(tile)) {
+            tooltip.push('A foe\'s overflowing astra will harm you here');
+            break;
+          }
+        }
       }
     }
     if (willBreakEngagement) {

@@ -171,6 +171,8 @@
     <!-- enemy-only skills -->
     <entry name="enemy"
       attackPower="2" specialPower="2" defense="2" accuracy="2" dodge="2" resistance="2" />
+    <entry name="overflowing astra"
+      overflowingAstra="1" accuracy="-8" />
 
     <!-- species-specific skills -->
     <entry name="warrior spirit" reqSpecies="karhun"
@@ -382,7 +384,7 @@
       gender="0" />
     <entry name="Gatekeeper" species="karhun" jobs="rogue,tethered" level="30" weapon="dagger:2" armors="cap:2,jerkin:2,leggings:2" accessory="intimidating mask" techniques="crimson fangs,venom sting" skills="form" fightingStyle="boar style" boss="1"
       gender="0" hairstyle="short" coloration="1" enemyLines="Gatekeeper" />
-    <entry name="Lord Rigus" species="firin" jobs="mage,undead" level="36" weapon="mace:2" armors="shirt:2,pants:2" accessory="regal cloak" ring="rusted focus" techniques="arcana arrow,spell barrage,enchanted blade,court guard,court mage,court assassin" skills="prey instincts,zoning" fightingStyle="frog style" finalBoss="1"
+    <entry name="Lord Rigus" species="firin" jobs="mage,undead" level="36" weapon="mace:2" armors="shirt:2,pants:2" accessory="regal cloak" ring="rusted focus" techniques="arcana arrow,spell barrage,enchanted blade,court guard,court mage,court assassin" skills="prey instincts,zoning,overflowing astra" fightingStyle="frog style" finalBoss="1"
       gender="0" hairstyle="medium" coloration="0" enemyLines="Rigus" />
 
     <!-- grasslands enemies (levels 1-6) -->
@@ -425,6 +427,8 @@
     <entry name="blood slime" species="slime" jobs="magic monster" level="15" weapon="tackle:1" techniques="siphon,blood splitling"
       coloration="0" />
     <entry name="gun turret" species="turret" jobs="ranged monster" level="17" weapon="automata gun:1" />
+    <entry name="cursed box" species="box" jobs="magic monster" level="16" weapon="tackle:1" techniques="arcana arrow" skills="overflowing astra"
+      hairstyle="head box,torso box,leg box,accessory box" />
     <entry name="saw crawler" species="crawler" jobs="tough monster" level="16" weapon="automata saw:1" />
     <entry name="paranoid tunneler" species="skuri" jobs="survivor" level="14" weapon0="dagger:1" weapon1="spear:1" armors0="jerkin:1,leggings:1" armors1="cap:1,jerkin:1,leggings:1"
       hairstyle="medium,medium,ponytail,ponytail,long" />
@@ -468,6 +472,8 @@
     <entry name="seed spitter" species="seed spitter" jobs="ranged monster" level="23" weapon="seed spit:2" techniques="poison arrow" />
     <entry name="walking topiary" species="walking topiary" jobs="tough monster,tough monster" level="26" weapon="tackle:2" />
     <entry name="walking bonsai" species="walking bonsai" jobs="tough monster" level="24" weapon="tackle:2" techniques="eye gouge" />
+    <entry name="unstable rat" species="rat" jobs="magic monster" level="20" weapon="claws:1" skills="overflowing astra,overflowing astra" techniques="enchanted blade"
+      coloration="1" />
 
     <!-- tether assembly enemies (levels 31-36) -->
     <entry name="tethered warrior" species="karhun" jobs="warrior,tethered" level="28" weapon0="sword:2" weapon1="spear:2" armors="helmet:2,breastplate:2,greaves:2" techniques="blitz strike,typhoon slash" accessory="shield"
@@ -503,6 +509,8 @@
       physiqueModifier="7" cunningModifier="-7" defense="10" />
     <entry name="turret"
       physiqueModifier="5" cunningModifier="-5" attackPower="13" moveDistance="-3" rangeBonus="2" />
+    <entry name="box"
+      cunningModifier="8" agilityModifier="-8" defense="30" dodge="-17" moveDistance="-3" rangeBonus="2" />
     <entry name="prime automata"
       physiqueModifier="10" senseModifier="-7" agilityModifier="-3" defense="10" monstrous="1" />
     <entry name="seed spitter"
@@ -548,6 +556,11 @@
       fluff="A common Skuri superstition is that cutting your hair is bad luck. Many Skuri wear their hair long, based on that belief." />
     <entry name="ponytail" slotFillers="hairFront:202,hairBack:214"
       fluff="Wearing one's hair in a ponytail is popular with sailors or lower-class Skuri, as it lets you keep your untrimmed hair out of your eyes." />
+    <!-- boxes have their box type as a "hairstyle" -->
+    <entry name="head box" slotFillers="box:510" />
+    <entry name="torso box" slotFillers="box:508" />
+    <entry name="leg box" slotFillers="box:509" />
+    <entry name="accessory box" slotFillers="box:511" />
   </category> <!-- hairstyles -->
   <category name="species appearances">
     <!-- playable species -->
@@ -642,13 +655,19 @@
     <entry name="crawler"
       appearanceSizeMult="95" headHeightPoint="35" weaponHeightPoint="40"
       colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
-      <layer sprite="711" color="skinColor" showObjectStatuses="1" />
+      <layer color="skinColor" fillSlotId="box" showObjectStatuses="1" />
     </entry> <!-- crawler -->
     <entry name="turret"
       appearanceSizeMult="125" headHeightPoint="45"
       colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
       <layer sprite="710" color="skinColor" showObjectStatuses="1" />
     </entry> <!-- turret -->
+    <entry name="box"
+      hideUIOutOfBattle="1"
+      appearanceSizeMult="100" headHeightPoint="40"
+      colorationTickets0="1" skinColor0="steel" bloodColor0="brown fabric">
+      <layer sprite="510" color="skinColor" showObjectStatuses="1" />
+    </entry> <!-- box -->
     <entry name="prime automata"
       appearanceSizeMult="90" headHeightPoint="60" weaponHeightPoint="45"
       voicePitch="-400" voiceRate="75"
@@ -657,7 +676,8 @@
     </entry> <!-- prime automata -->
     <entry name="rat"
       appearanceSizeMult="65" headHeightPoint="35" weaponHeightPoint="25"
-      colorationTickets0="1" skinColor0="bone" bloodColor0="blood">
+      colorationTickets0="1" skinColor0="bone" bloodColor0="blood"
+      colorationTickets1="1" skinColor1="arcana" bloodColor1="blood">
       <layer sprite="703" color="skinColor" showAllStatuses="1" />
     </entry> <!-- rat -->
     <entry name="slime"
@@ -1268,9 +1288,13 @@
       tileset="stone tunnels" enemyTemplates="skull rat,giant turtle" npc="Ilretaami"
       loot="(A)jerkin:1,(C)shield,(W)brain rattler,(H)1,(H)1"
       bgm="cave bgm" />
+    <entry name="treasure room" regionId="2" offshootFrom="caverns"
+      tileset="stone tunnels" enemyTemplates="cursed box"
+      loot="(A)helmet:1,(W)sword:1,(W)mace:1,(A)shirt:1,(R)sungold ring,(H)1,(H)1,(H)1,(A)greaves:1,(I)7"
+      bgm="cave bgm" />
     <entry name="caverns" regionId="2"
-      tileset="stone tunnels" securityLevelTickets="1,1,1,1,2" enemyTemplates="skull rat,tunnel snake,blood slime,undead soldier,undead hunter" bossTemplate="Tunnel Guard Kaspikka"
-      loot="(W)dagger:1,(W)sword:1,(W)spear:1,(W)mace:1,(A)shirt:1,(A)armored skirt:0,(A)greaves:1,(A)hat:1,(A)helmet:1,(A)breastplate:1,(W)phantom flames,(R)sungold ring,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(W)bow:1,(I)7"
+      tileset="stone tunnels" securityLevelTickets="1,1,1,1,2" enemyTemplates="skull rat,tunnel snake,blood slime,undead soldier,undead hunter,cursed box" bossTemplate="Tunnel Guard Kaspikka"
+      loot="(W)dagger:1,(W)spear:1,(A)armored skirt:0,(A)hat:1,(A)breastplate:1,(W)phantom flames,(H)1,(H)1,(H)1,(W)bow:1"
       bgm="cave bgm" />
 
     <!-- regionId 3 (t1): bandit town -->
@@ -1301,11 +1325,11 @@
       loot="(R)thorny band,(I)4,(I)1,(H)2,(H)2,(I)7"
       bgm="maze bgm" />
     <entry name="twisted wasteland" regionId="4"
-      tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar" bossTemplate="king boar"
+      tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar,unstable rat" bossTemplate="king boar"
       loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(I)7"
       bgm="wastes bgm" />
     <entry name="twisted cave" regionId="4" offshootFrom="twisted wasteland"
-      tileset="twisted stone tunnels" enemyTemplates="paranoid mage,paranoid mechanist,paranoid rogue" offshootBossTemplate="prime automata"
+      tileset="twisted stone tunnels" enemyTemplates="paranoid mage,paranoid mechanist,paranoid rogue,unstable rat" offshootBossTemplate="prime automata"
       loot="(W)longbarrel:1,(A)helmet:2,(H)2"
       bgm="burrow bgm" />
 
