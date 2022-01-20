@@ -384,6 +384,11 @@ class Creature {
   }
 
   /** @return {number} */
+  get dodgeVsMelee() {
+    return this.tallyBonusSources_((bS) => bS.dodgeVsMelee);
+  }
+
+  /** @return {number} */
   get baseMaxLife() {
     let life = mechBaseLife;
     if (this.finalBoss) life *= 1.5;
@@ -507,8 +512,9 @@ class Creature {
     // Get final points.
     let generationPoints = this.maxLife / mechBaseLife;
     generationPoints *= (100 + this.resistance + this.defense) / 100;
-    const totalDodge =
-        this.dodge + (this.dodgeVsDisengage / 3) + (this.flying ? 15 : 0);
+    const totalDodge = this.dodge +
+        (this.dodgeVsDisengage / 3) + (this.dodgeVsMelee / 2.5) +
+        (this.flying ? 15 : 0);
     generationPoints *= (100 + totalDodge) / 100;
     generationPoints *= (200 + this.initiative) / 200;
     generationPoints *= 0.2 + freeAttackValue + techAttackValue + oaValue;
@@ -1885,6 +1891,9 @@ class Creature {
     }
     if (attackType == Creature.AttackType.Disengage) {
       hitChance -= target.dodgeVsDisengage;
+    }
+    if (!weapon.ranged) {
+      hitChance -= target.dodgeVsMelee;
     }
     const rand = optRandomFactor ? (2 * Math.random() - 1) : 0;
     switch (hitResult) {

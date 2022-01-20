@@ -844,16 +844,16 @@
     </entry> <!-- dagger -->
     <entry name="sword"
       animProjSprite="513" animProjScale="90" animProjSpeed="5" animStep="10" animSound="swing" animStrikeSound="slash">
-      <variety name="rusty sword" tier="0" weaponAccuracy="90" defense="10" armorBlunted="1"
+      <variety name="rusty sword" tier="0" weaponAccuracy="90" dodgeVsMelee="20" armorBlunted="1"
         color="rusty" slotFillers="weaponHand:604"
         fluff="A sword that has not been maintained well. The edge is barely sharp anymore." />
-      <variety name="sword" tier="1" weaponAccuracy="95" defense="10" armorBlunted="1"
+      <variety name="sword" tier="1" weaponAccuracy="95" dodgeVsMelee="20" armorBlunted="1"
         color="iron" slotFillers="weaponHand:604"
         fluff="A basic but effective sword. Well-balanced, and good at parrying." />
-      <variety name="noble sword" tier="2" weaponAccuracy="95" defense="15" armorBlunted="1"
+      <variety name="noble sword" tier="2" weaponAccuracy="95" dodgeVsMelee="30" armorBlunted="1"
         color="steel" slotFillers="weaponHand:605"
         fluff="A well-made sword that has been designed to be even better at parrying." />
-      <variety name="firebrand" tier="2" weaponAccuracy="90" defense="10" burningPercent="40" armorBlunted="1"
+      <variety name="firebrand" tier="2" weaponAccuracy="90" dodgeVsMelee="20" burningPercent="40" armorBlunted="1"
         color="fire" slotFillers="weaponHand:604" animProjGlows="1" animStrikeSound="explosion" animProjStrikePulseColor="fire"
         fluff="A surprisingly dull sword with a powerful enchantment on it. The edge heats up whenever it is swung, to a painful degree." />
     </entry> <!-- sword -->

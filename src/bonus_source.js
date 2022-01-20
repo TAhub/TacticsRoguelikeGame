@@ -113,6 +113,11 @@ class BonusSource {
   }
 
   /** @return {number} */
+  get dodgeVsMelee() {
+    return this.getNumberValue('dodgeVsMelee');
+  }
+
+  /** @return {number} */
   get dodgeVsDisengage() {
     return this.getNumberValue('dodgeVsDisengage');
   }
@@ -204,6 +209,7 @@ class BonusSource {
     value += this.resistance;
     value += this.accuracy;
     value += this.dodge;
+    value += this.dodgeVsMelee / 2.5;
     value += this.dodgeVsDisengage / 3;
     value += this.life;
     value += this.lifeRecovery / 2;
@@ -280,6 +286,7 @@ class BonusSource {
     addFn(this.defense, '% defense');
     addFn(this.resistance, '% resistance');
     addFn(this.dodge, '% dodge');
+    addFn(this.dodgeVsMelee, '% dodge vs melee attacks');
     addFn(this.dodgeVsDisengage, '% bonus dodge vs disengage attacks');
     addFn(this.hitsToCrits, '% hits to crits');
     addFn(this.life, '% life');
