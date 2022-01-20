@@ -1170,7 +1170,7 @@ class Creature {
     const radius = new Set();
     if (this.astra == 0) return radius;
     if (this.overflowingAstraDamage == 0) return radius;
-    const r = this.moveDistance > 0 ? 1 : 2;
+    const r = this.moveDistance > 0 ? 2 : 3;
     this.tileCallback(mapController, this.x, this.y, (tile) => {
       if (!tile) return;
       for (let y = tile.y - r; y <= tile.y + r; y++) {
@@ -1231,7 +1231,7 @@ class Creature {
       const particles = [];
       this.effectAction(() => {
         if (stacks == 0) return;
-        const numParticles = 8 + 4 * stacks;
+        const numParticles = 4 + 2 * stacks;
         const color = data.getColorByNameSafe('arcana');
         const sprites = [502, 503, 504];
         this.startColorPulse(color);
