@@ -389,7 +389,7 @@
       gender="1" hairstyle="short hair" coloration="1" enemyLines="Kaspikka" />
     <entry name="Boss Jyrku" species="karhun" jobs="warrior" level="24" weapon="sword:2" armors="helmet:1,breastplate:1,greaves:1" techniques="blitz strike,typhoon slash,bandit flunky" accessory="fur cloak" fightingStyle="bear style" boss="1"
       gender="0" hairstyle="bald" coloration="0" enemyLines="Jyrku" />
-    <entry name="The Cannibal" species="firin" jobs="rogue,undead" level="25" weapon="dagger:1" armors="jerkin:2,leggings:2" techniques="crimson fangs" ring="thorny band" fightingStyle="monkey style" boss="1"
+    <entry name="The Cannibal" species="ovcan" jobs="rogue,undead" level="25" weapon="dagger:1" armors="jerkin:2,leggings:2" techniques="crimson fangs" ring="thorny band" fightingStyle="monkey style" boss="1"
       gender="1" hairstyle="short" coloration="0" enemyLines="Cannibal" />
     <entry name="Lord Latos" species="firin" jobs="sage,undead" level="25" weapon="claws:1" armors="hat:2,shirt:2,pants:2" accessory="regal cloak" techniques="ashball,siphon,unearth" fightingStyle="bird style" boss="1"
       gender="0" hairstyle="ponytail" coloration="1" enemyLines="Latos" />
@@ -491,8 +491,10 @@
       coloration="1" />
 
     <!-- tether assembly enemies (levels 31-36) -->
-    <entry name="tethered warrior" species="karhun" jobs="warrior,tethered" level="28" weapon0="sword:2" weapon1="spear:2" armors="helmet:2,breastplate:2,greaves:2" techniques="blitz strike,typhoon slash" accessory="shield"
+    <entry name="tethered warrior" species="karhun" jobs="warrior,tethered" level="28" weapon0="sword:2" weapon1="spear:2" armors="helmet:2,breastplate:2,greaves:2" techniques="blitz strike,typhoon slash" accessory="clever wrists"
       hairstyle="short,bald" />
+    <entry name="tethered knight" species="ovcan" jobs="knight,tethered" level="30" weapon0="sword:2" weapon1="spear:2" armors="helmet:2,breastplate:2,greaves:2" techniques="slam,mend" accessory="shield"
+      hairstyle="medium" />
     <entry name="tethered rogue" species="skuri" jobs="rogue,tethered" level="28" weapon0="dagger:2" weapon1="sword:2" armors="cap:2,jerkin:2,leggings:2" techniques="crimson fangs,venom sting" accessory="wind bangles"
       hairstyle="short,medium" />
     <entry name="tethered mage" species="firin" jobs="mage,tethered" level="28" weapon0="spear:2" weapon1="mace:2" armors0="hat:2,shirt:2,pants:2" armors1="hat:2,shirt:2,skirt:2" techniques="arcana arrow,phantom flames" accessory="third eye"
@@ -1147,6 +1149,8 @@
       fluff="A magical thorn, found safely locked away in a box. Impale the palm of your hand with this and you'll unlock a vengeful power... at the cost of distracting pain." />
     <entry name="wind bangles" moveDistance="1" dodge="10"
       fluff="A set of tarnished golden bangles, with some sort of magic in them that speeds up the legs of the wearer." />
+    <entry name="clever wrists" attackPower="7" dodgeVsMelee="20"
+      fluff="A set of wristbands made of bunched-up twine. They contain magic that improves skills with close-combat fighting; perhaps once, these were used to subtly cheat in duels." />
   </category> <!-- accessories -->
   <category name="armors">
     <!-- torso armors -->
@@ -1360,7 +1364,7 @@
       bgm="manor bgm" />
     <entry name="bandit town" regionId="3"
       tileset="village" securityLevelTickets="1,1,2" enemyTemplates="bandit,bandit sneak,bandit enforcer,bandit jack,bandit archer,black cat" bossTemplate="Boss Jyrku"
-      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band,(W)triage,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1"
+      loot="(A)bandit armor:0,(A)shirt:1,(A)leggings:1,(A)pants:1,(C)oilskin cloak,(A)cap:1,(W)spell barrage,(W)typhoon slash,(W)poison powder,(R)mage band,(W)triage,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(H)1,(C)clever wrists"
       bgm="town bgm" />
     <entry name="house" offshootFrom="bandit town"
       tileset="house" npc="Joonert"
@@ -1395,7 +1399,7 @@
       loot="(A)armored skirt:1,(A)hat:2,(W)spear:3,(A)breastplate:2,(W)pistol:3,(H)2,(H)2,(H)2,(H)2,(H)2,(H)2,(H)2,(H)2,(W)bow:3"
       bgm="tether bgm" />
     <entry name="control room" regionId="5" condition="boss map"
-      tileset="tether assembly control room" enemyTemplates="tethered warrior,tethered rogue,tethered mage,tethered healer" bossTemplate="Lord Rigus"
+      tileset="tether assembly control room" enemyTemplates="tethered knight,tethered rogue,tethered mage" bossTemplate="Lord Rigus"
       bgm="tether bgm" />
     <entry name="security room" regionId="5" condition="misc leaf map"
       tileset="tether assembly" securityLevelTickets="3" enemyTemplates="reinforced gun turret,tethered mage,tethered mechanist,tethered warrior"
