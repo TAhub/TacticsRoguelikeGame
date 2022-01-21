@@ -167,6 +167,17 @@ class Weapon extends Equipment {
     // Some modifiers are applied in here, so they are visible in the weapon
     // description.
     switch (status) {
+      case Weapon.Status.Barrier:
+        // Barrier is strong, since it can be applied before the enemy arrives.
+        effect *= 0.6;
+        // Barrier also raises TWO stats, so halve it on top of that.
+        effect /= 2;
+        break;
+      case Weapon.Status.Cure:
+        // Cure is a bit stronger than the other non-damaging status effects
+        // since it's purely reactive.
+        effect *= 1.3;
+        break;
       case Weapon.Status.Bleeding:
         // Bleeding is an upgrade over direct damage, a bit.
         effect *= 1.15;
@@ -502,6 +513,7 @@ Weapon.Status = {
   Blinded: 'blinded',
   Confused: 'confused',
   Cure: 'cure',
+  Barrier: 'barrier',
 };
 /** @type {!Array.<!Weapon.Status>} */
 Weapon.allStatuses = [
@@ -512,4 +524,5 @@ Weapon.allStatuses = [
   Weapon.Status.Blinded,
   Weapon.Status.Confused,
   Weapon.Status.Cure,
+  Weapon.Status.Barrier,
 ];

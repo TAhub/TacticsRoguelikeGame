@@ -93,6 +93,11 @@ class BonusSource {
   }
 
   /** @return {number} */
+  get helpfulPower() {
+    return this.getNumberValue('helpfulPower');
+  }
+
+  /** @return {number} */
   get defense() {
     return this.getNumberValue('defense');
   }
@@ -205,6 +210,7 @@ class BonusSource {
     value += this.attackPowerWhenDisengaged / 2;
     value += this.specialPower;
     value += this.powerVsUninjured * 0.75;
+    value += this.helpfulPower / 2;
     value += this.defense;
     value += this.resistance;
     value += this.accuracy;
@@ -282,6 +288,7 @@ class BonusSource {
     addFn(this.specialAttackPower, '% power to zoning and disengage attacks');
     addFn(this.specialPower, '% special power');
     addFn(this.powerVsUninjured, '% bonus power vs uninjured');
+    addFn(this.helpfulPower, '% power to heals and buffs');
     addFn(this.accuracy, '% accuracy');
     addFn(this.defense, '% defense');
     addFn(this.resistance, '% resistance');

@@ -164,6 +164,13 @@
       <line trigger="pre-sleep" terrainCategory="indoors"
         s="Should we be resting in some strange building like this? If you're sure..." />
     </entry> <!-- skuri -->
+    <entry name="ovcan">
+      <!-- death -->
+      <!-- TODO -->
+
+      <!-- sleep -->
+      <!-- TODO -->
+    </entry> <!-- ovcan -->
     <entry name="firin">
       <!-- death -->
       <line trigger="death"
@@ -334,6 +341,12 @@
       <name s="$(karhun particles!capitalize)$(karhun female suffixes)" />
       <name s="$(karhun particles!capitalize)$(karhun particles)$(karhun female suffixes)" />
     </entry> <!-- karhun female names -->
+    <entry name="ovcan male names">
+      <name s="$(ovcan prefixes!capitalize)$(ovcan male suffixes)" />
+    </entry> <!-- ovcan male names -->
+    <entry name="ovcan female names">
+      <name s="$(ovcan prefixes!capitalize)$(ovcan female suffixes)" />
+    </entry> <!-- ovcan female names -->
     <entry name="firin male names">
       <name s="$(firin particles!capitalize)$(firin particles)s" />
       <name s="$(firin particles!capitalize)$(firin particles)s" />
@@ -477,5 +490,88 @@
       <name s="e" />
       <name s="a" />
     </entry> <!-- skuri female vowels -->
+    <entry name="ovcan prefixes">
+      <name s="ade" />
+      <name s="al" />
+      <name s="an" />
+      <name s="bed" />
+      <name s="bet" />
+      <name s="bled" />
+      <name s="bran" />
+      <name s="cadf" />
+      <name s="caer" />
+      <name s="cat" />
+      <name s="cerid" />
+      <name s="culh" />
+      <name s="daf" />
+      <name s="del" />
+      <name s="eil" />
+      <name s="ein" />
+      <name s="eir" />
+      <name s="em" />
+      <name s="en" />
+      <name s="fol" />
+      <name s="gar" />
+      <name s="glen" />
+      <name s="glyn" />
+      <name s="gruff" />
+      <name s="gwa" />
+      <name s="hedd" />
+      <name s="heul" />
+      <name s="ie" />
+      <name s="ill" />
+      <name s="lle" />
+      <name s="lli" />
+      <name s="ma" />
+      <name s="mair" />
+      <name s="mald" />
+      <name s="me" />
+      <name s="mein" />
+      <name s="mered" />
+      <name s="mor" />
+      <name s="ne" />
+      <name s="pad" />
+      <name s="rh" />
+      <name s="te" />
+    </entry> <!-- ovcan prefixes -->
+    <entry name="ovcan male suffixes">
+      <name s="wyn" />
+      <name s="wyn" />
+      <name s="wyn" />
+      <name s="wyr" />
+      <name s="dyn" />
+      <name s="ael" />
+      <name s="fan" />
+      <name s="wch" />
+      <name s="ydd" />
+      <name s="ion" />
+      <name s="fys" />
+      <name s="ant" />
+      <name s="eth" />
+      <name s="dwr" />
+      <name s="ynn" />
+      <name s="tyd" />
+      <name s="bon" />
+      <name s="rig" />
+    </entry> <!-- ovcan male suffixes -->
+    <entry name="ovcan female suffixes">
+      <name s="wen" />
+      <name s="wen" />
+      <name s="wen" />
+      <name s="ryn" />
+      <name s="rys" />
+      <name s="rin" />
+      <name s="yth" />
+      <name s="lys" />
+      <name s="lyn" />
+      <name s="fys" />
+      <name s="ice" />
+      <name s="awr" />
+      <name s="ucu" />
+      <name s="nos" />
+      <name s="byn" />
+      <name s="gan" />
+      <name s="ian" />
+    </entry> <!-- ovcan female suffixes -->
   </category> <!-- name parts -->
 </data>

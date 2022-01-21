@@ -76,7 +76,7 @@
     <entry name="fire" color="#FC9983" />
     <entry name="gunsmoke" color="#DED5D3" />
     <entry name="smoke" color="#6B6161" />
-    <entry name="bone" color="#DDDBD5" />
+    <entry name="bone" color="#DED6BA" />
     <entry name="flesh" color="#D68F9B" />
     <entry name="blood" color="#BD0F0F" />
     <entry name="arcana" color="#9942F0" />
@@ -193,6 +193,12 @@
     <entry name="visionary" reqSpecies="firin"
       rangeBonus="1" accuracy="6"
       fluff="The Firin are often looking towards the future. For a brilliant new idea, or for their next meal... well, it varies. Still, they are excellent when it comes to far-reaching consequences." />
+    <entry name="fervor" reqSpecies="ovcan"
+      attackPower="20" dodge="-8"
+      fluff="While the Ovcan largely prefer to avoid fighting, some of them learn to whip themselves up into a righteous frenzy in a fight. This wild state makes self-defense feel unimportant, however." />
+    <entry name="empathy" reqSpecies="ovcan"
+      helpfulPower="16" astra="4"
+      fluff="Many species have come up with spells or techniques to heal, but the Ovcan are the best-suited for healing by nature. They truly care about the task, and so put their all into it." />
 
     <!-- general skills -->
     <entry name="form" physiqueReq="10"
@@ -287,13 +293,13 @@
       fluff="Learn how to use your weapon to effectively keep an enemy at bay, even if you aren't using a long weapon like a spear." />
   </category> <!-- skills -->
   <category name="jobs">
-    <entry name="warrior" reqSpecies="karhun,firin"
+    <entry name="warrior" reqSpecies="karhun,firin,ovcan"
       physiqueModifier="2" accuracy="10" armorProfiencyLevel="2" proficiencies="sword,mace,spear,slam,measured blow,typhoon slash,inner strength,blitz strike"
       fluff="Warriors are those who focus on conventional close-range combat. They learn how to use various weapons and techniques, and how to fight in heavy armor." />
-    <entry name="rogue" reqSpecies="karhun,skuri"
+    <entry name="rogue" reqSpecies="karhun,skuri,ovcan"
       agilityModifier="2" moveDistance="1" resistance="5" attackPowerWhenDisengaged="40" armorProfiencyLevel="1" proficiencies="dagger,sword,pistol,brain rattler,crimson fangs,venom sting,miasma bolt,poison powder"
       fluff="Rogues train in how to fight with a mobile, offensive style. They are strongest when fighting distracted enemies, especially lightly armored foes like mages." />
-    <entry name="mage" reqSpecies="firin,skuri"
+    <entry name="mage" reqSpecies="firin,skuri,ovcan"
       senseModifier="2" specialPower="15" astra="20" life="15" proficiencies="spear,mace,arcana arrow,phantom flames,spell barrage,enchanted blade"
       fluff="Mages practice a standardized set of combat magic spells, focusing on sheer magical firepower. They excel at taking down armored foes, who usually lack resistance to magic." />
     <entry name="mechanist" reqSpecies="skuri"
@@ -323,6 +329,15 @@
     <entry name="gunner" reqSpecies="firin,skuri"
       agilityModifier="1" physiqueModifier="1" resistance="15" accuracy="15" armorProfiencyLevel="1" proficiencies="pistol,longbarrel,snipe,inferno shot,brain rattler,spell barrage"
       fluff="Gunners learn how to use the pistol, a powerful weapon for the new age. They aren't great at tying enemies down, but their offensive capability is no joke." />
+    <entry name="knight" reqSpecies="ovcan"
+      physiqueModifier="1" willpowerModifier="1" armorProfiencyLevel="2" astra="10" proficiencies="sword,spear,slam,measured blow,mend,siphon"
+      fluff="Knights are an order of Ovcan warriors who swear to help others. To that end, they sacrifice some fighting skill, in favor of learning a little of the magic of life." />
+    <entry name="militia" reqSpecies="ovcan"
+      agilityModifier="1" cunningModifier="1" armorProfiencyLevel="1" accuracy="15" life="15" proficiencies="spear,bow,rapid fire,crimson fangs,arcana arrow,barrier"
+      fluff="Militia are Ovcan who learn how to fight, not as a hobby or as a profession, but as an obligation. They learn various basic fighting skills, in case they might one day need to defend their village." />
+    <entry name="cleric" reqSpecies="ovcan"
+      willpowerModifier="2" astra="40" specialPower="10" proficiencies="mace,mend,phantom flames,barrier,lifesaver"
+      fluff="Clerics learn how to use magic, to be sure, but it's more as a side-effect of their true purpose: interpreting the will of the Gods, via reading the flow of astra." />
 
     <!-- enemy-only jobs -->
     <entry name="tough monster"
@@ -503,6 +518,9 @@
     <entry name="skuri"
       physiqueModifier="-4" agilityModifier="4" senseModifier="-2" cunningModifier="2" dodge="10"
       fluff="A secretive and skittish people who prefer to hide themselves away in their grand underground burrows." />
+    <entry name="ovcan"
+      physiqueModifier="-1" agilityModifier="-1" senseModifier="-2" willpowerModifier="4" specialPower="10"
+      fluff="A highly spiritual people who prefer to avoid worldly affairs like wars. Do not underestimate their strength of will." />
 
     <!-- monster species -->
     <entry name="crawler"
@@ -583,7 +601,7 @@
       <layer spriteM="302" spriteF="303" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
       <layer spriteM="306" spriteF="307" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
       <layer sprite="200" color="skinColor" xAdd="1" yAdd="-49" showAllStatuses="1" /> <!-- head -->
-      <layer sprite="416" color="skinColor" matchLastLayer="1" /> <!-- snout -->
+      <layer sprite="416" color="skinColor" matchLastLayer="1" showAllStatuses="1" /> <!-- snout -->
       <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
       <layer sprite="204" color="pupilColor" matchLastLayer="1" /> <!-- pupil -->
       <layer fillSlotId="face" showObjectStatuses="1" matchLastLayer="1" /> <!-- face -->
@@ -601,7 +619,7 @@
       colorationFluff1="The reddish coloration ginger Firin was once considered a trait of the royal family. Nowadays, though, it has become quite common.">
       <layer spriteM="113" spriteF="114" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (back) armor layer -->
       <layer color="hairColor" xAdd="1" yAdd="-36" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
-      <layer sprite="102" color="skinColor" showAllStatuses="1" /> <!-- tail -->
+      <layer sprite="102" color="skinColor" showObjectStatuses="1" /> <!-- tail -->
       <layer xAdd="39" yAdd="-9" fillSlotId="weaponHand" /> <!-- weapon hand -->
       <layer spriteM="100" spriteF="101" color="skinColor" showAllStatuses="1" /> <!-- body -->
       <layer spriteM="105" spriteF="106" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
@@ -612,7 +630,7 @@
       <layer spriteM="103" spriteF="104" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
       <layer spriteM="107" spriteF="108" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
       <layer sprite="200" color="skinColor" xAdd="1" yAdd="-36" showAllStatuses="1" /> <!-- head -->
-      <layer sprite="414" color="skinColor" matchLastLayer="1" /> <!-- snout -->
+      <layer sprite="414" color="skinColor" matchLastLayer="1" showAllStatuses="1" /> <!-- snout -->
       <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
       <layer sprite="203" color="pupilColor" matchLastLayer="1" /> <!-- pupil -->
       <layer fillSlotId="face" showObjectStatuses="1" matchLastLayer="1" /> <!-- face -->
@@ -630,7 +648,7 @@
       colorationFluff1="Albinism is much more common in Skuri than it is in other species.">
       <layer sprite="407" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (back) armor layer -->
       <layer color="hairColor" xAdd="4" yAdd="-9" scale="90" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
-      <layer sprite="401" color="tailColor" showAllStatuses="1" /> <!-- tail -->
+      <layer sprite="401" color="tailColor" showObjectStatuses="1" /> <!-- tail -->
       <layer xAdd="23" yAdd="30" fillSlotId="weaponHand" /> <!-- weapon hand -->
       <layer sprite="400" color="skinColor" showAllStatuses="1" /> <!-- body -->
       <layer sprite="403" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
@@ -641,7 +659,7 @@
       <layer sprite="402" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
       <layer sprite="404" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
       <layer sprite="200" color="skinColor" xAdd="4" yAdd="-9" scale="90" showAllStatuses="1" /> <!-- head -->
-      <layer sprite="415" color="skinColor" matchLastLayer="1" /> <!-- snout -->
+      <layer sprite="415" color="skinColor" matchLastLayer="1" showAllStatuses="1" /> <!-- snout -->
       <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
       <layer sprite="413" color="pupilColor" matchLastLayer="1" /> <!-- pupil -->
       <layer fillSlotId="face" showObjectStatuses="1" matchLastLayer="1" /> <!-- face -->
@@ -650,12 +668,40 @@
       <layer sprite="209" color="tailColor" matchLastLayer="1" showAllStatuses="1" /> <!-- ears -->
       <layer xAdd="-13" yAdd="37" fillSlotId="offHand" /> <!-- off hand -->
     </entry> <!-- skuri -->
+    <entry name="ovcan"
+      appearanceSizeMult="105" headHeightPoint="70" weaponHeightPoint="50"
+      coloration0="White" colorationTickets0="5" skinColor0="black fur" hairColor0="white fur" eyeColor0="light orange" pupilColor0="black" boneColor0="bone" bloodColor0="blood"
+      colorationFluff0="White-furred Ovcan are the vast majority of their society."
+      coloration1="Black" colorationTickets1="1" skinColor1="white fur" hairColor1="black fur" eyeColor1="light orange" pupilColor1="black" boneColor1="bone" bloodColor1="blood"
+      colorationFluff1="An Ovcan being born with black fur is considered an ill omen. Such Ovcan often have a hard time finding legal work.">
+      <layer spriteM="810" spriteF="811" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (back) armor layer -->
+      <layer color="hairColor" yAdd="-28" fillSlotId="hairBack" showObjectStatuses="1" /> <!-- back hair -->
+      <layer xAdd="38" yAdd="-2" fillSlotId="weaponHand" /> <!-- weapon hand -->
+      <layer spriteM="800" spriteF="801" color="skinColor" showAllStatuses="1" /> <!-- body -->
+      <layer spriteM="410" spriteF="801" color="hairColor" showObjectStatuses="1" /> <!-- leg fur -->
+      <layer spriteM="804" spriteF="805" armorLayerId="shirt" showObjectStatuses="1" /> <!-- shirt armor layer -->
+      <layer spriteM="812" spriteF="813" armorLayerId="jerkin" showObjectStatuses="1" /> <!-- jerkin armor layer -->
+      <layer spriteM="814" spriteF="815" armorLayerId="breastplate" /> <!-- breastplate armor layer -->
+      <layer spriteM="816" spriteF="817" armorLayerId="bandit" showObjectStatuses="1" /> <!-- bandit armor layer -->
+      <layer spriteM="808" spriteF="809" armorLayerId="cape" showObjectStatuses="1" /> <!-- cape (front) armor layer -->
+      <layer spriteM="802" spriteF="803" armorLayerId="pants" showObjectStatuses="1" /> <!-- pants armor layer -->
+      <layer spriteM="806" spriteF="807" armorLayerId="skirt" showObjectStatuses="1" /> <!-- skirt armor layer -->
+      <layer sprite="200" color="skinColor" yAdd="-28" showAllStatuses="1" /> <!-- head -->
+      <layer sprite="416" color="skinColor" matchLastLayer="1" showAllStatuses="1" /> <!-- snout -->
+      <layer sprite="201" color="eyeColor" matchLastLayer="1" /> <!-- eye -->
+      <layer sprite="716" color="pupilColor" matchLastLayer="1" /> <!-- pupil -->
+      <layer fillSlotId="face" showObjectStatuses="1" matchLastLayer="1" /> <!-- face -->
+      <layer color="hairColor" matchLastLayer="1" fillSlotId="hairFront" showObjectStatuses="1" /> <!-- hair -->
+      <layer sprite="714" color="skinColor" matchLastLayer="1" showAllStatuses="1" /> <!-- ears -->
+      <layer sprite="715" color="boneColor" matchLastLayer="1" reqGender="0" showObjectStatuses="1" /> <!-- horns -->
+      <layer xAdd="0" yAdd="20" fillSlotId="offHand" /> <!-- off hand -->
+    </entry> <!-- ovcan -->
 
     <!-- monster species -->
     <entry name="crawler"
       appearanceSizeMult="95" headHeightPoint="35" weaponHeightPoint="40"
       colorationTickets0="1" skinColor0="steel" bloodColor0="smoke">
-      <layer color="skinColor" fillSlotId="box" showObjectStatuses="1" />
+      <layer sprite="711" color="skinColor" showObjectStatuses="1" />
     </entry> <!-- crawler -->
     <entry name="turret"
       appearanceSizeMult="125" headHeightPoint="45"
@@ -666,7 +712,7 @@
       hideUIOutOfBattle="1"
       appearanceSizeMult="100" headHeightPoint="40"
       colorationTickets0="1" skinColor0="steel" bloodColor0="brown fabric">
-      <layer sprite="510" color="skinColor" showObjectStatuses="1" />
+      <layer color="skinColor" fillSlotId="box" showObjectStatuses="1" />
     </entry> <!-- box -->
     <entry name="prime automata"
       appearanceSizeMult="90" headHeightPoint="60" weaponHeightPoint="45"
@@ -1024,6 +1070,12 @@
     <entry name="mend" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" charged="1" heals="1" scaling="level" usesSpecialPower="1"
       animProjSprite="513" animProjScale="100" animProjSpeed="6" animProjColor="blood" animProjGlows="1" animStep="10" animPostStepPause="22" animSound="spell concussive crack" animStrikeSound="regen" animProjStrikePulseColor="green scales"
       fluff="Build up astra and pattern it with the will and instructions to heal others. An effective use of magic, but watch out for enemies attempting to intercept your spells!" />
+    <entry name="lifesaver" astraCost="15" weaponAccuracy="100" ranged="1" magic="1" charged="1" heals="1" scaling="level" usesSpecialPower="1"
+      animProjSprite="513" animProjScale="150" animProjSpeed="7" animProjColor="blood" animProjGlows="1" animStep="10" animPostStepPause="22" animSound="spell concussive crack" animStrikeSound="regen" animProjStrikePulseColor="green scales"
+      fluff="Build up a large amount of astra, pattern it with a complex set of healing instructions, and release it at a friend. An improved form of the basic mend spell, only usable by those with a strong will to help others." />
+    <entry name="barrier" astraCost="10" weaponAccuracy="100" ranged="1" magic="1" charged="1" heals="1" barrierPercent="100" scaling="level" usesSpecialPower="1"
+      animProjSprite="515" animProjScale="100" animProjSpeed="6" animProjColor="steel" animStep="-10" animPostStepPause="22" animSound="spell concussive crack" animStrikeSound="deploy" animProjStrikePulseColor="steel"
+      fluff="Infuse your astra with a tough yet sticky quality, and fire it out as a ball which splashes onto a friend and then hardens into a skin-tight layer of magical armor." />
     <entry name="sacrifice" astraCost="5" weaponAccuracy="100" ranged="1" magic="1" heals="1" scaling="level" usesSpecialPower="1" lifeCostPercent="5" targetRingUser="wedding ring"
       animProjSprite="515" animProjScale="30" animProjSpeed="8" animProjColor="blood" animProjGlows="1" animStep="10" animPostStepPause="22" animSound="charge" animStrikeSound="regen" animProjStrikePulseColor="green scales"
       fluff="Prick yourself with a spike on the inside of your ring, and channel your astra through the bead of blood. The spell in the ring sends the charged blood off heal your beloved... or at least, to heal whomever is wearing the other ring." />
@@ -1312,7 +1364,7 @@
       bgm="town bgm" />
     <entry name="house" offshootFrom="bandit town"
       tileset="house" npc="Joonert"
-      loot="(A)hat:1,(H)2,(W)poison arrow"
+      loot="(A)hat:1,(H)2,(W)poison arrow,(W)barrier"
       bgm="town bgm" />
 
     <!-- regionId 4 (t2): twisted wasteland -->
@@ -1326,7 +1378,7 @@
       bgm="maze bgm" />
     <entry name="twisted wasteland" regionId="4"
       tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar,unstable rat" bossTemplate="king boar"
-      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(I)7"
+      loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(I)7,(W)lifesaver"
       bgm="wastes bgm" />
     <entry name="twisted cave" regionId="4" offshootFrom="twisted wasteland"
       tileset="twisted stone tunnels" enemyTemplates="paranoid mage,paranoid mechanist,paranoid rogue,unstable rat" offshootBossTemplate="prime automata"

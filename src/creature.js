@@ -288,6 +288,11 @@ class Creature {
   }
 
   /** @return {number} */
+  get helpfulPower() {
+    return this.tallyBonusSources_((bS) => bS.helpfulPower);
+  }
+
+  /** @return {number} */
   get specialAttackPower() {
     return this.tallyBonusSources_((bS) => bS.specialAttackPower);
   }
@@ -329,6 +334,7 @@ class Creature {
     let defense = this.summonModifier + this.miscAttackBonus;
     defense += this.tallyBonusSources_((bS) => bS.defense);
     defense += this.defenseFromExcessArmorProfiencyLevel;
+    defense += this.statuses.get(Weapon.Status.Barrier) || 0;
     if (this.unarmoredDefense) defense += this.levelObj.scalingBonus;
     return defense;
   }
@@ -337,6 +343,7 @@ class Creature {
   get resistance() {
     let resistance = this.summonModifier + this.miscAttackBonus;
     resistance += this.tallyBonusSources_((bS) => bS.resistance);
+    resistance += this.statuses.get(Weapon.Status.Barrier) || 0;
     if (this.unarmoredDefense) resistance += this.levelObj.scalingBonus;
     return resistance;
   }
@@ -449,6 +456,7 @@ class Creature {
     const zonesStacks = this.zonesStacks;
     const attackPower = this.attackPower;
     const specialPower = this.specialPower;
+    const helpfulPower = this.helpfulPower;
     const powerVsUninjured = this.powerVsUninjured;
     const attackPowerWhenDisengaged = this.attackPowerWhenDisengaged;
     const accuracy = this.accuracy;
@@ -464,6 +472,7 @@ class Creature {
     const weaponValue = (weapon) => {
       let mult = 0;
       mult += powerVsUninjured * 0.4;
+      if (weapon.helpful) mult += helpfulPower;
       if (weapon.usesSpecialPower) {
         mult += specialPower;
       } else {
@@ -1444,7 +1453,13 @@ class Creature {
    * @return {!Map.<number, !AttackOrMoveInfo>} attacks
    */
   getAttacks(mapController, weapon) {
-    if (weapon.summon && !mapController.inCombat) return new Map();
+    if (!mapController.inCombat) {
+      // Some techs can't be used out of combat.
+      // Summons would be too good to pre-cast.
+      if (weapon.summon) return new Map();
+      // Same with buffs.
+      if (weapon.helpful && weapon.damage < weapon.baseDamage) return new Map();
+    }
 
     const inRangeTiles = new Set();
     const tooCloseTiles = new Set();
@@ -1497,6 +1512,11 @@ class Creature {
         const target = tile.creatures[0];
         if (weapon.helpful) {
           if (target.side != this.side) continue;
+          const barrier = weapon.getStatus(Weapon.Status.Barrier);
+          if (barrier > 0 && this.statuses.has(Weapon.Status.Barrier)) {
+            // You can't stack barriers.
+            continue;
+          }
         } else {
           if (target.immune) continue;
           // Can't attack allies.
@@ -1859,6 +1879,7 @@ class Creature {
     let mult = 0;
     let hitChance = 100;
     let hitsToCrits = 0;
+    if (weapon.helpful) mult += this.helpfulPower;
     if (weapon.usesSpecialPower) {
       mult += this.specialPower;
     } else {
@@ -2086,21 +2107,17 @@ class Creature {
           case Weapon.Status.Bleeding:
           case Weapon.Status.Burning:
           case Weapon.Status.Poisoned:
-            // These modifiers are applied inside getStatus()
+            // These modifiers are applied solely inside getStatus()
             break;
           default:
             // Debilitating statuses are scaled based on max life.
             effect /= target.baseMaxLife;
             // Doing enough damage to kill the base life for their level
             // (e.g. ignoring their life multipliers) inflicts this penalty:
-            effect *= 250;
+            effect *= 200;
             break;
         }
-        if (statusType == Weapon.Status.Cure) {
-          // Cure is a bit stronger than the other non-damaging status effects
-          // since it's purely reactive.
-          effect *= 1.3;
-        } else if (target.halveStatuses) effect /= 2;
+        if (!weapon.helpful && target.halveStatuses) effect /= 2;
         effect = Math.ceil(effect);
         if (statusType == Weapon.Status.Cure) {
           const cureStatus = (statusType) => {

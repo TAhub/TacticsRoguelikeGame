@@ -200,6 +200,10 @@ class Species extends BonusSource {
       // also apply to objects (e.g. fire but not poison).
       const showObjectStatuses = showAllStatuses || data.getBooleanValue(
           category, type, 'showObjectStatuses', i);
+      if (statusTypes.has(Weapon.Status.Barrier) && showObjectStatuses) {
+        const steel = data.getColorByNameSafe('steel');
+        finalColor = colorLerp(finalColor, steel, 0.3);
+      }
       if (statusTypes.has(Weapon.Status.Burning) && showObjectStatuses) {
         const hsv = getHSV(finalColor);
         hsv.s *= 0.75;
