@@ -34,6 +34,12 @@
         s="I hope I get a cool scar!" />
       <line trigger="death"
         s="They got me!" />
+      <line trigger="death" reqSkill="warrior spirit"
+        s="I can still fight-" />
+      <line trigger="death" reqSkill="warrior spirit"
+        s="Good hit!" />
+      <line trigger="death" reqSkill="warrior spirit"
+        s="It doesn't hurt at... all..." />
       <line trigger="death" reqJob="warrior"
         s="I regret nothing!" />
       <line trigger="death" reqJob="rogue"
@@ -157,12 +163,18 @@
         s="So many angles of attack..." />
       <line trigger="post-sleep" terrainCategory="outdoors" reqJob="survivor"
         s="I'm kind of getting used to being out here. Still don't like it, though." />
-      <line trigger="pre-sleep" terrainCategory="outdoors"
+      <line trigger="pre-sleep" terrainCategory="outdoors" reqSkill="superstition"
         s="Staying outdoors for too long is kind of unlucky. I don't like it." />
       <line trigger="post-sleep" terrainCategory="indoors" reqJob="mechanist"
         s="That was more comfortable than the dorms at the mechanist academy, at least." />
       <line trigger="pre-sleep" terrainCategory="indoors"
         s="Should we be resting in some strange building like this? If you're sure..." />
+      <line trigger="pre-sleep" reqSkill="superstition"
+        s="I shouldn't cook tonight. The bad luck might spread to you." />
+      <line trigger="post-sleep" reqSkill="superstition"
+        s="I was really careful with my hair this morning. I'll definitely have good luck!" />
+      <line trigger="pre-sleep" reqSkill="superstition" terrainCategory="underground"
+        s="I hope I didn't knock on any supports today. I don't need the bad luck!" />
     </entry> <!-- skuri -->
     <entry name="ovcan">
       <!-- death -->
@@ -174,6 +186,12 @@
         s="May my soul return to them!" />
       <line trigger="death"
         s="No! It's not my time!" />
+      <line trigger="death" reqSkill="fervor"
+        s="No pain! No pain!" />
+      <line trigger="death" reqSkill="fervor"
+        s="Slay them for me!" />
+      <line trigger="death" reqSkill="knight"
+        s="I fall, to protect others!" />
       <!-- TODO: more -->
 
       <!-- sleep -->
@@ -193,12 +211,22 @@
         s="I will petition the Gods for our continued safety." />
       <line trigger="post-sleep" reqJob="militia"
         s="We have to be ready for everything." />
+      <line trigger="post-sleep" bannedSkill="fervor" bannedJob="warrior"
+        s="I hate that we have to fight so much." />
+      <line trigger="pre-sleep" bannedSkill="fervor" bannedJob="rogue"
+        s="So much violence..." />
+      <line trigger="post-sleep" reqSkill="fervor"
+        s="I am ready to slay our enemies." />
+      <line trigger="post-sleep" reqSkill="fervor"
+        s="I'm feeling angry today." />
       <!-- TODO: more -->
     </entry> <!-- ovcan -->
     <entry name="firin">
       <!-- death -->
-      <line trigger="death"
+      <line trigger="death" reqSkill="pride"
         s="How dare you!" />
+      <line trigger="death" reqSkill="pride"
+        s="You ingrate!" />
       <line trigger="death"
         s="I will get my revenge!" />
       <line trigger="death"
@@ -211,7 +239,7 @@
         s="Ugh." />
       <line trigger="death"
         s="If only I had-" />
-      <line trigger="death"
+      <line trigger="death" reqSkill="pride"
         s="You insolent-" />
       <line trigger="death" reqJob="warrior"
         s="I've been bested!" />
@@ -223,6 +251,8 @@
       <!-- sleep -->
       <line trigger="post-sleep"
         s="Wake up, wake up, everyone." />
+      <line trigger="pre-sleep" reqSkill="visionary"
+        s="May tomorrow hold much more, for us." />
       <line trigger="post-sleep" reqJob="sage"
         s="What a curious dream. Perhaps it held an omen?" />
       <line trigger="pre-sleep"

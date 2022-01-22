@@ -2396,6 +2396,15 @@ class Creature {
       if (bannedJob) {
         if (this.jobs.length > 0 && this.jobs[0].type == bannedJob) continue;
       }
+      const reqSkill = data.getValue('player lines', species, 'reqSkill', i);
+      if (reqSkill) {
+        if (!this.skills.some((sk) => sk.type == reqSkill)) continue;
+      }
+      const bannedSkill =
+          data.getValue('player lines', species, 'bannedSkill', i);
+      if (bannedSkill) {
+        if (this.skills.some((sk) => sk.type == bannedSkill)) continue;
+      }
       lines.push(line);
     }
     return lines;
