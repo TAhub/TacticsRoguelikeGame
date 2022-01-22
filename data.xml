@@ -138,18 +138,21 @@
     <entry name="cat style" reqSpecies="firin" color="orange"
       accuracy="10" powerVsUninjured="20"
       fluff="A fighting style traditionally practiced by Firin mages and warriors. Designed to make a decisive first strike and weaken a foe enough that they can be toyed with." />
+    <entry name="sheep style" reqSpecies="ovcan" color="gray"
+      helpfulPower="10" dodgeVsMelee="50"
+      fluff="A fighting style designed by the Ovcan that doesn't focus on fighting, per se. Instead, it is about staying safe while supporting allies on the battlefield." />
 
     <!-- job-based styles -->
     <entry name="boar style" reqJobs="warrior,martial artist,wanderer" color="red"
       attackPower="15" moveDistance="2"
       fluff="An aggressive fighting style that focuses on getting in close, and striking with overwhelming power." />
-    <entry name="bird style" reqJobs="mage,sage,ranger" color="sky blue"
+    <entry name="bird style" reqJobs="mage,sage,ranger,cleric" color="sky blue"
       flying="1" moveDistance="1"
       fluff="A magical fighting style that strives to allow the user to fly like a bird. In truth, though, you're hovering more than flying." />
-    <entry name="snake style" reqJobs="rogue,gunner,healer" color="green"
+    <entry name="snake style" reqJobs="rogue,gunner,healer,militia" color="green"
       resistance="15" initiative="10"
       fluff="A sinister fighting style that stresses being calm and collected, while being ready to spring into action the moment you sense danger." />
-    <entry name="frog style" reqJobs="mechanist,lab rat,survivor" color="light green"
+    <entry name="frog style" reqJobs="mechanist,lab rat,survivor,knight" color="light green"
       specialPower="10" specialAttackPower="30"
       fluff="A careful fighting style based on waiting and reacting. Named based on an old myth that frogs are careful planners." />
 
