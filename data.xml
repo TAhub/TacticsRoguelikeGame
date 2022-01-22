@@ -612,7 +612,7 @@
     </entry> <!-- karhun -->
     <entry name="firin"
       appearanceSizeMult="95" headHeightPoint="75" weaponHeightPoint="60"
-      voicePitch="0" voiceRate="80"
+      voicePitch="100" voiceRate="90"
       coloration0="Tabby" colorationTickets0="3" skinColor0="orange fur" hairColor0="yellow fur" eyeColor0="orange" pupilColor0="black" bloodColor0="blood"
       colorationFluff0="The tabby Firin might not have any actual noble heritage, but they still have the bearing of a noble."
       coloration1="Ginger" colorationTickets1="2" skinColor1="red scales" hairColor1="orange fur" eyeColor1="orange" pupilColor1="black" bloodColor1="blood"
@@ -670,6 +670,7 @@
     </entry> <!-- skuri -->
     <entry name="ovcan"
       appearanceSizeMult="105" headHeightPoint="70" weaponHeightPoint="50"
+      voicePitch="-100" voiceRate="75"
       coloration0="White" colorationTickets0="5" skinColor0="black fur" hairColor0="white fur" eyeColor0="light orange" pupilColor0="black" boneColor0="bone" bloodColor0="blood"
       colorationFluff0="White-furred Ovcan are the vast majority of their society."
       coloration1="Black" colorationTickets1="1" skinColor1="white fur" hairColor1="black fur" eyeColor1="light orange" pupilColor1="black" boneColor1="bone" bloodColor1="blood"
