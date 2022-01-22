@@ -166,10 +166,34 @@
     </entry> <!-- skuri -->
     <entry name="ovcan">
       <!-- death -->
-      <!-- TODO -->
+      <line trigger="death"
+        s="I can see the light!" />
+      <line trigger="death"
+        s="You cannot break my spirit!" />
+      <line trigger="death"
+        s="May my soul return to them!" />
+      <line trigger="death"
+        s="No! It's not my time!" />
+      <!-- TODO: more -->
 
       <!-- sleep -->
-      <!-- TODO -->
+      <line trigger="pre-sleep"
+        s="Time for my evening prayers..." />
+      <line trigger="post-sleep"
+        s="We are fortunate. It could have been much worse." />
+      <line trigger="pre-sleep" terrainCategory="indoors"
+        s="Let's make ourselves comfortable." />
+      <line trigger="pre-sleep" terrainCategory="underground"
+        s="What a creepy place." />
+      <line trigger="post-sleep" terrainCategory="outdoors"
+        s="Sleeping outdoors would be more comfortable, if it weren't for all the monsters." />
+      <line trigger="pre-sleep" reqJob="knight"
+        s="Did everyone make it here safely?" />
+      <line trigger="pre-sleep" reqJob="cleric"
+        s="I will petition the Gods for our continued safety." />
+      <line trigger="post-sleep" reqJob="militia"
+        s="We have to be ready for everything." />
+      <!-- TODO: more -->
     </entry> <!-- ovcan -->
     <entry name="firin">
       <!-- death -->
@@ -212,7 +236,7 @@
       <line trigger="post-sleep"
         s="I dreamt of blood and death... let it be a premonition for our enemies." />
       <line trigger="pre-sleep" reqJob="martial artist"
-        s="I'll try to meditate." />
+        s="I'll practice katas before I sleep..." />
       <line trigger="pre-sleep" terrainCategory="indoors"
         s="At least I don't have to sleep in the dirt." />
       <line trigger="pre-sleep" terrainCategory="indoors" bannedJob="wanderer"
