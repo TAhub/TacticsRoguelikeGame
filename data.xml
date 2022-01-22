@@ -262,7 +262,7 @@
       specialPower="4" astra="8"
       fluff="Leverage your knowledge of magic (and other unusual techniques), to make sure you always have a little something up your sleeve." />
     <entry name="tactics" prereq="study"
-      dodge="6" specialAttackPower="12"
+      dodgeVsMelee="15" specialAttackPower="12"
       fluff="Expand your study to the study of combat tactics, and learn how to control the battlefield in a more martial way." />
     <entry name="countermagic" cunningReq="13"
       resistance="12"
@@ -969,7 +969,7 @@
       <variety name="spear" tier="1" weaponAccuracy="95" zones="1"
         color="iron" slotFillers="weaponHand:600"
         fluff="A simple spear. Good at punishing enemies for approaching." />
-      <variety name="partisan" tier="2" weaponAccuracy="85" defense="10" zones="1"
+      <variety name="partisan" tier="2" weaponAccuracy="85" dodgeVsMelee="20" zones="1"
         color="steel" slotFillers="weaponHand:601"
         fluff="A spear with a special flared head, meant to allow it to parry blows." />
       <variety name="trembling spear" tier="2" weaponAccuracy="85" shakenPercent="30" zones="1"
