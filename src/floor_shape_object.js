@@ -46,7 +46,6 @@ class FloorShapeObject {
     if (!this.texture) return;
     if (!this.mesh) {
       this.geometry = new THREE.PlaneGeometry(this.wScale, this.hScale);
-      const map = this.texture;
       // Right now this uses a MeshBasicMaterial instead of a
       // MeshStandardMaterial to prevent the problem where, if a light source
       // is directly behind (or inside the center of!) a SpriteObject, the
@@ -55,7 +54,10 @@ class FloorShapeObject {
       // to light sources in the way a flat plane should!
       // TODO: Once I can figure out how to let light pass through a plane while
       // still illuminating it, I should go back to using a MeshLambertMaterial.
-      this.material = new THREE.MeshBasicMaterial({map, transparent: true});
+      this.material = new THREE.MeshBasicMaterial({
+        'map': this.texture,
+        'transparent': true,
+      });
       this.mesh = new THREE.Mesh(this.geometry, this.material);
     }
 

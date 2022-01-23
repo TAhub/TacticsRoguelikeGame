@@ -206,11 +206,11 @@ class Particle {
 
     if (this.xD != 0 || this.yD != 0 || this.hD != 0) {
       if (!this.mesh) {
-        const color = getHexColor(this.color);
-        const opacity = this.alpha;
-        const transparent = true;
-        this.material =
-            new THREE.MeshBasicMaterial({color, opacity, transparent});
+        this.material = new THREE.MeshBasicMaterial({
+          'color': getHexColor(this.color),
+          'opacity': this.alpha,
+          'transparent': true,
+        });
         const curve = new THREE.LineCurve3(
             new THREE.Vector3(this.x, this.h, this.y),
             new THREE.Vector3(this.xD, this.hD, this.yD),

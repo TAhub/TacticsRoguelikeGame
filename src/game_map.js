@@ -187,13 +187,15 @@ class GameMapTile {
   addFloorToGroup_(group, rng) {
     let material;
     if (this.cursorColor) {
-      const color = getHexColor(this.cursorColor);
-      material = new THREE.MeshBasicMaterial({color});
+      material = new THREE.MeshBasicMaterial({
+        'color': getHexColor(this.cursorColor),
+      });
     } else {
       const color = this.getColor_('floor');
       const sprite = this.getSprite_(rng, 'floor');
-      const map = gfx.getSpriteAsTexture(sprite, color);
-      material = new THREE.MeshStandardMaterial({map});
+      material = new THREE.MeshStandardMaterial({
+        'map': gfx.getSpriteAsTexture(sprite, color),
+      });
     }
     const geometry = new THREE.PlaneGeometry(1, 1);
     const plane = new THREE.Mesh(geometry, material);
@@ -220,8 +222,9 @@ class GameMapTile {
     const width = calcDistance(x2 - x1, y2 - y1);
     const height = (this.th - oTile.th) * gfxThScale;
     const geometry = new THREE.PlaneGeometry(width, height);
-    const color = getHexColor(this.getColor_('ledge'));
-    const material = new THREE.MeshStandardMaterial({color});
+    const material = new THREE.MeshStandardMaterial({
+      'color': getHexColor(this.getColor_('ledge')),
+    });
     const plane = new THREE.Mesh(geometry, material);
     plane.position.set(
         (x2 + x1) / 2, (oTile.th * gfxThScale) + height / 2, (y2 + y1) / 2);
@@ -261,10 +264,10 @@ class GameMapTile {
       sprite = this.getSprite_(rng, 'wall');
     }
     const map = gfx.getSpriteAsTexture(sprite, color);
-    const materialProperties = {map};
+    const materialProperties = {'map': map};
     if (isFrame) {
-      materialProperties.transparent = true;
-      materialProperties.alphaTest = 0.5;
+      materialProperties['transparent'] = true;
+      materialProperties['alphaTest'] = 0.5;
     }
     const material = new THREE.MeshStandardMaterial(materialProperties);
     const plane = new THREE.Mesh(geometry, material);
