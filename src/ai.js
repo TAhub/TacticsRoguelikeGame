@@ -192,6 +192,13 @@ class AI {
         // range!
         value += distanceToNearestEnemy;
       }
+      // Probably shouldn't stand on spikes.
+      if (!active.flying) {
+        active.tileCallback(mapController, active.x, active.y, (tile) => {
+          if (!tile || !tile.item) return;
+          value -= tile.item.spikeDamage;
+        });
+      }
       if (value <= best.value) return;
       best = {info, value};
     };

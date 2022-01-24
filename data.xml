@@ -1349,10 +1349,12 @@
       loot="(A)jerkin:1,(C)shield,(W)brain rattler,(H)1,(H)1"
       bgm="cave bgm" />
     <entry name="treasure room" regionId="2" offshootFrom="caverns"
+      minSpikes="90" maxSpikes="100"
       tileset="stone tunnels" enemyTemplates="cursed box"
       loot="(A)helmet:1,(W)sword:1,(W)mace:1,(A)shirt:1,(R)sungold ring,(H)1,(H)1,(H)1,(A)greaves:1,(I)7"
       bgm="cave bgm" />
     <entry name="caverns" regionId="2"
+      minSpikes="10" maxSpikes="50"
       tileset="stone tunnels" securityLevelTickets="1,1,1,1,2" enemyTemplates="skull rat,tunnel snake,blood slime,undead soldier,undead hunter,cursed box" bossTemplate="Tunnel Guard Kaspikka"
       loot="(W)dagger:1,(W)spear:1,(A)armored skirt:0,(A)hat:1,(A)breastplate:1,(W)phantom flames,(H)1,(H)1,(H)1,(W)bow:1"
       bgm="cave bgm" />
@@ -1377,6 +1379,7 @@
 
     <!-- regionId 4 (t2): twisted wasteland -->
     <entry name="hedge maze" regionId="4" condition="boss map branch"
+      minSpikes="0" maxSpikes="10"
       tileset="hedge maze" securityLevelTickets="2" enemyTemplates="mossy cat,seed spitter,walking topiary,walking bonsai,corpse picker" bossTemplate="Gatekeeper"
       loot="(C)regal cloak,(W)spear:2,(A)breastplate:2,(A)hat:2,(W)illusion fist,(A)pants:2,(W)enchanted blade,(H)2,(H)2,(H)2,(H)2,(W)bow:2"
       bgm="maze bgm" />
@@ -1385,10 +1388,12 @@
       loot="(R)thorny band,(I)4,(I)1,(H)2,(H)2,(I)7"
       bgm="maze bgm" />
     <entry name="twisted wasteland" regionId="4"
+      minSpikes="30" maxSpikes="60"
       tileset="twisted wasteland" enemyTemplates="deadly scavenger,corpse picker,wasteland serpent,poison turtle,monster boar,unstable rat" bossTemplate="king boar"
       loot="(W)sword:2,(W)dagger:2,(W)mace:2,(W)pistol:2,(A)shirt:2,(A)shirt:2,(A)jerkin:2,(A)cap:2,(A)leggings:2,(A)greaves:2,(W)agony release,(C)wind bangles,(W)blitz strike,(H)2,(I)7,(W)lifesaver"
       bgm="wastes bgm" />
     <entry name="twisted cave" regionId="4" offshootFrom="twisted wasteland"
+      minSpikes="10" maxSpikes="20"
       tileset="twisted stone tunnels" enemyTemplates="paranoid mage,paranoid mechanist,paranoid rogue,unstable rat" offshootBossTemplate="prime automata"
       loot="(W)longbarrel:1,(A)helmet:2,(H)2"
       bgm="burrow bgm" />

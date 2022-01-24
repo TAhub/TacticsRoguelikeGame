@@ -143,7 +143,7 @@ class IngamePlugin extends GamePlugin {
       }
     }
 
-    if (mapController.active) mapController.active.turnEnd();
+    if (mapController.active) mapController.active.turnEnd(mapController);
     while (true) {
       mapController.pickNewActive();
       if (mapController.active) break;
@@ -1059,6 +1059,9 @@ class IngamePlugin extends GamePlugin {
       const tile = mapC.tileAt(this.cursorX, this.cursorY);
       if (tile) {
         tooltip.push('Elevation: ' + tile.th);
+        if (tile.item && tile.item.spikeDamage && !active.flying) {
+          tooltip.push('Spikes will hurt you here');
+        }
         for (const creature of mapC.creatures) {
           if (creature.encounterId > 0) continue;
           const tiles = creature.getOverflowingAstraTiles(mapC);

@@ -78,6 +78,10 @@ class Item {
           sprite = 617;
           color = data.getColorByNameSafe('brown fabric');
           break;
+        case Item.Code.Spikes:
+          sprite = 717;
+          color = data.getColorByNameSafe('steel');
+          break;
         case Item.Code.Lamp:
           sprite = 417;
           color = data.getColorByNameSafe('steel');
@@ -103,6 +107,12 @@ class Item {
       }
     }
     return {sprite, color, scale, h};
+  }
+
+  /** @return {number} */
+  get spikeDamage() {
+    if (this.contents != Item.Code.FastTravel) return 0;
+    return Math.floor(this.healingAmount / 4);
   }
 
   /** @return {number} */
@@ -162,6 +172,7 @@ class Item {
     if (!(this.contents instanceof Equipment)) {
       switch (this.contents) {
         case Item.Code.Lamp:
+        case Item.Code.Spikes:
           return false;
       }
     }
@@ -279,6 +290,11 @@ class Item {
       const item = new Item(Item.Code.Healing);
       item.tier = parseInt(split[1], 10);
       return item;
+    } else if (saveString.startsWith('(S)')) {
+      const split = saveString.split(')');
+      const item = new Item(Item.Code.Spikes);
+      item.tier = parseInt(split[1], 10);
+      return item;
     } else if (saveString.startsWith('(I)')) {
       const split = saveString.split(')');
       return new Item(/** @type {!Item.Code} */ (parseInt(split[1], 10)));
@@ -297,6 +313,8 @@ class Item {
       return '(L)' + this.colorName;
     } else if (this.contents == Item.Code.Healing) {
       return '(H)' + this.tier;
+    } else if (this.contents == Item.Code.Spikes) {
+      return '(S)' + this.tier;
     } else {
       return '(I)' + this.contents;
     }
@@ -312,4 +330,5 @@ Item.Code = {
   FastTravel: 5,
   Lamp: 6,
   Refresh: 7,
+  Spikes: 8,
 };

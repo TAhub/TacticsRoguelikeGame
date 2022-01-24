@@ -505,6 +505,7 @@ class GameMap {
       }
     }
     this.setTerrainHeights_();
+    this.placeSpikes_(rng, overworldMapTile);
   }
 
   /** @private */
@@ -574,6 +575,50 @@ class GameMap {
     light.position.set(x, h, y);
     light.lookAt(x, 0, y);
     group.add(light);
+  }
+
+  /**
+   * @param {rng} rng
+   * @param {!OverworldMapTile} overworldMapTile
+   * @private
+   */
+  placeSpikes_(rng, overworldMapTile) {
+    const minSpikes = overworldMapTile.minSpikes;
+    const maxSpikes = overworldMapTile.maxSpikes;
+    let numSpikes = (maxSpikes - minSpikes + 1) * rng() + minSpikes;
+    if (numSpikes <= 0) return;
+
+    const tickets = [];
+    for (const tile of this.tiles.values()) {
+      if (tile.item) continue;
+      let numTickets = 3;
+      for (const doorI of tile.doorIds.keys()) {
+        if (tile.doorIds.get(doorI) > 0) {
+          // Don't put spikes by doors, probably.
+          numTickets -= 4;
+        } else {
+          // A spike in a corner is boring. More doors, the better!
+          numTickets += 1;
+          // Try to spread the spikes out, however.
+          const otherTile = this.tiles.get(doorI);
+          if (otherTile && otherTile.item) {
+            numTickets -= 2;
+          }
+        }
+      }
+      for (let i = 0; i < numTickets; i++) {
+        tickets.push(tile);
+      }
+    }
+
+    shuffleArray(tickets, rng);
+    for (const tile of tickets) {
+      if (tile.item) continue;
+      tile.item = new Item(Item.Code.Spikes);
+      tile.item.tier = tierForLevel(overworldMapTile.level);
+      numSpikes -= 1;
+      if (numSpikes <= 0) return;
+    }
   }
 
   /**
@@ -1371,6 +1416,14 @@ class GameMap {
             if (bannedTiles.has(tile)) overlap = true;
           });
           if (overlap) continue;
+          // Don't put people in spikes.
+          let hasSpike = false;
+          enemy.tileCallback(this, tile.x, tile.y, (tile) => {
+            if (hasSpike) return;
+            if (!tile || !tile.item) return;
+            hasSpike = tile.item.spikeDamage > 0;
+          });
+          if (!hasSpike) continue;
 
           // Now that we know this is a valid spot, finalize the choice and
           // ban all of the tiles the creature will go in for future people.

@@ -70,6 +70,16 @@ class OverworldMapTile {
   get lampColorName() {
     return data.getValue('tilesets', this.tileset, 'lampColor');
   }
+
+  /** @return {number} */
+  get minSpikes() {
+    return data.getNumberValue('sub regions', this.type, 'minSpikes') || 0;
+  }
+
+  /** @return {number} */
+  get maxSpikes() {
+    return data.getNumberValue('sub regions', this.type, 'maxSpikes') || 0;
+  }
 }
 
 class OverworldMap {

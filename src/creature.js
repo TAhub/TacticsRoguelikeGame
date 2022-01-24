@@ -1341,8 +1341,15 @@ class Creature {
     return dot;
   }
 
-  turnEnd() {
-    const dotDamage = this.dotDamage;
+  /** @param {!MapController} mapController */
+  turnEnd(mapController) {
+    let dotDamage = this.dotDamage;
+    if (!this.flying) {
+      this.tileCallback(mapController, this.x, this.y, (tile) => {
+        if (!tile || !tile.item) return;
+        dotDamage += tile.item.spikeDamage;
+      });
+    }
     if (dotDamage > 0) {
       // Bleeding goes away after doing damage.
       this.statuses.delete(Weapon.Status.Bleeding);
