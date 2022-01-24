@@ -123,6 +123,8 @@ class Creature {
     this.finalBoss = false;
 
     // Temporary.
+    this.animX = 0;
+    this.animY = 0;
     this.lifeToRecover = 0;
     this.pulseColor = '';
     this.pulseCycle = -1;
@@ -963,8 +965,8 @@ class Creature {
    * @param {boolean} inCombat
    */
   addToGroup(group, camera, inCombat) {
-    let x = this.cX;
-    let y = this.cY;
+    let x = this.cX + this.animX;
+    let y = this.cY + this.animY;
     if (this.shakeEffect > 0) {
       const distance = this.shakeEffect * 0.2 * (Math.random() * 0.5 + 0.5);
       const angle = Math.random() * 2 * Math.PI;
@@ -2249,22 +2251,31 @@ class Creature {
         else this.facing = calcAngle(x - oldX, y - oldY);
       }
       progress = Math.min(1, progress + elapsed * speed);
-      this.x = oldX + (x - oldX) * progress;
-      this.y = oldY + (y - oldY) * progress;
-      this.th = oldTh + (newTh - oldTh) * progress;
-
-      // floorTh interpolates in a jerky way, moving slowly then zipping
-      // in the middle, to make it clearer that it has to do with the
-      // terrain and not you, as much.
-      let iProgress = 0;
-      if (progress < 0.3) {
-        iProgress = lerp(0, 0.1, progress / 0.3);
-      } else if (progress > 0.7) {
-        iProgress = lerp(0.9, 1, (progress - 0.7) / 0.3);
+      if (!optMapController) {
+        this.x = oldX;
+        this.y = oldY;
+        this.animX = (x - oldX) * progress;
+        this.animY = (y - oldY) * progress;
+        this.th = oldTh;
+        this.floorTh = oldFloorTh;
       } else {
-        iProgress = lerp(0.1, 0.9, (progress - 0.3) / 0.4);
+        this.x = oldX + (x - oldX) * progress;
+        this.y = oldY + (y - oldY) * progress;
+        this.th = oldTh + (newTh - oldTh) * progress;
+
+        // floorTh interpolates in a jerky way, moving slowly then zipping
+        // in the middle, to make it clearer that it has to do with the
+        // terrain and not you, as much.
+        let iProgress = 0;
+        if (progress < 0.3) {
+          iProgress = lerp(0, 0.1, progress / 0.3);
+        } else if (progress > 0.7) {
+          iProgress = lerp(0.9, 1, (progress - 0.7) / 0.3);
+        } else {
+          iProgress = lerp(0.1, 0.9, (progress - 0.3) / 0.4);
+        }
+        this.floorTh = oldFloorTh + (newFloorTh - oldFloorTh) * iProgress;
       }
-      this.floorTh = oldFloorTh + (newFloorTh - oldFloorTh) * iProgress;
 
       // Also rock back and forth.
       this.rockAngle = (0.5 - Math.abs(progress - 0.5)) * 0.075 * rockDir;
