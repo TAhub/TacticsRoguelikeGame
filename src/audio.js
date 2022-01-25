@@ -71,8 +71,8 @@ class AudioController {
     const existingPlayers = this.playerBuffers.get(type) || [];
     for (const existing of existingPlayers) {
       if (this.activePlayerBuffers.has(existing)) continue;
-      // player = existing;
-      // existing.stop();
+      player = existing;
+      existing.stop();
       break;
     }
     if (!player) {
