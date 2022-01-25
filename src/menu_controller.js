@@ -270,7 +270,6 @@ class MenuTile {
 
 class MenuController {
   constructor() {
-    this.meshGroup = new THREE.Group();
     /** @type {!Array.<!MenuTileSlot>} */
     this.slots = [];
     /** @type {?MenuTileSlot} */
