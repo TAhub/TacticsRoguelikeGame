@@ -5,8 +5,7 @@
   "author": "TheodoreAbshire@Gmail.com",
   "license": "ISC",
   "dependencies": {
-    "three": "^0.133.0",
-    "tone": "^13.8.25"
+    "three": "^0.133.0"
   },
   "devDependencies": {
     "eslint": "^7.4.0",

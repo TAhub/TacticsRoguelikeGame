@@ -1,20 +1,56 @@
 class AudioController {
   constructor() {
-    /** @type {?Tone.Player} */
+    /** @type {?AudioBufferSourceNode} */
     this.musicPlayer;
+    /** @type {?GainNode} */
+    this.musicGain;
     this.musicPlaying = '';
-    /** @type {!Map.<string, !Array.<!Tone.GrainPlayer>>} */
-    this.playerBuffers = new Map();
-    /** @type {!Set.<!Tone.GrainPlayer>} */
-    this.activePlayerBuffers = new Set();
+    this.ctx = new (window.AudioContext || window.webkitAudioContext)();
   }
 
   stopMusic() {
     if (this.musicPlayer) {
       this.musicPlayer.stop();
+      this.musicPlayer.disconnect();
     }
+    if (this.musicGain) {
+      this.musicGain.disconnect();
+    }
+    this.musicGain = null;
     this.musicPlayer = null;
     this.musicPlaying = '';
+  }
+
+  /**
+   * @param {string} type
+   * @return {?AudioBufferSourceNode}
+   * @private
+   */
+  makePlayer_(type) {
+    const buffer = data.sounds.get(type);
+    if (!data) return null;
+    const player = this.ctx.createBufferSource();
+    player.buffer = buffer;
+    return player;
+  }
+
+  /**
+   * @param {!AudioBufferSourceNode} player
+   * @param {string} type
+   * @param {number} volume
+   * @return {!GainNode} gain
+   * @private
+   */
+  play_(player, type, volume) {
+    volume += data.getNumberValue('sounds', type, 'volume') || 0;
+    volume = Math.max(0, Math.min(1, volume / 100));
+
+    const gain = this.ctx.createGain();
+    gain.gain.value = volume;
+    player.connect(gain);
+    gain.connect(this.ctx.destination);
+    player.start();
+    return gain;
   }
 
   /** @param {string} type */
@@ -35,63 +71,37 @@ class AudioController {
     if (this.musicPlaying != type) return;
 
     // Actually play it, now that it's loaded.
-    const buffer = data.sounds.get(type);
-    if (!buffer) return;
-    const player = new Tone.Player(buffer);
-    player.playbackRate = 1;
-    player.volume.value = data.getNumberValue('sounds', type, 'volume') || 0;
-    player.volume.value -= Math.floor((100 - volume) / 5);
-    player.toMaster();
-    player.start();
-    player.loop = true;
-    this.musicPlayer = player;
+    this.musicPlayer = this.makePlayer_(type);
+    if (!this.musicPlayer) return;
+    this.musicPlayer.playbackRate.value = 1;
+    this.musicGain = this.play_(this.musicPlayer, type, volume);
+    this.musicPlayer.loop = true;
   }
 
   /**
    * @param {string} type
    * @param {number} pitch
    * @param {number} playbackRate
-   * @param {number=} optVolumeMult
    * @return {!Promise}
    */
-  async play(type, pitch, playbackRate, optVolumeMult) {
-    const buffer = data.sounds.get(type);
-    if (!buffer) return;
-
-    let volume = saveManager.getConfiguration('soundVolume');
+  async play(type, pitch, playbackRate) {
+    const volume = saveManager.getConfiguration('soundVolume');
     if (volume == 0) return;
-    if (optVolumeMult != undefined) {
-      volume *= optVolumeMult;
-    }
+    const player = this.makePlayer_(type);
+    if (!player) return;
+    player.detune.value = pitch;
+    player.playbackRate.value = playbackRate;
+    const gain = this.play_(player, type, volume);
 
-    playbackRate *=
-        data.getNumberValue('sounds', type, 'playbackRateMult') || 1;
-
-    let player;
-    const existingPlayers = this.playerBuffers.get(type) || [];
-    for (const existing of existingPlayers) {
-      if (this.activePlayerBuffers.has(existing)) continue;
-      player = existing;
-      existing.stop();
-      break;
-    }
-    if (!player) {
-      player = new Tone.GrainPlayer(buffer);
-      existingPlayers.push(player);
-      this.playerBuffers.set(type, existingPlayers);
-    }
-    player.detune = pitch;
-    player.playbackRate = playbackRate;
-    player.volume.value = data.getNumberValue('sounds', type, 'volume') || 0;
-    player.volume.value -= Math.floor((100 - volume) / 5);
-    player.toMaster();
-    player.start();
-
-    this.activePlayerBuffers.add(player);
+    // Wait for this to end.
     await new Promise((resolve, reject) => {
-      setTimeout(resolve, buffer.duration * 1000 / playbackRate);
+      setTimeout(resolve, player.buffer.duration * 1000 / playbackRate);
     });
-    this.activePlayerBuffers.delete(player);
+
+    // Stop and disconnect, once you're done.
+    player.stop();
+    player.disconnect();
+    gain.disconnect();
   }
 }
 

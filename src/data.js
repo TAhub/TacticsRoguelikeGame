@@ -22,7 +22,7 @@ class Data {
     /** @type (Image) */
     this.sprites;
 
-    /** @type {!Map.<string, !Tone.Buffer>} */
+    /** @type {!Map.<string, !AudioBuffer>} */
     this.sounds = new Map();
 
     /** @type {!Set.<string>} */
@@ -96,25 +96,17 @@ class Data {
 
   /**
    * @param {string} name
-   * @return {Promise}
+   * @return {!Promise.<!AudioBuffer>}
    * @private
    */
   fetchSound_(name) {
     const soundPromise = new Promise((resolve, reject) => {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      const audioContext = new AudioContext();
-
       const request = new XMLHttpRequest();
       request.responseType = 'arraybuffer';
       request.open('GET', name, true);
       request.onload = () => {
         const buffer = /** @type {!ArrayBuffer} */ (request.response);
-        audioContext.decodeAudioData(buffer, async (rawBuffer) => {
-          const floatArray = new Float32Array(rawBuffer.length);
-          rawBuffer.copyFromChannel(floatArray, 0, 0);
-          const buffer = await Tone.Buffer.fromArray(floatArray);
-          resolve(buffer);
-        }, (error) => {
+        audio.ctx.decodeAudioData(buffer, resolve, (error) => {
           // TODO: handle failure
         });
       };
