@@ -3,6 +3,10 @@ class AudioController {
     /** @type {?Tone.Player} */
     this.musicPlayer;
     this.musicPlaying = '';
+    /** @type {!Map.<string, !Array.<!Tone.GrainPlayer>>} */
+    this.playerBuffers = new Map();
+    /** @type {!Set.<!Tone.GrainPlayer>} */
+    this.activePlayerBuffers = new Set();
   }
 
   stopMusic() {
@@ -63,8 +67,19 @@ class AudioController {
     playbackRate *=
         data.getNumberValue('sounds', type, 'playbackRateMult') || 1;
 
-    // TODO: Is it inefficient to make a separate player for each playback?
-    const player = new Tone.GrainPlayer(buffer);
+    let player;
+    const existingPlayers = this.playerBuffers.get(type) || [];
+    for (const existing of existingPlayers) {
+      if (this.activePlayerBuffers.has(existing)) continue;
+      // player = existing;
+      // existing.stop();
+      break;
+    }
+    if (!player) {
+      player = new Tone.GrainPlayer(buffer);
+      existingPlayers.push(player);
+      this.playerBuffers.set(type, existingPlayers);
+    }
     player.detune = pitch;
     player.playbackRate = playbackRate;
     player.volume.value = data.getNumberValue('sounds', type, 'volume') || 0;
@@ -72,9 +87,11 @@ class AudioController {
     player.toMaster();
     player.start();
 
+    this.activePlayerBuffers.add(player);
     await new Promise((resolve, reject) => {
       setTimeout(resolve, buffer.duration * 1000 / playbackRate);
     });
+    this.activePlayerBuffers.delete(player);
   }
 }
 

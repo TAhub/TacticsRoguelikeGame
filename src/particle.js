@@ -167,7 +167,7 @@ class Particle {
         this.voiceLast = null;
         audio.play(particle, this.soundPitch, this.voiceRate).then(() => {
           // Wait for a moment before going on.
-          setTimeout(() => this.voiceLast = particle, 150 / this.voiceRate);
+          setTimeout(() => this.voiceLast = particle, 100 / this.voiceRate);
         });
       }
       this.lifetime -= elapsed;
